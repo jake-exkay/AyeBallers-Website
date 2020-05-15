@@ -1,0 +1,7 @@
+ @font-face { font-family: BKANT; src: url('BKANT.TTF'); } 
+
+.website_header {
+  padding: 50px;
+  width: 850px;
+  height: auto;
+}
