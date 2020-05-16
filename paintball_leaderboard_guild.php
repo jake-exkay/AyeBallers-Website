@@ -30,6 +30,20 @@
                 mysqli_stmt_execute($stats_statement);
             }
 
+            $last_updated_query = "SELECT * FROM paintball";
+            $last_updated_result = $connection->query($last_updated_query);
+
+            if ($last_updated_result->num_rows > 0) {
+                while($last_updated_row = $last_updated_result->fetch_assoc()) {
+                    $last_updated = $last_updated_row['last_updated'];
+                }
+            }
+
+            $start_date = new DateTime($last_updated);
+            $since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
+
+            $mins = $since_start->i;
+
             $total_kills = 0;
             $total_wins = 0;
             $total_deaths = 0;
@@ -144,8 +158,27 @@
 
 	                    </ol>
 
+                        <div>
+                            <form action="master_update.php">
+                                <button type="submit" class="btn btn-warning">Update</button>
+                                <?php
+                                    if ($mins == 0) {
+                                        echo "<i>Last Updated: A moment ago</i>";
+                                    } elseif ($mins == 1) {
+                                        echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                    } else {
+                                        echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                    }
+                                ?>
+                            </form>
+                        </div>
+                        <br>
+
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Guild Leaderboard - Paintball</div>
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Guild Leaderboard - Paintball
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
