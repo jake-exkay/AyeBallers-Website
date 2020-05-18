@@ -236,10 +236,16 @@
                                                     $killstreaks = $row['killstreaks'];
                                                     $hat = $row['hat'];
 
-                                                    $kd = $kills / $deaths;
-                                                    $sk = $shots_fired / $kills;
-                                                    $kd = round($kd, 2);
-                                                    $sk = round($sk, 2);
+                                                    if ($kills == 0) {
+                                                        $kd = 0;
+                                                        $sk = 0;
+                                                    } else {
+                                                        $kd = $kills / $deaths;
+                                                        $sk = $shots_fired / $kills;
+
+                                                        $kd = round($kd, 2);
+                                                        $sk = round($sk, 2);
+                                                    }
 
                                                     $kills_format = number_format($kills);
                                                     $wins_format = number_format($wins);

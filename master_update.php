@@ -103,163 +103,36 @@
 	        $killstreaks_quakecraft = 0;
 
 	        // GENERAL CHECKS
-	        if (!empty($player_decoded_url->player->packageRank)) {
-	            $rank = $player_decoded_url->player->packageRank;
-	        } else {
-	            $rank = "Error";
-	        }
-
-	        if (!empty($player_decoded_url->player->rankPlusColor)) {
-	            $mvp_plus_colour = $player_decoded_url->player->rankPlusColor;
-	        } else {
-	            $mvp_plus_colour = "Error";
-	        }
+	        $rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'Error';
+	        $mvp_plus_colour = !empty($player_decoded_url->player->rankPlusColor) ? $player_decoded_url->player->rankPlusColor : 'Error';
 
 	        // TNT GAMES CHECKS
-	        if (!empty($player_decoded_url->player->stats->TNTGames->wins_tntrun)) {
-	            $wins_tntrun = $player_decoded_url->player->stats->TNTGames->wins_tntrun;
-	        } else {
-	            $wins_tntrun = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->wins_bowspleef)) {
-	            $wins_bowspleef = $player_decoded_url->player->stats->TNTGames->wins_bowspleef;
-	        } else {
-	            $wins_bowspleef = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->wins_pvprun)) {
-	            $wins_pvprun = $player_decoded_url->player->stats->TNTGames->wins_pvprun;
-	        } else {
-	            $wins_pvprun = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->wins_tntag)) {
-	            $wins_tntag = $player_decoded_url->player->stats->TNTGames->wins_tntag;
-	        } else {
-	            $wins_tntag = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->coins)) {
-	            $coins_tntgames = $player_decoded_url->player->stats->TNTGames->coins;
-	        } else {
-	            $coins_tntgames = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->kills_capture)) {
-	            $kills_wizards = $player_decoded_url->player->stats->TNTGames->kills_capture;
-	        } else {
-	            $kills_wizards = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->wins_capture)) {
-	            $wins_wizards = $player_decoded_url->player->stats->TNTGames->wins_capture;
-	        } else {
-	            $wins_wizards = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->wins)) {
-	            $total_wins_tntgames = $player_decoded_url->player->stats->TNTGames->wins;
-	        } else {
-	            $total_wins_tntgames = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->TNTGames->kills_pvprun)) {
-	            $kills_pvprun = $player_decoded_url->player->stats->TNTGames->kills_pvprun;
-	        } else {
-	            $kills_pvprun = 0;
-	        }
+	        $wins_tntrun = !empty($player_decoded_url->player->stats->TNTGames->wins_tntrun) ? $player_decoded_url->player->stats->TNTGames->wins_tntrun : 0;
+	        $wins_bowspleef = !empty($player_decoded_url->player->stats->TNTGames->wins_bowspleef) ? $player_decoded_url->player->stats->TNTGames->wins_bowspleef : 0;
+	        $wins_pvprun = !empty($player_decoded_url->player->stats->TNTGames->wins_pvprun) ? $player_decoded_url->player->stats->TNTGames->wins_pvprun : 0;
+	        $wins_tntag = !empty($player_decoded_url->player->stats->TNTGames->wins_tntag) ? $player_decoded_url->player->stats->TNTGames->wins_tntag : 0;
+	        $coins_tntgames = !empty($player_decoded_url->player->stats->TNTGames->coins) ? $player_decoded_url->player->stats->TNTGames->coins : 0;
+	        $kills_wizards = !empty($player_decoded_url->player->stats->TNTGames->kills_capture) ? $player_decoded_url->player->stats->TNTGames->kills_capture : 0;
+	        $wins_wizards = !empty($player_decoded_url->player->stats->TNTGames->wins_capture) ? $player_decoded_url->player->stats->TNTGames->wins_capture : 0;
+	        $total_wins_tntgames = !empty($player_decoded_url->player->stats->TNTGames->wins) ? $player_decoded_url->player->stats->TNTGames->wins : 0;
+	        $kills_pvprun = !empty($player_decoded_url->player->stats->TNTGames->kills_pvprun) ? $player_decoded_url->player->stats->TNTGames->kills_pvprun : 0;
 
 	        // PAINTBALL CHECKS
-	        if (!empty($player_decoded_url->player->stats->Paintball->kills)) {
-	            $kills_paintball = $player_decoded_url->player->stats->Paintball->kills;
-	        } else {
-	            $kills_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->wins)) {
-	            $wins_paintball = $player_decoded_url->player->stats->Paintball->wins;
-	        } else {
-	            $wins_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->coins)) {
-	            $coins_paintball = $player_decoded_url->player->stats->Paintball->coins;
-	        } else {
-	            $coins_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->shots_fired)) {
-	            $shots_fired_paintball = $player_decoded_url->player->stats->Paintball->shots_fired;
-	        } else {
-	            $shots_fired_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->deaths)) {
-	            $deaths_paintball = $player_decoded_url->player->stats->Paintball->deaths;
-	        } else {
-	            $deaths_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->godfather)) {
-	            $godfather_paintball = $player_decoded_url->player->stats->Paintball->godfather;
-	        } else {
-	            $godfather_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->endurance)) {
-	            $endurance_paintball = $player_decoded_url->player->stats->Paintball->endurance;
-	        } else {
-	            $endurance_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->superluck)) {
-	            $superluck_paintball = $player_decoded_url->player->stats->Paintball->superluck;
-	        } else {
-	            $superluck_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->fortune)) {
-	            $fortune_paintball = $player_decoded_url->player->stats->Paintball->fortune;
-	        } else {
-	            $fortune_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->headstart)) {
-	            $headstart_paintball = $player_decoded_url->player->stats->Paintball->headstart;
-	        } else {
-	            $headstart_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->adrenaline)) {
-	            $adrenaline_paintball = $player_decoded_url->player->stats->Paintball->adrenaline;
-	        } else {
-	            $adrenaline_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->forcefieldTime)) {
-	            $forcefield_time_paintball = $player_decoded_url->player->stats->Paintball->forcefieldTime;
-	        } else {
-	            $forcefield_time_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->killstreaks)) {
-	            $killstreaks_paintball = $player_decoded_url->player->stats->Paintball->killstreaks;
-	        } else {
-	            $killstreaks_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->transfusion)) {
-	            $transfusion_paintball = $player_decoded_url->player->stats->Paintball->transfusion;
-	        } else {
-	            $transfusion_paintball = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Paintball->hat)) {
-	            $hat_paintball = $player_decoded_url->player->stats->Paintball->hat;
-	        } else {
-	            $hat_paintball = 0;
-	        }
+	        $kills_paintball = !empty($player_decoded_url->player->stats->Paintball->kills) ? $player_decoded_url->player->stats->Paintball->kills : 0;
+	        $wins_paintball = !empty($player_decoded_url->player->stats->Paintball->wins) ? $player_decoded_url->player->stats->Paintball->wins : 0;
+			$coins_paintball = !empty($player_decoded_url->player->stats->Paintball->coins) ? $player_decoded_url->player->stats->Paintball->coins : 0;
+	        $shots_fired_paintball = !empty($player_decoded_url->player->stats->Paintball->shots_fired) ? $player_decoded_url->player->stats->Paintball->shots_fired : 0;
+	        $deaths_paintball = !empty($player_decoded_url->player->stats->Paintball->deaths) ? $player_decoded_url->player->stats->Paintball->deaths : 0;
+			$godfather_paintball = !empty($player_decoded_url->player->stats->Paintball->godfather) ? $player_decoded_url->player->stats->Paintball->godfather : 0;
+	        $endurance_paintball = !empty($player_decoded_url->player->stats->Paintball->endurance) ? $player_decoded_url->player->stats->Paintball->endurance : 0;
+			$superluck_paintball = !empty($player_decoded_url->player->stats->Paintball->superluck) ? $player_decoded_url->player->stats->Paintball->superluck : 0;
+	        $fortune_paintball = !empty($player_decoded_url->player->stats->Paintball->fortune) ? $player_decoded_url->player->stats->Paintball->fortune : 0;
+	        $headstart_paintball = !empty($player_decoded_url->player->stats->Paintball->headstart) ? $player_decoded_url->player->stats->Paintball->headstart : 0;
+	        $adrenaline_paintball = !empty($player_decoded_url->player->stats->Paintball->adrenaline) ? $player_decoded_url->player->stats->Paintball->adrenaline : 0;
+	        $forcefield_time_paintball = !empty($player_decoded_url->player->stats->Paintball->forcefieldTime) ? $player_decoded_url->player->stats->Paintball->forcefieldTime : 0;
+	        $killstreaks_paintball = !empty($player_decoded_url->player->stats->Paintball->killstreaks) ? $player_decoded_url->player->stats->Paintball->killstreaks : 0;
+	        $transfusion_paintball = !empty($player_decoded_url->player->stats->Paintball->transfusion) ? $player_decoded_url->player->stats->Paintball->transfusion : 0;
+	        $hat_paintball = !empty($player_decoded_url->player->stats->Paintball->hat) ? $player_decoded_url->player->stats->Paintball->hat : "no hat";
 
 	        // Format paintball hats
 	        if ($hat_paintball == 'normal_hat') {
@@ -317,48 +190,13 @@
 	        $transfusion_paintball += 1;
 
 	        // QUAKECRAFT CHECKS
-	        if (!empty($player_decoded_url->player->stats->Quake->kills)) {
-	            $kills_quakecraft = $player_decoded_url->player->stats->Quake->kills;
-	        } else {
-	            $kills_quakecraft = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Quake->wins)) {
-	            $wins_quakecraft = $player_decoded_url->player->stats->Quake->wins;
-	        } else {
-	            $wins_quakecraft = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Quake->coins)) {
-	            $coins_quakecraft = $player_decoded_url->player->stats->Quake->coins;
-	        } else {
-	            $coins_quakecraft = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Quake->shots_fired)) {
-	            $shots_fired_quakecraft = $player_decoded_url->player->stats->Quake->shots_fired;
-	        } else {
-	            $shots_fired_quakecraft = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Quake->deaths)) {
-	            $deaths_quakecraft = $player_decoded_url->player->stats->Quake->deaths;
-	        } else {
-	            $deaths_quakecraft = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Quake->headshots)) {
-	            $headshots_quakecraft = $player_decoded_url->player->stats->Quake->headshots;
-	        } else {
-	            $headshots_quakecraft = 0;
-	        }
-
-	        if (!empty($player_decoded_url->player->stats->Quake->killstreaks)) {
-	            $killstreaks_quakecraft = $player_decoded_url->player->stats->Quake->killstreaks;
-	        } else {
-	            $killstreaks_quakecraft = 0;
-	        }
-
+	        $kills_quakecraft = !empty($player_decoded_url->player->stats->Quake->kills) ? $player_decoded_url->player->stats->Quake->kills : 0;
+	        $wins_quakecraft = !empty($player_decoded_url->player->stats->Quake->wins) ? $player_decoded_url->player->stats->Quake->wins : 0;
+	        $coins_quakecraft = !empty($player_decoded_url->player->stats->Quake->coins) ? $player_decoded_url->player->stats->Quake->coins : 0;
+	        $shots_fired_quakecraft = !empty($player_decoded_url->player->stats->Quake->shots_fired) ? $player_decoded_url->player->stats->Quake->shots_fired : 0;
+	        $deaths_quakecraft = !empty($player_decoded_url->player->stats->Quake->deaths) ? $player_decoded_url->player->stats->Quake->deaths : 0;
+	        $headshots_quakecraft = !empty($player_decoded_url->player->stats->Quake->headshots) ? $player_decoded_url->player->stats->Quake->headshots : 0;
+	        $killstreaks_quakecraft = !empty($player_decoded_url->player->stats->Quake->killstreaks) ? $player_decoded_url->player->stats->Quake->killstreaks : 0;
 
 	        // TNT GAMES INSERT
 	        $query_tntgames = "INSERT INTO tntgames (UUID, name, last_updated, mvp_plus_colour, rank, coins, wizards_kills, wins_bowspeef, wins_wizards, wins_tntrun, total_wins, kills_pvprun, wins_tnttag, wins_pvprun)
