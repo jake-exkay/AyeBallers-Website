@@ -159,8 +159,8 @@
 	                    </ol>
 
                         <div>
-                            <form action="master_update.php">
-                                <button type="submit" class="btn btn-warning">Update</button>
+                            <?php if ($mins < 10) { ?>
+                                <button type="submit" class="btn btn-danger">Update</button>
                                 <?php
                                     if ($mins == 0) {
                                         echo "<i>Last Updated: A moment ago</i>";
@@ -170,7 +170,21 @@
                                         echo "<i>Last Updated: " . $mins . " minutes ago</i>";
                                     }
                                 ?>
-                            </form>
+                                <h6><i>(Leaderboard data can be updated every 10 minutes)</i></h6>
+                            <?php } else { ?>
+                                <form action="master_update.php">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <?php
+                                        if ($mins == 0) {
+                                            echo "<i>Last Updated: A moment ago</i>";
+                                        } elseif ($mins == 1) {
+                                            echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                        } else {
+                                            echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                        }
+                                    ?>
+                                </form>
+                            <?php } ?>
                         </div>
                         <br>
 
