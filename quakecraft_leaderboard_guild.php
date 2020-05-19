@@ -13,7 +13,7 @@
 
         <?php
 
-            include "CONSTANTS.php";
+            include "includes/constants.php";
 
             $connection = new mysqli($DB_HOST, $DB_USERNAME, $DB_PASS, $DB_NAME);
                
@@ -29,6 +29,20 @@
             if($stats_statement = mysqli_prepare($connection, $stats_query)) {
                 mysqli_stmt_execute($stats_statement);
             }
+
+            $last_updated_query = "SELECT * FROM quakecraft";
+            $last_updated_result = $connection->query($last_updated_query);
+
+            if ($last_updated_result->num_rows > 0) {
+                while($last_updated_row = $last_updated_result->fetch_assoc()) {
+                    $last_updated = $last_updated_row['last_updated'];
+                }
+            }
+
+            $start_date = new DateTime($last_updated);
+            $since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
+
+            $mins = $since_start->i;
 
             $total_kills = 0;
             $total_wins = 0;
@@ -78,45 +92,9 @@
     </head>
 
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.php">AyeBallers</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-        </nav>
+        
+        <?php require "includes/navbar.php"; ?>
 
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Home</div>
-                            <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                Home
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Leaderboards</div>
-                            <a class="nav-link" href="paintball_leaderboard_guild.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                Paintball
-                            </a>
-                            <a class="nav-link" href="tntgames_leaderboard_guild.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                TNT Games
-                            </a>
-                            <a class="nav-link" href="quakecraft_leaderboard_guild.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                QuakeCraft
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
@@ -141,6 +119,35 @@
 	                        </form>
 
 	                    </ol>
+
+                        <div>
+                            <?php if ($mins < 10) { ?>
+                                <button type="submit" class="btn btn-danger">Update</button>
+                                <?php
+                                    if ($mins == 0) {
+                                        echo "<i>Last Updated: A moment ago</i>";
+                                    } elseif ($mins == 1) {
+                                        echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                    } else {
+                                        echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                    }
+                                ?>
+                                <h6><i>(Leaderboard data can be updated every 10 minutes)</i></h6>
+                            <?php } else { ?>
+                                <form action="master_update.php">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <?php
+                                        if ($mins == 0) {
+                                            echo "<i>Last Updated: A moment ago</i>";
+                                        } elseif ($mins == 1) {
+                                            echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                        } else {
+                                            echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                        }
+                                    ?>
+                                </form>
+                            <?php } ?>
+                        </div>
 
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Guild Leaderboard - QuakeCraft</div>
@@ -192,10 +199,16 @@
                                                     $headshots = $row['headshots'];
                                                     $killstreaks = $row['killstreaks'];
 
-                                                    $kd = $kills / $deaths;
-                                                    $sk = $shots_fired / $kills;
-                                                    $kd = round($kd, 2);
-                                                    $sk = round($sk, 2);
+                                                    if ($kills == 0) {
+                                                        $kd = 0;
+                                                        $sk = 0;
+                                                    } else {
+                                                        $kd = $kills / $deaths;
+                                                        $sk = $shots_fired / $kills;
+
+                                                        $kd = round($kd, 2);
+                                                        $sk = round($sk, 2);
+                                                    }
 
                                                     $kills_format = number_format($kills);
                                                     $wins_format = number_format($wins);

@@ -1,6 +1,6 @@
 <?php
 
-	include "includes/constants.php";
+	include "CONSTANTS.php";
 
     $connection = new mysqli($DB_HOST, $DB_USERNAME, $DB_PASS, $DB_NAME);
            
@@ -8,7 +8,7 @@
         echo 'Error connecting to the database';
     }
 
-	$last_updated_query = "SELECT * FROM paintball";
+	$last_updated_query = "SELECT * FROM paintball_overall";
     $last_updated_result = $connection->query($last_updated_query);
 
 	if ($last_updated_result->num_rows > 0) {
@@ -26,26 +26,12 @@
 	    $decoded_url  = json_decode($api_guild_url);
 	    $guild_members = $decoded_url->guild->members;
 
-	    $truncate_paintball_query = "DELETE FROM paintball";
-	    $truncate_quakecraft_query = "DELETE FROM quakecraft";
-	    $truncate_tntgames_query = "DELETE FROM tntgames";
+	    $truncate_paintball_query = "DELETE FROM paintball_overall";
 
 	    if($truncate_paintball_statement = mysqli_prepare($connection, $truncate_paintball_query)) {
 	        mysqli_stmt_execute($truncate_paintball_statement);
 	    } else {
 	        echo 'Error truncating paintball<br>' . mysqli_error($connection); 
-	    }
-
-	    if($truncate_quakecraft_statement = mysqli_prepare($connection, $truncate_quakecraft_query)) {
-	        mysqli_stmt_execute($truncate_paintball_statement);
-	    } else {
-	        echo 'Error truncating quakecraft<br>' . mysqli_error($connection); 
-	    }
-
-	    if($truncate_tntgames_statement = mysqli_prepare($connection, $truncate_tntgames_query)) {
-	        mysqli_stmt_execute($truncate_tntgames_statement);
-	    } else {
-	        echo 'Error truncating tntgames<br>' . mysqli_error($connection); 
 	    }
 
 	    foreach($guild_members as $member) {
@@ -96,7 +82,6 @@
 	        // QUAKECRAFT VARS
 	        $wins_quakecraft = 0;
 	        $kills_quakecraft = 0;
-	        $kills_teams_quakecraft = 0;
 	        $headshots_quakecraft = 0;
 	        $deaths_quakecraft = 0;
 	        $coins_quakecraft = 0;
@@ -198,15 +183,6 @@
 	        $deaths_quakecraft = !empty($player_decoded_url->player->stats->Quake->deaths) ? $player_decoded_url->player->stats->Quake->deaths : 0;
 	        $headshots_quakecraft = !empty($player_decoded_url->player->stats->Quake->headshots) ? $player_decoded_url->player->stats->Quake->headshots : 0;
 	        $killstreaks_quakecraft = !empty($player_decoded_url->player->stats->Quake->killstreaks) ? $player_decoded_url->player->stats->Quake->killstreaks : 0;
-	        $kills_teams_quakecraft = !empty($player_decoded_url->player->stats->Quake->kills_teams) ? $player_decoded_url->player->stats->Quake->kills_teams : 0;
-	        $deaths_teams_quakecraft = !empty($player_decoded_url->player->stats->Quake->deaths_teams) ? $player_decoded_url->player->stats->Quake->deaths_teams : 0;
-	        $wins_teams_quakecraft = !empty($player_decoded_url->player->stats->Quake->wins_teams) ? $player_decoded_url->player->stats->Quake->wins_teams : 0;
-	        $killstreaks_teams_quakecraft = !empty($player_decoded_url->player->stats->Quake->killstreaks_teams) ? $player_decoded_url->player->stats->Quake->killstreaks_teams : 0;
-
-	        $kills_quakecraft = $kills_quakecraft + $kills_teams_quakecraft;
-	        $killstreaks_quakecraft = $killstreaks_quakecraft + $killstreaks_teams_quakecraft;
-	        $wins_quakecraft = $wins_quakecraft + $wins_teams_quakecraft;
-	        $deaths_quakecraft = $deaths_quakecraft + $deaths_teams_quakecraft;
 
 	        // TNT GAMES INSERT
 	        $query_tntgames = "INSERT INTO tntgames (UUID, name, last_updated, mvp_plus_colour, rank, coins, wizards_kills, wins_bowspeef, wins_wizards, wins_tntrun, total_wins, kills_pvprun, wins_tnttag, wins_pvprun)
@@ -238,7 +214,7 @@
 	            mysqli_stmt_bind_param($statement_quakecraft, "siiiiiiisss", $uuid, $kills_quakecraft, $wins_quakecraft, $coins_quakecraft, $shots_fired_quakecraft, $deaths_quakecraft, $headshots_quakecraft, $killstreaks_quakecraft, $rank, $mvp_plus_colour, $name);
 	            mysqli_stmt_execute($statement_quakecraft);
 	        } else {
-	            echo '<b>[QUAKE] '.$name.' </b>An Error Occured!<br>'; 
+	            echo '<b>[QUAKE] '.$name.' </b>An Error Occured!<br>' . mysqli_error($connection); 
 	        }
 
 	        header("Refresh:0.01; url=paintball_leaderboard_guild.php");
