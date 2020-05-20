@@ -29,6 +29,7 @@
 	    $truncate_paintball_query = "DELETE FROM paintball";
 	    $truncate_quakecraft_query = "DELETE FROM quakecraft";
 	    $truncate_tntgames_query = "DELETE FROM tntgames";
+	    $truncate_tkr_query = "DELETE FROM tkr";
 
 	    if($truncate_paintball_statement = mysqli_prepare($connection, $truncate_paintball_query)) {
 	        mysqli_stmt_execute($truncate_paintball_statement);
@@ -46,6 +47,12 @@
 	        mysqli_stmt_execute($truncate_tntgames_statement);
 	    } else {
 	        echo 'Error truncating tntgames<br>' . mysqli_error($connection); 
+	    }
+
+	    if($truncate_tkr_statement = mysqli_prepare($connection, $truncate_tkr_query)) {
+	        mysqli_stmt_execute($truncate_tkr_statement);
+	    } else {
+	        echo 'Error truncating tkr<br>' . mysqli_error($connection); 
 	    }
 
 	    foreach($guild_members as $member) {
@@ -102,6 +109,14 @@
 	        $coins_quakecraft = 0;
 	        $shots_fired_quakecraft = 0;
 	        $killstreaks_quakecraft = 0;
+
+	        // TKR VARS
+	        $coins_tkr = 0;
+	        $box_pickups_tkr = 0;
+	        $laps_completed_tkr = 0;
+	        $silver_trophy_tkr = 0;
+	        $gold_trophy_tkr = 0;
+	        $bronze_trophy_tkr = 0;
 
 	        // GENERAL CHECKS
 	        $rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'Error';
@@ -208,6 +223,14 @@
 	        $wins_quakecraft = $wins_quakecraft + $wins_teams_quakecraft;
 	        $deaths_quakecraft = $deaths_quakecraft + $deaths_teams_quakecraft;
 
+	        // TKR CHECKS
+	        $coins_tkr = !empty($player_decoded_url->player->stats->GingerBread->coins) ? $player_decoded_url->player->stats->GingerBread->coins : 0;
+	        $box_pickups_tkr = !empty($player_decoded_url->player->stats->GingerBread->box_pickups) ? $player_decoded_url->player->stats->GingerBread->box_pickups : 0;
+	        $laps_completed_tkr = !empty($player_decoded_url->player->stats->GingerBread->laps_completed) ? $player_decoded_url->player->stats->GingerBread->laps_completed : 0;
+	        $silver_trophy_tkr = !empty($player_decoded_url->player->stats->GingerBread->silver_trophy) ? $player_decoded_url->player->stats->GingerBread->silver_trophy : 0;
+	        $gold_trophy_tkr = !empty($player_decoded_url->player->stats->GingerBread->gold_trophy) ? $player_decoded_url->player->stats->GingerBread->gold_trophy : 0;
+	        $bronze_trophy_tkr = !empty($player_decoded_url->player->stats->GingerBread->bronze_trophy) ? $player_decoded_url->player->stats->GingerBread->bronze_trophy : 0;
+
 	        // TNT GAMES INSERT
 	        $query_tntgames = "INSERT INTO tntgames (UUID, name, last_updated, mvp_plus_colour, rank, coins, wizards_kills, wins_bowspeef, wins_wizards, wins_tntrun, total_wins, kills_pvprun, wins_tnttag, wins_pvprun)
 	            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -239,6 +262,17 @@
 	            mysqli_stmt_execute($statement_quakecraft);
 	        } else {
 	            echo '<b>[QUAKE] '.$name.' </b>An Error Occured!<br>'; 
+	        }
+
+	        // TKR INSERT
+	        $query_tkr = "INSERT INTO tkr (UUID, name, last_updated, mvp_plus_colour, rank, coins, box_pickups, laps_completed, silver_trophy, gold_trophy, bronze_trophy)
+	            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	        if($statement_tkr = mysqli_prepare($connection, $query_tkr)) {
+	            mysqli_stmt_bind_param($statement_tkr, "ssssiiiiii", $uuid, $name, $mvp_plus_colour, $rank, $coins_tkr, $box_pickups_tkr, $laps_completed_tkr, $silver_trophy_tkr, $gold_trophy_tkr, $bronze_trophy_tkr);
+	            mysqli_stmt_execute($statement_tkr);
+	        } else {
+	            echo '<b>[TKR] '.$name.' </b>An Error Occured!<br>'; 
 	        }
 
 	        header("Refresh:0.01; url=paintball_leaderboard_guild.php");

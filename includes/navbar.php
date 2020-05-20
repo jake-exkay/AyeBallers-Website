@@ -35,6 +35,12 @@
                                 </div>
                                 Quakecraft
                             </a>
+                            <a class="nav-link" href="tkr_leaderboard_guild.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Turbo Kart Racers
+                            </a>
                         </div>
                     </div>
                 </nav>
