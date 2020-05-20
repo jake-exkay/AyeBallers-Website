@@ -16,6 +16,12 @@
                                 </div>
                                 Home
                             </a>
+                            <a class="nav-link" href="event.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Event
+                            </a>
                             <div class="sb-sidenav-menu-heading">Leaderboards</div>
                             <a class="nav-link" href="paintball_leaderboard_guild.php">
                                 <div class="sb-nav-link-icon">
