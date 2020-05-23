@@ -275,14 +275,16 @@
 	            echo '<b>[TKR] '.$name.' </b>An Error Occured!<br>'; 
 	        }
 
-	        header("Refresh:0.01; url=paintball_leaderboard_guild.php");
+	        header("Refresh:0.01; url=index.php");
 
 
 	    }
 
 	} else {
 		echo "Database was updated less than an 10 minutes ago. Redirecting.";
-	    header("Refresh:2; url=paintball_leaderboard_guild.php");
+	    header("Refresh:2; url=index.php");
 	}
+
+	$connection->close();
 
 ?>

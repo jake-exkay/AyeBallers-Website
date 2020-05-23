@@ -5,15 +5,15 @@
 
         <meta name="author" content="ExKay" />
 
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../../../css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 
-        <title>Guild Leaderboard - Paintball</title>
+        <title>Overall Leaderboard - Paintball</title>
 
         <?php
 
-            include "CONSTANTS.php";
+            include "../../../includes/constants.php";
 
             $connection = new mysqli($DB_HOST, $DB_USERNAME, $DB_PASS, $DB_NAME);
                
@@ -21,16 +21,16 @@
                 echo 'Error connecting to the database';
             }
 
-            $query = "SELECT * FROM paintball ORDER BY kills DESC";
+            $query = "SELECT * FROM paintball_overall ORDER BY kills DESC";
             $result = $connection->query($query);
 
-            $stats_query = "UPDATE page_views SET views = views + 1 WHERE page='paintball_guild_leaderboard'";
+            $stats_query = "UPDATE page_views SET views = views + 1 WHERE page='paintball_overall_leaderboard'";
                             
             if($stats_statement = mysqli_prepare($connection, $stats_query)) {
                 mysqli_stmt_execute($stats_statement);
             }
 
-            $last_updated_query = "SELECT * FROM paintball";
+            $last_updated_query = "SELECT * FROM paintball_overall";
             $last_updated_result = $connection->query($last_updated_query);
 
             if ($last_updated_result->num_rows > 0) {
@@ -53,8 +53,8 @@
             $total_godfather = 0;
             $total_endurance = 0;
             $total_fortune = 0;
-            $guild_kd = 0;
-            $guild_sk = 0;
+            $avg_kd = 0;
+            $avg_sk = 0;
 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -88,10 +88,10 @@
                     $format_total_endurance = number_format($total_endurance);
                     $format_total_fortune = number_format($total_fortune);
 
-                    $guild_kd = $total_kills / $total_deaths;
-                    $guild_sk = $total_shots / $total_kills;
-                    $guild_kd = round($guild_kd, 2);
-                    $guild_sk = round($guild_sk, 2);
+                    $avg_kd = $total_kills / $total_deaths;
+                    $avg_sk = $total_shots / $total_kills;
+                    $avg_kd = round($avg_kd, 2);
+                    $avg_sk = round($avg_sk, 2);
                 }
             }
 
@@ -100,39 +100,9 @@
     </head>
 
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="paintball_leaderboard_guild.php">AyeBallers</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-        </nav>
 
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Home</div>
-                            <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                Home
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Leaderboards</div>
-                            <a class="nav-link" href="paintball_leaderboard_guild.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                Paintball
-                            </a>
-                            <a class="nav-link" href="tntgames_leaderboard_guild.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                TNT Games
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+        <?php require "../../../includes/navbar.php"; ?>
+
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
@@ -140,8 +110,8 @@
 
                         <ol class="breadcrumb mb-4">
 
-                        	<form style="margin-right: 10px;">
-	                            <button type="submit" class="btn btn-secondary" disabled>Overall Leaderboard</button>
+                        	<form style="margin-right: 10px;" action="paintball.php">
+	                            <button type="submit" class="btn btn-success">Overall Leaderboard</button>
 	                        </form>
 
 	                        <form style="margin-right: 10px;">
@@ -152,7 +122,7 @@
 	                            <button type="submit" class="btn btn-secondary" disabled>Weekly Leaderboard</button>
 	                        </form>
 
-	                        <form action="paintball_leaderboard_guild.php">
+	                        <form action="../guild/paintball.php">
 	                            <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
 	                        </form>
 
@@ -160,7 +130,7 @@
 
                         <div>
                             <?php if ($mins < 10) { ?>
-                                <button type="submit" class="btn btn-danger">Update</button>
+                                <button type="submit" class="btn btn-danger">Update Temporarily Disabled</button>
                                 <?php
                                     if ($mins == 0) {
                                         echo "<i>Last Updated: A moment ago</i>";
@@ -172,8 +142,8 @@
                                 ?>
                                 <h6><i>(Leaderboard data can be updated every 10 minutes)</i></h6>
                             <?php } else { ?>
-                                <form action="master_update.php">
-                                    <button type="submit" class="btn btn-success">Update</button>
+                                <form>
+                                    <button type="submit" class="btn btn-danger">Update Temporarily Disabled</button>
                                     <?php
                                         if ($mins == 0) {
                                             echo "<i>Last Updated: A moment ago</i>";
@@ -191,7 +161,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Guild Leaderboard - Paintball
+                                Overall Leaderboard - Paintball
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -216,7 +186,7 @@
                                         <tbody>
                                             <tr class="table-info">
                                                 <td>0</td>
-                                                <td>Overall Guild</td>
+                                                <td>Overall (Top 100)</td>
                                                 <td><?php echo $format_total_kills; ?></td>
                                                 <td><?php echo $format_total_wins; ?></td>
                                                 <td><?php echo $format_total_coins; ?></td>
@@ -225,8 +195,8 @@
                                                 <td><?php echo $format_total_godfather; ?></td>
                                                 <td><?php echo $format_total_endurance; ?></td>
                                                 <td><?php echo $format_total_fortune; ?></td>
-                                                <td><?php echo $guild_kd; ?> (Average)</td>
-                                                <td><?php echo $guild_sk; ?> (Average)</td>
+                                                <td><?php echo $avg_kd; ?> (Average)</td>
+                                                <td><?php echo $avg_sk; ?> (Average)</td>
                                                 <td>N/A</td>
                                             </tr>
 
@@ -327,12 +297,12 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../../../js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="../../../assets/demo/chart-area-demo.js"></script>
+        <script src="../../../assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
+        <script src="../../../assets/demo/datatables-demo.js"></script>
     </body>
 </html>

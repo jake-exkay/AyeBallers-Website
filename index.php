@@ -56,7 +56,7 @@
                                 <div class="card-body">
                                     <h5>Leader</h5>
                                     <h5>AyeCool</h5>
-                                    <img src="assets/img/AyeCool.png"/>
+                                    <img style="height: 200px; width: 200px;" src="assets/img/AyeCool.png"/>
                                     <p>Leadership</p>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                 <div class="card-body">
                                     <h5>Leader</h5>
                                     <h5>PotAccuracy</h5>
-                                    <img src="assets/img/PotAccuracy.png"/>
+                                    <img style="height: 200px; width: 200px;" src="assets/img/PotAccuracy.png"/>
                                     <p>Staff Management + Recruitment</p>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                 <div class="card-body">
                                     <h5>Admin</h5>
                                     <h5>ExKay</h5>
-                                    <img src="assets/img/ExKay.png"/>
+                                    <img style="height: 200px; width: 200px;" src="assets/img/ExKay.png"/>
                                     <p>Development + Site Management</p>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 <div class="card-body">
                                     <h5>Admin</h5>
                                     <h5>Emilyie</h5>
-                                    <img src="assets/img/Emilyie.png"/>
+                                    <img style="height: 200px; width: 200px;" src="assets/img/Emilyie.png"/>
                                     <p>Events Management, Forums and Announcements</p>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                 <div class="card-body">
                                     <h5>Officer</h5>
                                     <h5>Penderdrill</h5>
-                                    <img src="assets/img/Penderdrill.png"/>
+                                    <img style="height: 200px; width: 200px;" src="assets/img/Penderdrill.png"/>
                                     <p>GvG Organiser</p>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                 <div class="card-body">
                                     <h5>Officer</h5>
                                     <h5>julikabum</h5>
-                                    <img src="assets/img/julikabum.png"/>
+                                    <img style="height: 200px; width: 200px;" src="assets/img/julikabum.png"/>
                                     <p>Events</p>
                                 </div>
                             </div>
@@ -121,12 +121,13 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5>Officer</h5>
-                                    <h5>Ferozion</h5>
-                                    <img src="assets/img/Ferozion.png"/>
-                                    <p>GEXP Contest Host</p>
+                                    <h5>RantingBrit</h5>
+                                    <img style="height: 200px; width: 200px;" src="assets/img/RantingBrit.png"/>
+                                    <p>Officer</p>
                                 </div>
                             </div>
                         </div>
+
                     </div></center>
                 </div>
             </main>
