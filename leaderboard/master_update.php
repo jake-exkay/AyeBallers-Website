@@ -1,6 +1,6 @@
 <?php
 
-	include "includes/constants.php";
+	include "../includes/constants.php";
 
     $connection = new mysqli($DB_HOST, $DB_USERNAME, $DB_PASS, $DB_NAME);
            
