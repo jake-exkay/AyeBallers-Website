@@ -113,7 +113,7 @@
 
                         <div>
                             <?php if ($mins < 10) { ?>
-                                <button type="submit" class="btn btn-danger">Update Temporarily Disabled</button>
+                                <button type="submit" class="btn btn-danger">Update</button>
                                 <?php
                                     if ($mins == 0) {
                                         echo "<i>Last Updated: A moment ago</i>";
@@ -125,8 +125,8 @@
                                 ?>
                                 <h6><i>(Leaderboard data can be updated every 10 minutes)</i></h6>
                             <?php } else { ?>
-                                <form>
-                                    <button type="submit" class="btn btn-danger">Update Temporarily Disabled</button>
+                                <form action="../../overall_leaderboard_update.php">
+                                    <button type="submit" class="btn btn-success">Update</button>
                                     <?php
                                         if ($mins == 0) {
                                             echo "<i>Last Updated: A moment ago</i>";
