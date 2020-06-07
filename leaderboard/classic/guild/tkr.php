@@ -13,22 +13,13 @@
 
         <?php
 
-            include "../../../includes/constants.php";
+            include "../../../includes/connect.php";
+            include "../../../functions/functions.php";
 
-            $connection = new mysqli($DB_HOST, $DB_USERNAME, $DB_PASS, $DB_NAME);
-               
-            if($connection->connect_error) {
-                echo 'Error connecting to the database';
-            }
+            updatePageViews($connection, 'tkr_guild_leaderboard');
 
             $query = "SELECT * FROM tkr ORDER BY gold_trophy DESC";
             $result = $connection->query($query);
-
-            $stats_query = "UPDATE page_views SET views = views + 1 WHERE page='tkr_guild_leaderboard'";
-                            
-            if($stats_statement = mysqli_prepare($connection, $stats_query)) {
-                mysqli_stmt_execute($stats_statement);
-            }
 
             $last_updated_query = "SELECT * FROM tkr";
             $last_updated_result = $connection->query($last_updated_query);

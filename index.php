@@ -13,19 +13,10 @@
 
         <?php
 
-            include "includes/constants.php";
+            include "includes/connect.php";
+            include "functions/functions.php";
 
-            $connection = new mysqli($DB_HOST, $DB_USERNAME, $DB_PASS, $DB_NAME);
-               
-            if ($connection->connect_error) {
-                echo 'Error connecting to the database';
-            }
-
-            $stats_query = "UPDATE page_views SET views = views + 1 WHERE page='home_page'";
-                            
-            if ($stats_statement = mysqli_prepare($connection, $stats_query)) {
-                mysqli_stmt_execute($stats_statement);
-            }
+            updatePageViews($connection, 'home_page');
 
         ?>
 

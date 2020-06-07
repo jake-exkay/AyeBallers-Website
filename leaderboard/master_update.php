@@ -1,12 +1,6 @@
 <?php
 
-	include "../includes/constants.php";
-
-    $connection = new mysqli($DB_HOST, $DB_USERNAME, $DB_PASS, $DB_NAME);
-           
-    if($connection->connect_error) {
-        echo 'Error connecting to the database';
-    }
+	include "../includes/connect.php";
 
 	$last_updated_query = "SELECT * FROM paintball";
     $last_updated_result = $connection->query($last_updated_query);
