@@ -91,26 +91,6 @@
                     <div class="container-fluid">
                         <h1 class="mt-4">Turbo Kart Racers Leaderboard</h1>
 
-                        <ol class="breadcrumb mb-4">
-
-                        	<form style="margin-right: 10px;">
-	                            <button type="submit" class="btn btn-secondary" disabled>Overall Leaderboard</button>
-	                        </form>
-
-	                        <form style="margin-right: 10px;">
-	                            <button type="submit" class="btn btn-secondary" disabled>Monthly Leaderboard</button>
-	                        </form>
-
-	                        <form style="margin-right: 10px;">
-	                            <button type="submit" class="btn btn-secondary" disabled>Weekly Leaderboard</button>
-	                        </form>
-
-	                        <form action="tkr_leaderboard_guild.php">
-	                            <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
-	                        </form>
-
-	                    </ol>
-
                         <div>
                             <?php if ($mins < 10) { ?>
                                 <button type="submit" class="btn btn-danger">Update</button>
@@ -139,6 +119,8 @@
                                 </form>
                             <?php } ?>
                         </div>
+
+                        <br>
 
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Guild Leaderboard - Turbo Kart Racers</div>

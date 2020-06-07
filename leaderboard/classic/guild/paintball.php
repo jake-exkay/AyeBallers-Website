@@ -114,14 +114,6 @@
 	                            <button type="submit" class="btn btn-primary">Overall Leaderboard</button>
 	                        </form>
 
-	                        <form style="margin-right: 10px;">
-	                            <button type="submit" class="btn btn-secondary" disabled>Monthly Leaderboard</button>
-	                        </form>
-
-	                        <form style="margin-right: 10px;">
-	                            <button type="submit" class="btn btn-secondary" disabled>Weekly Leaderboard</button>
-	                        </form>
-
 	                        <form action="paintball.php">
 	                            <button type="submit" class="btn btn-success">AyeBallers Leaderboard</button>
 	                        </form>
@@ -156,6 +148,7 @@
                                 </form>
                             <?php } ?>
                         </div>
+                        
                         <br>
 
                         <div class="card mb-4">

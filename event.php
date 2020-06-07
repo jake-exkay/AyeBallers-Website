@@ -41,7 +41,7 @@
                     <center><img style="padding-top: 50px" class="website_header" src="assets/img/ayeballers.png"/></center>
 
                     <center><h2 style="font-family: BKANT, sans-serif">Next Event</h2></center>
-                    <center><h3 style="font-family: BKANT, sans-serif">Jeopardy</h2></center>
+                    <center><h3 style="font-family: BKANT, sans-serif">TBA</h2></center>
 
                     <!-- Display the countdown timer in an element -->
                     <center><h1 style="font-family: BKANT, sans-serif" id="demo"></h1></center>
@@ -72,7 +72,7 @@
                           // If the count down is finished, write some text
                           if (distance < 0) {
                             clearInterval(x);
-                            document.getElementById("demo").innerHTML = "EXPIRED";
+                            document.getElementById("demo").innerHTML = "";
                           }
                         }, 1000);
                     </script>
