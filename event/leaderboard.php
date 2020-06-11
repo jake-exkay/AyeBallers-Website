@@ -6,6 +6,7 @@
         <meta name="author" content="ExKay" />
 
         <link href="../../../css/styles.css" rel="stylesheet" />
+        <link href="../../../css/custom_styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 
@@ -48,7 +49,8 @@
                 <main>
                     <div class="container-fluid">
                         <center>
-                            <b><h1 class="mt-4">Paintball Tournament #2</h1></b>
+                            <img style="padding-top: 25px" class="website_header" src="../assets/img/ayeballers.png"/>
+                            <b><h1>Paintball Tournament #2</h1></b>
                             <?php
                                 if ($tournament_started == false) {
                                     echo "<h3>Time Until Tournament: 00:00:00</h2>";
