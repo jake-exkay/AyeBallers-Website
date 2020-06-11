@@ -1,22 +1,26 @@
 <?php
 
 	include "../includes/connect.php";
+    include "../includes/constants.php";
     include "event_functions.php";
 
-    if (eventStarted()) {
+    if (!eventStarted($connection)) {
         echo "Error: Event has not started";
         header("Refresh:2; url=leaderboard.php");
     }
 
-    if (needsUpdating()) {
+    if (apiLimitReached($API_KEY)) {
+        echo "Error: Too many concurrent API requests, please try again in a minute.";
+        header("Refresh:2; url=leaderboard.php");
+    }
+
+    if (needsUpdating($connection)) {
 
         foreach($participants as $uuid) {
-            $player_url = file_get_contents("https://api.hypixel.net/player?key=".$API_KEY."&uuid=".$uuid);
+            $player_url = file_get_contents("https://api.hypixel.net/player?key=" . $API_KEY . "&uuid=" . $uuid);
             $player_decoded_url = json_decode($player_url);
-            $mojang_url = file_get_contents("https://api.mojang.com/user/profiles/".$uuid."/names");
-            $mojang_decoded_url = json_decode($mojang_url, true);
-            $real_name = array_pop($mojang_decoded_url);
-            $name = $real_name['name'];
+
+            $name = getRealName($connection, $uuid);
 
             $current_kills = 0;
             $current_wins = 0;
@@ -28,14 +32,11 @@
             $current_deaths = !empty($player_decoded_url->player->stats->Paintball->deaths) ? $player_decoded_url->player->stats->Paintball->deaths : 0;
             $current_forcefield = !empty($player_decoded_url->player->stats->Paintball->forcefieldTime) ? $player_decoded_url->player->stats->Paintball->forcefieldTime : 0;
 
-            $query = "UPDATE event SET current_kills = ?, current_deaths = ?, current_wins = ?, current_forcefield = ? WHERE UUID = ?";
+            $total_points = calculatePoints($connection, $uuid, $current_kills, $current_wins, $current_deaths, $current_forcefield);
 
-            if($statement = mysqli_prepare($connection, $query)) {
-                mysqli_stmt_bind_param($statement, "iiiss", $current_kills, $current_deaths, $current_wins, $current_forcefield, $uuid);
-                mysqli_stmt_execute($statement);
-            } else {
-                echo '<b>[ERROR] ' . $name . ' </b>An Error Occured!<br>'; 
-            }
+            updatePlayer($connection, $total_points, $current_kills, $current_deaths, $current_wins, $current_forcefield, $uuid, $name);
+
+            setLastUpdated($connection);
 
             header("Refresh:0.01; url=leaderboard.php");
         }

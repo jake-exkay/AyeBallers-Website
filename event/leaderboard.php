@@ -23,7 +23,7 @@
             $query = "SELECT * FROM event ORDER BY total_points DESC";
             $result = $connection->query($query);
 
-            $last_updated_query = "SELECT * FROM event";
+            $last_updated_query = "SELECT * FROM event_management";
             $last_updated_result = $connection->query($last_updated_query);
 
             if ($last_updated_result->num_rows > 0) {
@@ -65,10 +65,10 @@
                                     <p>View Event Thread</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <p>Report NoxyD/Rezzus User</p>
+                                    <p><a href="report.php">Report NoxyD/Rezzus User</a></p>
                                 </div>
                                 <div class="col-md-4">
-                                    <p>View Previous Tournament</p>
+                                    <p><a href="https://hypixel.net/threads/paintball-tournament-official-community-tournament-win-real-money.2831526/" target="_blank">View Previous Tournament</a></p>
                                 </div>
                             </div>
 
@@ -84,16 +84,32 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div>
-                                        <?php
-                                            if ($mins == 0) {
-                                                echo "<i>Last Updated: A moment ago</i>";
-                                            } elseif ($mins == 1) {
-                                                echo "<i>Last Updated: " . $mins . " minute ago</i>";
-                                            } else {
-                                                echo "<i>Last Updated: " . $mins . " minutes ago</i>";
-                                            }
-                                        ?>
-                                        <h6><i>(Event leaderboard is automatically updated every 10 minutes)</i></h6>
+                                         <?php if ($mins < 10) { ?>
+                                            <button type="submit" class="btn btn-danger">Update</button>
+                                            <?php
+                                                if ($mins == 0) {
+                                                    echo "<i>Last Updated: A moment ago</i>";
+                                                } elseif ($mins == 1) {
+                                                    echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                                } else {
+                                                    echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                                }
+                                            ?>
+                                            <h6><i>(Leaderboard data can be updated every 10 minutes)</i></h6>
+                                        <?php } else { ?>
+                                            <form action="event_update.php">
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                                <?php
+                                                    if ($mins == 0) {
+                                                        echo "<i>Last Updated: A moment ago</i>";
+                                                    } elseif ($mins == 1) {
+                                                        echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                                    } else {
+                                                        echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                                    }
+                                                ?>
+                                            </form>
+                                        <?php } ?>
                                     </div>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead class="thead-dark">
@@ -118,24 +134,28 @@
                                                 while($row = $result->fetch_assoc()) {
                                                     $name = $row['name'];
                                                     $total_points = $row['total_points'];
-                                                    $kills = $row['event_kills'];
-                                                    $wins = $row['event_wins'];
-                                                    $deaths = $row['event_deaths'];
-                                                    $forcefield = $row['event_ff'];
+                                                    $kills = $row['current_kills'];
+                                                    $wins = $row['current_wins'];
+                                                    $deaths = $row['current_deaths'];
+                                                    $forcefield = $row['current_ff'];
+                                                    $kills_start = $row['starting_kills'];
+                                                    $wins_start = $row['starting_wins'];
+                                                    $deaths_start = $row['starting_deaths'];
+                                                    $forcefield_start = $row['starting_ff'];
 
-                                                    $points_format = number_format($total_points);
-                                                    $kills_format = number_format($kills);
-                                                    $wins_format = number_format($wins);
-                                                    $deaths_format = number_format($deaths);
+                                                    $event_kills = $kills - $kills_start;
+                                                    $event_wins = $wins - $wins_start;
+                                                    $event_deaths = $deaths - $deaths_start;
+                                                    $event_forcefield = $forcefield - $forcefield_start;
 
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         echo '<td>' . $name . '</td>';
-                                                        echo '<td>' . $points_format . '</td>';
-                                                        echo '<td>' . $kills_format . '</td>';
-                                                        echo '<td>' . $wins_format . '</td>';
-                                                        echo '<td>' . $forcefield . '</td>';
-                                                        echo '<td>' . $deaths_format . '</td>';
+                                                        echo '<td>' . $total_points . '</td>';
+                                                        echo '<td>' . $event_kills . '</td>';
+                                                        echo '<td>' . $event_wins . '</td>';
+                                                        echo '<td>' . $event_forcefield . '</td>';
+                                                        echo '<td>' . $event_deaths . '</td>';
                                                     echo '</tr>'; 
                                                     $i = $i + 1;
 
