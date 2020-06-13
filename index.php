@@ -99,29 +99,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="col-md-6" style="padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5>Officer</h5>
-                                        <h5>julikabum</h5>
-                                        <img style="height: 200px; width: 200px;" src="assets/img/julikabum.png"/>
-                                        <p>Events</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6" style="padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5>Officer</h5>
-                                        <h5>RantingBrit</h5>
-                                        <img style="height: 200px; width: 200px;" src="assets/img/RantingBrit.png"/>
-                                        <p>Officer</p>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </center>
                 </main>
