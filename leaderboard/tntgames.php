@@ -92,7 +92,7 @@
 
                         <div>
                             <?php if ($mins < 5) { ?>
-                                <button type="submit" class="btn btn-danger">Update</button>
+                                <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-danger">Update</button>
                                 <?php
                                     if ($mins == 0) {
                                         echo "<i>Last Updated: A moment ago</i>";
@@ -105,7 +105,7 @@
                                 <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
                             <?php } else { ?>
                                 <form action="../master_update.php">
-                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-success">Update</button>
                                     <?php
                                         if ($mins == 0) {
                                             echo "<i>Last Updated: A moment ago</i>";

@@ -9,69 +9,60 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 
-        <title>Guild Leaderboard - QuakeCraft</title>
+        <title>Guild Leaderboard - VampireZ</title>
 
         <?php
 
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
 
-            updatePageViews($connection, 'quakecraft_guild_leaderboard');
+            updatePageViews($connection, 'vz_guild_leaderboard');
 
-            $query = "SELECT * FROM quakecraft ORDER BY kills DESC";
+            $query = "SELECT * FROM vampirez ORDER BY human_wins DESC";
             $result = $connection->query($query);
 
-            $last_updated_query = "SELECT * FROM quakecraft";
+            $last_updated_query = "SELECT * FROM vampirez";
             $last_updated_result = $connection->query($last_updated_query);
 
             if ($last_updated_result->num_rows > 0) {
                 while($last_updated_row = $last_updated_result->fetch_assoc()) {
                     $last_updated = $last_updated_row['last_updated'];
                 }
+            } else {
+                $last_updated = '2019-10-10';
             }
 
             $mins = timeSinceUpdate($last_updated);
 
-            $total_kills = 0;
-            $total_wins = 0;
-            $total_deaths = 0;
-            $total_shots = 0;
+            $total_human_kills = 0;
+            $total_vampire_kills = 0;
+            $total_zombie_kills = 0;
             $total_coins = 0;
-            $total_killstreaks = 0;
-            $total_headshots = 0;
-            $guild_kd = 0;
-            $guild_sk = 0;
+            $total_human_wins = 0;
+            $total_vampire_wins = 0;
 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $kills = $row['kills'];
-                    $wins = $row['wins'];
+                    $human_kills = $row['human_kills'];
+                    $vampire_kills = $row['vampire_kills'];
+                    $zombie_kills = $row['zombie_kills'];
+                    $human_wins = $row['human_wins'];
+                    $vampire_wins = $row['vampire_wins'];
                     $coins = $row['coins'];
-                    $deaths = $row['deaths'];
-                    $shots_fired = $row['shots_fired'];
-                    $headshots = $row['headshots'];
-                    $killstreaks = $row['killstreaks'];
 
-                    $total_kills = $total_kills + $kills;
-                    $total_wins = $total_wins + $wins;
-                    $total_deaths = $total_deaths + $deaths;
-                    $total_shots = $total_shots + $shots_fired;
-                    $total_coins = $total_coins + $coins;
-                    $total_killstreaks = $total_killstreaks + $killstreaks;
-                    $total_headshots = $total_headshots + $headshots;
+                    $total_human_kills = $total_human_kills + $human_kills;
+                    $total_vampire_kills = $total_vampire_kills + $vampire_kills;
+                    $total_zombie_kills = $total_zombie_kills + $zombie_kills;
+                    $total_human_wins = $total_human_wins + $human_wins;
+                    $total_vampire_wins = $total_vampire_wins + $vampire_wins;
+                    $total_coins = $coins + $coins;
 
-                    $format_total_kills = number_format($total_kills);
-                    $format_total_wins = number_format($total_wins);
-                    $format_total_deaths = number_format($total_deaths);
+                    $format_total_human_kills = number_format($total_human_kills);
+                    $format_total_vampire_kills = number_format($total_vampire_kills);
+                    $format_total_zombie_kills = number_format($total_zombie_kills);
                     $format_total_coins = number_format($total_coins);
-                    $format_total_killstreaks = number_format($total_killstreaks);
-                    $format_total_shots = number_format($total_shots);
-                    $format_total_headshots = number_format($total_headshots);
-
-                    $guild_kd = $total_kills / $total_deaths;
-                    $guild_sk = $total_shots / $total_kills;
-                    $guild_kd = round($guild_kd, 2);
-                    $guild_sk = round($guild_sk, 2);
+                    $format_total_vampire_wins = number_format($total_vampire_wins);
+                    $format_total_human_wins = number_format($total_human_wins);
                 }
             }
 
@@ -86,7 +77,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">QuakeCraft Leaderboard</h1>
+                        <h1 class="mt-4">VampireZ Leaderboard</h1>
 
                         <div>
                             <?php if ($mins < 5) { ?>
@@ -122,36 +113,32 @@
                         <br>
 
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Guild Leaderboard - QuakeCraft</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Guild Leaderboard - VampireZ</div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Position (Kills)</th>
+                                                <th>Position (Human Wins)</th>
                                                 <th>Name</th>
-                                                <th>Kills</th>
-                                                <th>Wins</th>
+                                                <th>Human Wins</th>
+                                                <th>Vampire Kills</th>
+                                                <th>Zombie Kills</th>
                                                 <th>Coins</th>
-                                                <th>Shots Fired</th>
-                                                <th>Deaths</th>
-                                                <th>Headshots</th>
-                                                <th>K/D</th>
-                                                <th>S/K</th>
+                                                <th>Human Kills</th>
+                                                <th>Vampire Wins</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="table-info">
                                                 <td>0</td>
                                                 <td>Overall Guild</td>
-                                                <td><?php echo $format_total_kills; ?></td>
-                                                <td><?php echo $format_total_wins; ?></td>
+                                                <td><?php echo $format_total_human_wins; ?></td>
+                                                <td><?php echo $format_total_vampire_kills; ?></td>
+                                                <td><?php echo $format_total_zombie_kills; ?></td>
                                                 <td><?php echo $format_total_coins; ?></td>
-                                                <td><?php echo $format_total_shots; ?></td>
-                                                <td><?php echo $format_total_deaths; ?></td>
-                                                <td><?php echo $format_total_headshots; ?></td>
-                                                <td><?php echo $guild_kd; ?> (Average)</td>
-                                                <td><?php echo $guild_sk; ?> (Average)</td>
+                                                <td><?php echo $format_total_human_kills; ?></td>
+                                                <td><?php echo $format_total_vampire_wins; ?></td>
                                             </tr>
 
                                         <?php
@@ -163,54 +150,29 @@
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
                                                     $name = $row['name'];
-                                                    $kills = $row['kills'];
-                                                    $wins = $row['wins'];
+                                                    $human_wins = $row['human_wins'];
+                                                    $vampire_kills = $row['vampire_kills'];
+                                                    $vampire_wins = $row['vampire_wins'];
                                                     $coins = $row['coins'];
-                                                    $deaths = $row['deaths'];
-                                                    $shots_fired = $row['shots_fired'];
-                                                    $headshots = $row['headshots'];
-                                                    $killstreaks = $row['killstreaks'];
+                                                    $zombie_kills = $row['zombie_kills'];
+                                                    $human_kills = $row['human_kills'];
 
-                                                    if ($kills == 0) {
-                                                        $kd = 0;
-                                                        $sk = 0;
-                                                    } else {
-                                                        $kd = $kills / $deaths;
-                                                        $sk = $shots_fired / $kills;
-
-                                                        $kd = round($kd, 2);
-                                                        $sk = round($sk, 2);
-                                                    }
-
-                                                    $kills_format = number_format($kills);
-                                                    $wins_format = number_format($wins);
-                                                    $deaths_format = number_format($deaths);
-                                                    $shots_fired_format = number_format($shots_fired);
+                                                    $human_wins_format = number_format($human_wins);
+                                                    $vampire_kills_format = number_format($vampire_kills);
+                                                    $vampire_wins_format = number_format($vampire_wins);
                                                     $coins_format = number_format($coins);
+                                                    $zombie_kills_format = number_format($zombie_kills);
+                                                    $human_kills_format = number_format($human_kills);
 
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         echo '<td>' . $name . '</td>';
-                                                        echo '<td>' . $kills_format . '</td>';
-                                                        echo '<td>' . $wins_format . '</td>';
+                                                        echo '<td>' . $human_wins_format . '</td>';
+                                                        echo '<td>' . $vampire_kills_format . '</td>';
+                                                        echo '<td>' . $zombie_kills_format . '</td>';
                                                         echo '<td>' . $coins_format . '</td>';
-                                                        echo '<td>' . $shots_fired_format . '</td>';
-                                                        echo '<td>' . $deaths_format . '</td>';
-                                                        echo '<td>' . $headshots . '</td>';
-                                                        if ($kd > 2) {
-                                                            echo '<td class="table-success">' . $kd . '</td>';
-                                                        } else if ($kd > 1 && $kd < 2) {
-                                                            echo '<td class="table-warning">' . $kd . '</td>';
-                                                        } else {
-                                                            echo '<td class="table-danger">' . $kd . '</td>';
-                                                        }
-                                                        if ($sk > 45) {
-                                                            echo '<td class="table-danger">' . $sk . '</td>';
-                                                        } else if ($sk > 30 && $sk < 45) {
-                                                            echo '<td class="table-warning">' . $sk . '</td>';
-                                                        } else {
-                                                            echo '<td class="table-success">' . $sk . '</td>';
-                                                        }
+                                                        echo '<td>' . $human_kills_format . '</td>';
+                                                        echo '<td>' . $vampire_wins_format . '</td>';
                                                     echo '</tr>'; 
                                                     $i = $i + 1;
 
