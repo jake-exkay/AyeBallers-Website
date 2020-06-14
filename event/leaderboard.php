@@ -151,16 +151,16 @@
                                                     $event_forcefield = $forcefield - $forcefield_start;
 
                                                     echo '<tr>';
+                                                        echo '<td>' . $i . '</td>';
                                                         if ($name == 'recordheat') {
-                                                            echo '<td>' . $i . ' <img title="Previous Tournament Winner (1st)" height="50" width="auto" src="../assets/img/gold.png"/></td>';
+                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (1st)" height="25" width="auto" src="../assets/img/gold.png"/></td>';
                                                         } else if ($name == 'pcint') {
-                                                            echo '<td>' . $i . ' <img title="Previous Tournament Winner (2nd)" height="50" width="auto" src="../assets/img/silver.png"/></td>';
+                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (2nd)" height="25" width="auto" src="../assets/img/silver.png"/></td>';
                                                         } else if ($name == 'gibbgibb') {
-                                                            echo '<td>' . $i . ' <img title="Previous Tournament Winner (3rd)" height="50" width="auto" src="../assets/img/bronze.png"/></td>';
+                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (3rd)" height="25" width="auto" src="../assets/img/bronze.png"/></td>';
                                                         } else {
-                                                            echo '<td>' . $i . '</td>';
+                                                            echo '<td>' . $name . '</td>';
                                                         }
-                                                        echo '<td>' . $name . '</td>';
                                                         echo '<td>' . $total_points . '</td>';
                                                         echo '<td>' . $event_kills . '</td>';
                                                         echo '<td>' . $event_wins . '</td>';
