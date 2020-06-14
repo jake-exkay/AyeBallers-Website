@@ -89,7 +89,7 @@
                         <h1 class="mt-4">QuakeCraft Leaderboard</h1>
 
                         <div>
-                            <?php if ($mins < 10) { ?>
+                            <?php if ($mins < 5) { ?>
                                 <button type="submit" class="btn btn-danger">Update</button>
                                 <?php
                                     if ($mins == 0) {
@@ -100,7 +100,7 @@
                                         echo "<i>Last Updated: " . $mins . " minutes ago</i>";
                                     }
                                 ?>
-                                <h6><i>(Leaderboard data can be updated every 10 minutes)</i></h6>
+                                <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
                             <?php } else { ?>
                                 <form action="../../master_update.php">
                                     <button type="submit" class="btn btn-success">Update</button>

@@ -16,7 +16,7 @@
 		$start_date = new DateTime($last_updated);
 		$since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
 
-		if ($since_start->i >= 10 || $since_start->y != 0 || $since_start->m != 0 || $since_start->d != 0 || $since_start->h != 0) {
+		if ($since_start->i >= 5 || $since_start->y != 0 || $since_start->m != 0 || $since_start->d != 0 || $since_start->h != 0) {
 
 		    $api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=".$API_KEY."&player=82df5a8fa7934e6087d186d8741a1d23");
 		    $decoded_url  = json_decode($api_guild_url);
@@ -26,6 +26,7 @@
 		    $truncate_quakecraft_query = "DELETE FROM quakecraft";
 		    $truncate_tntgames_query = "DELETE FROM tntgames";
 		    $truncate_tkr_query = "DELETE FROM tkr";
+		    $truncate_vz_query = "DELETE FROM vampirez";
 
 		    if($truncate_paintball_statement = mysqli_prepare($connection, $truncate_paintball_query)) {
 		        mysqli_stmt_execute($truncate_paintball_statement);
@@ -49,6 +50,12 @@
 		        mysqli_stmt_execute($truncate_tkr_statement);
 		    } else {
 		        echo 'Error truncating tkr<br>' . mysqli_error($connection); 
+		    }
+
+		    if($truncate_vz_statement = mysqli_prepare($connection, $truncate_vz_query)) {
+		        mysqli_stmt_execute($truncate_vz_statement);
+		    } else {
+		        echo 'Error truncating vampirez<br>' . mysqli_error($connection); 
 		    }
 
 		    foreach($guild_members as $member) {
@@ -113,6 +120,14 @@
 		        $silver_trophy_tkr = 0;
 		        $gold_trophy_tkr = 0;
 		        $bronze_trophy_tkr = 0;
+
+		        // VZ VARS
+		        $coins_vz = 0;
+		        $human_wins_vz = 0;
+		        $human_kills_vz = 0;
+		        $vampire_wins_vz = 0;
+		        $vampire_kills_vz = 0;
+		        $zombie_kills_vz = 0;
 
 		        // GENERAL CHECKS
 		        $rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'Error';
@@ -227,6 +242,14 @@
 		        $gold_trophy_tkr = !empty($player_decoded_url->player->stats->GingerBread->gold_trophy) ? $player_decoded_url->player->stats->GingerBread->gold_trophy : 0;
 		        $bronze_trophy_tkr = !empty($player_decoded_url->player->stats->GingerBread->bronze_trophy) ? $player_decoded_url->player->stats->GingerBread->bronze_trophy : 0;
 
+		        // VZ CHECKS
+		        $coins_vz = !empty($player_decoded_url->player->stats->VampireZ->coins) ? $player_decoded_url->player->stats->VampireZ->coins : 0;
+		        $human_wins_vz = !empty($player_decoded_url->player->stats->VampireZ->human_wins) ? $player_decoded_url->player->stats->VampireZ->human_wins : 0;
+		        $human_kills_vz = !empty($player_decoded_url->player->stats->VampireZ->human_kills) ? $player_decoded_url->player->stats->VampireZ->human_kills : 0;
+		        $zombie_kills_vz = !empty($player_decoded_url->player->stats->VampireZ->zombie_kills) ? $player_decoded_url->player->stats->VampireZ->zombie_kills : 0;
+		        $vampire_wins_vz = !empty($player_decoded_url->player->stats->VampireZ->vampire_wins) ? $player_decoded_url->player->stats->VampireZ->vampire_wins : 0;
+		        $vampire_kills_vz = !empty($player_decoded_url->player->stats->VampireZ->vampire_kills) ? $player_decoded_url->player->stats->VampireZ->vampire_kills : 0;
+
 		        // TNT GAMES INSERT
 		        $query_tntgames = "INSERT INTO tntgames (UUID, name, last_updated, mvp_plus_colour, rank, coins, wizards_kills, wins_bowspeef, wins_wizards, wins_tntrun, total_wins, kills_pvprun, wins_tnttag, wins_pvprun)
 		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -269,6 +292,17 @@
 		            mysqli_stmt_execute($statement_tkr);
 		        } else {
 		            echo '<b>[TKR] '.$name.' </b>An Error Occured!<br>'; 
+		        }
+
+		        // VZ INSERT
+		        $query_vz = "INSERT INTO vampirez (UUID, name, last_updated, mvp_plus_colour, rank, coins, human_wins, human_kills, vampire_wins, vampire_kills, zombie_kills)
+		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		        if($statement_vz = mysqli_prepare($connection, $query_vz)) {
+		            mysqli_stmt_bind_param($statement_vz, "ssssiiiiii", $uuid, $name, $mvp_plus_colour, $rank, $coins_vz, $human_wins_vz, $human_kills_vz, $vampire_wins_vz, $vampire_kills_vz, $zombie_kills_vz);
+		            mysqli_stmt_execute($statement_vz);
+		        } else {
+		            echo '<b>[VZ] '.$name.' </b>An Error Occured!<br>'; 
 		        }
 
 		        header("Refresh:0.01; url=../index.php");

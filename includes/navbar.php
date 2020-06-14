@@ -20,7 +20,7 @@
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
-                                Event
+                                Tournament
                             </a>
                             <div class="sb-sidenav-menu-heading">Classic Leaderboards</div>
                             <a class="nav-link" href="../../../leaderboard/classic/overall/paintball.php">
@@ -40,6 +40,12 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 Turbo Kart Racers
+                            </a>
+                            <a class="nav-link" href="../../../leaderboard/classic/guild/vampirez.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                VampireZ
                             </a>
                             <div class="sb-sidenav-menu-heading">Leaderboards</div>
                             <a class="nav-link" href="../../../leaderboard/tntgames.php">
