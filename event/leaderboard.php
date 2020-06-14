@@ -37,10 +37,9 @@
 
             include "../includes/connect.php";
             include "../functions/functions.php";
-            include "../css/custom_styles.css";
             include "event_functions.php";
 
-            $tournament_started = false;
+            $tournament_started = true;
 
             updatePageViews($connection, 'event_leaderboard');
 
@@ -66,14 +65,13 @@
                 <main>
                     <div class="container-fluid">
                         <center>
+                            <h1>NOTICE: THIS IS A TEST TOURNAMENT USING A RANDOM SET OF PLAYERS.</h1>
                             <br><br>
                             <b><h1 style="font-family: BKANT, sans-serif">Paintball Tournament #2</h1></b>
-
+                                <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
                             <?php
                                 if ($tournament_started == false) {
                             ?>
-
-                                <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
                                     <center><h3>Time Until Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
                             <?php } else { ?>
                                     <center><h3>Time Remaining In Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>

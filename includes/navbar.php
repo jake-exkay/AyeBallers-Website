@@ -16,7 +16,7 @@
                                 </div>
                                 Home
                             </a>
-                            <a class="nav-link" href="../../../event.php">
+                            <a class="nav-link" href="../../../event/leaderboard.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
