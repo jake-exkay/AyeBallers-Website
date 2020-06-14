@@ -2,6 +2,7 @@
 
 	include "../includes/connect.php";
     include "../includes/constants.php";
+    include "../functions/functions.php";
     include "event_functions.php";
 
     if (!eventStarted($connection)) {

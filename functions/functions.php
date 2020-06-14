@@ -1,6 +1,7 @@
 <?php
 
     include "../../includes/connect.php";
+    include "../../includes/constants.php";
 
     function getUserIP() {
     	$ip = "";
@@ -15,7 +16,7 @@
     }
 
     function updatePageViews($connection, $page) {
-    	if (getUserIP() == "94.1.154.84") {
+    	if (getUserIP() == $DEV_IP) {
 			$stats_query = "UPDATE page_views SET dev_views = dev_views + 1 WHERE page = '$page'";
 	                    
 	        if ($stats_statement = mysqli_prepare($connection, $stats_query)) {
