@@ -22,17 +22,6 @@
         }
     }
 
-    function timeSinceUpdate($last_updated) {
-        $start_date = new DateTime($last_updated);
-        $since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
-
-        $mins = $since_start->i;
-        $hours = $since_start->h;
-        $days = $since_start->d;
-
-        return (($days * 60 * 60) + ($hours * 60) + $mins);
-    }
-
     function needsUpdating($connection) {
         $last_updated_query = "SELECT * FROM event_management";
         $last_updated_result = $connection->query($last_updated_query);
@@ -86,14 +75,6 @@
         }
     }
 
-    function getRealName($connection, $uuid) {
-        $mojang_url = file_get_contents("https://api.mojang.com/user/profiles/" . $uuid . "/names");
-        $mojang_decoded_url = json_decode($mojang_url, true);
-        $real_name = array_pop($mojang_decoded_url);
-        $name = $real_name['name'];
-        return $name;
-    }
-
     function updatePlayer($connection, $total_points, $current_kills, $current_deaths, $current_wins, $current_forcefield, $uuid, $name) {
         $query = "UPDATE event SET total_points = ?, current_kills = ?, current_deaths = ?, current_wins = ?, current_ff = ? WHERE UUID = ?";
 
@@ -114,17 +95,6 @@
             mysqli_stmt_execute($statement);
         } else {
             echo '<b>[PAINTBALL] ' . $name . ' </b>An Error Occured!<br> ' . $query . ' ' . mysqli_error($connection); 
-        }
-    }
-
-    function apiLimitReached($API_KEY) {
-        $url = file_get_contents("https://api.hypixel.net/key?key=" . $API_KEY);
-        $decoded_url = json_decode($url);
-        $queries = $decoded_url->record->queriesInPastMin;
-        if ($queries >= 110) {
-            return true;
-        } else {
-            return false;
         }
     }
 
