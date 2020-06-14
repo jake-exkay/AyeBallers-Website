@@ -22,6 +22,17 @@
         }
     }
 
+    function timeSinceUpdate($last_updated) {
+        $start_date = new DateTime($last_updated);
+        $since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
+
+        $mins = $since_start->i;
+        $hours = $since_start->h;
+        $days = $since_start->d;
+
+        return (($days * 60 * 60) + ($hours * 60) + $mins);
+    }
+
     function needsUpdating($connection) {
         $last_updated_query = "SELECT * FROM event_management";
         $last_updated_result = $connection->query($last_updated_query);
@@ -60,7 +71,7 @@
         $ff_points = $ff - $starting_ff;
         $deaths_points = $deaths - $starting_deaths;
 
-        $total_points = $kills_points + ($wins_points * 15) + ($ff_points * 3 / 60) - $deaths_points;
+        $total_points = $kills_points + ($wins_points * 15) + ($ff_points * 5 / 60) - $deaths_points;
         return $total_points;
        
     }

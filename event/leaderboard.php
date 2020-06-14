@@ -16,6 +16,7 @@
 
             include "../includes/connect.php";
             include "../functions/functions.php";
+            include "event_functions.php";
 
             $tournament_started = false;
 
@@ -33,10 +34,7 @@
                 }
             }
 
-            $start_date = new DateTime($last_updated);
-            $since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
-
-            $mins = $since_start->i;
+            $mins = timeSinceUpdate($last_updated);
         ?>
 
     </head>
@@ -104,6 +102,8 @@
                                                 <?php
                                                     if ($mins == 0) {
                                                         echo "<i>Last Updated: A moment ago</i>";
+                                                    } elseif ($mins >= 60) {
+                                                        echo "<i>Last Updated: more than an hour ago</i>";
                                                     } elseif ($mins == 1) {
                                                         echo "<i>Last Updated: " . $mins . " minute ago</i>";
                                                     } else {
@@ -165,7 +165,7 @@
                                                         echo '<td>' . $total_points . '</td>';
                                                         echo '<td>' . $event_kills . '<p style="color:Green;">(+' . $event_kills . ')</p></td>';
                                                         echo '<td>' . $event_wins . '<p style="color:Green;">(+' . ($event_wins * 15) . ')</p></td>';
-                                                        echo '<td>' . $event_forcefield . '<p style="color:Green;">(+' . (round($event_forcefield * 3 / 60)) . ')</p></td>';
+                                                        echo '<td>' . $event_forcefield . '<p style="color:Green;">(+' . (round($event_forcefield * 5 / 60)) . ')</p></td>';
                                                         echo '<td>' . $event_deaths . '<p style="color:Red;">(-' . $event_deaths . ')</p></td>';
                                                     echo '</tr>'; 
                                                     $i = $i + 1;
