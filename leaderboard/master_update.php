@@ -34,7 +34,7 @@
 		    }
 
 		    if($truncate_quakecraft_statement = mysqli_prepare($connection, $truncate_quakecraft_query)) {
-		        mysqli_stmt_execute($truncate_paintball_statement);
+		        mysqli_stmt_execute($truncate_quakecraft_statement);
 		    } else {
 		        echo 'Error truncating quakecraft<br>' . mysqli_error($connection); 
 		    }
