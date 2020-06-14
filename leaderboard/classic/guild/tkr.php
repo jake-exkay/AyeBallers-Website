@@ -32,10 +32,7 @@
                 $last_updated = '2019-10-10';
             }
 
-            $start_date = new DateTime($last_updated);
-            $since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
-
-            $mins = $since_start->i;
+            $mins = timeSinceUpdate($last_updated);
 
             $total_gold_trophy = 0;
             $total_silver_trophy = 0;
@@ -101,6 +98,8 @@
                                     <?php
                                         if ($mins == 0) {
                                             echo "<i>Last Updated: A moment ago</i>";
+                                        } elseif ($mins >= 60) {
+                                            echo "<i>Last Updated: more than an hour ago</i>";
                                         } elseif ($mins == 1) {
                                             echo "<i>Last Updated: " . $mins . " minute ago</i>";
                                         } else {

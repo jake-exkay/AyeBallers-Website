@@ -30,4 +30,15 @@
     	}
     }
 
+    function timeSinceUpdate($last_updated) {
+        $start_date = new DateTime($last_updated);
+        $since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
+
+        $mins = $since_start->i;
+        $hours = $since_start->h;
+        $days = $since_start->d;
+
+        return (($days * 60 * 60) + ($hours * 60) + $mins);
+    }
+
 ?>
