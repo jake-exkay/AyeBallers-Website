@@ -10,12 +10,34 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 
+        <script>
+            var countDownDate = new Date("May 23, 2021 22:00:00").getTime();
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "";
+                }
+            }, 1000);
+        </script>
+
         <title>Event Leaderboard</title>
 
         <?php
 
             include "../includes/connect.php";
             include "../functions/functions.php";
+            include "../css/custom_styles.css";
             include "event_functions.php";
 
             $tournament_started = false;
@@ -47,17 +69,20 @@
                 <main>
                     <div class="container-fluid">
                         <center>
-                            <img style="padding-top: 25px" class="website_header" src="../assets/img/ayeballers.png"/>
-                            <b><h1>Paintball Tournament #2</h1></b>
+                            <br><br>
+                            <b><h1 style="font-family: BKANT, sans-serif">Paintball Tournament #2</h1></b>
+
                             <?php
                                 if ($tournament_started == false) {
-                                    echo "<h3>Time Until Tournament: 00:00:00</h2>";
-                                } else {
-                                    echo "<h3>Tournament Time Remaining: 00:00:00</h2>";
-                                }
                             ?>
-                            <p>Tournament hosted by Emilyie. Website created by ExKay.</p>
 
+                                <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
+                                    <center><h3>Time Until Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
+                            <?php } else { ?>
+                                    <center><h3>Time Remaining In Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
+                            <?php } ?>
+                                </div>
+                                    
                             <br><br>
                             
                             <div class="row">
@@ -159,6 +184,12 @@
                                                             echo '<td>' . $name . ' <img title="Previous Tournament Winner (2nd)" height="25" width="auto" src="../assets/img/silver.png"/></td>';
                                                         } else if ($name == 'gibbgibb') {
                                                             echo '<td>' . $name . ' <img title="Previous Tournament Winner (3rd)" height="25" width="auto" src="../assets/img/bronze.png"/></td>';
+                                                        } else if ($name == 'ExKay') {
+                                                        echo '<td>' . $name . ' <img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        } else if ($name == 'Emilyie') {
+                                                        echo '<td>' . $name . ' <img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        } else if ($name == 'PotAccuracy') {
+                                                        echo '<td>' . $name . ' <img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
                                                         } else {
                                                             echo '<td>' . $name . '</td>';
                                                         }
