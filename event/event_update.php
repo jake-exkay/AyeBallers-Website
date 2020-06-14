@@ -30,16 +30,21 @@
                 $current_deaths = !empty($player_decoded_url->player->stats->Paintball->deaths) ? $player_decoded_url->player->stats->Paintball->deaths : 0;
                 $current_forcefield = !empty($player_decoded_url->player->stats->Paintball->forcefieldTime) ? $player_decoded_url->player->stats->Paintball->forcefieldTime : 0;
 
-                $total_points = calculatePoints($connection, $uuid, $current_kills, $current_wins, $current_deaths, $current_forcefield);
+                $zero = 0;
 
-                updatePlayer($connection, $total_points, $current_kills, $current_deaths, $current_wins, $current_forcefield, $uuid, $name);
+                if (isPlayerInDatabase($connection, $uuid)) {
+                    $total_points = calculatePoints($connection, $uuid, $current_kills, $current_wins, $current_deaths, $current_forcefield);
+                    updatePlayer($connection, $total_points, $current_kills, $current_deaths, $current_wins, $current_forcefield, $uuid, $name);
+                } else {
+                    insertNewPlayer($connection, $uuid, $name, $current_kills, $current_wins, $current_forcefield, $current_deaths, $zero);
+                }
 
                 setLastUpdated($connection);
 
                 header("Refresh:0.01; url=leaderboard.php");
             }
         } else {
-            echo "Database was updated less than an 10 minutes ago. Redirecting.";
+            echo "Database was updated less than an 5 minutes ago. Redirecting.";
             header("Refresh:2; url=leaderboard.php");
         }
 

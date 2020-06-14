@@ -44,9 +44,6 @@
 
             updatePageViews($connection, 'event_leaderboard');
 
-            $query = "SELECT * FROM event ORDER BY total_points DESC";
-            $result = $connection->query($query);
-
             $last_updated_query = "SELECT * FROM event_management";
             $last_updated_result = $connection->query($last_updated_query);
 
@@ -109,7 +106,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div>
-                                         <?php if ($mins < 10) { ?>
+                                         <?php if ($mins < 5) { ?>
                                             <button type="submit" class="btn btn-danger">Update</button>
                                             <?php
                                                 if ($mins == 0) {
@@ -120,7 +117,7 @@
                                                     echo "<i>Last Updated: " . $mins . " minutes ago</i>";
                                                 }
                                             ?>
-                                            <h6><i>(Leaderboard data can be updated every 10 minutes)</i></h6>
+                                            <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
                                         <?php } else { ?>
                                             <form action="event_update.php">
                                                 <button type="submit" class="btn btn-success">Update</button>
@@ -156,6 +153,7 @@
 
                                             $i = 1;
 
+                                            $query = "SELECT * FROM event ORDER BY total_points DESC";
                                             $result = $connection->query($query);
 
                                             if ($result->num_rows > 0) {
@@ -196,7 +194,7 @@
                                                         echo '<td>' . $total_points . '</td>';
                                                         echo '<td>' . $event_kills . '<p style="color:Green;">(+' . $event_kills . ')</p></td>';
                                                         echo '<td>' . $event_wins . '<p style="color:Green;">(+' . ($event_wins * 15) . ')</p></td>';
-                                                        echo '<td>' . $event_forcefield . '<p style="color:Green;">(+' . (round($event_forcefield * 5 / 60)) . ')</p></td>';
+                                                        echo '<td>' . $event_forcefield . ' (' . round($event_forcefield / 60) . ' mins) <p style="color:Green;">(+' . (round($event_forcefield * 5 / 60)) . ')</p></td>';
                                                         echo '<td>' . $event_deaths . '<p style="color:Red;">(-' . $event_deaths . ')</p></td>';
                                                     echo '</tr>'; 
                                                     $i = $i + 1;
