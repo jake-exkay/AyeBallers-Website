@@ -113,6 +113,7 @@
                                             </form>
                                         <?php } ?>
                                     </div>
+                                    <br>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead class="thead-dark">
                                             <tr>
@@ -121,7 +122,7 @@
                                                 <th>Total Points</th>
                                                 <th>Event Kills</th>
                                                 <th>Event Wins</th>
-                                                <th>Event Forcefield Time</th>
+                                                <th>Event Forcefield Time (Seconds)</th>
                                                 <th>Event Deaths</th>
                                             </tr>
                                         </thead>
@@ -162,13 +163,12 @@
                                                             echo '<td>' . $name . '</td>';
                                                         }
                                                         echo '<td>' . $total_points . '</td>';
-                                                        echo '<td>' . $event_kills . '</td>';
-                                                        echo '<td>' . $event_wins . '</td>';
-                                                        echo '<td>' . $event_forcefield . '</td>';
-                                                        echo '<td>' . $event_deaths . '</td>';
+                                                        echo '<td>' . $event_kills . '<p style="color:Green;">(+' . $event_kills . ')</p></td>';
+                                                        echo '<td>' . $event_wins . '<p style="color:Green;">(+' . ($event_wins * 15) . ')</p></td>';
+                                                        echo '<td>' . $event_forcefield . '<p style="color:Green;">(+' . (round($event_forcefield * 3 / 60)) . ')</p></td>';
+                                                        echo '<td>' . $event_deaths . '<p style="color:Red;">(-' . $event_deaths . ')</p></td>';
                                                     echo '</tr>'; 
                                                     $i = $i + 1;
-
                                                 }
                                             }
 
