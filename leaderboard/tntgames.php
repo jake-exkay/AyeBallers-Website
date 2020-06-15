@@ -16,7 +16,7 @@
             include "../includes/connect.php";
             include "../functions/functions.php";
 
-            updatePageViews($connection, 'tntgames_guild_leaderboard');
+            updatePageViews($connection, 'tntgames_guild_leaderboard', $DEV_IP);
 
             $query = "SELECT * FROM tntgames ORDER BY total_wins DESC";
             $result = $connection->query($query);

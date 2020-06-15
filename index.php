@@ -14,9 +14,10 @@
         <?php
 
             include "includes/connect.php";
+            include "includes/constants.php";
             include "functions/functions.php";
 
-            updatePageViews($connection, 'home_page');
+            updatePageViews($connection, 'home_page', $DEV_IP);
 
         ?>
 

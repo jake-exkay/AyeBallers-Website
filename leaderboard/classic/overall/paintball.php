@@ -13,7 +13,7 @@
             include "../../../functions/functions.php";
             include "../../../functions/database/paintball_functions.php";
 
-            updatePageViews($connection, 'paintball_overall_leaderboard');
+            updatePageViews($connection, 'paintball_overall_leaderboard', $DEV_IP);
 
             $result = getOverallLeaderboard($connection);
 

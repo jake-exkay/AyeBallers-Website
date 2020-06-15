@@ -16,7 +16,7 @@
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
 
-            updatePageViews($connection, 'paintball_guild_leaderboard');
+            updatePageViews($connection, 'paintball_guild_leaderboard', $DEV_IP);
 
             $query = "SELECT * FROM paintball ORDER BY kills DESC";
             $result = $connection->query($query);

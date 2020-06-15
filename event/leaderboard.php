@@ -21,7 +21,7 @@
 
             $tournament_started = true;
 
-            updatePageViews($connection, 'event_leaderboard');
+            updatePageViews($connection, 'event_leaderboard', $DEV_IP);
 
             $last_updated_query = "SELECT * FROM event_management";
             $last_updated_result = $connection->query($last_updated_query);

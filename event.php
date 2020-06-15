@@ -16,7 +16,7 @@
             include "includes/connect.php";
             include "functions/functions.php";
 
-            updatePageViews($connection, 'events');
+            updatePageViews($connection, 'events', $DEV_IP);
 
         ?>
 

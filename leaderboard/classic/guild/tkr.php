@@ -16,7 +16,7 @@
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
 
-            updatePageViews($connection, 'tkr_guild_leaderboard');
+            updatePageViews($connection, 'tkr_guild_leaderboard', $DEV_IP);
 
             $query = "SELECT * FROM tkr ORDER BY gold_trophy DESC";
             $result = $connection->query($query);

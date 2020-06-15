@@ -16,7 +16,7 @@
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
 
-            updatePageViews($connection, 'vz_guild_leaderboard');
+            updatePageViews($connection, 'vz_guild_leaderboard', $DEV_IP);
 
             $query = "SELECT * FROM vampirez ORDER BY human_wins DESC";
             $result = $connection->query($query);
