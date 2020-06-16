@@ -1,6 +1,7 @@
 <?php
+
     echo '
-    		<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="../../../index.php">AyeBallers</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         </nav>
 
@@ -46,6 +47,18 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 VampireZ
+                            </a>
+                            <a class="nav-link" href="../../../leaderboard/classic/guild/walls.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                The Walls
+                            </a>
+                            <a class="nav-link" href="../../../leaderboard/classic/guild/arena.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Arena Brawl
                             </a>
                             <div class="sb-sidenav-menu-heading">Leaderboards</div>
                             <a class="nav-link" href="../../../leaderboard/tntgames.php">

@@ -27,6 +27,8 @@
 		    $truncate_tntgames_query = "DELETE FROM tntgames";
 		    $truncate_tkr_query = "DELETE FROM tkr";
 		    $truncate_vz_query = "DELETE FROM vampirez";
+		    $truncate_walls_query = "DELETE FROM walls";
+		    $truncate_arena_query = "DELETE FROM arena";
 
 		    if($truncate_paintball_statement = mysqli_prepare($connection, $truncate_paintball_query)) {
 		        mysqli_stmt_execute($truncate_paintball_statement);
@@ -56,6 +58,18 @@
 		        mysqli_stmt_execute($truncate_vz_statement);
 		    } else {
 		        echo 'Error truncating vampirez<br>' . mysqli_error($connection); 
+		    }
+
+		  	if($truncate_walls_statement = mysqli_prepare($connection, $truncate_walls_query)) {
+		        mysqli_stmt_execute($truncate_walls_statement);
+		    } else {
+		        echo 'Error truncating walls<br>' . mysqli_error($connection); 
+		    }
+
+		    if($truncate_arena_statement = mysqli_prepare($connection, $truncate_arena_query)) {
+		        mysqli_stmt_execute($truncate_arena_statement);
+		    } else {
+		        echo 'Error truncating arena<br>' . mysqli_error($connection); 
 		    }
 
 		    foreach($guild_members as $member) {
@@ -128,6 +142,21 @@
 		        $vampire_wins_vz = 0;
 		        $vampire_kills_vz = 0;
 		        $zombie_kills_vz = 0;
+
+		        // WALLS VARS
+		        $coins_walls = 0;
+		        $deaths_walls = 0;
+		        $kills_walls = 0;
+		        $wins_walls = 0;
+		        $assists_walls = 0;
+
+		        // ARENA VARS
+		        $coins_arena = 0;
+		        $kills2v2_arena = 0;
+		        $kills4v4_arena = 0;
+		        $rating_arena = 0;
+		        $wins2v2_arena = 0;
+		        $wins4v4_arena = 0;
 
 		        // GENERAL CHECKS
 		        $rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'Error';
@@ -250,6 +279,21 @@
 		        $vampire_wins_vz = !empty($player_decoded_url->player->stats->VampireZ->vampire_wins) ? $player_decoded_url->player->stats->VampireZ->vampire_wins : 0;
 		        $vampire_kills_vz = !empty($player_decoded_url->player->stats->VampireZ->vampire_kills) ? $player_decoded_url->player->stats->VampireZ->vampire_kills : 0;
 
+		        // WALLS CHECKS
+		        $coins_walls = !empty($player_decoded_url->player->stats->Walls->coins) ? $player_decoded_url->player->stats->Walls->coins : 0;
+		        $deaths_walls = !empty($player_decoded_url->player->stats->Walls->deaths) ? $player_decoded_url->player->stats->Walls->deaths : 0;
+		        $wins_walls = !empty($player_decoded_url->player->stats->Walls->wins) ? $player_decoded_url->player->stats->Walls->wins : 0;
+		        $kills_walls = !empty($player_decoded_url->player->stats->Walls->kills) ? $player_decoded_url->player->stats->Walls->kills : 0;
+		        $assists_walls = !empty($player_decoded_url->player->stats->Walls->assists) ? $player_decoded_url->player->stats->Walls->assists : 0;
+
+		        // ARENA CHECKS
+		        $coins_arena = !empty($player_decoded_url->player->stats->Arena->coins) ? $player_decoded_url->player->stats->Arena->coins : 0;
+		        $wins4v4_arena = !empty($player_decoded_url->player->stats->Arena->wins_4v4) ? $player_decoded_url->player->stats->Arena->wins_4v4 : 0;
+		        $wins2v2_arena = !empty($player_decoded_url->player->stats->Arena->wins_2v2) ? $player_decoded_url->player->stats->Arena->wins_4v4 : 0;
+		        $kills2v2_arena = !empty($player_decoded_url->player->stats->Arena->kills_2v2) ? $player_decoded_url->player->stats->Arena->kills_2v2 : 0;
+		        $kills4v4_arena = !empty($player_decoded_url->player->stats->Arena->kills_4v4) ? $player_decoded_url->player->stats->Arena->kills_4v4 : 0;
+		        $rating_arena = !empty($player_decoded_url->player->stats->Arena->rating) ? $player_decoded_url->player->stats->Arena->rating : 0;
+
 		        // TNT GAMES INSERT
 		        $query_tntgames = "INSERT INTO tntgames (UUID, name, last_updated, mvp_plus_colour, rank, coins, wizards_kills, wins_bowspeef, wins_wizards, wins_tntrun, total_wins, kills_pvprun, wins_tnttag, wins_pvprun)
 		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -303,6 +347,28 @@
 		            mysqli_stmt_execute($statement_vz);
 		        } else {
 		            echo '<b>[VZ] '.$name.' </b>An Error Occured!<br>'; 
+		        }
+
+		        // WALLS INSERT
+		        $query_walls = "INSERT INTO walls (UUID, name, last_updated, mvp_plus_colour, rank, coins, wins, kills, deaths, assists)
+		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?)";
+
+		        if($statement_walls = mysqli_prepare($connection, $query_walls)) {
+		            mysqli_stmt_bind_param($statement_walls, "ssssiiiii", $uuid, $name, $mvp_plus_colour, $rank, $coins_walls, $wins_walls, $kills_walls, $deaths_walls, $assists_walls);
+		            mysqli_stmt_execute($statement_walls);
+		        } else {
+		            echo '<b>[WALLS] '.$name.' </b>An Error Occured!<br>'; 
+		        }
+
+		        // ARENA INSERT
+		        $query_arena = "INSERT INTO arena (UUID, name, last_updated, mvp_plus_colour, rank, coins, wins_4v4, wins_2v2, kills_4v4, kills_2v2, rating)
+		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		        if($statement_arena = mysqli_prepare($connection, $query_arena)) {
+		            mysqli_stmt_bind_param($statement_arena, "ssssiiiiii", $uuid, $name, $mvp_plus_colour, $rank, $coins_arena, $wins4v4_arena, $wins2v2_arena, $kills4v4_arena, $kills2v2_arena, $rating_arena);
+		            mysqli_stmt_execute($statement_arena);
+		        } else {
+		            echo '<b>[ARENA] '.$name.' </b>An Error Occured!<br>'; 
 		        }
 
 		        header("Refresh:0.01; url=../index.php");
