@@ -122,7 +122,7 @@
                                                 <th>Position (Rating)</th>
                                                 <th>Name</th>
                                                 <th>Rating</th>
-                                                <th>2v2 Kills<th>
+                                                <th>2v2 Kills</th>
                                                 <th>2v2 Wins</th>
                                                 <th>4v4 Kills</th>
                                                 <th>4v4 Wins</th>
@@ -151,7 +151,7 @@
                                                 while($row = $result->fetch_assoc()) {
                                                     $name = $row['name'];
                                                     $rating = $row['rating'];
-                                                    $wins_4v4 = $row['wins_4v4'];
+                                                    $kills_2v2 = $row['kills_2v2'];
                                                     $wins_2v2 = $row['wins_2v2'];
                                                     $coins = $row['coins'];
                                                     $kills_4v4 = $row['kills_4v4'];

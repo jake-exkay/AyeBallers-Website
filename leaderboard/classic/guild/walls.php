@@ -16,7 +16,7 @@
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
 
-            updatePageViews($connection, 'vz_guild_leaderboard', $DEV_IP);
+            updatePageViews($connection, 'walls_guild_leaderboard', $DEV_IP);
 
             $query = "SELECT * FROM walls ORDER BY wins DESC";
             $result = $connection->query($query);
