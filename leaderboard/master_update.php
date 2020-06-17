@@ -29,6 +29,7 @@
 		    $truncate_vz_query = "DELETE FROM vampirez";
 		    $truncate_walls_query = "DELETE FROM walls";
 		    $truncate_arena_query = "DELETE FROM arena";
+		    $truncate_bedwars_query = "DELETE FROM bedwars";
 
 		    if($truncate_paintball_statement = mysqli_prepare($connection, $truncate_paintball_query)) {
 		        mysqli_stmt_execute($truncate_paintball_statement);
@@ -70,6 +71,12 @@
 		        mysqli_stmt_execute($truncate_arena_statement);
 		    } else {
 		        echo 'Error truncating arena<br>' . mysqli_error($connection); 
+		    }
+
+		    if($truncate_bedwars_statement = mysqli_prepare($connection, $truncate_bedwars_query)) {
+		        mysqli_stmt_execute($truncate_bedwars_statement);
+		    } else {
+		        echo 'Error truncating bedwars<br>' . mysqli_error($connection); 
 		    }
 
 		    foreach($guild_members as $member) {
@@ -157,6 +164,14 @@
 		        $rating_arena = 0;
 		        $wins2v2_arena = 0;
 		        $wins4v4_arena = 0;
+
+		        // BEDWARS VARS
+		        $coins_bw = 0;
+		        $kills_bw = 0;
+		        $deaths_bw = 0;
+		        $beds_broken_bw = 0;
+		        $finals_bw = 0;
+		        $wins_bw = 0;
 
 		        // GENERAL CHECKS
 		        $rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'Error';
@@ -294,6 +309,14 @@
 		        $kills4v4_arena = !empty($player_decoded_url->player->stats->Arena->kills_4v4) ? $player_decoded_url->player->stats->Arena->kills_4v4 : 0;
 		        $rating_arena = !empty($player_decoded_url->player->stats->Arena->rating) ? $player_decoded_url->player->stats->Arena->rating : 0;
 
+		        // BEDWARS CHECKS
+		        $coins_bw = !empty($player_decoded_url->player->stats->Bedwars->coins) ? $player_decoded_url->player->stats->Bedwars->coins : 0;
+		        $wins_bw = !empty($player_decoded_url->player->stats->Bedwars->wins_bedwars) ? $player_decoded_url->player->stats->Bedwars->wins_bedwars : 0;
+		        $kills_bw = !empty($player_decoded_url->player->stats->Bedwars->kills_bedwars) ? $player_decoded_url->player->stats->Bedwars->kills_bedwars : 0;
+		        $finals_bw = !empty($player_decoded_url->player->stats->Bedwars->final_kills_bedwars) ? $player_decoded_url->player->stats->Bedwars->final_kills_bedwars : 0;
+		        $deaths_bw = !empty($player_decoded_url->player->stats->Bedwars->deaths_bedwars) ? $player_decoded_url->player->stats->Bedwars->deaths_bedwars : 0;
+		        $beds_broken_bw = !empty($player_decoded_url->player->stats->Bedwars->beds_broken_bedwars) ? $player_decoded_url->player->stats->Bedwars->beds_broken_bedwars : 0;
+
 		        // TNT GAMES INSERT
 		        $query_tntgames = "INSERT INTO tntgames (UUID, name, last_updated, mvp_plus_colour, rank, coins, wizards_kills, wins_bowspeef, wins_wizards, wins_tntrun, total_wins, kills_pvprun, wins_tnttag, wins_pvprun)
 		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -371,8 +394,18 @@
 		            echo '<b>[ARENA] '.$name.' </b>An Error Occured!<br>'; 
 		        }
 
-		        header("Refresh:0.01; url=../index.php");
+		        // BEDWARS INSERT
+		        $query_bedwars = "INSERT INTO bedwars (UUID, name, last_updated, mvp_plus_colour, rank, coins, wins, kills, finals, deaths, beds_broken)
+		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
 
+		        if($statement_bedwars = mysqli_prepare($connection, $query_bedwars)) {
+		            mysqli_stmt_bind_param($statement_bedwars, "ssssiiiiii", $uuid, $name, $mvp_plus_colour, $rank, $coins_bw, $wins_bw, $kills_bw, $finals_bw, $deaths_bw, $beds_broken_bw);
+		            mysqli_stmt_execute($statement_bedwars);
+		        } else {
+		            echo '<b>[BEDWARS] '.$name.' </b>An Error Occured!<br>'; 
+		        }
+
+		        header("Refresh:0.01; url=../index.php");
 
 		    }
 
