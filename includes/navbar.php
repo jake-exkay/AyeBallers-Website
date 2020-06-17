@@ -17,6 +17,12 @@
                                 </div>
                                 Home
                             </a>
+                            <a class="nav-link" href="../../../guild.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Guild
+                            </a>
                             <a class="nav-link" href="../../../event/leaderboard.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-tachometer-alt"></i>

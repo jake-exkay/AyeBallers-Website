@@ -11,6 +11,7 @@
 
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
+            include "../../../functions/display_functions.php";
             include "../../../functions/database/paintball_functions.php";
 
             updatePageViews($connection, 'paintball_overall_leaderboard', $DEV_IP);
