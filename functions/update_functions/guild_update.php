@@ -1,7 +1,7 @@
 <?php
 
-	include "../includes/connect.php";
-	include "../functions/functions.php";
+	include "../../includes/connect.php";
+	include "../../functions/functions.php";
 
 	if (!apiLimitReached($API_KEY)) {
 		$last_updated_query = "SELECT * FROM paintball";
@@ -318,7 +318,7 @@
 		        // ARENA CHECKS
 		        $coins_arena = !empty($player_decoded_url->player->stats->Arena->coins) ? $player_decoded_url->player->stats->Arena->coins : 0;
 		        $wins4v4_arena = !empty($player_decoded_url->player->stats->Arena->wins_4v4) ? $player_decoded_url->player->stats->Arena->wins_4v4 : 0;
-		        $wins2v2_arena = !empty($player_decoded_url->player->stats->Arena->wins_2v2) ? $player_decoded_url->player->stats->Arena->wins_4v4 : 0;
+		        $wins2v2_arena = !empty($player_decoded_url->player->stats->Arena->wins_2v2) ? $player_decoded_url->player->stats->Arena->wins_2v2 : 0;
 		        $kills2v2_arena = !empty($player_decoded_url->player->stats->Arena->kills_2v2) ? $player_decoded_url->player->stats->Arena->kills_2v2 : 0;
 		        $kills4v4_arena = !empty($player_decoded_url->player->stats->Arena->kills_4v4) ? $player_decoded_url->player->stats->Arena->kills_4v4 : 0;
 		        $rating_arena = !empty($player_decoded_url->player->stats->Arena->rating) ? $player_decoded_url->player->stats->Arena->rating : 0;
@@ -437,7 +437,7 @@
 		            echo '<b>[SKYWARS] '.$name.' </b>An Error Occured!<br>'; 
 		        }
 
-		        header("Refresh:0.01; url=../index.php");
+		        header("Refresh:0.01; url=../../../index.php");
 
 		    }
 

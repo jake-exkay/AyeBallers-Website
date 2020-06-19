@@ -3,11 +3,7 @@
 
     <head>
 
-        <meta name="author" content="ExKay" />
-
-        <link href="../css/styles.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <?php include "../includes/links.php"; ?>
 
         <title>Guild Leaderboard - SkyWars</title>
 
@@ -15,28 +11,16 @@
 
             include "../includes/connect.php";
             include "../functions/functions.php";
+            include "../functions/display_functions.php";
+            include "../functions/database/query_functions.php";
 
             updatePageViews($connection, 'skywars_guild_leaderboard', $DEV_IP);
 
-            $query = "SELECT * FROM skywars ORDER BY wins DESC";
-            $result = $connection->query($query);
-
-            $last_updated_query = "SELECT * FROM skywars";
-            $last_updated_result = $connection->query($last_updated_query);
-
-            if ($last_updated_result->num_rows > 0) {
-                while($last_updated_row = $last_updated_result->fetch_assoc()) {
-                    $last_updated = $last_updated_row['last_updated'];
-                }
-            }
-
+            $result = getSkywarsLeaderboard($connection);
+            $last_updated = getLastUpdated($connection, 'skywars');
             $mins = timeSinceUpdate($last_updated);
 
-            $total_wins = 0;
-            $total_coins = 0;
-            $total_kills = 0;
-            $total_assists = 0;
-            $total_deaths = 0;
+            $total_wins = $total_coins = $total_kills = $total_assists = $total_deaths = 0;
 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -74,36 +58,7 @@
                     <div class="container-fluid">
                         <h1 class="mt-4">SkyWars Leaderboard</h1>
 
-                        <div>
-                            <?php if ($mins < 5) { ?>
-                                <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-danger">Update</button>
-                                <?php
-                                    if ($mins == 0) {
-                                        echo "<i>Last Updated: A moment ago</i>";
-                                    } elseif ($mins == 1) {
-                                        echo "<i>Last Updated: " . $mins . " minute ago</i>";
-                                    } else {
-                                        echo "<i>Last Updated: " . $mins . " minutes ago</i>";
-                                    }
-                                ?>
-                                <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
-                            <?php } else { ?>
-                                <form action="master_update.php">
-                                    <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-success">Update</button>
-                                    <?php
-                                        if ($mins == 0) {
-                                            echo "<i>Last Updated: A moment ago</i>";
-                                        } elseif ($mins >= 60) {
-                                            echo "<i>Last Updated: more than an hour ago</i>";
-                                        } elseif ($mins == 1) {
-                                            echo "<i>Last Updated: " . $mins . " minute ago</i>";
-                                        } else {
-                                            echo "<i>Last Updated: " . $mins . " minutes ago</i>";
-                                        }
-                                    ?>
-                                </form>
-                            <?php } ?>
-                        </div>
+                        <?php displayUpdateButton($mins); ?>
 
                         <br>
 
@@ -138,7 +93,7 @@
 
                                             $i = 1;
 
-                                            $result = $connection->query($query);
+                                            $result = getSkywarsLeaderboard($connection);
 
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
@@ -180,23 +135,9 @@
 
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; AyeBallers / ExKay 2020</div>
-                        </div>
-                    </div>
-                </footer>
+                <?php include "../includes/footer.php"; ?>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="../assets/demo/chart-area-demo.js"></script>
-        <script src="../assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="../assets/demo/datatables-demo.js"></script>
+        
     </body>
 </html>

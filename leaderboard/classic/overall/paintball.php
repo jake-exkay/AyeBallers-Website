@@ -12,14 +12,12 @@
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
             include "../../../functions/display_functions.php";
-            include "../../../functions/database/paintball_functions.php";
+            include "../../../functions/database/query_functions.php";
 
             updatePageViews($connection, 'paintball_overall_leaderboard', $DEV_IP);
 
-            $result = getOverallLeaderboard($connection);
-
+            $result = getOverallPaintballLeaderboard($connection);
             $last_updated = getLastUpdated($connection, 'paintball_overall');
-
             $mins = timeSinceUpdate($last_updated);
 
             $total_kills = $total_wins = $total_deaths = $total_shots = $total_coins = $total_killstreaks = 
@@ -89,7 +87,7 @@
 
 	                    </ol>
 
-                        <?php displayUpdateButton($mins); ?>
+                        <?php displayOverallUpdateButton($mins); ?>
                         
                         <div class="card mb-4">
                             <div class="card-header">
@@ -137,7 +135,7 @@
 
                                             $i = 1;
 
-                                            $result = getOverallLeaderboard($connection);
+                                            $result = getOverallPaintballLeaderboard($connection);
 
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
