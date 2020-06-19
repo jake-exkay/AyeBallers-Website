@@ -9,19 +9,19 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 
-        <title>Guild Leaderboard - BedWars</title>
+        <title>Guild Leaderboard - SkyWars</title>
 
         <?php
 
             include "../includes/connect.php";
             include "../functions/functions.php";
 
-            updatePageViews($connection, 'bedwars_guild_leaderboard', $DEV_IP);
+            updatePageViews($connection, 'skywars_guild_leaderboard', $DEV_IP);
 
-            $query = "SELECT * FROM bedwars ORDER BY wins DESC";
+            $query = "SELECT * FROM skywars ORDER BY wins DESC";
             $result = $connection->query($query);
 
-            $last_updated_query = "SELECT * FROM bedwars";
+            $last_updated_query = "SELECT * FROM skywars";
             $last_updated_result = $connection->query($last_updated_query);
 
             if ($last_updated_result->num_rows > 0) {
@@ -35,32 +35,28 @@
             $total_wins = 0;
             $total_coins = 0;
             $total_kills = 0;
-            $total_finals = 0;
+            $total_assists = 0;
             $total_deaths = 0;
-            $total_beds_broken = 0;
 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     $wins = $row['wins'];
                     $kills = $row['kills'];
                     $coins = $row['coins'];
-                    $finals = $row['finals'];
+                    $assists = $row['assists'];
                     $deaths = $row['deaths'];
-                    $beds_broken = $row['beds_broken'];
                 
                     $total_wins = $total_wins + $wins;
                     $total_coins = $total_coins + $coins;
                     $total_kills = $total_kills + $kills;
-                    $total_finals = $total_finals + $finals;
+                    $total_assists = $total_assists + $assists;
                     $total_deaths = $total_deaths + $deaths;
-                    $total_beds_broken = $total_beds_broken + $beds_broken;
 
                     $format_total_wins = number_format($total_wins);
                     $format_total_coins = number_format($total_coins);
                     $format_total_kills = number_format($total_kills);
                     $format_total_deaths = number_format($total_deaths);
-                    $format_total_finals = number_format($total_finals);
-                    $format_total_beds_broken = number_format($total_beds_broken);
+                    $format_total_assists = number_format($total_assists);
 
                 }
             }
@@ -76,7 +72,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">BedWars Leaderboard</h1>
+                        <h1 class="mt-4">SkyWars Leaderboard</h1>
 
                         <div>
                             <?php if ($mins < 5) { ?>
@@ -112,7 +108,7 @@
                         <br>
 
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Guild Leaderboard - BedWars</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Guild Leaderboard - SkyWars</div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -122,10 +118,9 @@
                                                 <th>Name</th>
                                                 <th>Wins</th>
                                                 <th>Kills</th>
-                                                <th>Final Kills</th>
+                                                <th>Assists</th>
                                                 <th>Coins</th>
                                                 <th>Deaths</th>
-                                                <th>Beds Broken</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -134,10 +129,9 @@
                                                 <td>Overall Guild</td>
                                                 <td><?php echo $format_total_wins; ?></td>
                                                 <td><?php echo $format_total_kills; ?></td>
-                                                <td><?php echo $format_total_finals; ?></td>
+                                                <td><?php echo $format_total_assists; ?></td>
                                                 <td><?php echo $format_total_coins; ?></td>
                                                 <td><?php echo $format_total_deaths; ?></td>
-                                                <td><?php echo $format_total_beds_broken; ?></td>
                                             </tr>
 
                                         <?php
@@ -151,27 +145,24 @@
                                                     $wins = $row['wins'];
                                                     $kills = $row['kills'];
                                                     $coins = $row['coins'];
-                                                    $finals = $row['finals'];
+                                                    $assists = $row['assists'];
                                                     $deaths = $row['deaths'];
-                                                    $beds_broken = $row['beds_broken'];
                                                     $name = $row['name'];
 
                                                     $format_wins = number_format($wins);
                                                     $format_coins = number_format($coins);
                                                     $format_kills = number_format($kills);
                                                     $format_deaths = number_format($deaths);
-                                                    $format_beds_broken = number_format($beds_broken);
-                                                    $format_finals = number_format($finals);
+                                                    $format_assists = number_format($assists);
 
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         echo '<td>' . $name . '</td>';
                                                         echo '<td>' . $format_wins . '</td>';
                                                         echo '<td>' . $format_kills . '</td>';
-                                                        echo '<td>' . $format_finals . '</td>';
+                                                        echo '<td>' . $format_assists . '</td>';
                                                         echo '<td>' . $format_coins . '</td>';
                                                         echo '<td>' . $format_deaths . '</td>';
-                                                        echo '<td>' . $format_beds_broken . '</td>';
                                                     echo '</tr>'; 
                                                     $i = $i + 1;
 

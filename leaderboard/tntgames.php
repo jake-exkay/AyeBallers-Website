@@ -104,7 +104,7 @@
                                 ?>
                                 <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
                             <?php } else { ?>
-                                <form action="../master_update.php">
+                                <form action="master_update.php">
                                     <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-success">Update</button>
                                     <?php
                                         if ($mins == 0) {

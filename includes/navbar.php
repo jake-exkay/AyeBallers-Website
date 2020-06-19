@@ -79,6 +79,12 @@
                                 </div>
                                 BedWars
                             </a>
+                            <a class="nav-link" href="../../../leaderboard/skywars.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                SkyWars
+                            </a>
                         </div>
                     </div>
                 </nav>

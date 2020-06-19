@@ -30,6 +30,7 @@
 		    $truncate_walls_query = "DELETE FROM walls";
 		    $truncate_arena_query = "DELETE FROM arena";
 		    $truncate_bedwars_query = "DELETE FROM bedwars";
+		    $truncate_skywars_query = "DELETE FROM skywars";
 
 		    if($truncate_paintball_statement = mysqli_prepare($connection, $truncate_paintball_query)) {
 		        mysqli_stmt_execute($truncate_paintball_statement);
@@ -77,6 +78,12 @@
 		        mysqli_stmt_execute($truncate_bedwars_statement);
 		    } else {
 		        echo 'Error truncating bedwars<br>' . mysqli_error($connection); 
+		    }
+
+		    if($truncate_skywars_statement = mysqli_prepare($connection, $truncate_skywars_query)) {
+		        mysqli_stmt_execute($truncate_skywars_statement);
+		    } else {
+		        echo 'Error truncating skywars<br>' . mysqli_error($connection); 
 		    }
 
 		    foreach($guild_members as $member) {
@@ -172,6 +179,13 @@
 		        $beds_broken_bw = 0;
 		        $finals_bw = 0;
 		        $wins_bw = 0;
+
+		        // SKYWARS VARS
+		        $coins_sw = 0;
+		        $kills_sw = 0;
+		        $deaths_sw = 0;
+		        $wins_sw = 0;
+		        $assists_sw = 0;
 
 		        // GENERAL CHECKS
 		        $rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'Error';
@@ -317,6 +331,13 @@
 		        $deaths_bw = !empty($player_decoded_url->player->stats->Bedwars->deaths_bedwars) ? $player_decoded_url->player->stats->Bedwars->deaths_bedwars : 0;
 		        $beds_broken_bw = !empty($player_decoded_url->player->stats->Bedwars->beds_broken_bedwars) ? $player_decoded_url->player->stats->Bedwars->beds_broken_bedwars : 0;
 
+		        // SKYWARS CHECKS
+		        $coins_sw = !empty($player_decoded_url->player->stats->SkyWars->coins) ? $player_decoded_url->player->stats->SkyWars->coins : 0;
+		        $wins_sw = !empty($player_decoded_url->player->stats->SkyWars->wins) ? $player_decoded_url->player->stats->SkyWars->wins : 0;
+		        $kills_sw = !empty($player_decoded_url->player->stats->SkyWars->kills) ? $player_decoded_url->player->stats->SkyWars->kills : 0;
+		        $assists_sw = !empty($player_decoded_url->player->stats->SkyWars->assists) ? $player_decoded_url->player->stats->SkyWars->assists : 0;
+		        $deaths_sw = !empty($player_decoded_url->player->stats->SkyWars->deaths) ? $player_decoded_url->player->stats->SkyWars->deaths : 0;
+
 		        // TNT GAMES INSERT
 		        $query_tntgames = "INSERT INTO tntgames (UUID, name, last_updated, mvp_plus_colour, rank, coins, wizards_kills, wins_bowspeef, wins_wizards, wins_tntrun, total_wins, kills_pvprun, wins_tnttag, wins_pvprun)
 		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -403,6 +424,17 @@
 		            mysqli_stmt_execute($statement_bedwars);
 		        } else {
 		            echo '<b>[BEDWARS] '.$name.' </b>An Error Occured!<br>'; 
+		        }
+
+		        // SKYWARS INSERT
+		        $query_skywars = "INSERT INTO skywars (UUID, name, last_updated, mvp_plus_colour, rank, coins, wins, kills, assists, deaths)
+		            VALUES (?, ?, now(), ?, ?, ?, ?, ?, ?, ?)";
+
+		        if($statement_skywars = mysqli_prepare($connection, $query_skywars)) {
+		            mysqli_stmt_bind_param($statement_skywars, "ssssiiiii", $uuid, $name, $mvp_plus_colour, $rank, $coins_sw, $wins_sw, $kills_sw, $assists_sw, $deaths_sw);
+		            mysqli_stmt_execute($statement_skywars);
+		        } else {
+		            echo '<b>[SKYWARS] '.$name.' </b>An Error Occured!<br>'; 
 		        }
 
 		        header("Refresh:0.01; url=../index.php");
