@@ -19,7 +19,7 @@
             include "../functions/functions.php";
             include "event_functions.php";
 
-            $tournament_started = true;
+            $tournament_started = false;
 
             updatePageViews($connection, 'event_leaderboard', $DEV_IP);
 
@@ -45,8 +45,7 @@
                 <main>
                     <div class="container-fluid">
                         <center>
-                            <h1>NOTICE: THIS IS A TEST TOURNAMENT USING A RANDOM SET OF PLAYERS.</h1>
-                            <br><br>
+                            <br>
                             <b><h1 style="font-family: BKANT, sans-serif">Paintball Tournament #2</h1></b>
                                 <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
                             <?php
@@ -62,7 +61,7 @@
                             
                             <div class="row">
                                 <div class="col-md-4">
-                                    <p>View Event Thread</p>
+                                    <p><a target="_blank" href="https://hypixel.net/threads/paintball-tournament-v2-win-real-money.3045096/">View Event Thread</a></p>
                                 </div>
                                 <div class="col-md-4">
                                     <p><a href="report.php">Report NoxyD/Rezzus User</a></p>

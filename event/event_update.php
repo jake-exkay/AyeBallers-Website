@@ -6,10 +6,10 @@
     include "event_functions.php";
 
     if (!eventStarted($connection)) {
-        echo "Error: Event has not started";
+        echo "Error: Event has not started. Redirecting.";
         header("Refresh:2; url=leaderboard.php");
     } elseif (apiLimitReached($API_KEY)) {
-        echo "Error: Too many concurrent API requests, please try again in a minute.";
+        echo "Error: Too many concurrent API requests, please try again in a minute. Redirecting.";
         header("Refresh:2; url=leaderboard.php");
     } else {
 
