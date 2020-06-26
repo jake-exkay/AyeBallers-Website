@@ -5,8 +5,8 @@
     include "../functions/functions.php";
     include "event_functions.php";
 
-    if (!eventStarted($connection)) {
-        echo "Error: Event has not started. Redirecting.";
+    if (!eventStatus($connection) == 1) {
+        echo "Error: Event is not running. Redirecting.";
         header("Refresh:2; url=leaderboard.php");
     } elseif (apiLimitReached($API_KEY)) {
         echo "Error: Too many concurrent API requests, please try again in a minute. Redirecting.";

@@ -47,12 +47,16 @@
                             <b><h1 style="font-family: BKANT, sans-serif">Paintball Tournament #2</h1></b>
                                 <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
                             <?php
-                                if (!eventStarted($connection)) {
+                                if (eventStatus($connection) == 0) {
                             ?>
                                     <center><h3>Time Until Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
-                            <?php } else { ?>
+                            <?php } elseif (eventStatus($connection) == 1) { ?>
                                     <center><h3>Time Remaining In Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
-                            <?php } ?>
+                            <?php 
+                                } else {
+                                    echo '<center><h3>Event Ended!</h3><p>Thank you for participating!</p></center>';
+                                } 
+                            ?>
                                 </div>
                                     
                             <br><br>
@@ -81,34 +85,46 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div>
-                                         <?php if ($mins < 5) { ?>
-                                            <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-danger">Update</button>
-                                            <?php
-                                                if ($mins == 0) {
-                                                    echo "<i>Last Updated: A moment ago</i>";
-                                                } elseif ($mins == 1) {
-                                                    echo "<i>Last Updated: " . $mins . " minute ago</i>";
-                                                } else {
-                                                    echo "<i>Last Updated: " . $mins . " minutes ago</i>";
-                                                }
-                                            ?>
-                                            <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
-                                        <?php } else { ?>
-                                            <form action="event_update.php">
-                                                <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-success">Update</button>
+                                        <?php if (eventStatus($connection) == 1) { ?>
+                                            <?php if ($mins < 5) { ?>
+                                                <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-danger">Update</button>
                                                 <?php
                                                     if ($mins == 0) {
                                                         echo "<i>Last Updated: A moment ago</i>";
-                                                    } elseif ($mins >= 60) {
-                                                        echo "<i>Last Updated: more than an hour ago</i>";
                                                     } elseif ($mins == 1) {
                                                         echo "<i>Last Updated: " . $mins . " minute ago</i>";
                                                     } else {
                                                         echo "<i>Last Updated: " . $mins . " minutes ago</i>";
                                                     }
                                                 ?>
-                                            </form>
-                                        <?php } ?>
+                                                <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
+                                                <?php } else { ?>
+                                                    <form action="event_update.php">
+                                                        <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-success">Update</button>
+                                                        <?php
+                                                            if ($mins == 0) {
+                                                                echo "<i>Last Updated: A moment ago</i>";
+                                                            } elseif ($mins >= 60) {
+                                                                echo "<i>Last Updated: more than an hour ago</i>";
+                                                            } elseif ($mins == 1) {
+                                                                echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                                            } else {
+                                                                echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                                            }
+                                                        ?>
+                                                    </form>
+                                                <?php } ?>
+                                            <?php 
+                                                } elseif (eventStatus($connection) == 2) { 
+                                                    echo "<i>Event is finished, showing final results.</i>";
+                                                } elseif (eventStatus($connection) == 0) {
+                                                    echo "<i>Event has not started.</i>";
+                                                } else {
+                                                    echo "<i>Event has not started.</i>";
+                                                }
+
+
+                                            ?>
                                     </div>
                                     <br>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
