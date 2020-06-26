@@ -19,8 +19,6 @@
             include "../functions/functions.php";
             include "event_functions.php";
 
-            $tournament_started = false;
-
             updatePageViews($connection, 'event_leaderboard', $DEV_IP);
 
             $last_updated_query = "SELECT * FROM event_management";
@@ -49,7 +47,7 @@
                             <b><h1 style="font-family: BKANT, sans-serif">Paintball Tournament #2</h1></b>
                                 <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
                             <?php
-                                if ($tournament_started == false) {
+                                if (!eventStarted($connection)) {
                             ?>
                                     <center><h3>Time Until Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
                             <?php } else { ?>

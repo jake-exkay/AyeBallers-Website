@@ -24,7 +24,9 @@
             $deaths = !empty($player_decoded_url->player->stats->Paintball->deaths) ? $player_decoded_url->player->stats->Paintball->deaths : 0;
             $forcefield_time = !empty($player_decoded_url->player->stats->Paintball->forcefieldTime) ? $player_decoded_url->player->stats->Paintball->forcefieldTime : 0;
 
+            changeEventStatus($connection, 1);
             insertNewPlayer($connection, $uuid, $name, $kills, $wins, $forcefield_time, $deaths, 0);
+            insertBackupPlayer($connection, $uuid, $name, $kills, $wins, $forcefield_time, $deaths, 0);
 
             header("Refresh:0.01; url=leaderboard.php");
         }

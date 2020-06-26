@@ -25,6 +25,7 @@
                         <center>
                             <b><h1 class="mt-4">Report NoxyD/Rezzus User</h1></b>
                             <p>Due to a high amount of requests, the <b>NoxyD</b> and <b>Rezzus</b> hats are banned for tournament participants. As there is no real way of enforcing these rules, players can report other players if they are seen using these hats. Please upload a screenshot below and it will be reviewed. Players using these hats may be removed from the tournament.</p>
+                            <p>Please note: all reports are anonymous, please upload a full minecraft screenshot, cropped images will not be taken into account.</p>
 
                             <br><br>
                         
