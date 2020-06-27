@@ -46,18 +46,12 @@
                             <br>
                             <b><h1 style="font-family: BKANT, sans-serif">Paintball Tournament #2</h1></b>
                                 <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
-                            <?php
-                                if (eventStatus($connection) == 0) {
-                            ?>
-                                    <center><h3>Time Until Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
-                            <?php } elseif (eventStatus($connection) == 1) { ?>
-                                    <center><h3>Time Remaining In Tournament: </h3><h3 style="font-family: BKANT, sans-serif" id="countdown"></h3></center>
-                            <?php 
-                                } else {
-                                    echo '<center><h3>Event Ended!</h3><p>Thank you for participating!</p></center>';
-                                } 
-                            ?>
-                                </div>
+                                    <center>
+                                        <h3>Tournament Starts:</h3> 
+                                        <br>
+                                        <h4>2nd July 00:00 EST</h4>
+                                    </center>
+                                </div> 
                                     
                             <br><br>
                             
