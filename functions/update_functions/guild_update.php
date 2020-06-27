@@ -1,7 +1,7 @@
 <?php
 
 	include "../../includes/connect.php";
-	include "../../functions/functions.php";
+	include "../functions.php";
 
 	if (!apiLimitReached($API_KEY)) {
 		$last_updated_query = "SELECT * FROM paintball";

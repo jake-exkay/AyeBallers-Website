@@ -1,7 +1,4 @@
 <?php
-	include "../../includes/connect.php";
-    include "../../includes/constants.php";
-    include "../../functions/functions.php";
 
     function isLoggedIn($connection) { 
     	$ip = getUserIP();
@@ -13,6 +10,18 @@
         } else {
             return false;
         }
+    }
+
+    function getUserIP() {
+        $ip = "";
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
     }
 
     function loginUser($connection) {

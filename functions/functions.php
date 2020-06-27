@@ -1,8 +1,5 @@
 <?php
 
-    include "../includes/connect.php";
-    include "../includes/constants.php";
-
     function getUserIP() {
     	$ip = "";
     	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -15,19 +12,14 @@
 		return $ip;
     }
 
-    function updatePageViews($connection, $page, $ip) {
-    	if (getUserIP() == $ip) {
-			$stats_query = "UPDATE page_views SET dev_views = dev_views + 1 WHERE page = '$page'";
-	                    
-	        if ($stats_statement = mysqli_prepare($connection, $stats_query)) {
-	            mysqli_stmt_execute($stats_statement);
-	        }
+    function updatePageViews($connection, $page, $dev_ip) {
+    	if (getUserIP() == $dev_ip) {
+			$query = "UPDATE page_views SET dev_views = dev_views + 1 WHERE page = '$page'";         
+	        mysqli_query($connection, $query);
+
     	} else {
-    		$stats_query = "UPDATE page_views SET views = views + 1 WHERE page = '$page'";
-	                    
-	        if ($stats_statement = mysqli_prepare($connection, $stats_query)) {
-	            mysqli_stmt_execute($stats_statement);
-	        }
+    		$stats_query = "UPDATE page_views SET views = views + 1 WHERE page = '$page'";       
+	        mysqli_query($connection, $query);
     	}
     }
 
@@ -50,8 +42,8 @@
         return $name;
     }
 
-    function apiLimitReached($API_KEY) {
-        $url = file_get_contents("https://api.hypixel.net/key?key=" . $API_KEY);
+    function apiLimitReached($key) {
+        $url = file_get_contents("https://api.hypixel.net/key?key=" . $key);
         $decoded_url = json_decode($url);
         $queries = $decoded_url->record->queriesInPastMin;
         if ($queries >= 110) {
