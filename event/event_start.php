@@ -13,6 +13,15 @@
             echo "Error: Event has finished, Please clear database before starting another event. Redirecting.";
             header("Refresh:2; url=leaderboard.php");
         } else {
+
+            $truncate_query = "DELETE FROM event_backup";
+
+            if ($truncate_statement = mysqli_prepare($connection, $truncate_query)) {
+                mysqli_stmt_execute($truncate_statement);
+            } else {
+                echo 'Error truncating backup table <br>' . mysqli_error($connection); 
+            }
+
             foreach($participants as $uuid) {
                 $player_url = file_get_contents("https://api.hypixel.net/player?key=" . $API_KEY . "&uuid=" . $uuid);
                 $player_decoded_url = json_decode($player_url);
