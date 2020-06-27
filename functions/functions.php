@@ -18,7 +18,7 @@
 	        mysqli_query($connection, $query);
 
     	} else {
-    		$stats_query = "UPDATE page_views SET views = views + 1 WHERE page = '$page'";       
+    		$query = "UPDATE page_views SET views = views + 1 WHERE page = '$page'";       
 	        mysqli_query($connection, $query);
     	}
     }
