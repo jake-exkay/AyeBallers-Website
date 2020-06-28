@@ -60,4 +60,10 @@
         return $result;
     }
 
+    function getWarlordsLeaderboard($connection) {
+        $query = "SELECT * FROM warlords ORDER BY wins DESC";
+        $result = $connection->query($query);
+        return $result;
+    }
+
 ?>

@@ -85,6 +85,12 @@
                                 </div>
                                 SkyWars
                             </a>
+                            <a class="nav-link" href="../../../leaderboard/warlords.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Warlords
+                            </a>
                         </div>
                     </div>
                 </nav>
