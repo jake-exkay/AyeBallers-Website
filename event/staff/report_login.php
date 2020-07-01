@@ -16,6 +16,7 @@
         <?php
             include "staff_functions.php";
             include "../../includes/constants.php";
+            include "../../includes/connect.php";
 
             if (isLoggedIn($connection)) {
                 header("Refresh:0.05; url=reports.php");

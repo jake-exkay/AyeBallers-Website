@@ -44,26 +44,28 @@
                     <div class="container-fluid">
                         <center>
                             <br>
-                            <b><h1 style="font-family: BKANT, sans-serif">Paintball Tournament #2</h1></b>
-                                <div class="border" style="border-radius: 10px; margin-left: 600px; margin-right: 600px;">
-                                    <center>
-                                        <h3>Tournament Starts:</h3> 
-                                        <br>
-                                        <h4>2nd July 00:00 EST</h4>
-                                    </center>
-                                </div> 
+                            <b><h1 class="ayeballers_font">PAINTBALL TOURNAMENT #2</h1></b>
+                            <center>
+                                <h3 class="ayeballers_font">(Tournament Starts: 2nd July 00:00 EST)</h3>
+                            </center>
                                     
                             <br><br>
                             
                             <div class="row">
-                                <div class="col-md-4">
-                                    <p><a target="_blank" href="https://hypixel.net/threads/paintball-tournament-v2-win-real-money.3045096/">View Event Thread</a></p>
+                                <div class="col-md-4 text-center">
+                                    <form action="https://hypixel.net/threads/paintball-tournament-v2-win-real-money.3045096/">
+                                        <button type="submit" class="btn btn-primary">Event Thread</button>
+                                    </form>
                                 </div>
-                                <div class="col-md-4">
-                                    <p><a href="report.php">Report NoxyD/Rezzus User</a></p>
+                                <div class="col-md-4 text-center">
+                                    <form action="report.php">
+                                        <button type="submit" class="btn btn-primary">Report NoxyD/Rezzus User</button>
+                                    </form>
                                 </div>
-                                <div class="col-md-4">
-                                    <p><a href="https://hypixel.net/threads/paintball-tournament-official-community-tournament-win-real-money.2831526/" target="_blank">View Previous Tournament</a></p>
+                                <div class="col-md-4 text-center">
+                                    <form action="https://hypixel.net/threads/paintball-tournament-official-community-tournament-win-real-money.2831526/">
+                                        <button type="submit" class="btn btn-primary">Previous Tournament</button>
+                                    </form>
                                 </div>
                             </div>
 
