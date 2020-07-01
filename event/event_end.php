@@ -7,8 +7,7 @@
 
     if (devViewing($connection, $DEV_IP)) {
         if (eventStatus($connection) == 0) {
-            echo "Error: Event is not running. Redirecting.";
-            header("Refresh:2; url=leaderboard.php");
+            header("Refresh:0.01; url=../error/event/event_not_running.php");
         } else {
             echo "Event Ended. Redirecting.";
 
@@ -17,8 +16,7 @@
             header("Refresh:2; url=leaderboard.php");
         }
     } else {
-        echo "Error: No permission.";
-        header("Refresh:1; url=leaderboard.php");
+        header("Refresh:0.01; url=../error/403.php");
     }
 
     $connection->close();

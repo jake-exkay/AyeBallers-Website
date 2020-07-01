@@ -7,11 +7,9 @@
 
     if (devViewing($connection, $DEV_IP)) {
         if (eventStatus($connection) == 1) {
-            echo "Error: Event has already started. Redirecting.";
-            header("Refresh:2; url=leaderboard.php");
+            header("Refresh:0.01; url=../error/event/event_started.php");
         } elseif (eventStatus($connection) == 2) {
-            echo "Error: Event has finished, Please clear database before starting another event. Redirecting.";
-            header("Refresh:2; url=leaderboard.php");
+            header("Refresh:0.01; url=../error/event/event_finished.php");
         } else {
 
             $truncate_query = "DELETE FROM event_backup";
@@ -21,6 +19,16 @@
             } else {
                 echo 'Error truncating backup table <br>' . mysqli_error($connection); 
             }
+
+            echo '
+                <center>
+                    <b>
+                        <h1 style="padding-top: 400px; font-family: BKANT, sans-serif">Loading...</h1>
+                    </b>
+                    <h3 style="font-family: BKANT, sans-serif">Getting user data from Hypixel API...</h2>
+                    <h3>You will be redirected when loading is complete.</h3>
+                </center>
+            ';
 
             foreach($participants as $uuid) {
                 $player_url = file_get_contents("https://api.hypixel.net/player?key=" . $API_KEY . "&uuid=" . $uuid);
@@ -46,8 +54,7 @@
             }
         }
     } else {
-        echo "Error: No permission.";
-        header("Refresh:1; url=leaderboard.php");
+        header("Refresh:0.01; url=../error/403.php");
     }
 
     $connection->close();
