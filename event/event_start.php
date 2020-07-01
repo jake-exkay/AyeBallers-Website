@@ -52,6 +52,9 @@
 
                 header("Refresh:0.01; url=leaderboard.php");
             }
+
+            updateLog($connection, 'E_START');
+
         }
     } else {
         header("Refresh:0.01; url=../error/403.php");

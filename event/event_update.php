@@ -41,6 +41,8 @@
             header("Refresh:0.01; url=leaderboard.php");
         }
 
+        updateLog($connection, 'E_UPDATE');
+
     }
 
     $connection->close();

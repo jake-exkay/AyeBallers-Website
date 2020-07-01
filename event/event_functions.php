@@ -15,6 +15,26 @@
         return $event_started;
     }
 
+    function updateLog($connection, $event_function) {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        
+        $query = "INSERT INTO update_log (IP, time_update, function)
+                  VALUES (?, now(), ?)";
+
+        if($statement = mysqli_prepare($connection, $query)) {
+            mysqli_stmt_bind_param($statement, "ss", $ip, $event_function);
+            mysqli_stmt_execute($statement);
+        } else {
+            echo '<b>[LOG]</b> An Error Occured!<br>'; 
+        }
+    }
+
     function needsUpdating($connection) {
         $last_updated_query = "SELECT * FROM event_management";
         $last_updated_result = $connection->query($last_updated_query);

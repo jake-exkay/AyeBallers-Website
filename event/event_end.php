@@ -12,6 +12,7 @@
             echo "Event Ended. Redirecting.";
 
             changeEventStatus($connection, 2);
+            updateLog($connection, 'E_END');
 
             header("Refresh:2; url=leaderboard.php");
         }
