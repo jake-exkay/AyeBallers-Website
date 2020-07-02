@@ -46,7 +46,7 @@
                             <br>
                             <b><h1 class="ayeballers_font">PAINTBALL TOURNAMENT #2</h1></b>
                             <center>
-                                <h3 class="ayeballers_font">(Tournament Starts: 2nd July 00:00 EST)</h3>
+                                <h3 class="ayeballers_font">(Tournament Ends: 5th July 23:59 EST)</h3>
                             </center>
                                     
                             <br><br>
