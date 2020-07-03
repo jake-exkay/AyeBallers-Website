@@ -170,7 +170,11 @@
 
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
-                                                        echo '<td>' . $name . '</td>';
+                                                        if (userInGuild($connection, $name)) {
+                                                            echo '<td>' . $name . '  <img title="AyeBallers Member" height="25" width="auto" src="../../../assets/img/favicon.png"/></td>';
+                                                        } else {
+                                                            echo '<td>' . $name . '</td>';
+                                                        }
                                                         echo '<td>' . $kills_format . '</td>';
                                                         echo '<td>' . $wins_format . '</td>';
                                                         echo '<td>' . $coins_format . '</td>';

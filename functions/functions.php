@@ -12,6 +12,18 @@
 		return $ip;
     }
 
+    function userInGuild($connection, $name) {
+        $query = "SELECT * FROM guild_members_current WHERE name='$name'";
+        $result = $connection->query($query);
+
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     function updatePageViews($connection, $page, $dev_ip) {
     	if (getUserIP() == $dev_ip) {
 			$query = "UPDATE page_views SET dev_views = dev_views + 1 WHERE page = '$page'";         
