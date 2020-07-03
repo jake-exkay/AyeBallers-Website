@@ -170,11 +170,13 @@
                                                         } else if ($name == 'gibbgibb') {
                                                             echo '<td>' . $name . ' <img title="Previous Tournament Winner (3rd)" height="25" width="auto" src="../assets/img/bronze.png"/></td>';
                                                         } else if ($name == 'ExKay') {
-                                                        echo '<td>' . $name . ' <img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
                                                         } else if ($name == 'Emilyie') {
-                                                        echo '<td>' . $name . ' <img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
                                                         } else if ($name == 'PotAccuracy') {
-                                                        echo '<td>' . $name . ' <img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        } else if (userInGuild($connection, $name)) {
+                                                            echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/></td>';
                                                         } else {
                                                             echo '<td>' . $name . '</td>';
                                                         }
