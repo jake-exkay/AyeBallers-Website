@@ -47,6 +47,25 @@
   box-sizing: border-box;
 }
 
+@font-face { font-family: BKANT; src: url('BKANT.TTF'); } 
+
+.website_header {
+  width: 850px;
+  height: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.ayeballers_font {
+	font-family: BKANT, sans-serif;
+}
+
+.home_paragraph {
+	font-family: BKANT, sans-serif;
+	padding-left: 200px; 
+	padding-right: 200px;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

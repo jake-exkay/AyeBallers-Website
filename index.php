@@ -67,6 +67,7 @@
                             <?php displayStaffMember("PotAccuracy", "Leader", "Staff Management / Recruitment"); ?>
                             <?php displayStaffMember("ExKay", "Admin", "Site Management"); ?>
                             <?php displayStaffMember("Emilyie", "Admin", "Event Management"); ?>
+                            <?php displayStaffMember("Penderdrill", "Officer", "Officer"); ?>
 
                         </div>
                     </center>
