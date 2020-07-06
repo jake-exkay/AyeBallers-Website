@@ -23,11 +23,11 @@
                                 </div>
                                 Guild
                             </a>
-                            <a class="nav-link" href="../../../event/leaderboard.php">
+                            <a class="nav-link" href="../../../event.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
-                                Tournament
+                                Event
                             </a>
                             <div class="sb-sidenav-menu-heading">Classic Leaderboards</div>
                             <a class="nav-link" href="../../../leaderboard/classic/overall/paintball.php">

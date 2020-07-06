@@ -5,18 +5,18 @@
 
         <meta name="author" content="ExKay" />
 
-        <link href="../css/styles.css" rel="stylesheet" />
-        <link href="../css/custom_styles.css" rel="stylesheet" />
+        <link href="../../css/styles.css" rel="stylesheet" />
+        <link href="../../css/custom_styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="../js/countdown.js"></script>
+        <script src="../../js/countdown.js"></script>
 
         <title>Paintball Tournament #2 - Leaderboard</title>
 
         <?php
 
-            include "../includes/connect.php";
-            include "../functions/functions.php";
+            include "../../includes/connect.php";
+            include "../../functions/functions.php";
             include "event_functions.php";
 
             updatePageViews($connection, 'pb2_leaderboard', $DEV_IP);
@@ -27,7 +27,7 @@
 
     <body class="sb-nav-fixed">
 
-        <?php require "../includes/navbar.php"; ?>
+        <?php require "../../includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
                 <main>
@@ -110,19 +110,19 @@
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         if ($name == 'recordheat') {
-                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (1st)" height="25" width="auto" src="../assets/img/gold.png"/></td>';
+                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (1st)" height="25" width="auto" src="../../assets/img/gold.png"/></td>';
                                                         } else if ($name == 'pcint') {
-                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (2nd)" height="25" width="auto" src="../assets/img/silver.png"/></td>';
+                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (2nd)" height="25" width="auto" src="../../assets/img/silver.png"/></td>';
                                                         } else if ($name == 'gibbgibb') {
-                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (3rd)" height="25" width="auto" src="../assets/img/bronze.png"/></td>';
+                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (3rd)" height="25" width="auto" src="../../assets/img/bronze.png"/></td>';
                                                         } else if ($name == 'ExKay') {
-                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../../assets/img/star.png"/></td>';
                                                         } else if ($name == 'Emilyie') {
-                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../../assets/img/star.png"/></td>';
                                                         } else if ($name == 'PotAccuracy') {
-                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                        echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../../assets/img/star.png"/></td>';
                                                         } else if (userInGuild($connection, $name)) {
-                                                            echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/></td>';
+                                                            echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../../assets/img/favicon.png"/></td>';
                                                         } else {
                                                             echo '<td>' . $name . '</td>';
                                                         }
@@ -158,12 +158,9 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../../../js/scripts.js"></script>
+        <script src="../../js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="../../../assets/demo/chart-area-demo.js"></script>
-        <script src="../../../assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="../../../assets/demo/datatables-demo.js"></script>
     </body>
 </html>
