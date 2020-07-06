@@ -66,7 +66,46 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div>
-                                        <i>Event is finished, showing final results.</i>
+                                        <?php if (eventStatus($connection) == 1) { ?>
+                                            <?php if ($mins < 5) { ?>
+                                                <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-danger">Update</button>
+                                                <?php
+                                                    if ($mins == 0) {
+                                                        echo "<i>Last Updated: A moment ago</i>";
+                                                    } elseif ($mins == 1) {
+                                                        echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                                    } else {
+                                                        echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                                    }
+                                                ?>
+                                                <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
+                                                <?php } else { ?>
+                                                    <form action="event_update.php">
+                                                        <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-success">Update</button>
+                                                        <?php
+                                                            if ($mins == 0) {
+                                                                echo "<i>Last Updated: A moment ago</i>";
+                                                            } elseif ($mins >= 60) {
+                                                                echo "<i>Last Updated: more than an hour ago</i>";
+                                                            } elseif ($mins == 1) {
+                                                                echo "<i>Last Updated: " . $mins . " minute ago</i>";
+                                                            } else {
+                                                                echo "<i>Last Updated: " . $mins . " minutes ago</i>";
+                                                            }
+                                                        ?>
+                                                    </form>
+                                                <?php } ?>
+                                            <?php 
+                                                } elseif (eventStatus($connection) == 2) { 
+                                                    echo "<i>Event is finished, showing final results.</i>";
+                                                } elseif (eventStatus($connection) == 0) {
+                                                    echo "<i>Event has not started.</i>";
+                                                } else {
+                                                    echo "<i>Event has not started.</i>";
+                                                }
+
+
+                                            ?>
                                     </div>
                                     <br>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -86,7 +125,7 @@
 
                                             $i = 1;
 
-                                            $query = "SELECT * FROM pb2_event ORDER BY total_points DESC";
+                                            $query = "SELECT * FROM event ORDER BY total_points DESC";
                                             $result = $connection->query($query);
 
                                             if ($result->num_rows > 0) {
