@@ -17,28 +17,18 @@
 
             $name = getRealName($connection, $uuid);
 
-            $current_kills = 0;
             $current_wins = 0;
-            $current_forcefield = 0;
-            $current_deaths = 0;
-
-            $current_kills = !empty($player_decoded_url->player->stats->Paintball->kills) ? $player_decoded_url->player->stats->Paintball->kills : 0;
-            $current_wins = !empty($player_decoded_url->player->stats->Paintball->wins) ? $player_decoded_url->player->stats->Paintball->wins : 0;
-            $current_deaths = !empty($player_decoded_url->player->stats->Paintball->deaths) ? $player_decoded_url->player->stats->Paintball->deaths : 0;
-            $current_forcefield = !empty($player_decoded_url->player->stats->Paintball->forcefieldTime) ? $player_decoded_url->player->stats->Paintball->forcefieldTime : 0;
-
-            $zero = 0;
+            $current_wins = !empty($player_decoded_url->player->stats->Walls3->wins) ? $player_decoded_url->player->stats->Walls3->wins : 0;
 
             if (isPlayerInDatabase($connection, $uuid)) {
-                $total_points = calculatePoints($connection, $uuid, $current_kills, $current_wins, $current_deaths, $current_forcefield);
-                updatePlayer($connection, $total_points, $current_kills, $current_deaths, $current_wins, $current_forcefield, $uuid, $name);
+                updatePlayer($connection, $current_wins, $uuid, $name);
             } else {
-                insertNewPlayer($connection, $uuid, $name, $current_kills, $current_wins, $current_forcefield, $current_deaths, $zero);
+                insertNewPlayer($connection, $uuid, $name, $current_wins);
             }
 
             setLastUpdated($connection);
 
-            header("Refresh:0.01; url=leaderboard.php");
+            header("Refresh:0.01; url=megawalls.php");
         }
 
         updateLog($connection, 'E_UPDATE');

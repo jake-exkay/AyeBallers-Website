@@ -36,15 +36,21 @@
 
                 $name = getRealName($connection, $uuid);
 
+                $kills = 0;
                 $wins = 0;
+                $deaths = 0;
+                $forcefield_time = 0;
 
-                $wins = !empty($player_decoded_url->player->stats->Walls3->wins) ? $player_decoded_url->player->stats->Walls3->wins : 0;
+                $kills = !empty($player_decoded_url->player->stats->Paintball->kills) ? $player_decoded_url->player->stats->Paintball->kills : 0;
+                $wins = !empty($player_decoded_url->player->stats->Paintball->wins) ? $player_decoded_url->player->stats->Paintball->wins : 0;
+                $deaths = !empty($player_decoded_url->player->stats->Paintball->deaths) ? $player_decoded_url->player->stats->Paintball->deaths : 0;
+                $forcefield_time = !empty($player_decoded_url->player->stats->Paintball->forcefieldTime) ? $player_decoded_url->player->stats->Paintball->forcefieldTime : 0;
 
                 changeEventStatus($connection, 1);
-                insertNewPlayer($connection, $uuid, $name, $wins);
-                insertBackupPlayer($connection, $uuid, $name, $wins);
+                insertNewPlayer($connection, $uuid, $name, $kills, $wins, $forcefield_time, $deaths, 0);
+                insertBackupPlayer($connection, $uuid, $name, $kills, $wins, $forcefield_time, $deaths, 0);
 
-                header("Refresh:0.01; url=megawalls.php");
+                header("Refresh:0.01; url=leaderboard.php");
             }
 
             updateLog($connection, 'E_START');
