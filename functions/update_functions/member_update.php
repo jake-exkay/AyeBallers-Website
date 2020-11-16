@@ -49,17 +49,17 @@
 		            echo '<b>[GUILD] ' . $name . ' </b>An Error Occured!<br>'; 
 		        }
 
-		        header("Refresh:0.01; url=../../../index.php");
+		        header("Refresh:0.01; url=../../../guild.php");
 
 		    }
 
 		} else {
 			echo "Database was updated less than 2 minutes ago. Redirecting.";
-		    header("Refresh:2; url=../index.php");
+		    header("Refresh:2; url=../../../guild.php");
 		}
 	} else {
 		echo "Error: Too many concurrent API requests, please try again in a minute.";
-        header("Refresh:2; url=../index.php");
+        header("Refresh:2; url=../../../guild.php");
 	}
 
 	$connection->close();
