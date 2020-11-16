@@ -19,11 +19,13 @@
 
             $current_wins = 0;
             $current_wins = !empty($player_decoded_url->player->stats->Walls3->wins) ? $player_decoded_url->player->stats->Walls3->wins : 0;
+            $fo_wins = !empty($player_decoded_url->player->stats->Walls3->wins_face_off) ? $player_decoded_url->player->stats->Walls3->wins_face_off : 0;
+            $standard_wins = $current_wins - $fo_wins;
 
             if (isPlayerInDatabase($connection, $uuid)) {
-                updatePlayer($connection, $current_wins, $uuid, $name);
+                updatePlayer($connection, $standard_wins, $uuid, $name);
             } else {
-                insertNewPlayer($connection, $uuid, $name, $current_wins);
+                insertNewPlayer($connection, $uuid, $name, $standard_wins);
             }
 
             setLastUpdated($connection);

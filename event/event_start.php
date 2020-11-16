@@ -39,10 +39,12 @@
                 $wins = 0;
 
                 $wins = !empty($player_decoded_url->player->stats->Walls3->wins) ? $player_decoded_url->player->stats->Walls3->wins : 0;
+                $fo_wins = !empty($player_decoded_url->player->stats->Walls3->wins_face_off) ? $player_decoded_url->player->stats->Walls3->wins_face_off : 0;
+                $standard_wins = $wins - $fo_wins;
 
                 changeEventStatus($connection, 1);
-                insertNewPlayer($connection, $uuid, $name, $wins);
-                insertBackupPlayer($connection, $uuid, $name, $wins);
+                insertNewPlayer($connection, $uuid, $name, $standard_wins);
+                insertBackupPlayer($connection, $uuid, $name, $standard_wins);
 
                 header("Refresh:0.01; url=megawalls.php");
             }

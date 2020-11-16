@@ -59,13 +59,14 @@
     }
 
     function displayStaffMember($name, $rank, $role) {
-        echo '<div class="col-md-6" style="padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">';
+        echo '<div class="row">';
+        echo '<div class="col-md-10" style="padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">';
         echo '<div class="card">';
         echo '<div class="card-body">';
-        echo '<h5>' . $rank . '</h5>';
+        echo '<img style="height: 50px; width: 50px;" src="assets/img/' . $name . '.png"/>';
         echo '<h5>' . $name . '</h5>';
-        echo '<img style="height: 200px; width: 200px;" src="assets/img/' . $name . '.png"/>';
-        echo '<h5>' . $role . '</h5>';                                    
+        echo '<h6>' . $rank . '</h6>';
+        echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
