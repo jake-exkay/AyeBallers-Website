@@ -29,6 +29,12 @@
                                 </div>
                                 Previous Events
                             </a>
+                            <a class="nav-link" href="../../../player.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Player Statistics
+                            </a>
                             <div class="sb-sidenav-menu-heading">Classic Leaderboards</div>
                             <a class="nav-link" href="../../../leaderboard/classic/guild/arena.php">
                                 <div class="sb-nav-link-icon">

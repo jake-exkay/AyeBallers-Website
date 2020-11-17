@@ -54,6 +54,13 @@
         return $name;
     }
 
+    function getUUID($connection, $name) {
+        $mojang_url = file_get_contents("https://api.mojang.com/users/profiles/minecraft/" . $name);
+        $mojang_decoded_url = json_decode($mojang_url, true);
+        $uuid = $mojang_decoded_url['id'];
+        return $uuid;
+    }
+
     function apiLimitReached($key) {
         $url = file_get_contents("https://api.hypixel.net/key?key=" . $key);
         $decoded_url = json_decode($url);
