@@ -58,6 +58,23 @@
 		                    $transfusion_paintball = $row['transfusion_paintball'] + 1;
 		                    $headstart_paintball = $row['headstart_paintball'] + 1;
 
+		                    $coins_quake = $row['coins_quake'];
+		                    $deaths_quake = $row['deaths_quake'];
+		                    $kills_quake = $row['kills_quake'];
+		                    $killstreaks_quake = $row['killstreaks_quake'];
+		                    $wins_quake = $row['wins_quake'];
+		                    $kills_teams_quake = $row['kills_teams_quake'];
+		                    $deaths_teams_quake = $row['deaths_teams_quake'];
+		                    $wins_teams_quake = $row['wins_teams_quake'];
+		                    $killstreaks_teams_quake = $row['killstreaks_teams_quake'];
+		                    $highest_killstreak_quake = $row['highest_killstreak_quake'];
+		                    $shots_fired_teams_quake = $row['shots_fired_teams_quake'];
+		                    $headshots_teams_quake = $row['headshots_teams_quake'];
+		                    $headshots_quake = $row['headshots_quake'];
+		                    $shots_fired_quake = $row['shots_fired_quake'];
+		                    $distance_travelled_teams_quake = $row['distance_travelled_teams_quake'];
+		                    $distance_travelled_quake = $row['distance_travelled_quake'];
+
 		                    if ($hat_paintball == "speed_hat") {
 		                    	$hat_paintball = "Speed Hat";
 		                    }
@@ -147,7 +164,7 @@
 	                			<br>
 
 	                			<button data-toggle="collapse" data-target="#paintball">Paintball</button>
-	                			<button data-toggle="collapse">Quakecraft</button>
+	                			<button data-toggle="collapse" data-target="#quakecraft">Quakecraft</button>
 	                			<button data-toggle="collapse">Arena Brawl</button>
 	                			<button data-toggle="collapse">Turbo Kart Racers</button>
 	                			<button data-toggle="collapse">VampireZ</button>
@@ -174,13 +191,12 @@
 				                			<p><b>Leaderboard Position:</b> </p>
 				                			<p><b>Kills:</b> <?php echo number_format($kills_paintball); ?></p>
 				                			<p><b>Wins:</b> <?php echo number_format($wins_paintball); ?></p>
-				                			<p><b>Kill Prefix:</b> [selectedKillPrefix <?php echo substr($kills_paintball, 0, 3) ?>k]</p>
+				                			<p><b>Kill Prefix:</b> [<?php echo $kill_prefix_paintball + substr($kills_paintball, 0, 3) ?>k]</p>
 				                			<p><b>Coins:</b> <?php echo number_format($coins_paintball); ?></p>
 				                			<p><b>Deaths:</b> <?php echo number_format($deaths_paintball); ?></p>
 				                			<p><b>Forcefield Time:</b> <?php echo $forcefield_time_paintball; ?></p>
 				                			<p><b>Killstreaks:</b> <?php echo number_format($killstreaks_paintball); ?></p>
 				                			<p><b>Shots Fired:</b> <?php echo number_format($shots_fired_paintball); ?></p>
-				                			<p>Hotbar Perks: [0:0:0] </p>
 				                			<p><b>Equipped Hat:</b> <?php echo $hat_paintball; ?></p>
 
 				                			<br>
@@ -197,6 +213,54 @@
 				                			<p><b>Godfather:</b> <?php echo $godfather_paintball; ?></p>
 				                			<p><b>Superluck:</b> <?php echo $superluck_paintball; ?></p>
 				                			<p><b>Transfusion:</b> <?php echo $transfusion_paintball; ?></p>
+				                		</div>
+				                	</div>
+		                		</div>
+
+		                		<div id="quakecraft" class="collapse">
+									<div class="card">
+		        						<div class="card-body">
+				                			<h2>Quakecraft</h2>
+				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Coins:</b> <?php echo number_format($coins_quake); ?></p>
+				                			<p><b>Highest Killstreak:</b> <?php echo number_format($highest_killstreak_quake); ?></p>
+
+				                			<br>
+
+				                			<h3>Overall</h3>
+				                			<p><b>Kills:</b> <?php echo number_format($kills_teams_quake + $kills_quake); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_teams_quake + $wins_quake); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_teams_quake + $deaths_quake); ?></p>
+				                			<p><b>Killstreaks:</b> <?php echo number_format($killstreaks_teams_quake + $killstreaks_quake); ?></p>
+				                			<p><b>Headshots:</b> <?php echo number_format($headshots_teams_quake + $headshots_quake); ?></p>
+				                			<p><b>Distance Travelled:</b> <?php echo number_format($distance_travelled_teams_quake + $distance_travelled_quake); ?></p>
+				                			<p><b>Shots Fired:</b> <?php echo number_format($shots_fired_teams_quake + $shots_fired_quake); ?></p>
+				                			<p><b>K/D:</b> <?php echo round((($kills_teams_quake + $kills_quake) / ($deaths_teams_quake + $deaths_quake)), 2); ?></p>
+				                			<p><b>S/K:</b> <?php echo round((($shots_fired_quake + $shots_fired_teams_quake) / ($kills_quake + $kills_teams_quake)), 2); ?></p>
+
+				                			<br>
+
+				                			<h3>Solo</h3>
+				                			<p><b>Kills:</b> <?php echo number_format($kills_quake); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_quake); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_quake); ?></p>
+				                			<p><b>Killstreaks:</b> <?php echo number_format($killstreaks_quake); ?></p>
+				                			<p><b>Headshots:</b> <?php echo number_format($headshots_quake); ?></p>
+				                			<p><b>Distance Travelled:</b> <?php echo number_format($distance_travelled_quake); ?></p>
+				                			<p><b>Shots Fired:</b> <?php echo number_format($shots_fired_quake); ?></p>
+				                			
+
+				                			<br>
+
+				                			<h3>Teams</h3>
+				                			<p><b>Kills:</b> <?php echo number_format($kills_teams_quake); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_teams_quake); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_teams_quake); ?></p>
+				                			<p><b>Killstreaks:</b> <?php echo number_format($killstreaks_teams_quake); ?></p>
+				                			<p><b>Headshots:</b> <?php echo number_format($headshots_teams_quake); ?></p>
+				                			<p><b>Distance Travelled:</b> <?php echo number_format($distance_travelled_teams_quake); ?></p>
+				                			<p><b>Shots Fired:</b> <?php echo number_format($shots_fired_teams_quake); ?></p>
+
 				                		</div>
 				                	</div>
 		                		</div>
