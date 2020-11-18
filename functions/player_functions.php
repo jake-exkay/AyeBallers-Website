@@ -12,7 +12,7 @@
 		$rank_colour = !empty($player_decoded_url->player->rankPlusColor) ? $player_decoded_url->player->rankPlusColor : "None";
 		$achievement_points = !empty($player_decoded_url->player->achievementPoints) ? $player_decoded_url->player->achievementPoints : 0;
 		$most_recent_game = !empty($player_decoded_url->player->mostRecentGameType) ? $player_decoded_url->player->mostRecentGameType : "Unknown";
-		$rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'Error';
+		$rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'DEFAULT';
 
 		$kills_paintball = !empty($player_decoded_url->player->stats->Paintball->kills) ? $player_decoded_url->player->stats->Paintball->kills : 0;
         $wins_paintball = !empty($player_decoded_url->player->stats->Paintball->wins) ? $player_decoded_url->player->stats->Paintball->wins : 0;
@@ -48,11 +48,37 @@
         $distance_travelled_teams_quake = !empty($player_decoded_url->player->stats->Quake->distance_travelled_teams) ? $player_decoded_url->player->stats->Quake->distance_travelled_teams : 0;
         $distance_travelled_quake = !empty($player_decoded_url->player->stats->Quake->distance_travelled) ? $player_decoded_url->player->stats->Quake->distance_travelled : 0;
 
+        $coins_arena = !empty($player_decoded_url->player->stats->Arena->coins) ? $player_decoded_url->player->stats->Arena->coins : 0;
+        $coins_spent_arena = !empty($player_decoded_url->player->stats->Arena->coins_spent) ? $player_decoded_url->player->stats->Arena->coins_spent : 0;
+        $keys_arena = !empty($player_decoded_url->player->stats->Arena->keys) ? $player_decoded_url->player->stats->Arena->keys : 0;
+        $rating_arena = !empty($player_decoded_url->player->stats->Arena->rating) ? $player_decoded_url->player->stats->Arena->rating : 0;
+        $damage_2v2_arena = !empty($player_decoded_url->player->stats->Arena->damage_2v2) ? $player_decoded_url->player->stats->Arena->damage_2v2 : 0;
+        $damage_4v4_arena = !empty($player_decoded_url->player->stats->Arena->damage_4v4) ? $player_decoded_url->player->stats->Arena->damage_4v4 : 0;
+        $damage_1v1_arena = !empty($player_decoded_url->player->stats->Arena->damage_1v1) ? $player_decoded_url->player->stats->Arena->damage_1v1 : 0;
+        $deaths_2v2_arena = !empty($player_decoded_url->player->stats->Arena->deaths_2v2) ? $player_decoded_url->player->stats->Arena->deaths_2v2 : 0;
+        $deaths_4v4_arena = !empty($player_decoded_url->player->stats->Arena->deaths_4v4) ? $player_decoded_url->player->stats->Arena->deaths_4v4 : 0;
+        $deaths_1v1_arena = !empty($player_decoded_url->player->stats->Arena->deaths_1v1) ? $player_decoded_url->player->stats->Arena->deaths_1v1 : 0;
+        $games_2v2_arena = !empty($player_decoded_url->player->stats->Arena->games_2v2) ? $player_decoded_url->player->stats->Arena->games_2v2 : 0;
+        $games_4v4_arena = !empty($player_decoded_url->player->stats->Arena->games_4v4) ? $player_decoded_url->player->stats->Arena->games_4v4 : 0;
+        $games_1v1_arena = !empty($player_decoded_url->player->stats->Arena->games_1v1) ? $player_decoded_url->player->stats->Arena->games_1v1 : 0;
+        $healed_2v2_arena = !empty($player_decoded_url->player->stats->Arena->healed_2v2) ? $player_decoded_url->player->stats->Arena->healed_2v2 : 0;
+        $healed_4v4_arena = !empty($player_decoded_url->player->stats->Arena->healed_4v4) ? $player_decoded_url->player->stats->Arena->healed_4v4 : 0;
+        $healed_1v1_arena = !empty($player_decoded_url->player->stats->Arena->healed_1v1) ? $player_decoded_url->player->stats->Arena->healed_1v1 : 0;
+        $kills_2v2_arena = !empty($player_decoded_url->player->stats->Arena->kills_2v2) ? $player_decoded_url->player->stats->Arena->kills_2v2 : 0;
+        $kills_4v4_arena = !empty($player_decoded_url->player->stats->Arena->kills_4v4) ? $player_decoded_url->player->stats->Arena->kills_4v4 : 0;
+        $kills_1v1_arena = !empty($player_decoded_url->player->stats->Arena->kills_1v1) ? $player_decoded_url->player->stats->Arena->kills_1v1 : 0;
+        $losses_2v2_arena = !empty($player_decoded_url->player->stats->Arena->losses_2v2) ? $player_decoded_url->player->stats->Arena->losses_2v2 : 0;
+        $losses_4v4_arena = !empty($player_decoded_url->player->stats->Arena->losses_4v4) ? $player_decoded_url->player->stats->Arena->losses_4v4 : 0;
+        $losses_1v1_arena = !empty($player_decoded_url->player->stats->Arena->losses_1v1) ? $player_decoded_url->player->stats->Arena->losses_1v1 : 0;
+        $wins_2v2_arena = !empty($player_decoded_url->player->stats->Arena->wins_2v2) ? $player_decoded_url->player->stats->Arena->wins_2v2 : 0;
+        $wins_4v4_arena = !empty($player_decoded_url->player->stats->Arena->wins_4v4) ? $player_decoded_url->player->stats->Arena->wins_4v4 : 0;
+        $wins_1v1_arena = !empty($player_decoded_url->player->stats->Arena->wins_1v1) ? $player_decoded_url->player->stats->Arena->wins_1v1 : 0;
+
         if (alreadyInPlayerTable($connection, $uuid)) {
-        	$query = "UPDATE player SET name = ?, kills_paintball = ?, wins_paintball = ?, kill_prefix_paintball = ?, coins_paintball = ?, deaths_paintball = ?, forcefield_time_paintball = ?, killstreaks_paintball = ?, shots_fired_paintball = ?, hat_paintball = ?, adrenaline_paintball = ?, endurance_paintball = ?, fortune_paintball = ?, godfather_paintball = ?, headstart_paintball = ?, superluck_paintball = ?, transfusion_paintball = ?, karma = ?, most_recent_game = ?, achievement_points = ?, rank_colour = ?, coins_quake = ?, deaths_quake = ?, kills_quake = ?, killstreaks_quake = ?, wins_quake = ?, kills_teams_quake = ?, deaths_teams_quake = ?, wins_teams_quake = ?, killstreaks_teams_quake = ?, highest_killstreak_quake = ?, shots_fired_teams_quake = ?, headshots_teams_quake = ?, headshots_quake = ?, shots_fired_quake = ?, distance_travelled_teams_quake = ?, distance_travelled_quake = ?, last_updated = now() WHERE UUID = '" . $uuid . "'";
+        	$query = "UPDATE player SET name = ?, kills_paintball = ?, wins_paintball = ?, kill_prefix_paintball = ?, coins_paintball = ?, deaths_paintball = ?, forcefield_time_paintball = ?, killstreaks_paintball = ?, shots_fired_paintball = ?, hat_paintball = ?, adrenaline_paintball = ?, endurance_paintball = ?, fortune_paintball = ?, godfather_paintball = ?, headstart_paintball = ?, superluck_paintball = ?, transfusion_paintball = ?, karma = ?, most_recent_game = ?, achievement_points = ?, rank_colour = ?, coins_quake = ?, deaths_quake = ?, kills_quake = ?, killstreaks_quake = ?, wins_quake = ?, kills_teams_quake = ?, deaths_teams_quake = ?, wins_teams_quake = ?, killstreaks_teams_quake = ?, highest_killstreak_quake = ?, shots_fired_teams_quake = ?, headshots_teams_quake = ?, headshots_quake = ?, shots_fired_quake = ?, distance_travelled_teams_quake = ?, distance_travelled_quake = ?, coins_arena = ?, coins_spent_arena = ?, keys_arena = ?, rating_arena = ?, damage_2v2_arena = ?, damage_4v4_arena = ?, damage_1v1_arena = ?, deaths_2v2_arena = ?, deaths_4v4_arena = ?, deaths_1v1_arena = ?, games_2v2_arena = ?, games_4v4_arena = ?, games_1v1_arena = ?, healed_2v2_arena = ?, healed_4v4_arena = ?, healed_1v1_arena = ?, kills_2v2_arena = ?, kills_4v4_arena = ?, kills_1v1_arena = ?, losses_2v2_arena = ?, losses_4v4_arena = ?, losses_1v1_arena = ?, wins_2v2_arena = ?, wins_4v4_arena = ?, wins_1v1_arena = ?, rank = ?, last_updated = now() WHERE UUID = '" . $uuid . "'";
 
 	        if($statement = mysqli_prepare($connection, $query)) {
-	            mysqli_stmt_bind_param($statement, "siisiiiiisiiiiiiiisisiiiiiiiiiiiiiiii", $name, $kills_paintball, $wins_paintball, $kill_prefix_paintball, $coins_paintball, $deaths_paintball, $forcefield_time_paintball, $killstreaks_paintball, $shots_fired_paintball, $hat_paintball, $adrenaline_paintball, $endurance_paintball, $fortune_paintball, $godfather_paintball, $headstart_paintball, $superluck_paintball, $transfusion_paintball, $karma, $most_recent_game, $achievement_points, $rank_colour, $coins_quake, $deaths_quake, $kills_quake, $killstreaks_quake, $wins_quake, $kills_teams_quake, $deaths_teams_quake, $wins_teams_quake, $killstreaks_teams_quake, $highest_killstreak_quake, $shots_fired_teams_quake, $headshots_teams_quake, $headshots_quake, $shots_fired_quake, $distance_travelled_teams_quake, $distance_travelled_quake);
+	            mysqli_stmt_bind_param($statement, "siisiiiiisiiiiiiiisisiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiis", $name, $kills_paintball, $wins_paintball, $kill_prefix_paintball, $coins_paintball, $deaths_paintball, $forcefield_time_paintball, $killstreaks_paintball, $shots_fired_paintball, $hat_paintball, $adrenaline_paintball, $endurance_paintball, $fortune_paintball, $godfather_paintball, $headstart_paintball, $superluck_paintball, $transfusion_paintball, $karma, $most_recent_game, $achievement_points, $rank_colour, $coins_quake, $deaths_quake, $kills_quake, $killstreaks_quake, $wins_quake, $kills_teams_quake, $deaths_teams_quake, $wins_teams_quake, $killstreaks_teams_quake, $highest_killstreak_quake, $shots_fired_teams_quake, $headshots_teams_quake, $headshots_quake, $shots_fired_quake, $distance_travelled_teams_quake, $distance_travelled_quake, $coins_arena, $coins_spent_arena, $keys_arena, $rating_arena, $damage_2v2_arena, $damage_4v4_arena, $damage_1v1_arena, $deaths_2v2_arena, $deaths_4v4_arena, $deaths_1v1_arena, $games_2v2_arena, $games_4v4_arena, $games_1v1_arena, $healed_2v2_arena, $healed_4v4_arena, $healed_1v1_arena, $kills_2v2_arena, $kills_4v4_arena, $kills_1v1_arena, $losses_2v2_arena, $losses_4v4_arena, $losses_1v1_arena, $wins_2v2_arena, $wins_4v4_arena, $wins_1v1_arena, $rank);
 	            mysqli_stmt_execute($statement);
 	            return true;
 	        } else {
@@ -60,11 +86,11 @@
 	            return false;
 	        }
         } else {
-			$query = "INSERT INTO player (UUID, name, kills_paintball, wins_paintball, kill_prefix_paintball, coins_paintball, deaths_paintball, forcefield_time_paintball, killstreaks_paintball, shots_fired_paintball, hat_paintball, adrenaline_paintball, endurance_paintball, fortune_paintball, godfather_paintball, headstart_paintball, superluck_paintball, transfusion_paintball, karma, most_recent_game, achievement_points, rank_colour, coins_quake, deaths_quake, kills_quake, killstreaks_quake, wins_quake, kills_teams_quake, deaths_teams_quake, wins_teams_quake, killstreaks_teams_quake, highest_killstreak_quake, shots_fired_teams_quake, headshots_teams_quake, headshots_quake, shots_fired_quake, distance_travelled_teams_quake, distance_travelled_quake, last_updated)
-	                    		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
+			$query = "INSERT INTO player (UUID, name, kills_paintball, wins_paintball, kill_prefix_paintball, coins_paintball, deaths_paintball, forcefield_time_paintball, killstreaks_paintball, shots_fired_paintball, hat_paintball, adrenaline_paintball, endurance_paintball, fortune_paintball, godfather_paintball, headstart_paintball, superluck_paintball, transfusion_paintball, karma, most_recent_game, achievement_points, rank_colour, coins_quake, deaths_quake, kills_quake, killstreaks_quake, wins_quake, kills_teams_quake, deaths_teams_quake, wins_teams_quake, killstreaks_teams_quake, highest_killstreak_quake, shots_fired_teams_quake, headshots_teams_quake, headshots_quake, shots_fired_quake, distance_travelled_teams_quake, distance_travelled_quake, coins_arena, coins_spent_arena, keys_arena, rating_arena, damage_2v2_arena, damage_4v4_arena, damage_1v1_arena, deaths_2v2_arena, deaths_4v4_arena, deaths_1v1_arena, games_2v2_arena, games_4v4_arena, games_1v1_arena, healed_2v2_arena, healed_4v4_arena, healed_1v1_arena, kills_2v2_arena, kills_4v4_arena, kills_1v1_arena, losses_2v2_arena, losses_4v4_arena, losses_1v1_arena, wins_2v2_arena, wins_4v4_arena, wins_1v1_arena, rank, last_updated)
+	                    		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
 
 	        if($statement = mysqli_prepare($connection, $query)) {
-	            mysqli_stmt_bind_param($statement, "ssiisiiiiisiiiiiiiisisiiiiiiiiiiiiiiii", $uuid, $name, $kills_paintball, $wins_paintball, $kill_prefix_paintball, $coins_paintball, $deaths_paintball, $forcefield_time_paintball, $killstreaks_paintball, $shots_fired_paintball, $hat_paintball, $adrenaline_paintball, $endurance_paintball, $fortune_paintball, $godfather_paintball, $headstart_paintball, $superluck_paintball, $transfusion_paintball, $karma, $most_recent_game, $achievement_points, $rank_colour, $coins_quake, $deaths_quake, $kills_quake, $killstreaks_quake, $wins_quake, $kills_teams_quake, $deaths_teams_quake, $wins_teams_quake, $killstreaks_teams_quake, $highest_killstreak_quake, $shots_fired_teams_quake, $headshots_teams_quake, $headshots_quake, $shots_fired_quake, $distance_travelled_teams_quake, $distance_travelled_quake);
+	            mysqli_stmt_bind_param($statement, "ssiisiiiiisiiiiiiiisisiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiis", $uuid, $name, $kills_paintball, $wins_paintball, $kill_prefix_paintball, $coins_paintball, $deaths_paintball, $forcefield_time_paintball, $killstreaks_paintball, $shots_fired_paintball, $hat_paintball, $adrenaline_paintball, $endurance_paintball, $fortune_paintball, $godfather_paintball, $headstart_paintball, $superluck_paintball, $transfusion_paintball, $karma, $most_recent_game, $achievement_points, $rank_colour, $coins_quake, $deaths_quake, $kills_quake, $killstreaks_quake, $wins_quake, $kills_teams_quake, $deaths_teams_quake, $wins_teams_quake, $killstreaks_teams_quake, $highest_killstreak_quake, $shots_fired_teams_quake, $headshots_teams_quake, $headshots_quake, $shots_fired_quake, $distance_travelled_teams_quake, $distance_travelled_quake, $coins_arena, $coins_spent_arena, $keys_arena, $rating_arena, $damage_2v2_arena, $damage_4v4_arena, $damage_1v1_arena, $deaths_2v2_arena, $deaths_4v4_arena, $deaths_1v1_arena, $games_2v2_arena, $games_4v4_arena, $games_1v1_arena, $healed_2v2_arena, $healed_4v4_arena, $healed_1v1_arena, $kills_2v2_arena, $kills_4v4_arena, $kills_1v1_arena, $losses_2v2_arena, $losses_4v4_arena, $losses_1v1_arena, $wins_2v2_arena, $wins_4v4_arena, $wins_1v1_arena, $rank);
 	            mysqli_stmt_execute($statement);
 	            return true;
 	        } else {
@@ -90,6 +116,12 @@
         $query = "SELECT * FROM player WHERE UUID = '" . $uuid . "'";
         $result = $connection->query($query);
         return $result;
+	}
+
+	function getPlayersGuild($connection, $uuid, $API_KEY) {
+		$api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&player=" . $uuid);
+		$decoded_url  = json_decode($api_guild_url);
+		return $decoded_url;
 	}
 
 ?>

@@ -75,10 +75,38 @@
 		                    $distance_travelled_teams_quake = $row['distance_travelled_teams_quake'];
 		                    $distance_travelled_quake = $row['distance_travelled_quake'];
 
+		                    $coins_arena = $row['coins_arena'];
+		                    $coins_spent_arena = $row['coins_spent_arena'];
+		                    $keys_arena = $row['keys_arena'];
+		                    $rating_arena = $row['rating_arena'];
+		                    $damage_2v2_arena = $row['damage_2v2_arena'];
+		                    $damage_4v4_arena = $row['damage_4v4_arena'];
+		                    $damage_1v1_arena = $row['damage_1v1_arena'];
+		                    $deaths_2v2_arena = $row['deaths_2v2_arena'];
+		                    $deaths_4v4_arena = $row['deaths_4v4_arena'];
+		                    $deaths_1v1_arena = $row['deaths_1v1_arena'];
+		                    $games_2v2_arena = $row['games_2v2_arena'];
+		                    $games_4v4_arena = $row['games_4v4_arena'];
+		                    $games_1v1_arena = $row['games_1v1_arena'];
+		                    $healed_2v2_arena = $row['healed_2v2_arena'];
+		                    $healed_4v4_arena = $row['healed_4v4_arena'];
+		                    $healed_1v1_arena = $row['healed_1v1_arena'];
+		                    $kills_2v2_arena = $row['kills_2v2_arena'];
+		                    $kills_4v4_arena = $row['kills_4v4_arena'];
+		                    $kills_1v1_arena = $row['kills_1v1_arena'];
+		                    $losses_2v2_arena = $row['losses_2v2_arena'];
+		                    $losses_4v4_arena = $row['losses_4v4_arena'];
+		                    $losses_1v1_arena = $row['losses_1v1_arena'];
+		                    $wins_2v2_arena = $row['wins_2v2_arena'];
+		                    $wins_4v4_arena = $row['wins_4v4_arena'];
+		                    $wins_1v1_arena = $row['wins_1v1_arena'];
+
 		                    if ($hat_paintball == "speed_hat") {
 		                    	$hat_paintball = "Speed Hat";
 		                    }
 
+		                    $rank = $row['rank'];
+		                    $rank_colour = $row['rank_colour'];
 		                    $first_login = $row['first_login'];
 		                    $last_login = $row['last_login'];
 		                    $first_login = gmdate('r', $first_login);
@@ -87,8 +115,42 @@
 		            } else {
 		            	echo $query;
 		            }
+	            		$guild_json = getPlayersGuild($connection, $uuid, $API_KEY);
+	            		$guild_members = sizeof($guild_json->guild->members);
+	            		$guild_name = $guild_json->guild->name;
+	            		$guild_created = $guild_json->guild->created;
+	            		$guild_created = gmdate('r', $guild_created);
+	            		$guild_desc = $guild_json->guild->description;
+	            		$guild_tag = $guild_json->guild->tag;
+	            		$guild_tag_colour = $guild_json->guild->tagColor;
 
-                	?>
+	            		if ($guild_tag_colour == "DARK_GREEN") {
+	            			$tag_colour = "#297e25";
+	            		} else if ($guild_tag_colour == "YELLOW") {
+	            			$tag_colour = "#faf36b";
+	            		} else if ($guild_tag_colour == "DARK_AQUA") {
+	            			$tag_colour = "#1684c0";
+	            		} else if ($guild_tag_colour == "GOLD") {
+	            			$tag_colour = "#ebc61e";
+	            		} else if ($guild_tag_colour == "GRAY") {
+	            			$tag_colour = "#a7aaa1";
+	            		}else {
+	            			$tag_colour = "#a7aaa1";
+	            		}
+
+	            		if ($rank_colour == "BLACK") {
+	            			$rank_colour = '<span style="color:#000000;">+</span>';
+	            		}
+
+	            		if ($rank == "MVP_PLUS") {
+	            			$rank_with_name = '<span style="color:#50e0e7;">' . '[MVP' . $rank_colour . '] ' . $name . '</span>';
+	            		} else if ($rank == "DEFAULT") {
+	            			$rank_with_name = '<span style="color:#a7aaa1;">' . $name . '</span>';
+	            		} else {
+
+	            		}
+
+	            	?>
 
 	                <main>
 
@@ -97,7 +159,7 @@
 
 	                			<h1>
 	                				<?php echo '<img style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/' . $uuid . '"/>'; ?>
-	                				[RANK] <?php echo $name; ?> [GTAG]
+	                				<?php echo $rank_with_name; ?> <?php echo '<span style="color:' . $tag_colour . ';">' . '[' . $guild_tag . ']' . '</span>'; ?>
 	                			</h1>
 
 	                			<div class="row">
@@ -122,13 +184,13 @@
 				                	<div class="col-md-4" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 20px;">
 			                			<div class="card">
 		        							<div class="card-body">
-					                			<h3>GuildName</h3>
-					                			<p>Members: </p>
+					                			<h3><?php echo $name; ?>'s Guild: <?php echo $guild_name; ?></h3>
+					                			<p>Members: <?php echo $guild_members; ?></p>
 					                			<p>Guild Level: </p>
-					                			<p>Guild: </p>
-					                			<p>Created: </p>
-					                			<p>Leader: </p>
-					                			<p>Tag: </p>
+					                			<p>Guild: <?php echo $guild_name; ?></p>
+					                			<p>Created: <?php echo $guild_created; ?></p>
+					                			<p>Description: <?php echo $guild_desc; ?></p>
+					                			<p>Tag: <?php echo '<span style="color:' . $tag_colour . ';">' . '[' . $guild_tag . ']' . '</span>'; ?></p>
 					                			<p>Most Played Game: </p>
 					                			<p><?php echo $name; ?>'s Role In Guild: </p>
 					                			<p>Quests Contributed To: </p>
@@ -165,7 +227,7 @@
 
 	                			<button data-toggle="collapse" data-target="#paintball">Paintball</button>
 	                			<button data-toggle="collapse" data-target="#quakecraft">Quakecraft</button>
-	                			<button data-toggle="collapse">Arena Brawl</button>
+	                			<button data-toggle="collapse" data-target="#arena">Arena Brawl</button>
 	                			<button data-toggle="collapse">Turbo Kart Racers</button>
 	                			<button data-toggle="collapse">VampireZ</button>
 	                			<button data-toggle="collapse">The Walls</button>
@@ -260,6 +322,72 @@
 				                			<p><b>Headshots:</b> <?php echo number_format($headshots_teams_quake); ?></p>
 				                			<p><b>Distance Travelled:</b> <?php echo number_format($distance_travelled_teams_quake); ?></p>
 				                			<p><b>Shots Fired:</b> <?php echo number_format($shots_fired_teams_quake); ?></p>
+
+				                		</div>
+				                	</div>
+		                		</div>
+
+		                		<div id="arena" class="collapse">
+									<div class="card">
+		        						<div class="card-body">
+				                			<h2>Arena Brawl</h2>
+				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Coins:</b> <?php echo number_format($coins_arena); ?></p>
+				                			<p><b>Coins Spent:</b> <?php echo number_format($coins_spent_arena); ?></p>
+				                			<p><b>Keys:</b> <?php echo number_format($keys_arena); ?></p>
+				                			<p><b>Rating:</b> <?php echo number_format($rating_arena); ?></p>
+
+				                			<br>
+
+				                			<h3>Overall</h3>
+											<p><b>Kills:</b> <?php echo number_format($kills_1v1_arena + $kills_2v2_arena + $kills_4v4_arena); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_1v1_arena + $wins_2v2_arena + $wins_4v4_arena); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_1v1_arena + $deaths_2v2_arena + $deaths_4v4_arena); ?></p>
+				                			<p><b>Losses:</b> <?php echo number_format($losses_1v1_arena + $losses_2v2_arena + $losses_4v4_arena); ?></p>
+				                			<p><b>Games Played:</b> <?php echo number_format($games_1v1_arena + $games_2v2_arena + $games_4v4_arena); ?></p>
+				                			<p><b>Damage:</b> <?php echo number_format($damage_1v1_arena + $damage_2v2_arena + $damage_4v4_arena); ?></p>
+				                			<p><b>Healed:</b> <?php echo number_format($healed_1v1_arena + $healed_2v2_arena + $healed_4v4_arena); ?></p>
+				                			<p><b>K/D:</b> <?php echo round((($kills_1v1_arena + $kills_2v2_arena + $kills_4v4_arena) / ($deaths_1v1_arena + $deaths_2v2_arena + $deaths_4v4_arena)), 2); ?></p>
+				                			<p><b>W/L:</b> <?php echo round((($wins_1v1_arena + $wins_2v2_arena + $wins_4v4_arena) / ($losses_1v1_arena + $losses_2v2_arena + $losses_4v4_arena)), 2); ?></p>
+
+				                			<br>
+
+				                			<h3>1v1</h3>
+											<p><b>Kills:</b> <?php echo number_format($kills_1v1_arena); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_1v1_arena); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_1v1_arena); ?></p>
+				                			<p><b>Losses:</b> <?php echo number_format($losses_1v1_arena); ?></p>
+				                			<p><b>Games Played:</b> <?php echo number_format($games_1v1_arena); ?></p>
+				                			<p><b>Damage:</b> <?php echo number_format($damage_1v1_arena); ?></p>
+				                			<p><b>Healed:</b> <?php echo number_format($healed_1v1_arena); ?></p>
+				                			<p><b>K/D:</b> <?php echo round(($kills_1v1_arena / $deaths_1v1_arena), 2); ?></p>
+				                			<p><b>W/L:</b> <?php echo round(($wins_1v1_arena / $losses_1v1_arena), 2); ?></p>
+				                			
+				                			<br>
+
+				                			<h3>2v2</h3>
+											<p><b>Kills:</b> <?php echo number_format($kills_2v2_arena); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_2v2_arena); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_2v2_arena); ?></p>
+				                			<p><b>Losses:</b> <?php echo number_format($losses_2v2_arena); ?></p>
+				                			<p><b>Games Played:</b> <?php echo number_format($games_2v2_arena); ?></p>
+				                			<p><b>Damage:</b> <?php echo number_format($damage_2v2_arena); ?></p>
+				                			<p><b>Healed:</b> <?php echo number_format($healed_2v2_arena); ?></p>
+				                			<p><b>K/D:</b> <?php echo round(($kills_2v2_arena / $deaths_2v2_arena), 2); ?></p>
+				                			<p><b>W/L:</b> <?php echo round(($wins_2v2_arena / $losses_2v2_arena), 2); ?></p>
+
+				                			<br>
+
+				                			<h3>4v4</h3>
+											<p><b>Kills:</b> <?php echo number_format($kills_4v4_arena); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_4v4_arena); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_4v4_arena); ?></p>
+				                			<p><b>Losses:</b> <?php echo number_format($losses_4v4_arena); ?></p>
+				                			<p><b>Games Played:</b> <?php echo number_format($games_4v4_arena); ?></p>
+				                			<p><b>Damage:</b> <?php echo number_format($damage_4v4_arena); ?></p>
+				                			<p><b>Healed:</b> <?php echo number_format($healed_4v4_arena); ?></p>
+				                			<p><b>K/D:</b> <?php echo round(($kills_4v4_arena / $deaths_4v4_arena), 2); ?></p>
+				                			<p><b>W/L:</b> <?php echo round(($wins_4v4_arena / $losses_4v4_arena), 2); ?></p>
 
 				                		</div>
 				                	</div>
