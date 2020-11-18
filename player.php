@@ -88,6 +88,9 @@
 			                    $killstreaks_paintball = $row['killstreaks_paintball'];
 			                    $shots_fired_paintball = $row['shots_fired_paintball'];
 			                    $hat_paintball = $row['hat_paintball'];
+			                    $karma = $row['karma'];
+			                    $achievement_points = $row['achievement_points'];
+			                    $recent_game = $row['most_recent_game'];
 			                    $adrenaline_paintball = $row['adrenaline_paintball'] + 1;
 			                    $endurance_paintball = $row['endurance_paintball'] + 1;
 			                    $fortune_paintball = $row['fortune_paintball'] + 1;
@@ -95,6 +98,10 @@
 			                    $superluck_paintball = $row['superluck_paintball'] + 1;
 			                    $transfusion_paintball = $row['transfusion_paintball'] + 1;
 			                    $headstart_paintball = $row['headstart_paintball'] + 1;
+
+			                    if ($hat_paintball == "speed_hat") {
+			                    	$hat_paintball = "Speed Hat";
+			                    }
 			                }
 			            }
 
@@ -115,15 +122,15 @@
 		                			<div class="col-md-4" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 20px;">
 			                			<div class="card">
 		        							<div class="card-body">
-					                			<p>Network Level: </p>
-					                			<p>Achievement Points: </p>
-					                			<p>Quests Completed: </p>
-					                			<p>Guild: </p>
-					                			<p>Karma: </p>
+					                			<p><b>Network Level:</b> </p>
+					                			<p><b>Achievement Points:</b> <?php echo number_format($achievement_points); ?></p>
+					                			<p><b>Quests Completed:</b> </p>
+					                			<p><b>Guild:</b> </p>
+					                			<p><b>Karma:</b> <?php echo number_format($karma); ?></p>
 					                			<p>Time Played: </p>
 					                			<p>First Login: </p>
 					                			<p>Last Login: </p>
-					                			<p>Recent Game: </p>
+					                			<p><b>Recent Game:</b> <?php echo $recent_game; ?></p>
 					                			<p>Parkours Completed: </p>
 					                		</div>
 					                	</div>
@@ -198,33 +205,32 @@
 									<div class="card">
 		        						<div class="card-body">
 				                			<h2>Paintball</h2>
-				                			<p>Leaderboard Position: </p>
-				                			<p>Kills: <?php echo $kills_paintball; ?></p>
-				                			<p>Wins: <?php echo $wins_paintball; ?></p>
-				                			<p>Kill Prefix: [selectedKillPrefix <?php echo substr($kills_paintball, 0, 3) ?>k]</p>
-				                			<p>Coins: <?php echo $coins_paintball; ?></p>
-				                			<p>Deaths: <?php echo $deaths_paintball; ?></p>
-				                			<p>Forcefield Time: <?php echo $forcefield_time_paintball; ?></p>
-				                			<p>Killstreaks: <?php echo $killstreaks_paintball; ?></p>
-				                			<p>Shots Fired: <?php echo $shots_fired_paintball; ?></p>
+				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Kills:</b> <?php echo number_format($kills_paintball); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_paintball); ?></p>
+				                			<p><b>Kill Prefix:</b> [selectedKillPrefix <?php echo substr($kills_paintball, 0, 3) ?>k]</p>
+				                			<p><b>Coins:</b> <?php echo number_format($coins_paintball); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_paintball); ?></p>
+				                			<p><b>Forcefield Time:</b> <?php echo $forcefield_time_paintball; ?></p>
+				                			<p><b>Killstreaks:</b> <?php echo number_format($killstreaks_paintball); ?></p>
+				                			<p><b>Shots Fired:</b> <?php echo number_format($shots_fired_paintball); ?></p>
 				                			<p>Hotbar Perks: [0:0:0] </p>
-				                			<p>Equipped Hat: <?php echo $hat_paintball; ?></p>
+				                			<p><b>Equipped Hat:</b> <?php echo $hat_paintball; ?></p>
 
 				                			<br>
 
-				                			<p>K/D: </p>
-				                			<p>W/L: </p>
-				                			<p>S/K: </p>
+				                			<p><b>K/D:</b> <?php echo round(($kills_paintball / $deaths_paintball), 2); ?></p>
+				                			<p><b>S/K:</b> <?php echo round(($shots_fired_paintball / $kills_paintball), 2); ?></p>
 
 				                			<br>
 
-				                			<p>Adrenaline: <?php echo $adrenaline_paintball; ?></p>
-				                			<p>Endurance: <?php echo $endurance_paintball; ?></p>
-				                			<p>Headstart: <?php echo $headstart_paintball; ?></p>
-				                			<p>Fortune: <?php echo $fortune_paintball; ?></p>
-				                			<p>Godfather: <?php echo $godfather_paintball; ?></p>
-				                			<p>Superluck: <?php echo $superluck_paintball; ?></p>
-				                			<p>Transfusion: <?php echo $transfusion_paintball; ?></p>
+				                			<p><b>Adrenaline:</b> <?php echo $adrenaline_paintball; ?></p>
+				                			<p><b>Endurance:</b> <?php echo $endurance_paintball; ?></p>
+				                			<p><b>Headstart:</b> <?php echo $headstart_paintball; ?></p>
+				                			<p><b>Fortune:</b> <?php echo $fortune_paintball; ?></p>
+				                			<p><b>Godfather:</b> <?php echo $godfather_paintball; ?></p>
+				                			<p><b>Superluck:</b> <?php echo $superluck_paintball; ?></p>
+				                			<p><b>Transfusion:</b> <?php echo $transfusion_paintball; ?></p>
 				                		</div>
 				                	</div>
 		                		</div>
