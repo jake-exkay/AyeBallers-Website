@@ -101,6 +101,20 @@
 		                    $wins_4v4_arena = $row['wins_4v4_arena'];
 		                    $wins_1v1_arena = $row['wins_1v1_arena'];
 
+		                    $coins_tkr = $row['coins_tkr'];
+		                    $box_pickups_tkr = $row['box_pickups_tkr'];
+		                    $coins_picked_up_tkr = $row['coins_picked_up_tkr'];
+		                    $silver_trophy_tkr = $row['silver_trophy_tkr'];
+		                    $wins_tkr = $row['wins_tkr'];
+		                    $gold_trophy_tkr = $row['gold_trophy_tkr'];
+		                    $laps_completed_tkr = $row['laps_completed_tkr'];
+		                    $bronze_trophy_tkr = $row['bronze_trophy_tkr'];
+		                    $olympus_tkr = $row['olympus_tkr'];
+		                    $junglerush_tkr = $row['junglerush_tkr'];
+		                    $hypixelgp_tkr = $row['hypixelgp_tkr'];
+		                    $retro_tkr = $row['retro_tkr'];
+		                    $canyon_tkr = $row['canyon_tkr'];
+
 		                    if ($hat_paintball == "speed_hat") {
 		                    	$hat_paintball = "Speed Hat";
 		                    }
@@ -228,7 +242,7 @@
 	                			<button data-toggle="collapse" data-target="#paintball">Paintball</button>
 	                			<button data-toggle="collapse" data-target="#quakecraft">Quakecraft</button>
 	                			<button data-toggle="collapse" data-target="#arena">Arena Brawl</button>
-	                			<button data-toggle="collapse">Turbo Kart Racers</button>
+	                			<button data-toggle="collapse" data-target="#tkr">Turbo Kart Racers</button>
 	                			<button data-toggle="collapse">VampireZ</button>
 	                			<button data-toggle="collapse">The Walls</button>
 	                			<button data-toggle="collapse">Bedwars</button>
@@ -389,6 +403,31 @@
 				                			<p><b>K/D:</b> <?php echo round(($kills_4v4_arena / $deaths_4v4_arena), 2); ?></p>
 				                			<p><b>W/L:</b> <?php echo round(($wins_4v4_arena / $losses_4v4_arena), 2); ?></p>
 
+				                		</div>
+				                	</div>
+		                		</div>
+
+		                		<div id="tkr" class="collapse">
+									<div class="card">
+		        						<div class="card-body">
+				                			<h2>Turbo Kart Racers</h2>
+				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_tkr); ?></p>
+				                			<p><b>Coins:</b> <?php echo number_format($coins_tkr); ?></p>
+				                			<p><b>Gold Trophies:</b> <?php echo number_format($gold_trophy_tkr); ?></p>
+				                			<p><b>Silver Trophies:</b> <?php echo number_format($silver_trophy_tkr); ?></p>
+				                			<p><b>Bronze Trophies:</b> <?php echo number_format($bronze_trophy_tkr); ?></p>
+				                			<p><b>Box Pickups:</b> <?php echo number_format($box_pickups_tkr); ?></p>
+				                			<p><b>Laps Completed:</b> <?php echo number_format($laps_completed_tkr); ?></p>
+				                			<p><b>Coin Pickups:</b> <?php echo number_format($coins_picked_up_tkr); ?></p>
+
+				                			<br>
+
+				                			<p><b>Olympus Plays:</b> <?php echo $olympus_tkr; ?></p>
+				                			<p><b>Jungle Rush Plays:</b> <?php echo $junglerush_tkr; ?></p>
+				                			<p><b>Hypixel GP Plays:</b> <?php echo $hypixelgp_tkr; ?></p>
+				                			<p><b>Retro Plays:</b> <?php echo $retro_tkr; ?></p>
+				                			<p><b>Canyon Plays:</b> <?php echo $canyon_tkr; ?></p>
 				                		</div>
 				                	</div>
 		                		</div>
