@@ -115,6 +115,24 @@
 		                    $retro_tkr = $row['retro_tkr'];
 		                    $canyon_tkr = $row['canyon_tkr'];
 
+		                    $coins_vz = $row['coins_vz'];
+		                    $human_deaths_vz = $row['human_deaths_vz'];
+		                    $human_kills_vz = $row['human_kills_vz'];
+		                    $vampire_kills_vz = $row['vampire_kills_vz'];
+		                    $vampire_deaths_vz = $row['vampire_deaths_vz'];
+		                    $zombie_kills_vz = $row['zombie_kills_vz'];
+		                    $most_vampire_kills_vz = $row['most_vampire_kills_vz'];
+		                    $human_wins_vz = $row['human_wins_vz'];
+		                    $gold_bought_vz = $row['gold_bought_vz'];
+		                    $vampire_wins_vz = $row['vampire_wins_vz'];
+
+		                    $kills_walls = $row['kills_walls'];
+		                    $wins_walls = $row['wins_walls'];
+		                    $deaths_walls = $row['deaths_walls'];
+		                    $assists_walls = $row['assists_walls'];
+		                    $losses_walls = $row['losses_walls'];
+		                    $coins_walls = $row['coins_walls'];
+
 		                    if ($hat_paintball == "speed_hat") {
 		                    	$hat_paintball = "Speed Hat";
 		                    }
@@ -243,8 +261,8 @@
 	                			<button data-toggle="collapse" data-target="#quakecraft">Quakecraft</button>
 	                			<button data-toggle="collapse" data-target="#arena">Arena Brawl</button>
 	                			<button data-toggle="collapse" data-target="#tkr">Turbo Kart Racers</button>
-	                			<button data-toggle="collapse">VampireZ</button>
-	                			<button data-toggle="collapse">The Walls</button>
+	                			<button data-toggle="collapse" data-target="#vz">VampireZ</button>
+	                			<button data-toggle="collapse" data-target="#walls">The Walls</button>
 	                			<button data-toggle="collapse">Bedwars</button>
 	                			<button data-toggle="collapse">TNT Games</button>
 	                			<button data-toggle="collapse">SkyWars</button>
@@ -428,6 +446,48 @@
 				                			<p><b>Hypixel GP Plays:</b> <?php echo $hypixelgp_tkr; ?></p>
 				                			<p><b>Retro Plays:</b> <?php echo $retro_tkr; ?></p>
 				                			<p><b>Canyon Plays:</b> <?php echo $canyon_tkr; ?></p>
+				                		</div>
+				                	</div>
+		                		</div>
+
+		                		<div id="vz" class="collapse">
+									<div class="card">
+		        						<div class="card-body">
+				                			<h2>VampireZ</h2>
+				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Coins:</b> <?php echo number_format($coins_vz); ?></p>
+
+				                			<br>
+
+				                			<h3>As Human</h3>
+				                			<p><b>Human Wins:</b> <?php echo number_format($human_wins_vz); ?></p>
+				                			<p><b>Vampire Kills:</b> <?php echo number_format($vampire_kills_vz); ?></p>
+				                			<p><b>Human Deaths:</b> <?php echo number_format($human_deaths_vz); ?></p>
+				                			<p><b>Zombie Kills:</b> <?php echo number_format($zombie_kills_vz); ?></p>
+				                			<p><b>Most Vampire Kills:</b> <?php echo number_format($most_vampire_kills_vz); ?></p>
+				                			<p><b>Gold Bought:</b> <?php echo number_format($gold_bought_vz); ?></p>
+
+				                			<br>
+
+				                			<h3>As Vampire</h3>
+				                			<p><b>Vampire Wins:</b> <?php echo number_format($vampire_wins_vz); ?></p>
+				                			<p><b>Vampire Deaths:</b> <?php echo number_format($vampire_deaths_vz); ?></p>
+				                			<p><b>Human Kills:</b> <?php echo number_format($human_kills_vz); ?></p>
+				                		</div>
+				                	</div>
+		                		</div>
+
+		                		<div id="walls" class="collapse">
+									<div class="card">
+		        						<div class="card-body">
+				                			<h2>The Walls</h2>
+				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Coins:</b> <?php echo number_format($coins_walls); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_walls); ?></p>
+				                			<p><b>Kills:</b> <?php echo number_format($kills_walls); ?></p>
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_walls); ?></p>
+				                			<p><b>Losses:</b> <?php echo number_format($losses_walls); ?></p>
+				                			<p><b>Assists:</b> <?php echo number_format($assists_walls); ?></p>
 				                		</div>
 				                	</div>
 		                		</div>
