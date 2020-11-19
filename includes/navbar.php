@@ -66,7 +66,7 @@
                                 </div>
                                 VampireZ
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/guild/walls.php">
+                            <a class="nav-link" href="../../../leaderboard/classic/overall/walls.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>

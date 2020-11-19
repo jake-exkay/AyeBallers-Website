@@ -6,6 +6,12 @@
         return $result;
 	}
 
+    function getOverallWallsLeaderboard($connection) {
+        $query = "SELECT name, coins_walls, deaths_walls, assists_walls, wins_walls, losses_walls, kills_walls FROM player ORDER BY wins_walls DESC";
+        $result = $connection->query($query);
+        return $result;
+    }
+
 	function getTntLeaderboard($connection) {
         $query = "SELECT * FROM tntgames ORDER BY total_wins DESC";
         $result = $connection->query($query);
