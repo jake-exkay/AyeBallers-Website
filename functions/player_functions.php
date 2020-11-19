@@ -12,7 +12,24 @@
 		$rank_colour = !empty($player_decoded_url->player->rankPlusColor) ? $player_decoded_url->player->rankPlusColor : "None";
 		$achievement_points = !empty($player_decoded_url->player->achievementPoints) ? $player_decoded_url->player->achievementPoints : 0;
 		$most_recent_game = !empty($player_decoded_url->player->mostRecentGameType) ? $player_decoded_url->player->mostRecentGameType : "Unknown";
-		$rank = !empty($player_decoded_url->player->packageRank) ? $player_decoded_url->player->packageRank : 'DEFAULT';
+
+		// Get rank
+		$staff_rank = $player_decoded_url->player->rank;
+		$monthly_package_rank = $player_decoded_url->player->monthlyPackageRank;
+		$package_rank = $player_decoded_url->player->packageRank;
+		$new_package_rank = $player_decoded_url->player->newPackageRank;
+
+		if ($rank) {
+			$rank = $player_decoded_url->player->rank;
+		} else if ($monthly_package_rank) {
+			$rank = $player_decoded_url->player->monthlyPackageRank;
+		} else if ($new_package_rank) {
+			$rank = $player_decoded_url->player->newPackageRank;
+		} else if ($package_rank) {
+			$rank = $player_decoded_url->player->packageRank;
+		} else {
+			$rank = "DEFAULT";
+		}
 
 		$kills_paintball = !empty($player_decoded_url->player->stats->Paintball->kills) ? $player_decoded_url->player->stats->Paintball->kills : 0;
         $wins_paintball = !empty($player_decoded_url->player->stats->Paintball->wins) ? $player_decoded_url->player->stats->Paintball->wins : 0;
@@ -155,6 +172,46 @@
 		$api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&player=" . $uuid);
 		$decoded_url  = json_decode($api_guild_url);
 		return $decoded_url;
+	}
+
+	function getRankFormatting($name, $rank, $rank_colour) {
+		if ($rank_colour == "BLACK") {
+			$rank_colour = '<span style="color:#000000;">+</span>';
+		} else if ($rank_colour == "RED") {
+			$rank_colour = '<span style="color:#e72323;">+</span>';
+		} else if ($rank_colour == "DARK_GREEN") {
+			$rank_colour = '<span style="color:#13850f;">+</span>';
+		} else if ($rank_colour == "None") {
+			$rank_colour = '<span style="color:#ed5a64;">+</span>';
+		} else if ($rank_colour == "WHITE") {
+			$rank_colour = '<span style="color:#ffffff;">+</span>';
+		} else if ($rank_colour == "BLUE") {
+			$rank_colour = '<span style="color:#5a97ed;">+</span>';
+		} else if ($rank_colour == "GREEN") {
+			$rank_colour = '<span style="color:#19e657;">+</span>';
+		} else if ($rank_colour == "DARK_RED") {
+			$rank_colour = '<span style="color:#8a0f19;">+</span>';
+		} else if ($rank_colour == "DARK_PURPLE") {
+			$rank_colour = '<span style="color:#510f8a;">+</span>';
+		} else {
+
+		}
+
+		if ($rank == "MVP_PLUS") {
+			$rank_with_name = '<span style="color:#50e0e7;">' . '[MVP' . $rank_colour . '] ' . $name . '</span>';
+		} else if ($rank == "DEFAULT" || $rank == "NONE") {
+			$rank_with_name = '<span style="color:#a7aaa1;">' . $name . '</span>';
+		} else if ($rank == "SUPERSTAR") {
+			$rank_with_name = '<span style="color:#e6b400;">' . '[MVP' . $rank_colour . $rank_colour . '] ' . $name . '</span>';
+		} else if ($rank == "MVP") {
+			$rank_with_name = '<span style="color:#50e0e7;">' . '[MVP] ' . $name . '</span>';
+		} else if ($rank == "VIP_PLUS") {
+			$rank_with_name = '<span style="color:#7cc841;">' . '[VIP<span style="color:#e6b400;">+</span><span style="color:#7cc841;">]</span> ' . $name . '</span>';
+		} else {
+			$rank_with_name = '<span style="color:#a7aaa1;">' . $name . '</span>';
+		}
+
+		return $rank_with_name;
 	}
 
 ?>

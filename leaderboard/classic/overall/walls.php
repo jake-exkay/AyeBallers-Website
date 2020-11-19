@@ -11,6 +11,7 @@
 
             include "../../../includes/connect.php";
             include "../../../functions/functions.php";
+            include "../../../functions/player_functions.php";
             include "../../../functions/display_functions.php";
             include "../../../functions/database/query_functions.php";
 
@@ -35,7 +36,7 @@
 	                            <button type="submit" class="btn btn-success">Overall Leaderboard</button>
 	                        </form>
 
-	                        <form action="../guild/paintball.php">
+	                        <form action="../guild/walls.php">
 	                            <button type="submit" class="btn btn-primary">Guild Leaderboard</button>
 	                        </form>
 
@@ -74,12 +75,16 @@
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
                                                     $name = $row['name'];
+                                                    $rank = $row['rank'];
+                                                    $rank_colour = $row['rank_colour'];
                                                     $kills = $row['kills_walls'];
                                                     $wins = $row['wins_walls'];
                                                     $coins = $row['coins_walls'];
                                                     $deaths = $row['deaths_walls'];
                                                     $assists = $row['assists_walls'];
                                                     $losses = $row['losses_walls'];
+
+                                                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
                                                     if ($kills == 0) {
                                                         $kd = 0;
@@ -95,9 +100,9 @@
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         if (userInGuild($connection, $name)) {
-                                                            echo '<td>' . $name . '  <img title="AyeBallers Member" height="25" width="auto" src="../../../assets/img/favicon.png"/></td>';
+                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" src="../../../assets/img/favicon.png"/></td>';
                                                         } else {
-                                                            echo '<td>' . $name . '</td>';
+                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
                                                         }
                                                         echo '<td>' . number_format($wins) . '</td>';
                                                         echo '<td>' . number_format($kills) . '</td>';

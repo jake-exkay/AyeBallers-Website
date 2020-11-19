@@ -170,17 +170,7 @@
 	            			$tag_colour = "#a7aaa1";
 	            		}
 
-	            		if ($rank_colour == "BLACK") {
-	            			$rank_colour = '<span style="color:#000000;">+</span>';
-	            		}
-
-	            		if ($rank == "MVP_PLUS") {
-	            			$rank_with_name = '<span style="color:#50e0e7;">' . '[MVP' . $rank_colour . '] ' . $name . '</span>';
-	            		} else if ($rank == "DEFAULT") {
-	            			$rank_with_name = '<span style="color:#a7aaa1;">' . $name . '</span>';
-	            		} else {
-
-	            		}
+	            		$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
 	            	?>
 
@@ -191,7 +181,15 @@
 
 	                			<h1>
 	                				<?php echo '<img style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/' . $uuid . '"/>'; ?>
-	                				<?php echo $rank_with_name; ?> <?php echo '<span style="color:' . $tag_colour . ';">' . '[' . $guild_tag . ']' . '</span>'; ?>
+	                				<?php 
+
+	                					if ($guild_tag) {
+	                						echo $rank_with_name . '<span style="color:' . $tag_colour . ';">' . ' [' . $guild_tag . ']' . '</span>'; 
+	                					} else {
+	                						echo $rank_with_name;
+	                					}
+
+	                				?>
 	                			</h1>
 
 	                			<div class="row">

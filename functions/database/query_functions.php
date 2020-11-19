@@ -7,7 +7,7 @@
 	}
 
     function getOverallWallsLeaderboard($connection) {
-        $query = "SELECT name, coins_walls, deaths_walls, assists_walls, wins_walls, losses_walls, kills_walls FROM player ORDER BY wins_walls DESC";
+        $query = "SELECT name, rank, rank_colour, coins_walls, deaths_walls, assists_walls, wins_walls, losses_walls, kills_walls FROM player ORDER BY wins_walls DESC";
         $result = $connection->query($query);
         return $result;
     }

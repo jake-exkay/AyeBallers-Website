@@ -115,7 +115,7 @@
 
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
-                                                        echo '<td>' . $name . '</td>';
+                                                        echo '<td><a href="../../../stats.php?player=' . $name . '">' . $name . '</a></td>';
                                                         echo '<td>' . $wins_format . '</td>';
                                                         echo '<td>' . $kills_format . '</td>';
                                                         echo '<td>' . $assists . '</td>';
