@@ -133,6 +133,26 @@
 		                    $losses_walls = $row['losses_walls'];
 		                    $coins_walls = $row['coins_walls'];
 
+		                    $experience_bw = $row['experience_bw'];
+		                   	$coins_bw = $row['coins_bw'];
+		                   	$deaths_bw = $row['deaths_bw'];
+		                   	$diamond_collected_bw = $row['diamond_collected_bw'];
+		                   	$iron_collected_bw = $row['iron_collected_bw'];
+		                   	$gold_collected_bw = $row['gold_collected_bw'];
+		                   	$emerald_collected_bw = $row['emerald_collected_bw'];
+		                   	$final_deaths_bw = $row['final_deaths_bw'];
+		                   	$games_played_bw = $row['games_played_bw'];
+		                   	$losses_bw = $row['losses_bw'];
+		                   	$kills_bw = $row['kills_bw'];
+		                   	$items_purchased_bw = $row['items_purchased_bw'];
+		                   	$resources_collected_bw = $row['resources_collected_bw'];
+		                   	$void_kills_bw = $row['void_kills_bw'];
+		                   	$void_deaths_bw = $row['void_deaths_bw'];
+		                   	$beds_broken_bw = $row['beds_broken_bw'];
+		                   	$winstreak_bw = $row['winstreak_bw'];
+		                   	$final_kills_bw = $row['final_kills_bw'];
+		                   	$wins_bw = $row['wins_bw'];
+
 		                    if ($hat_paintball == "speed_hat") {
 		                    	$hat_paintball = "Speed Hat";
 		                    }
@@ -261,7 +281,7 @@
 	                			<button data-toggle="collapse" data-target="#tkr">Turbo Kart Racers</button>
 	                			<button data-toggle="collapse" data-target="#vz">VampireZ</button>
 	                			<button data-toggle="collapse" data-target="#walls">The Walls</button>
-	                			<button data-toggle="collapse">Bedwars</button>
+	                			<button data-toggle="collapse" data-target="#bedwars">Bedwars</button>
 	                			<button data-toggle="collapse">TNT Games</button>
 	                			<button data-toggle="collapse">SkyWars</button>
 	                			<button data-toggle="collapse">Warlords</button>
@@ -486,6 +506,44 @@
 				                			<p><b>Deaths:</b> <?php echo number_format($deaths_walls); ?></p>
 				                			<p><b>Losses:</b> <?php echo number_format($losses_walls); ?></p>
 				                			<p><b>Assists:</b> <?php echo number_format($assists_walls); ?></p>
+				                		</div>
+				                	</div>
+		                		</div>
+
+		                		<div id="bedwars" class="collapse">
+									<div class="card">
+		        						<div class="card-body">
+				                			<h2>BedWars</h2>
+				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Coins:</b> <?php echo number_format($coins_bw); ?></p>
+				                			<p><b>Wins:</b> <?php echo number_format($wins_bw); ?></p>
+				                			<p><b>Experience:</b> <?php echo number_format($experience_bw); ?></p>
+				                			<p><b>Losses:</b> <?php echo number_format($losses_bw); ?></p>
+				                			<p><b>Games Played:</b> <?php echo number_format($games_played_bw); ?></p>
+				                			<p><b>Items Purchased:</b> <?php echo number_format($items_purchased_bw); ?></p>
+				                			<p><b>Beds Broken:</b> <?php echo number_format($beds_broken_bw); ?></p>
+				                			<p><b>Winstreak:</b> <?php echo number_format($winstreak_bw); ?></p>
+
+				                			<br>
+
+				                			<p><b>Kills:</b> <?php echo number_format($kills_bw); ?></p>
+				                			<p><b>Void Kills:</b> <?php echo number_format($void_kills_bw); ?></p>
+				                			<p><b>Final Kills:</b> <?php echo number_format($final_kills_bw); ?></p>
+
+				                			<br>
+
+				                			<p><b>Deaths:</b> <?php echo number_format($deaths_bw); ?></p>
+				                			<p><b>Void Deaths:</b> <?php echo number_format($void_deaths_bw); ?></p>
+				                			<p><b>Final Deaths:</b> <?php echo number_format($final_deaths_bw); ?></p>
+
+				                			<br>
+
+				                			<p><b>Resources Collected:</b> <?php echo number_format($resources_collected_bw); ?></p>
+				                			<p><b>Iron Collected:</b> <?php echo number_format($iron_collected_bw); ?></p>
+				                			<p><b>Gold Collected:</b> <?php echo number_format($gold_collected_bw); ?></p>
+				                			<p><b>Diamonds Collected:</b> <?php echo number_format($diamond_collected_bw); ?></p>
+				                			<p><b>Emeralds Collected:</b> <?php echo number_format($emerald_collected_bw); ?></p>
+
 				                		</div>
 				                	</div>
 		                		</div>
