@@ -2,6 +2,7 @@
 
 	include "../../includes/connect.php";
 	include "../functions.php";
+	include "../player_functions.php";
 
 	if (!apiLimitReached($API_KEY)) {
 		$last_updated_query = "SELECT * FROM guild_members_current";
@@ -31,25 +32,31 @@
 		    }
 
 		    foreach($guild_members as $member) {
-		        $uuid = $member->uuid;
-		        $guild_rank = $member->rank;
+		    	if (!apiLimitReached($API_KEY)) {
+			        $uuid = $member->uuid;
+			        $guild_rank = $member->rank;
 
-		        // Get real name
-		        $mojang_url = file_get_contents("https://api.mojang.com/user/profiles/" . $uuid . "/names");
-		        $mojang_decoded_url = json_decode($mojang_url, true);
-		        $real_name = array_pop($mojang_decoded_url);
-		        $name = $real_name['name'];
+			        // Get real name
+			        $mojang_url = file_get_contents("https://api.mojang.com/user/profiles/" . $uuid . "/names");
+			        $mojang_decoded_url = json_decode($mojang_url, true);
+			        $real_name = array_pop($mojang_decoded_url);
+			        $name = $real_name['name'];
 
-		        $query = "INSERT INTO guild_members_current (UUID, name, guild_rank, last_updated) VALUES (?, ?, ?, now())";
+			        $query = "INSERT INTO guild_members_current (UUID, name, guild_rank, last_updated) VALUES (?, ?, ?, now())";
 
-		        if($statement = mysqli_prepare($connection, $query)) {
-		            mysqli_stmt_bind_param($statement, "sss", $uuid, $name, $guild_rank);
-		            mysqli_stmt_execute($statement);
-		        } else {
-		            echo '<b>[GUILD] ' . $name . ' </b>An Error Occured!<br>'; 
-		        }
+			        if($statement = mysqli_prepare($connection, $query)) {
+			            mysqli_stmt_bind_param($statement, "sss", $uuid, $name, $guild_rank);
+			            mysqli_stmt_execute($statement);
+			            updatePlayerInDatabase($connection, $uuid, $name, $API_KEY);
+			        } else {
+			            echo '<b>[GUILD] ' . $name . ' </b>An Error Occured!<br>'; 
+			        }
 
-		        header("Refresh:0.01; url=../../../guild.php");
+			        header("Refresh:0.01; url=../../../guild.php");
+			    } else {
+			    	echo "Error: Too many concurrent API requests, please try again in a minute.";
+        			header("Refresh:2; url=../../../guild.php");
+			    }
 
 		    }
 

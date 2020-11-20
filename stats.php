@@ -41,7 +41,6 @@
 		                    $kills_paintball = $row['kills_paintball'];
 		                    $wins_paintball = $row['wins_paintball'];
 		                    $coins_paintball = $row['coins_paintball'];
-		                    $kill_prefix_paintball = $row['kill_prefix_paintball'];
 		                    $deaths_paintball = $row['deaths_paintball'];
 		                    $forcefield_time_paintball = $row['forcefield_time_paintball'];
 		                    $killstreaks_paintball = $row['killstreaks_paintball'];
@@ -159,6 +158,7 @@
 
 		                    $rank = $row['rank'];
 		                    $rank_colour = $row['rank_colour'];
+		                    $time_played = $row['time_played'];
 		                    $first_login = $row['first_login'];
 		                    $last_login = $row['last_login'];
 		                    $first_login = gmdate('r', $first_login);
@@ -222,7 +222,7 @@
 					                			<p><b>Quests Completed:</b> </p>
 					                			<p><b>Guild:</b> </p>
 					                			<p><b>Karma:</b> <?php echo number_format($karma); ?></p>
-					                			<p>Time Played: </p>
+					                			<p><b>Time Played:</b> <?php echo number_format($time_played / 60); ?> hours</p>
 					                			<p><b>First Login:</b> <?php echo $first_login; ?></p>
 					                			<p><b>Last Login:</b> <?php echo $last_login; ?></p>
 					                			<p><b>Recent Game:</b> <?php echo $recent_game; ?></p>
@@ -303,7 +303,6 @@
 				                			<p><b>Leaderboard Position:</b> </p>
 				                			<p><b>Kills:</b> <?php echo number_format($kills_paintball); ?></p>
 				                			<p><b>Wins:</b> <?php echo number_format($wins_paintball); ?></p>
-				                			<p><b>Kill Prefix:</b> [<?php echo $kill_prefix_paintball + substr($kills_paintball, 0, 3) ?>k]</p>
 				                			<p><b>Coins:</b> <?php echo number_format($coins_paintball); ?></p>
 				                			<p><b>Deaths:</b> <?php echo number_format($deaths_paintball); ?></p>
 				                			<p><b>Forcefield Time:</b> <?php echo $forcefield_time_paintball; ?></p>
@@ -514,7 +513,7 @@
 									<div class="card">
 		        						<div class="card-body">
 				                			<h2>BedWars</h2>
-				                			<p><b>Leaderboard Position:</b> </p>
+				                			<p><b>Leaderboard Position:</b> <?php echo getLeaderboardPosition($connection, $name, "bedwars"); ?></p>
 				                			<p><b>Coins:</b> <?php echo number_format($coins_bw); ?></p>
 				                			<p><b>Wins:</b> <?php echo number_format($wins_bw); ?></p>
 				                			<p><b>Experience:</b> <?php echo number_format($experience_bw); ?></p>

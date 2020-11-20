@@ -60,8 +60,8 @@
         return $result;
     }
 
-    function getWallsLeaderboard($connection) {
-        $query = "SELECT * FROM walls ORDER BY wins DESC";
+    function getWallsGuildLeaderboard($connection) {
+        $query = "SELECT guild_members_current.name, player.rank, player.rank_colour, player.coins_walls, player.deaths_walls, player.assists_walls, player.wins_walls, player.losses_walls, player.kills_walls FROM player INNER JOIN guild_members_current ON player.UUID = guild_members_current.UUID ORDER BY player.wins_walls DESC";
         $result = $connection->query($query);
         return $result;
     }

@@ -32,12 +32,12 @@
 
                         <ol class="breadcrumb mb-4">
 
-                        	<form style="margin-right: 10px;" action="paintball.php">
-	                            <button type="submit" class="btn btn-success">Overall Leaderboard</button>
+                        	<form style="margin-right: 10px;" action="walls.php">
+	                            <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
 	                        </form>
 
 	                        <form action="../guild/walls.php">
-	                            <button type="submit" class="btn btn-primary">Guild Leaderboard</button>
+	                            <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
 	                        </form>
 
 	                    </ol>
