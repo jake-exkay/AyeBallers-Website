@@ -1,35 +1,40 @@
+<?php
+/**
+ * Home page - Langing page, shows guild information.
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/
+ */
+
+require "includes/links.php";
+require "functions/display_functions.php";
+require "functions/text_constants.php";
+
+updatePageViews($connection, 'home_page', $DEV_IP);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
         <title>Home - AyeBallers</title>
-
-        <?php
-
-            include "includes/links.php";
-            include "includes/connect.php";
-            include "includes/constants.php";
-            include "functions/functions.php";
-            include "functions/display_functions.php";
-            include "functions/text_constants.php";
-
-            updatePageViews($connection, 'home_page', $DEV_IP);
-
-        ?>
-
     </head>
 
     <body class="sb-nav-fixed">
 
-        <?php include "includes/navbar.php"; ?>
+        <?php require "includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
 
                 <main>
 
                     <center>
-                        <img class="website_header" src="assets/img/ayeballers.png"/>
+                        <img class="website_header" alt="AyeBallers Logo" src="assets/img/ayeballers.png"/>
                     </center>
 
                     <div class="row">
@@ -87,10 +92,9 @@
 		                    </center>
 		                </div>
 		            </div>
-
                 </main>
 
-                <?php include "includes/footer.php"; ?>
+                <?php require "includes/footer.php"; ?>
 
             </div>
 

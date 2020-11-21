@@ -1,27 +1,35 @@
+<?php
+/**
+ * Event page - Page showing current and previous events.
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/event.php
+ */
+
+require "includes/links.php";
+require "includes/connect.php";
+require "includes/constants.php";
+require "functions/functions.php";
+require "functions/display_functions.php";
+
+updatePageViews($connection, 'event_page', $DEV_IP);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
         <title>Event - AyeBallers</title>
-
-        <?php
-
-            include "includes/links.php";
-            include "includes/connect.php";
-            include "includes/constants.php";
-            include "functions/functions.php";
-            include "functions/display_functions.php";
-
-            updatePageViews($connection, 'event_page', $DEV_IP);
-
-        ?>
-
     </head>
 
     <body class="sb-nav-fixed">
 
-        <?php include "includes/navbar.php"; ?>
+        <?php require "includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
 
@@ -52,10 +60,9 @@
 
                     </center>
 
-                   
                 </main>
 
-                <?php include "includes/footer.php"; ?>
+                <?php require "includes/footer.php"; ?>
 
             </div>
 

@@ -1,43 +1,54 @@
+<?php
+/**
+ * Stats page - Shows customised stats for players based on GET data.
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/stats.php
+ */
+
+require "includes/links.php";
+require "includes/connect.php";
+require "includes/constants.php";
+require "functions/functions.php";
+require "functions/display_functions.php";
+require "functions/text_constants.php";
+require "functions/player_functions.php";
+
+updatePageViews($connection, 'stats_page', $DEV_IP);
+   
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
-    	<?php
-    		include "includes/links.php";
-            include "includes/connect.php";
-            include "includes/constants.php";
-            include "functions/functions.php";
-            include "functions/display_functions.php";
-            include "functions/text_constants.php";
-            include "functions/player_functions.php";
-
-            $name = $_GET["player"];
-            $uuid = getUUID($connection, $name);
-            
-            if (updatePlayerInDatabase($connection, $uuid, $name, $API_KEY)) {
-                $result = getPlayerInformation($connection, $uuid);
-            } else {
-            	header("Refresh:0.01; url=player.php");
-            }
-
-            updatePageViews($connection, 'stats_page', $DEV_IP);
-               
-    	?>
-
         <title><?php echo $name; ?>'s Stats - AyeBallers</title>
 
+        <?php 
+	        $name = $_GET["player"];
+			$uuid = getUUID($connection, $name);
+
+			if (updatePlayerInDatabase($connection, $uuid, $name, $API_KEY)) {
+			    $result = getPlayerInformation($connection, $uuid);
+			} else {
+				header("Refresh:0.01; url=player.php");
+			}
+		?>
     </head>
 
     <body class="sb-nav-fixed">
 
-        <?php include "includes/navbar.php"; ?>
+        <?php require "includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
 
                 <?php 
 		            if ($result->num_rows > 0) {
-		                while($row = $result->fetch_assoc()) {
+		                while ($row = $result->fetch_assoc()) {
 		                    $kills_paintball = $row['kills_paintball'];
 		                    $wins_paintball = $row['wins_paintball'];
 		                    $coins_paintball = $row['coins_paintball'];
@@ -187,7 +198,7 @@
 	            			$tag_colour = "#ebc61e";
 	            		} else if ($guild_tag_colour == "GRAY") {
 	            			$tag_colour = "#a7aaa1";
-	            		}else {
+	            		} else {
 	            			$tag_colour = "#a7aaa1";
 	            		}
 
@@ -555,7 +566,7 @@
 
                 	</main>
 
-                <?php include "includes/footer.php"; ?>
+                <?php require "includes/footer.php"; ?>
 
             </div>
 

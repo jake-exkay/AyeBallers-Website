@@ -1,3 +1,25 @@
+<?php
+/**
+ * Guild page - Shows a list of guild members.
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/guild.php
+ */
+
+require "includes/links.php";
+require "includes/connect.php";
+require "includes/constants.php";
+require "functions/functions.php";
+require "functions/display_functions.php";
+
+updatePageViews($connection, 'guild_page', $DEV_IP);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,18 +27,7 @@
 
         <title>Guild - AyeBallers</title>
 
-        <?php
-
-            include "includes/links.php";
-            include "includes/connect.php";
-            include "includes/constants.php";
-            include "functions/functions.php";
-            include "functions/display_functions.php";
-            include "functions/text_constants.php";
-
-            updatePageViews($connection, 'guild_page', $DEV_IP);
-
-        ?>
+    
 
     </head>
 
@@ -45,7 +56,7 @@
                         $result_gm = $connection->query($query_gm);
 
                         if ($result_gm->num_rows > 0) {
-                            while($row = $result_gm->fetch_assoc()) {
+                            while ($row = $result_gm->fetch_assoc()) {
                                 displayGuildMember($row["name"], $row["UUID"], "Guild Master");
                             }
                         }
@@ -54,7 +65,7 @@
                         $result_co = $connection->query($query_co);
 
                         if ($result_co->num_rows > 0) {
-                            while($row = $result_co->fetch_assoc()) {
+                            while ($row = $result_co->fetch_assoc()) {
                                 displayGuildMember($row["name"], $row["UUID"], "Co-Master");
                             }
                         }
@@ -63,7 +74,7 @@
                         $result_o = $connection->query($query_o);
 
                         if ($result_o->num_rows > 0) {
-                            while($row = $result_o->fetch_assoc()) {
+                            while ($row = $result_o->fetch_assoc()) {
                                 displayGuildMember($row["name"], $row["UUID"], "Officer");
                             }
                         }
@@ -72,7 +83,7 @@
                         $result_v = $connection->query($query_v);
 
                         if ($result_v->num_rows > 0) {
-                            while($row = $result_v->fetch_assoc()) {
+                            while ($row = $result_v->fetch_assoc()) {
                                 displayGuildMember($row["name"], $row["UUID"], "Veteran");
                             }
                         }
@@ -81,7 +92,7 @@
                         $result_e = $connection->query($query_e);
 
                         if ($result_e->num_rows > 0) {
-                            while($row = $result_e->fetch_assoc()) {
+                            while ($row = $result_e->fetch_assoc()) {
                                 displayGuildMember($row["name"], $row["UUID"], "Elite");
                             }
                         }
@@ -90,7 +101,7 @@
                         $result_m = $connection->query($query_m);
 
                         if ($result_m->num_rows > 0) {
-                            while($row = $result_m->fetch_assoc()) {
+                            while ($row = $result_m->fetch_assoc()) {
                                 displayGuildMember($row["name"], $row["UUID"], "Member");
                             }
                         }
@@ -102,7 +113,7 @@
 
                 </main>
 
-            <?php include "includes/footer.php"; ?>
+            <?php require "includes/footer.php"; ?>
 
         </div>
 

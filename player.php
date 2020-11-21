@@ -1,62 +1,62 @@
+<?php
+/**
+ * Player page - Allows for searching for specific players.
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/player.php
+ */
+
+require "includes/links.php";
+
+updatePageViews($connection, 'player_page', $DEV_IP);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
         <title>Player Search - AyeBallers</title>
-
-        <?php
-
-            include "includes/links.php";
-            include "includes/connect.php";
-            include "includes/constants.php";
-            include "functions/functions.php";
-            include "functions/display_functions.php";
-            include "functions/text_constants.php";
-            include "functions/player_functions.php";
-
-            updatePageViews($connection, 'player_page', $DEV_IP);
-
-        ?>
-
     </head>
 
     <body class="sb-nav-fixed">
 
-        <?php include "includes/navbar.php"; ?>
+        <?php require "includes/navbar.php"; ?>
 
-            <div id="layoutSidenav_content">
+        <div id="layoutSidenav_content">
 
-                <main>
+            <main>
 
-                	<div class="card">
-            			<div class="card-body">
+            	<div class="card">
+        			<div class="card-body">
+            			<form style="padding: 300px;" class="form-signin" name="playerForm" action="stats.php" method="GET" enctype="multipart/form-data">
 
-                			<form style="padding: 300px;" class="form-signin" name="playerForm" action="stats.php" method="GET" enctype="multipart/form-data">
+                			<div class="form-label-group">
+                    			<center>
+                        			<label>Player</label>
+                    			</center>
+                    			<input type="text" class="form-control" name="player" placeholder="Player Name" required>
+                			</div> 
 
-                    			<div class="form-label-group">
-                        			<center>
-                            			<label>Player</label>
-                        			</center>
-                        			<input type="text" class="form-control" name="player" placeholder="Player Name" required>
-                    			</div> 
+                			<br>
 
-                    			<br>
+		                    <center>
+		                        <button type="submit" class="btn btn-lg btn-primary">Search</button>
+		                    </center>
 
-			                    <center>
-			                        <button type="submit" class="btn btn-lg btn-primary">Search</button>
-			                    </center>
+            			</form>
+		            </div>
+		        </div>
 
-                			</form>
+        	</main>
+            
+            <?php require "includes/footer.php"; ?>
 
-			            </div>
-			        </div>
-
-            	</main>
-                
-                <?php include "includes/footer.php"; ?>
-
-            </div>
+        </div>
 
     </body>
 </html>
