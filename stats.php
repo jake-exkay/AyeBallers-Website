@@ -17,6 +17,7 @@ require "functions/functions.php";
 require "functions/display_functions.php";
 require "functions/text_constants.php";
 require "functions/player_functions.php";
+require "error/error_messages.php";
 
 updatePageViews($connection, 'stats_page', $DEV_IP);
    
@@ -26,8 +27,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 <html lang="en">
 
     <head>
-        <title><?php echo $name; ?>'s Stats - AyeBallers</title>
-
         <?php 
 	        $name = $_GET["player"];
 			$uuid = getUUID($connection, $name);
@@ -35,9 +34,10 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 			if (updatePlayerInDatabase($connection, $uuid, $name, $API_KEY)) {
 			    $result = getPlayerInformation($connection, $uuid);
 			} else {
-				header("Refresh:0.01; url=player.php");
+				echo $ERR_CANT_UPDATE_PLAYER;
 			}
 		?>
+		<title><?php echo $name; ?>'s Stats - AyeBallers</title>
     </head>
 
     <body class="sb-nav-fixed">
@@ -47,6 +47,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
             <div id="layoutSidenav_content">
 
                 <?php 
+
 		            if ($result->num_rows > 0) {
 		                while ($row = $result->fetch_assoc()) {
 		                    $kills_paintball = $row['kills_paintball'];
@@ -177,7 +178,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		                    $last_login = date("Y-m-d H:i:s", substr((int)$last_login, 0, 10));
 		                }
 		            } else {
-		            	echo $query;
+		            	echo $ERR_CANT_GET_PLAYER;
 		            }
 	            		$guild_json = getPlayersGuild($connection, $uuid, $API_KEY);
 	            		$guild_members = sizeof($guild_json->guild->members);
