@@ -156,13 +156,14 @@
 		                    	$hat_paintball = "Speed Hat";
 		                    }
 
+		                    $network_exp = $row['network_exp'];
 		                    $rank = $row['rank'];
 		                    $rank_colour = $row['rank_colour'];
 		                    $time_played = $row['time_played'];
 		                    $first_login = $row['first_login'];
 		                    $last_login = $row['last_login'];
-		                    $first_login = gmdate('r', $first_login);
-		                    $last_login = gmdate('r', $last_login);
+		                    $first_login = date("Y-m-d H:i:s", substr((int)$first_login, 0, 10));
+		                    $last_login = date("Y-m-d H:i:s", substr((int)$last_login, 0, 10));
 		                }
 		            } else {
 		            	echo $query;
@@ -191,6 +192,7 @@
 	            		}
 
 	            		$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+	            		$network_level = getLevel($network_exp);
 
 	            	?>
 
@@ -217,16 +219,16 @@
 		                			<div class="col-md-4" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 20px;">
 			                			<div class="card">
 		        							<div class="card-body">
-					                			<p><b>Network Level:</b> </p>
+		        								<h3>General Statistics</h3>
+		        								<br>
+					                			<p><b>Network Level:</b> <?php echo $network_level; ?> </p>
 					                			<p><b>Achievement Points:</b> <?php echo number_format($achievement_points); ?></p>
-					                			<p><b>Quests Completed:</b> </p>
-					                			<p><b>Guild:</b> </p>
+					                			<p><b>Guild:</b> <?php echo $guild_name; ?></p>
 					                			<p><b>Karma:</b> <?php echo number_format($karma); ?></p>
 					                			<p><b>Time Played:</b> <?php echo number_format($time_played / 60); ?> hours</p>
 					                			<p><b>First Login:</b> <?php echo $first_login; ?></p>
 					                			<p><b>Last Login:</b> <?php echo $last_login; ?></p>
 					                			<p><b>Recent Game:</b> <?php echo $recent_game; ?></p>
-					                			<p>Parkours Completed: </p>
 					                		</div>
 					                	</div>
 				                	</div>
@@ -234,16 +236,17 @@
 				                	<div class="col-md-4" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 20px;">
 			                			<div class="card">
 		        							<div class="card-body">
-					                			<h3><?php echo $name; ?>'s Guild: <?php echo $guild_name; ?></h3>
-					                			<p>Members: <?php echo $guild_members; ?></p>
-					                			<p>Guild Level: </p>
-					                			<p>Guild: <?php echo $guild_name; ?></p>
-					                			<p>Created: <?php echo $guild_created; ?></p>
-					                			<p>Description: <?php echo $guild_desc; ?></p>
-					                			<p>Tag: <?php echo '<span style="color:' . $tag_colour . ';">' . '[' . $guild_tag . ']' . '</span>'; ?></p>
-					                			<p>Most Played Game: </p>
-					                			<p><?php echo $name; ?>'s Role In Guild: </p>
-					                			<p>Quests Contributed To: </p>
+					                			<h3><?php echo $name; ?>'s Guild</h3>
+					                			<br>
+					                			<p><b>Guild:</b> <?php echo $guild_name; ?></p>
+					                			<p><b>Members:</b> <?php echo $guild_members; ?>/125</p>
+					                			<p><b>Guild Level:</b> </p>
+					                			<p><b>Created:</b> <?php echo $guild_created; ?></p>
+					                			<p><b>Description:</b> <?php echo $guild_desc; ?></p>
+					                			<p><b>Tag:</b> <?php echo '<span style="color:' . $tag_colour . ';">' . '[' . $guild_tag . ']' . '</span>'; ?></p>
+					                			<p><b>Most Played Game:</b> </p>
+					                			<p><b><?php echo $name; ?>'s Role In Guild:</b> </p>
+					                			<p><b>Quests Contributed To:</b> </p>
 					                		</div>
 					                	</div>
 				                	</div>
