@@ -1,7 +1,7 @@
 <?php
 
 	function getOverallPaintballLeaderboard($connection) {
-		$query = "SELECT * FROM paintball_overall ORDER BY kills DESC";
+        $query = "SELECT name, rank, rank_colour, coins_paintball, deaths_paintball, forcefield_time_paintball, wins_paintball, kills_paintball, killstreaks_paintball, shots_fired_paintball, hat_paintball FROM player ORDER BY kills_paintball DESC";
         $result = $connection->query($query);
         return $result;
 	}

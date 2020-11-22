@@ -88,7 +88,7 @@
 
                                                     if ($kills == 0) {
                                                         $kd = 0;
-                                                        $sk = 0;
+                                                        $wl = 0;
                                                     } else {
                                                         $kd = $kills / $deaths;
                                                         $wl = $wins / $losses;

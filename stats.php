@@ -226,13 +226,18 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 	            		$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 	            		$network_level = getLevel($network_exp);
 
+	            		$previous = "javascript:history.go(-1)";
+			            if (isset($_SERVER['HTTP_REFERER'])) {
+			                $previous = $_SERVER['HTTP_REFERER'];
+			            }
+
 	            	?>
 
 	                <main>
 
 	                	<div class="card">
 	            			<div class="card-body">
-	            				<form style="margin-right: 10px;" action="player.php">
+	            				<form style="margin-right: 10px;" action="<?= $previous ?>">
 		                            <button type="submit" class="btn btn-danger">< Back</button>
 		                        </form>
 
