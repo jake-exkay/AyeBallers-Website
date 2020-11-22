@@ -49,7 +49,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                    <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Position (Kills)</th>
@@ -124,7 +125,7 @@
                                                             echo '<td class="table-danger">' . $kd . '</td>';
                                                         }
 
-                                                        if ($sk > 30) {
+                                                        if ($sk < 30) {
                                                             echo '<td class="table-success">' . $sk . '</td>';
                                                         } else if ($sk > 30 && $sk < 45) {
                                                             echo '<td class="table-warning">' . $sk . '</td>';
@@ -153,6 +154,13 @@
                 </main>
 
                 <?php include "../../../includes/footer.php"; ?>
+                <script>
+                    $(document).ready(function () {
+                    $('#leaderboard').DataTable({
+                    });
+                    $('.dataTables_length').addClass('bs-select');
+                    });
+                </script>
                 
             </div>
         </div>
