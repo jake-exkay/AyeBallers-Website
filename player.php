@@ -11,6 +11,7 @@
  */
 
 require "includes/links.php";
+require "functions/functions.php";
 
 updatePageViews($connection, 'player_page', $DEV_IP);
 
@@ -29,16 +30,26 @@ updatePageViews($connection, 'player_page', $DEV_IP);
 
         <div id="layoutSidenav_content">
 
-            <main>
+            <main style="padding-right: 475px; padding-left: 475px; padding-top: 150px">
 
             	<div class="card">
         			<div class="card-body">
-            			<form style="padding: 300px;" class="form-signin" name="playerForm" action="stats.php" method="GET" enctype="multipart/form-data">
+
+            			<form class="form-signin" name="playerForm" action="stats.php" method="GET" enctype="multipart/form-data">
 
                 			<div class="form-label-group">
                     			<center>
-                        			<label>Player</label>
+                                    <img alt="AyeBallers Logo" src="assets/img/ayeballers.png" height="150" width="auto" />
+                                </center>
+
+                                <br>
+
+                                <center>
+                                    <h3 class="ayeballers_font">Hypixel stats checker</h3>
                     			</center>
+
+                                <br>
+
                     			<input type="text" class="form-control" name="player" placeholder="Player Name" required>
                 			</div> 
 

@@ -67,7 +67,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		                    $godfather_paintball = $row['godfather_paintball'] + 1;
 		                    $superluck_paintball = $row['superluck_paintball'] + 1;
 		                    $transfusion_paintball = $row['transfusion_paintball'] + 1;
-		                    $headstart_paintball = $row['headstart_paintball'] + 1;
 
 		                    $coins_quake = $row['coins_quake'];
 		                    $deaths_quake = $row['deaths_quake'];
@@ -233,6 +232,9 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 	                	<div class="card">
 	            			<div class="card-body">
+	            				<form style="margin-right: 10px;" action="player.php">
+		                            <button type="submit" class="btn btn-danger">< Back</button>
+		                        </form>
 
 	                			<h1>
 	                				<?php echo '<img style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/' . $uuid . '"/>'; ?>
@@ -335,6 +337,19 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 								<div id="paintball" class="collapse">
 									<div class="card">
 		        						<div class="card-body">
+
+		        							<?php
+				                				$kd_pb = 0.0;
+				                				$sk_pb = 0.0;
+
+				                				if ($deaths_paintball != 0) {
+				                					$kd_pb = round(($kills_paintball / $deaths_paintball), 2);
+				                				}
+				                				if ($kills_paintball != 0) {
+				                					$sk_pb = round(($shots_fired_paintball / $kills_paintball), 2);
+				                				}
+				                			?>
+
 				                			<h2>Paintball</h2>
 				                			<p><b>Leaderboard Position:</b> </p>
 				                			<p><b>Kills:</b> <?php echo number_format($kills_paintball); ?></p>
@@ -348,14 +363,13 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 				                			<br>
 
-				                			<p><b>K/D:</b> <?php echo round(($kills_paintball / $deaths_paintball), 2); ?></p>
-				                			<p><b>S/K:</b> <?php echo round(($shots_fired_paintball / $kills_paintball), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $kd_pb; ?></p>
+				                			<p><b>S/K:</b> <?php echo $sk_pb; ?></p>
 
 				                			<br>
 
 				                			<p><b>Adrenaline:</b> <?php echo $adrenaline_paintball; ?></p>
 				                			<p><b>Endurance:</b> <?php echo $endurance_paintball; ?></p>
-				                			<p><b>Headstart:</b> <?php echo $headstart_paintball; ?></p>
 				                			<p><b>Fortune:</b> <?php echo $fortune_paintball; ?></p>
 				                			<p><b>Godfather:</b> <?php echo $godfather_paintball; ?></p>
 				                			<p><b>Superluck:</b> <?php echo $superluck_paintball; ?></p>
@@ -367,6 +381,19 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		                		<div id="quakecraft" class="collapse">
 									<div class="card">
 		        						<div class="card-body">
+
+		        							<?php
+				                				$kd_qc = 0.0;
+				                				$sk_qc = 0.0;
+
+				                				if ($deaths_quake != 0 || $deaths_teams_quake != 0) {
+				                					$kd_qc = round((($kills_teams_quake + $kills_quake) / ($deaths_teams_quake + $deaths_quake)), 2);
+				                				}
+				                				if ($kills_quake != 0 || $kills_teams_quake != 0) {
+				                					$sk_qc = round((($shots_fired_quake + $shots_fired_teams_quake) / ($kills_quake + $kills_teams_quake)), 2);
+				                				}
+				                			?>
+
 				                			<h2>Quakecraft</h2>
 				                			<p><b>Leaderboard Position:</b> </p>
 				                			<p><b>Coins:</b> <?php echo number_format($coins_quake); ?></p>
@@ -382,8 +409,8 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Headshots:</b> <?php echo number_format($headshots_teams_quake + $headshots_quake); ?></p>
 				                			<p><b>Distance Travelled:</b> <?php echo number_format($distance_travelled_teams_quake + $distance_travelled_quake); ?></p>
 				                			<p><b>Shots Fired:</b> <?php echo number_format($shots_fired_teams_quake + $shots_fired_quake); ?></p>
-				                			<p><b>K/D:</b> <?php echo round((($kills_teams_quake + $kills_quake) / ($deaths_teams_quake + $deaths_quake)), 2); ?></p>
-				                			<p><b>S/K:</b> <?php echo round((($shots_fired_quake + $shots_fired_teams_quake) / ($kills_quake + $kills_teams_quake)), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $kd_qc; ?></p>
+				                			<p><b>S/K:</b> <?php echo $sk_qc; ?></p>
 
 				                			<br>
 
@@ -415,6 +442,49 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		                		<div id="arena" class="collapse">
 									<div class="card">
 		        						<div class="card-body">
+
+		        							<?php
+		        								$kd_ab_o = 0.0;
+				                				$wl_ab_o = 0.0;
+				                				$wl_ab_1 = 0.0;
+				                				$kd_ab_2 = 0.0;
+				                				$wl_ab_2 = 0.0;
+				                				$kd_ab_4 = 0.0;
+				                				$wl_ab_4 = 0.0;
+
+				                				if ($deaths_1v1_arena != 0 || $deaths_2v2_arena != 0 || $deaths_4v4_arena != 0) {
+				                					$kd_ab_o = round((($kills_1v1_arena + $kills_2v2_arena + $kills_4v4_arena) / ($deaths_1v1_arena + $deaths_2v2_arena + $deaths_4v4_arena)), 2);
+				                				}
+
+				                				if ($losses_1v1_arena != 0 || $losses_2v2_arena != 0 || $losses_4v4_arena != 0) {
+				                					$wl_ab_o = round((($wins_1v1_arena + $wins_2v2_arena + $wins_4v4_arena) / ($losses_1v1_arena + $losses_2v2_arena + $losses_4v4_arena)), 2);
+				                				}
+
+				                				if ($deaths_1v1_arena != 0) {
+				                					$kd_ab_1 = round(($kills_1v1_arena / $deaths_1v1_arena), 2);
+				                				}
+
+				                				if ($losses_1v1_arena != 0) {
+				                					$wl_ab_1 = round(($wins_1v1_arena / $losses_1v1_arena), 2);
+				                				}
+
+				                				if ($deaths_2v2_arena != 0) {
+				                					$kd_ab_2 = round(($kills_2v2_arena / $deaths_2v2_arena), 2);
+				                				}
+
+				                				if ($losses_2v2_arena != 0) {
+				                					$wl_ab_2 = round(($wins_2v2_arena / $losses_2v2_arena), 2);
+				                				}
+
+				                				if ($deaths_4v4_arena != 0) {
+				                					$kd_ab_4 = round(($kills_4v4_arena / $deaths_4v4_arena), 2);
+				                				}
+
+				                				if ($losses_4v4_arena != 0) {
+				                					$wl_ab_4 = round(($wins_4v4_arena / $losses_4v4_arena), 2);
+				                				}
+				                			?>
+
 				                			<h2>Arena Brawl</h2>
 				                			<p><b>Leaderboard Position:</b> </p>
 				                			<p><b>Coins:</b> <?php echo number_format($coins_arena); ?></p>
@@ -432,8 +502,8 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Games Played:</b> <?php echo number_format($games_1v1_arena + $games_2v2_arena + $games_4v4_arena); ?></p>
 				                			<p><b>Damage:</b> <?php echo number_format($damage_1v1_arena + $damage_2v2_arena + $damage_4v4_arena); ?></p>
 				                			<p><b>Healed:</b> <?php echo number_format($healed_1v1_arena + $healed_2v2_arena + $healed_4v4_arena); ?></p>
-				                			<p><b>K/D:</b> <?php echo round((($kills_1v1_arena + $kills_2v2_arena + $kills_4v4_arena) / ($deaths_1v1_arena + $deaths_2v2_arena + $deaths_4v4_arena)), 2); ?></p>
-				                			<p><b>W/L:</b> <?php echo round((($wins_1v1_arena + $wins_2v2_arena + $wins_4v4_arena) / ($losses_1v1_arena + $losses_2v2_arena + $losses_4v4_arena)), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $kd_ab_o; ?></p>
+				                			<p><b>W/L:</b> <?php echo $wl_ab_o; ?></p>
 
 				                			<br>
 
@@ -445,8 +515,8 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Games Played:</b> <?php echo number_format($games_1v1_arena); ?></p>
 				                			<p><b>Damage:</b> <?php echo number_format($damage_1v1_arena); ?></p>
 				                			<p><b>Healed:</b> <?php echo number_format($healed_1v1_arena); ?></p>
-				                			<p><b>K/D:</b> <?php echo round(($kills_1v1_arena / $deaths_1v1_arena), 2); ?></p>
-				                			<p><b>W/L:</b> <?php echo round(($wins_1v1_arena / $losses_1v1_arena), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $kd_ab_1; ?></p>
+				                			<p><b>W/L:</b> <?php echo $wl_ab_1; ?></p>
 				                			
 				                			<br>
 
@@ -458,8 +528,8 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Games Played:</b> <?php echo number_format($games_2v2_arena); ?></p>
 				                			<p><b>Damage:</b> <?php echo number_format($damage_2v2_arena); ?></p>
 				                			<p><b>Healed:</b> <?php echo number_format($healed_2v2_arena); ?></p>
-				                			<p><b>K/D:</b> <?php echo round(($kills_2v2_arena / $deaths_2v2_arena), 2); ?></p>
-				                			<p><b>W/L:</b> <?php echo round(($wins_2v2_arena / $losses_2v2_arena), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $kd_ab_2; ?></p>
+				                			<p><b>W/L:</b> <?php echo $wl_ab_2; ?></p>
 
 				                			<br>
 
@@ -471,8 +541,8 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Games Played:</b> <?php echo number_format($games_4v4_arena); ?></p>
 				                			<p><b>Damage:</b> <?php echo number_format($damage_4v4_arena); ?></p>
 				                			<p><b>Healed:</b> <?php echo number_format($healed_4v4_arena); ?></p>
-				                			<p><b>K/D:</b> <?php echo round(($kills_4v4_arena / $deaths_4v4_arena), 2); ?></p>
-				                			<p><b>W/L:</b> <?php echo round(($wins_4v4_arena / $losses_4v4_arena), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $kd_ab_4; ?></p>
+				                			<p><b>W/L:</b> <?php echo $wl_ab_4; ?></p>
 
 				                		</div>
 				                	</div>
@@ -561,14 +631,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 				                			<br>
 
-											<h3>TNT Run</h3>
-				                			<p><b>Wins:</b> <?php echo number_format($wins_tntrun_tnt); ?></p>
-				                			<p><b>Losses:</b> <?php echo number_format($deaths_tntrun_tnt); ?></p>
-				                			<p><b>Record:</b> <?php echo number_format($record_tntrun_tnt); ?></p>
-				                			<p><b>W/L:</b> <?php echo round(($wins_4v4_arena / $losses_4v4_arena), 2); ?></p>
-
-				                			<br>
-
 											<p><b>Kills:</b> <?php echo number_format($kills_bw); ?></p>
 				                			<p><b>Void Kills:</b> <?php echo number_format($void_kills_bw); ?></p>
 				                			<p><b>Final Kills:</b> <?php echo number_format($final_kills_bw); ?></p>
@@ -588,6 +650,31 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		                		<div id="tnt" class="collapse">
 									<div class="card">
 		        						<div class="card-body">
+
+		        							<?php
+		        								$tntrun_wl = 0.0;
+		        								$bs_wl = 0.0;
+		        								$pvprun_kd = 0.0;
+		        								$wiz_kd = 0.0;
+				                			
+				                				if ($deaths_tntrun_tnt != 0) {
+				                					$tntrun_wl = round(($wins_tntrun_tnt / $deaths_tntrun_tnt), 2);
+				                				}
+
+				                				if ($deaths_bowspleef_tnt != 0) {
+				                					$bs_wl = round(($wins_bowspleef_tnt / $deaths_bowspleef_tnt), 2);
+				                				}
+
+				                				if ($deaths_pvprun_tnt != 0) {
+				                					$pvprun_kd = round(($kills_pvprun_tnt / $deaths_pvprun_tnt), 2);
+				                				}
+
+				                				if ($deaths_wizards_tnt != 0) {
+				                					$wiz_kd = round(($kills_wizards_tnt / $deaths_wizards_tnt), 2);
+				                				}
+
+				                			?>
+
 				                			<h2>TNTGames</h2>
 				                			<p><b>Leaderboard Position:</b> <?php echo getLeaderboardPosition($connection, $name, "tnt"); ?></p>
 				                			<p><b>Coins:</b> <?php echo number_format($coins_tnt); ?></p>
@@ -601,7 +688,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Wins:</b> <?php echo number_format($wins_tntrun_tnt); ?></p>
 				                			<p><b>Losses:</b> <?php echo number_format($deaths_tntrun_tnt); ?></p>
 				                			<p><b>Record:</b> <?php echo number_format($record_tntrun_tnt); ?></p>
-				                			<p><b>W/L:</b> <?php echo round(($wins_tntrun_tnt / $deaths_tntrun_tnt), 2); ?></p>
+				                			<p><b>W/L:</b> <?php echo $tntrun_wl; ?></p>
 
 
 				                			<br>
@@ -615,7 +702,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<h3>Bow Spleef</h3>
 				                			<p><b>Wins:</b> <?php echo number_format($wins_bowspleef_tnt); ?></p>
 				                			<p><b>Deaths:</b> <?php echo number_format($deaths_bowspleef_tnt); ?></p>
-				                			<p><b>W/L:</b> <?php echo round(($wins_bowspleef_tnt / $deaths_bowspleef_tnt), 2); ?></p>
+				                			<p><b>W/L:</b> <?php echo $bs_wl; ?></p>
 
 				                			<br>
 
@@ -624,7 +711,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Kills:</b> <?php echo number_format($kills_pvprun_tnt); ?></p>
 				                			<p><b>Deaths:</b> <?php echo number_format($deaths_pvprun_tnt); ?></p>
 				                			<p><b>Record:</b> <?php echo number_format($record_pvprun_tnt); ?></p>
-				                			<p><b>K/D:</b> <?php echo round(($kills_pvprun_tnt / $deaths_pvprun_tnt), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $pvprun_kd; ?></p>
 
 				                			<h3>TNT Wizards</h3>
 				                			<p><b>Wins:</b> <?php echo number_format($wins_wizards_tnt); ?></p>
@@ -632,7 +719,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                			<p><b>Deaths:</b> <?php echo number_format($deaths_wizards_tnt); ?></p>
 				                			<p><b>Assists:</b> <?php echo number_format($assists_wizards_tnt); ?></p>
 				                			<p><b>Points Captured:</b> <?php echo number_format($points_wizards_tnt); ?></p>
-				                			<p><b>K/D:</b> <?php echo round(($kills_wizards_tnt / $deaths_wizards_tnt), 2); ?></p>
+				                			<p><b>K/D:</b> <?php echo $wiz_kd; ?></p>
 
 				                		</div>
 				                	</div>
