@@ -1,13 +1,13 @@
 <?php
 
 	function getOverallPaintballLeaderboard($connection) {
-        $query = "SELECT name, rank, rank_colour, coins_paintball, deaths_paintball, forcefield_time_paintball, wins_paintball, kills_paintball, killstreaks_paintball, shots_fired_paintball, hat_paintball FROM player ORDER BY kills_paintball DESC";
+        $query = "SELECT name, rank, rank_colour, coins_paintball, deaths_paintball, forcefield_time_paintball, wins_paintball, kills_paintball, killstreaks_paintball, shots_fired_paintball, hat_paintball FROM player ORDER BY kills_paintball DESC LIMIT 500";
         $result = $connection->query($query);
         return $result;
 	}
 
     function getOverallWallsLeaderboard($connection) {
-        $query = "SELECT name, rank, rank_colour, coins_walls, deaths_walls, assists_walls, wins_walls, losses_walls, kills_walls FROM player ORDER BY wins_walls DESC";
+        $query = "SELECT name, rank, rank_colour, coins_walls, deaths_walls, assists_walls, wins_walls, losses_walls, kills_walls FROM player ORDER BY wins_walls DESC LIMIT 500";
         $result = $connection->query($query);
         return $result;
     }

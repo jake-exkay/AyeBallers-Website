@@ -49,22 +49,25 @@
 		$most_recent_game = !empty($gen_s->mostRecentGameType) ? $gen_s->mostRecentGameType : "Unknown";
 
 		// Define rank data endpoints.
-		$staff_rank = !empty($gen_s->rank) ? $gen_s->rank : "None";
-		$monthly_package_rank = !empty($gen_s->monthlyPackageRank) ? $gen_s->monthlyPackageRank : "None";
-		$package_rank = !empty($gen_s->packageRank) ? $gen_s->packageRank : "None";
-		$new_package_rank = !empty($gen_s->newPackageRank) ? $gen_s->newPackageRank : "None";
-        
-        if ($package_rank != "None") {
-            $rank = $package_rank;
-        } else if ($new_package_rank != "None") {
-            $rank = $new_package_rank;
-        } else if ($monthly_package_rank != "None") {
-            $rank = $monthly_package_rank;
-        } else if ($staff_rank != "None") {
-			$rank = $staff_rank;
-		} else {
-			$rank = "DEFAULT";
-		}
+		$staff_rank = !empty($gen_s->rank) ? $gen_s->rank : "NONE";
+		$monthly_package_rank = !empty($gen_s->monthlyPackageRank) ? $gen_s->monthlyPackageRank : "NONE";
+		$package_rank = !empty($gen_s->packageRank) ? $gen_s->packageRank : "NONE";
+		$new_package_rank = !empty($gen_s->newPackageRank) ? $gen_s->newPackageRank : "NONE";
+
+        if ($staff_rank == "NORMAL" || $staff_rank == "NONE") {
+            if ($monthly_package_rank == "NONE") {
+                if ($new_package_rank == "NONE") {
+                    $rank = $package_rank;
+                } else {
+                    $rank = $new_package_rank;
+                }
+            } else {
+                $rank = $monthly_package_rank;
+            }
+        } else {
+            $rank = $staff_rank;
+        }
+    
 
         // Define Paintball endpoints.
 		$kills_paintball = !empty($pb_s->kills) ? $pb_s->kills : 0;
@@ -212,6 +215,7 @@
 	        if ($statement = mysqli_prepare($connection, $query)) {
 	            mysqli_stmt_bind_param($statement, "siisiiiiisiiiiiiisisiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisiiiiiiiiiii", $name, $kills_paintball, $wins_paintball, $kill_prefix_paintball, $coins_paintball, $deaths_paintball, $forcefield_time_paintball, $killstreaks_paintball, $shots_fired_paintball, $hat_paintball, $adrenaline_paintball, $endurance_paintball, $fortune_paintball, $godfather_paintball, $superluck_paintball, $transfusion_paintball, $karma, $most_recent_game, $achievement_points, $rank_colour, $coins_quake, $deaths_quake, $kills_quake, $killstreaks_quake, $wins_quake, $kills_teams_quake, $deaths_teams_quake, $wins_teams_quake, $killstreaks_teams_quake, $highest_killstreak_quake, $shots_fired_teams_quake, $headshots_teams_quake, $headshots_quake, $shots_fired_quake, $distance_travelled_teams_quake, $distance_travelled_quake, $coins_arena, $coins_spent_arena, $keys_arena, $rating_arena, $damage_2v2_arena, $damage_4v4_arena, $damage_1v1_arena, $deaths_2v2_arena, $deaths_4v4_arena, $deaths_1v1_arena, $games_2v2_arena, $games_4v4_arena, $games_1v1_arena, $healed_2v2_arena, $healed_4v4_arena, $healed_1v1_arena, $kills_2v2_arena, $kills_4v4_arena, $kills_1v1_arena, $losses_2v2_arena, $losses_4v4_arena, $losses_1v1_arena, $wins_2v2_arena, $wins_4v4_arena, $wins_1v1_arena, $rank, $coins_tkr, $box_pickups_tkr, $coins_picked_up_tkr, $silver_trophy_tkr, $wins_tkr, $laps_completed_tkr, $gold_trophy_tkr, $bronze_trophy_tkr, $olympus_tkr, $junglerush_tkr, $hypixelgp_tkr, $retro_tkr, $canyon_tkr, $coins_vz, $human_deaths_vz, $human_kills_vz, $vampire_kills_vz, $vampire_deaths_vz, $zombie_kills_vz, $most_vampire_kills_vz, $human_wins_vz, $gold_bought_vz, $vampire_wins_vz, $coins_walls, $deaths_walls, $kills_walls, $losses_walls, $wins_walls, $assists_walls, $experience_bw, $coins_bw, $deaths_bw, $diamond_collected_bw, $iron_collected_bw, $gold_collected_bw, $emerald_collected_bw, $final_deaths_bw, $losses_bw, $kills_bw, $items_purchased_bw, $resources_collected_bw, $games_played_bw, $void_kills_bw, $void_deaths_bw, $beds_broken_bw, $winstreak_bw, $final_kills_bw, $wins_bw, $time_played, $network_exp, $deaths_bowspleef_tnt, $coins_tnt, $deaths_wizards_tnt, $kills_wizards_tnt, $wins_bowspleef_tnt, $wins_wizards_tnt, $wins_tntrun_tnt, $record_tntrun_tnt, $selected_hat_tnt, $assists_wizards_tnt, $deaths_tntrun_tnt, $winstreak_tnt, $wins_tnt, $kills_tnttag_tnt, $wins_tnttag_tnt, $points_wizards_tnt, $kills_pvprun_tnt, $wins_pvprun_tnt, $deaths_pvprun_tnt, $record_pvprun_tnt);
 	            mysqli_stmt_execute($statement);
+                updateStatsLog($connection, $name, $_SERVER['REMOTE_ADDR']);
 	            return true;
 	        } else {
 	            echo '<b>[ERROR:1] ' . $name . ' </b>An Error Occured!<br>'; 
@@ -224,6 +228,7 @@
 	        if ($statement = mysqli_prepare($connection, $query)) {
 	            mysqli_stmt_bind_param($statement, "ssiisiiiiisiiiiiiisisiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisiiiiiiiiiii", $uuid, $name, $kills_paintball, $wins_paintball, $kill_prefix_paintball, $coins_paintball, $deaths_paintball, $forcefield_time_paintball, $killstreaks_paintball, $shots_fired_paintball, $hat_paintball, $adrenaline_paintball, $endurance_paintball, $fortune_paintball, $godfather_paintball, $superluck_paintball, $transfusion_paintball, $karma, $most_recent_game, $achievement_points, $rank_colour, $coins_quake, $deaths_quake, $kills_quake, $killstreaks_quake, $wins_quake, $kills_teams_quake, $deaths_teams_quake, $wins_teams_quake, $killstreaks_teams_quake, $highest_killstreak_quake, $shots_fired_teams_quake, $headshots_teams_quake, $headshots_quake, $shots_fired_quake, $distance_travelled_teams_quake, $distance_travelled_quake, $coins_arena, $coins_spent_arena, $keys_arena, $rating_arena, $damage_2v2_arena, $damage_4v4_arena, $damage_1v1_arena, $deaths_2v2_arena, $deaths_4v4_arena, $deaths_1v1_arena, $games_2v2_arena, $games_4v4_arena, $games_1v1_arena, $healed_2v2_arena, $healed_4v4_arena, $healed_1v1_arena, $kills_2v2_arena, $kills_4v4_arena, $kills_1v1_arena, $losses_2v2_arena, $losses_4v4_arena, $losses_1v1_arena, $wins_2v2_arena, $wins_4v4_arena, $wins_1v1_arena, $rank, $coins_tkr, $box_pickups_tkr, $coins_picked_up_tkr, $silver_trophy_tkr, $wins_tkr, $laps_completed_tkr, $gold_trophy_tkr, $bronze_trophy_tkr, $olympus_tkr, $junglerush_tkr, $hypixelgp_tkr, $retro_tkr, $canyon_tkr, $coins_vz, $human_deaths_vz, $human_kills_vz, $vampire_kills_vz, $vampire_deaths_vz, $zombie_kills_vz, $most_vampire_kills_vz, $human_wins_vz, $gold_bought_vz, $vampire_wins_vz, $coins_walls, $deaths_walls, $kills_walls, $losses_walls, $wins_walls, $assists_walls, $experience_bw, $coins_bw, $deaths_bw, $diamond_collected_bw, $iron_collected_bw, $gold_collected_bw, $emerald_collected_bw, $final_deaths_bw, $games_played_bw, $losses_bw, $kills_bw, $items_purchased_bw, $resources_collected_bw, $void_kills_bw, $void_deaths_bw, $beds_broken_bw, $winstreak_bw, $final_kills_bw, $wins_bw, $time_played, $network_exp, $deaths_bowspleef_tnt, $coins_tnt, $deaths_wizards_tnt, $kills_wizards_tnt, $wins_bowspleef_tnt, $wins_wizards_tnt, $wins_tntrun_tnt, $record_tntrun_tnt, $selected_hat_tnt, $assists_wizards_tnt, $deaths_tntrun_tnt, $winstreak_tnt, $wins_tnt, $kills_tnttag_tnt, $wins_tnttag_tnt, $points_wizards_tnt, $kills_pvprun_tnt, $wins_pvprun_tnt, $deaths_pvprun_tnt, $record_pvprun_tnt);
 	            mysqli_stmt_execute($statement);
+                updateStatsLog($connection, $name, $_SERVER['REMOTE_ADDR']);
 	            return true;
 	        } else {
 	            echo '<b>[ERROR:2] ' . $name . ' </b>An Error Occured!<br>'; 
@@ -395,6 +400,11 @@
         $GROWTH_DIVIDES_2 = 2 / $GROWTH;
 
         return $exp < 0 ? 1 : floor(1 + $REVERSE_PQ_PREFIX + sqrt($REVERSE_CONST + $GROWTH_DIVIDES_2 * $exp));
+    }
+
+    function updateStatsLog($connection, $name, $ip) {
+        $query = "INSERT INTO stats_log (updated_time, action, IP) VALUES (now(), '$name', '$ip')";         
+        mysqli_query($connection, $query);
     }
 
 ?>
