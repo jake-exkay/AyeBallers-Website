@@ -84,7 +84,7 @@
         echo '</div>';
     }
 
-    function displayGuildMemberUpdateButton() {
+    function displayGuildMemberUpdateButton($API_KEY) {
         echo '<div>';
         if (apiLimitReached($API_KEY)) {
             echo '<button type="submit" title="API limit reached, please refresh the page." class="btn btn-danger">Update</button>';

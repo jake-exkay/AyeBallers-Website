@@ -5,7 +5,7 @@
 
         <?php include "../../../includes/links.php"; ?>
 
-        <title>AyeBallers Leaderboard - Turbo Kart Racers</title>
+        <title>Overall Leaderboard - Turbo Kart Racers</title>
 
         <?php
 
@@ -15,7 +15,7 @@
             include "../../../functions/display_functions.php";
             include "../../../functions/database/query_functions.php";
 
-            updatePageViews($connection, 'tkr_guild_leaderboard', $DEV_IP);
+            updatePageViews($connection, 'tkr_overall_leaderboard', $DEV_IP);
 
         ?>
 
@@ -32,12 +32,12 @@
 
                         <ol class="breadcrumb mb-4">
 
-                            <form style="margin-right: 10px;" action="../overall/tkr.php">
-                                <button type="submit" class="btn btn-primary">Overall Leaderboard</button>
+                            <form style="margin-right: 10px;" action="tkr.php">
+                                <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
                             </form>
 
-                            <form action="tkr.php">
-                                <button type="submit" class="btn btn-primary active">AyeBallers Leaderboard</button>
+                            <form action="../guild/tkr.php">
+                                <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
                             </form>
 
                         </ol>
@@ -45,10 +45,11 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                AyeBallers Leaderboard - Turbo Kart Racers
+                                Overall Leaderboard - Turbo Kart Racers
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
+
                                     <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">     
                                         <thead class="thead-dark">
                                             <tr>
@@ -70,7 +71,7 @@
 
                                             $i = 1;
 
-                                            $result = getTkrGuildLeaderboard($connection);
+                                            $result = getOverallTkrLeaderboard($connection);
 
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {

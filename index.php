@@ -11,6 +11,7 @@
  */
 
 require "includes/links.php";
+require "includes/constants.php";
 require "functions/functions.php";
 require "functions/display_functions.php";
 require "functions/text_constants.php";

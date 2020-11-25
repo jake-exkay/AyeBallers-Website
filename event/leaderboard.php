@@ -69,7 +69,7 @@
 
                                             $i = 1;
 
-                                            $query = "SELECT * FROM asdasd ORDER BY total_points DESC";
+                                            $query = "SELECT * FROM pb3 ORDER BY total_points DESC";
                                             $result = $connection->query($query);
 
                                             if ($result->num_rows > 0) {
@@ -93,11 +93,9 @@
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         if ($name == 'recordheat') {
-                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (1st)" height="25" width="auto" src="../assets/img/gold.png"/></td>';
-                                                        } else if ($name == 'pcint') {
+                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner" height="25" width="auto" src="../assets/img/gold.png"/></td>';
+                                                        } else if ($name == 'Pablojor') {
                                                             echo '<td>' . $name . ' <img title="Previous Tournament Winner (2nd)" height="25" width="auto" src="../assets/img/silver.png"/></td>';
-                                                        } else if ($name == 'gibbgibb') {
-                                                            echo '<td>' . $name . ' <img title="Previous Tournament Winner (3rd)" height="25" width="auto" src="../assets/img/bronze.png"/></td>';
                                                         } else if ($name == 'ExKay') {
                                                         echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
                                                         } else if ($name == 'Emilyie') {

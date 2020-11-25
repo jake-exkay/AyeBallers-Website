@@ -54,13 +54,13 @@
                                 </div>
                                 Quakecraft
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/guild/tkr.php">
+                            <a class="nav-link" href="../../../leaderboard/classic/overall/tkr.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>
                                 Turbo Kart Racers
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/guild/vampirez.php">
+                            <a class="nav-link" href="../../../leaderboard/classic/overall/vampirez.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>

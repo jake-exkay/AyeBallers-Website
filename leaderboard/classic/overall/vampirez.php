@@ -5,7 +5,7 @@
 
         <?php include "../../../includes/links.php"; ?>
 
-        <title>AyeBallers Leaderboard - Turbo Kart Racers</title>
+        <title>Overall Leaderboard - VampireZ</title>
 
         <?php
 
@@ -15,7 +15,7 @@
             include "../../../functions/display_functions.php";
             include "../../../functions/database/query_functions.php";
 
-            updatePageViews($connection, 'tkr_guild_leaderboard', $DEV_IP);
+            updatePageViews($connection, 'vz_overall_leaderboard', $DEV_IP);
 
         ?>
 
@@ -28,16 +28,16 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Turbo Kart Racers Leaderboard</h1>
+                        <h1 class="mt-4">VampireZ Leaderboard</h1>
 
                         <ol class="breadcrumb mb-4">
 
-                            <form style="margin-right: 10px;" action="../overall/tkr.php">
-                                <button type="submit" class="btn btn-primary">Overall Leaderboard</button>
+                            <form style="margin-right: 10px;" action="vampirez.php">
+                                <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
                             </form>
 
-                            <form action="tkr.php">
-                                <button type="submit" class="btn btn-primary active">AyeBallers Leaderboard</button>
+                            <form action="../guild/vampirez.php">
+                                <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
                             </form>
 
                         </ol>
@@ -45,23 +45,26 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                AyeBallers Leaderboard - Turbo Kart Racers
+                                Overall Leaderboard - VampireZ
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
+
                                     <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">     
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Position (Trophies)</th>
+                                                <th>Position (Human Wins)</th>
                                                 <th>Name</th>
-                                                <th>Total Trophies</th>
-                                                <th>Gold Trophies</th>
-                                                <th>Silver Trophies</th>
-                                                <th>Bronze Trophies</th>
+                                                <th>Human Wins</th>
+                                                <th>Vampire Wins</th>
                                                 <th>Coins</th>
-                                                <th>Laps Completed</th>
-                                                <th>Coin Pickups</th>
-                                                <th>Box Pickups</th>
+                                                <th>Vampire Kills</th>
+                                                <th>Human Kills</th>
+                                                <th>Gold Bought</th>
+                                                <th>Zombie Kills</th>
+                                                <th>Most Vampire Kills</th>
+                                                <th>Human Deaths</th>
+                                                <th>Vampire Deaths</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -70,21 +73,23 @@
 
                                             $i = 1;
 
-                                            $result = getTkrGuildLeaderboard($connection);
+                                            $result = getOverallVampirezLeaderboard($connection);
 
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
                                                     $name = $row['name'];
                                                     $rank = $row['rank'];
                                                     $rank_colour = $row['rank_colour'];
-                                                    $coins = $row['coins_tkr'];
-                                                    $wins = $row['wins_tkr'];
-                                                    $gold_trophy = $row['gold_trophy_tkr'];
-                                                    $silver_trophy = $row['silver_trophy_tkr'];
-                                                    $bronze_trophy = $row['bronze_trophy_tkr'];
-                                                    $laps_completed = $row['laps_completed_tkr'];
-                                                    $box_pickups = $row['box_pickups_tkr'];
-                                                    $coin_pickups = $row['coins_picked_up_tkr'];
+                                                    $coins = $row['coins_vz'];
+                                                    $human_wins = $row['human_wins_vz'];
+                                                    $vampire_wins = $row['vampire_wins_vz'];
+                                                    $vampire_kills = $row['vampire_kills_vz'];
+                                                    $human_kills = $row['human_kills_vz'];
+                                                    $gold_bought = $row['gold_bought_vz'];
+                                                    $zombie_kills = $row['zombie_kills_vz'];
+                                                    $most_vampire_kills = $row['most_vampire_kills_vz'];
+                                                    $human_deaths = $row['human_deaths_vz'];
+                                                    $vampire_deaths = $row['vampire_deaths_vz'];
 
                                                     $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
@@ -95,14 +100,16 @@
                                                         } else {
                                                             echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
                                                         }
-                                                        echo '<td>' . number_format($wins) . '</td>';
-                                                        echo '<td>' . number_format($gold_trophy) . '</td>';
-                                                        echo '<td>' . number_format($silver_trophy) . '</td>';
-                                                        echo '<td>' . number_format($bronze_trophy) . '</td>';
+                                                        echo '<td>' . number_format($human_wins) . '</td>';
+                                                        echo '<td>' . number_format($vampire_wins) . '</td>';
                                                         echo '<td>' . number_format($coins) . '</td>';
-                                                        echo '<td>' . number_format($laps_completed) . '</td>';
-                                                        echo '<td>' . number_format($coin_pickups) . '</td>';
-                                                        echo '<td>' . number_format($box_pickups) . '</td>';
+                                                        echo '<td>' . number_format($vampire_kills) . '</td>';
+                                                        echo '<td>' . number_format($human_kills) . '</td>';
+                                                        echo '<td>' . number_format($gold_bought) . '</td>';
+                                                        echo '<td>' . number_format($zombie_kills) . '</td>';
+                                                        echo '<td>' . number_format($most_vampire_kills) . '</td>';
+                                                        echo '<td>' . number_format($human_deaths) . '</td>';
+                                                        echo '<td>' . number_format($vampire_deaths) . '</td>';
 
                                                     echo '</tr>'; 
                                                     $i = $i + 1;

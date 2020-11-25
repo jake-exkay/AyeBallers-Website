@@ -27,8 +27,6 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
 
         <title>Guild - AyeBallers</title>
 
-    
-
     </head>
 
     <body class="sb-nav-fixed">
@@ -46,7 +44,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                     </center>   
 
                     <br>
-                    <center><?php displayGuildMemberUpdateButton(); ?></center>
+                    <center><?php displayGuildMemberUpdateButton($API_KEY); ?></center>
                     <br>
 
                     <div class="row">
