@@ -66,6 +66,12 @@
         return $result;
     }
 
+    function getPaintballGuildLeaderboard($connection) {
+        $query = "SELECT guild_members_current.name, player.rank, player.rank_colour, player.coins_paintball, player.deaths_paintball, player.wins_paintball, player.kills_paintball, player.hat_paintball, player.shots_fired_paintball, player.forcefield_time_paintball, player.killstreaks_paintball FROM player INNER JOIN guild_members_current ON player.UUID = guild_members_current.UUID ORDER BY player.kills_paintball DESC";
+        $result = $connection->query($query);
+        return $result;
+    }
+
     function getWarlordsLeaderboard($connection) {
         $query = "SELECT * FROM warlords ORDER BY wins DESC";
         $result = $connection->query($query);
