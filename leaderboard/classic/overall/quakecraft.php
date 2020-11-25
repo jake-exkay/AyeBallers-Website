@@ -120,7 +120,7 @@
                                                         }
                                                         echo '<td>' . number_format($kills + $kills_teams_quake) . '</td>';
                                                         echo '<td>' . number_format($wins + $wins_teams_quake) . '</td>';
-                                                        echo '<td>' . number_format($coins_quake) . '</td>';
+                                                        echo '<td>' . number_format($coins) . '</td>';
                                                         echo '<td>' . number_format($deaths_quake + $deaths_teams_quake) . '</td>';
                                                         echo '<td>' . number_format($shots_fired_quake + $shots_fired_teams_quake) . '</td>';
                                                         echo '<td>' . number_format($killstreaks_quake + $killstreaks_teams_quake) . '</td>';
