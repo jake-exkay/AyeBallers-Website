@@ -72,6 +72,12 @@
         return $result;
     }
 
+    function getQuakeGuildLeaderboard($connection) {
+        $query = "SELECT guild_members_current.name, player.rank, player.rank_colour, player.coins_quake, player.kills_quake, player.kills_teams_quake, player.wins_teams_quake, player.wins_quake, player.deaths_quake, player.deaths_teams_quake, player.headshots_quake, player.headshots_teams_quake, player.shots_fired_teams_quake, player.shots_fired_quake, player.distance_travelled_teams_quake, player.distance_travelled_quake, player.highest_killstreak_quake, player.killstreaks_teams_quake, player.killstreaks_quake FROM player INNER JOIN guild_members_current ON player.UUID = guild_members_current.UUID ORDER BY (player.kills_quake + player.kills_teams_quake) DESC";
+        $result = $connection->query($query);
+        return $result;
+    }
+
     function getPaintballGuildLeaderboard($connection) {
         $query = "SELECT guild_members_current.name, player.rank, player.rank_colour, player.coins_paintball, player.deaths_paintball, player.wins_paintball, player.kills_paintball, player.hat_paintball, player.shots_fired_paintball, player.forcefield_time_paintball, player.killstreaks_paintball FROM player INNER JOIN guild_members_current ON player.UUID = guild_members_current.UUID ORDER BY player.kills_paintball DESC";
         $result = $connection->query($query);
