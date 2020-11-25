@@ -12,6 +12,12 @@
         return $result;
     }
 
+    function getOverallQuakeLeaderboard($connection) {
+        $query = "SELECT name, rank, rank_colour, coins_quake, kills_quake, wins_quake, deaths_quake, killstreaks_quake, kills_teams_quake, deaths_teams_quake, wins_teams_quake, killstreaks_teams_quake, highest_killstreak_quake, shots_fired_teams_quake, headshots_teams_quake, headshots_quake, shots_fired_quake, distance_travelled_teams_quake, distance_travelled_quake FROM player ORDER BY (kills_quake + kills_teams_quake) DESC LIMIT 500";
+        $result = $connection->query($query);
+        return $result;
+    }
+
 	function getTntLeaderboard($connection) {
         $query = "SELECT * FROM tntgames ORDER BY total_wins DESC";
         $result = $connection->query($query);

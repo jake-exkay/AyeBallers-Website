@@ -48,7 +48,7 @@
                                 </div>
                                 Paintball
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/guild/quakecraft.php">
+                            <a class="nav-link" href="../../../leaderboard/classic/overall/quakecraft.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>

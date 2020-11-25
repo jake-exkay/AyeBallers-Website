@@ -11,6 +11,7 @@
  */
 
 require "includes/links.php";
+require "functions/functions.php";
 require "functions/display_functions.php";
 require "functions/text_constants.php";
 
@@ -79,10 +80,9 @@ updatePageViews($connection, 'home_page', $DEV_IP);
 
 		                    <center>
 		                        
-
-		                            <?php displayStaffMember("Emirichuwu", "Leader", "Leadership + Event Management"); ?>
+                                    <?php displayStaffMember("PotAccuracy", "Leader", "Founder"); ?>
+		                            <?php displayStaffMember("Emirichuwu", "Admin", "Event Management"); ?>
 		                            <?php displayStaffMember("AyeCool", "Admin", "Founder"); ?>
-		                            <?php displayStaffMember("PotAccuracy", "Admin", "Founder"); ?>
 		                            <?php displayStaffMember("ExKay", "Admin", "Site Management"); ?>
 		                            <?php displayStaffMember("Penderdrill", "Officer", "Officer"); ?>
 		                            <?php displayStaffMember("zweg", "Officer", "Officer"); ?>
