@@ -19,7 +19,7 @@
             include "../functions/functions.php";
             include "event_functions.php";
 
-            updatePageViews($connection, 'pb2_leaderboard', $DEV_IP);
+            updatePageViews($connection, 'pb3_leaderboard', $DEV_IP);
 
         ?>
 
@@ -34,25 +34,12 @@
                     <div class="container-fluid">
                         <center>
                             <br>
-                            <b><h1 class="ayeballers_font">PAINTBALL TOURNAMENT #2</h1></b>
+                            <b><h1 class="ayeballers_font">Paintball Tournament</h1></b>
                             <center>
-                                <h3 class="ayeballers_font">(Tournament has ended)</h3>
+                                <h3 class="ayeballers_font">(Coming Soon)</h3>
                             </center>
                                     
-                            <br><br>
-                            
-                            <div class="row">
-                                <div class="col-md-6 text-center">
-                                    <form action="https://hypixel.net/threads/paintball-tournament-v2-win-real-money.3045096/">
-                                        <button type="submit" class="btn btn-primary">Event Thread</button>
-                                    </form>
-                                </div>
-                                <div class="col-md-6 text-center">
-                                    <form action="https://hypixel.net/threads/paintball-tournament-official-community-tournament-win-real-money.2831526/">
-                                        <button type="submit" class="btn btn-primary">Previous Tournament</button>
-                                    </form>
-                                </div>
-                            </div>
+                            <br>
 
                         </center>
                         
@@ -65,49 +52,6 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <div>
-                                        <?php if (eventStatus($connection) == 1) { ?>
-                                            <?php if ($mins < 5) { ?>
-                                                <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-danger">Update</button>
-                                                <?php
-                                                    if ($mins == 0) {
-                                                        echo "<i>Last Updated: A moment ago</i>";
-                                                    } elseif ($mins == 1) {
-                                                        echo "<i>Last Updated: " . $mins . " minute ago</i>";
-                                                    } else {
-                                                        echo "<i>Last Updated: " . $mins . " minutes ago</i>";
-                                                    }
-                                                ?>
-                                                <h6><i>(Leaderboard data can be updated every 5 minutes)</i></h6>
-                                                <?php } else { ?>
-                                                    <form action="event_update.php">
-                                                        <button type="submit" title="Last Updated: <?php echo $mins; ?> minutes ago." class="btn btn-success">Update</button>
-                                                        <?php
-                                                            if ($mins == 0) {
-                                                                echo "<i>Last Updated: A moment ago</i>";
-                                                            } elseif ($mins >= 60) {
-                                                                echo "<i>Last Updated: more than an hour ago</i>";
-                                                            } elseif ($mins == 1) {
-                                                                echo "<i>Last Updated: " . $mins . " minute ago</i>";
-                                                            } else {
-                                                                echo "<i>Last Updated: " . $mins . " minutes ago</i>";
-                                                            }
-                                                        ?>
-                                                    </form>
-                                                <?php } ?>
-                                            <?php 
-                                                } elseif (eventStatus($connection) == 2) { 
-                                                    echo "<i>Event is finished, showing final results.</i>";
-                                                } elseif (eventStatus($connection) == 0) {
-                                                    echo "<i>Event has not started.</i>";
-                                                } else {
-                                                    echo "<i>Event has not started.</i>";
-                                                }
-
-
-                                            ?>
-                                    </div>
-                                    <br>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead class="thead-dark">
                                             <tr>
@@ -125,7 +69,7 @@
 
                                             $i = 1;
 
-                                            $query = "SELECT * FROM event ORDER BY total_points DESC";
+                                            $query = "SELECT * FROM asdasd ORDER BY total_points DESC";
                                             $result = $connection->query($query);
 
                                             if ($result->num_rows > 0) {

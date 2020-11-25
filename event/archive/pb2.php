@@ -66,7 +66,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div>
-                                        <i>Event is finished, showing final results.</i>
+                                        <i>Event has finished, showing final results.</i>
                                     </div>
                                     <br>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
