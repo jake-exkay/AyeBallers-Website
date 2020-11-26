@@ -43,6 +43,8 @@ updatePageViews($connection, 'admin_dashboard', $DEV_IP);
                             <h2 style="text-align: center; margin: auto; width: 50%; padding: 10px;">Page Views</h2>
                             <canvas id="viewChart" style="max-width: 1000px; margin: auto; width: 50%; padding: 10px;"></canvas>
                         </div>
+                        <div class="col-md-6">
+                        </div>
                     </div>
 
                     <?php

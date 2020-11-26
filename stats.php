@@ -191,11 +191,10 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		                    $network_exp = $row['network_exp'];
 		                    $rank = $row['rank'];
 		                    $rank_colour = $row['rank_colour'];
-		                    $time_played = $row['time_played'];
 		                    $first_login = $row['first_login'];
 		                    $last_login = $row['last_login'];
-		                    $first_login = date("Y-m-d H:i:s", substr((int)$first_login, 0, 10));
-		                    $last_login = date("Y-m-d H:i:s", substr((int)$last_login, 0, 10));
+		                    $first_login = date("Y-m-d H:i:s", (int)substr($first_login, 0, 10));
+		                    $last_login = date("Y-m-d H:i:s", (int)substr($last_login, 0, 10));
 		                }
 		            } else {
 		            	echo $ERR_CANT_GET_PLAYER;
@@ -204,9 +203,11 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 	            		$guild_members = sizeof($guild_json->guild->members);
 	            		$guild_name = $guild_json->guild->name;
 	            		$guild_created = $guild_json->guild->created;
-	            		$guild_created = gmdate('r', $guild_created);
+	            		$guild_created = date("m/d/Y H:i:s", (int)substr($guild_created, 0, 10));
 	            		$guild_desc = $guild_json->guild->description;
 	            		$guild_tag = $guild_json->guild->tag;
+	            		$guild_exp = $guild_json->guild->exp;
+	            		$guild_level = getGuildLevel($guild_exp);
 	            		$guild_tag_colour = $guild_json->guild->tagColor;
 
 	            		if ($guild_tag_colour == "DARK_GREEN") {
@@ -263,9 +264,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		        								<br>
 					                			<p><b>Network Level:</b> <?php echo $network_level; ?> </p>
 					                			<p><b>Achievement Points:</b> <?php echo number_format($achievement_points); ?></p>
-					                			<p><b>Guild:</b> <?php echo $guild_name; ?></p>
 					                			<p><b>Karma:</b> <?php echo number_format($karma); ?></p>
-					                			<p><b>Time Played:</b> <?php echo number_format($time_played / 60); ?> hours</p>
 					                			<p><b>First Login:</b> <?php echo $first_login; ?></p>
 					                			<p><b>Last Login:</b> <?php echo $last_login; ?></p>
 					                			<p><b>Recent Game:</b> <?php echo $recent_game; ?></p>
@@ -280,13 +279,10 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                			<br>
 					                			<p><b>Guild:</b> <?php echo $guild_name; ?></p>
 					                			<p><b>Members:</b> <?php echo $guild_members; ?>/125</p>
-					                			<p><b>Guild Level:</b> </p>
+					                			<p><b>Guild Level:</b> <?php echo $guild_level; ?></p>
 					                			<p><b>Created:</b> <?php echo $guild_created; ?></p>
 					                			<p><b>Description:</b> <?php echo $guild_desc; ?></p>
 					                			<p><b>Tag:</b> <?php echo '<span style="color:' . $tag_colour . ';">' . '[' . $guild_tag . ']' . '</span>'; ?></p>
-					                			<p><b>Most Played Game:</b> </p>
-					                			<p><b><?php echo $name; ?>'s Role In Guild:</b> </p>
-					                			<p><b>Quests Contributed To:</b> </p>
 					                		</div>
 					                	</div>
 				                	</div>
@@ -295,9 +291,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 			                			<div class="card">
 		        							<div class="card-body">
 					                			<h3><?php echo $name; ?>'s Friends</h3>
-					                			<br>
-					                			<br>
-					                			<br>
 					                			<br>
 					                			<br>
 					                			<br>

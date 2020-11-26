@@ -86,7 +86,7 @@
 
                                                     $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
-                                                    if ($kills == 0) {
+                                                    if ($deaths == 0 || $losses == 0) {
                                                         $kd = 0;
                                                         $wl = 0;
                                                     } else {

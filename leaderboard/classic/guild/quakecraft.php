@@ -103,7 +103,7 @@
                                                         $kd = 0;
                                                         $sk = 0;
                                                     } else {
-                                                        $kd = ($kills + $kills_teams_quake) / ($deaths + $deaths_teams_quake);
+                                                        $kd = ($kills + $kills_teams_quake) / ($deaths_quake + $deaths_teams_quake);
                                                         $sk = ($shots_fired_quake + $shots_fired_teams_quake) / ($kills + $kills_teams_quake);
 
                                                         $kd = round($kd, 2);
@@ -118,7 +118,7 @@
                                                             echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
                                                         }
                                                         echo '<td>' . number_format($kills + $kills_teams_quake) . '</td>';
-                                                        echo '<td>' . number_format($wins + $wins_teams_quake) . '</td>';
+                                                        echo '<td>' . number_format($wins_quake + $wins_teams_quake) . '</td>';
                                                         echo '<td>' . number_format($coins) . '</td>';
                                                         echo '<td>' . number_format($deaths_quake + $deaths_teams_quake) . '</td>';
                                                         echo '<td>' . number_format($shots_fired_quake + $shots_fired_teams_quake) . '</td>';
