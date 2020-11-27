@@ -286,27 +286,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                		</div>
 					                	</div>
 				                	</div>
-
-				                	<div class="col-md-4" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 20px;">
-			                			<div class="card">
-		        							<div class="card-body">
-					                			<h3><?php echo $name; ?>'s Friends</h3>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                			<br>
-					                		</div>
-					                	</div>
-				                	</div>
-
+				                	
 				                </div>
 
 	                			<br>

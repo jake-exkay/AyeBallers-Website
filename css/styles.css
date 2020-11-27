@@ -48,6 +48,7 @@
 }
 
 @font-face { font-family: BKANT; src: url('BKANT.TTF'); } 
+@font-face { font-family: AldotheApache; src: url('AldotheApache.ttf'); }
 
 .website_header {
   width: 850px;
@@ -58,6 +59,10 @@
 
 .ayeballers_font {
 	font-family: BKANT, sans-serif;
+}
+
+.event_font {
+  font-family: AldotheApache, sans-serif;
 }
 
 .home_paragraph {

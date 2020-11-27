@@ -153,4 +153,18 @@
         }
     }
 
+    function getParticipantsData($connection) 
+    {
+        $query = "SELECT player.name, player.UUID, player.rank, player.rank_colour FROM pb3 INNER JOIN player ON player.UUID = pb3.UUID ORDER BY player.name";
+        $result = $connection->query($query);
+        return $result;
+    }
+
+    function getEventLeaderboard($connection) 
+    {
+        $query = "SELECT * FROM pb3 INNER JOIN player ON pb3.UUID = player.UUID ORDER BY pb3.total_points DESC";
+        $result = $connection->query($query);
+        return $result;
+    }
+
 ?>
