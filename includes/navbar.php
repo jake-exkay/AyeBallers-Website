@@ -36,7 +36,7 @@
                                 Player Statistics
                             </a>
                             <div class="sb-sidenav-menu-heading">Classic Leaderboards</div>
-                            <a class="nav-link" href="../../../leaderboard/classic/guild/arena.php">
+                            <a class="nav-link" href="../../../leaderboard/classic/overall/arena.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>

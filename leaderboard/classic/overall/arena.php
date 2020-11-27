@@ -5,7 +5,7 @@
 
         <?php include "../../../includes/links.php"; ?>
 
-        <title>AyeBallers Leaderboard - Arena Brawl</title>
+        <title>Overall Leaderboard - Arena Brawl</title>
 
         <?php
 
@@ -15,14 +15,14 @@
             include "../../../functions/display_functions.php";
             include "../../../functions/database/query_functions.php";
 
-            updatePageViews($connection, 'arena_guild_leaderboard', $DEV_IP);
+            updatePageViews($connection, 'arena_overall_leaderboard', $DEV_IP);
 
         ?>
 
     </head>
 
     <body class="sb-nav-fixed">
-        
+
         <?php require "../../../includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
@@ -32,24 +32,25 @@
 
                         <ol class="breadcrumb mb-4">
 
-                            <form style="margin-right: 10px;" action="../overall/arena.php">
-                                <button type="submit" class="btn btn-primary">Overall Leaderboard</button>
+                            <form style="margin-right: 10px;" action="arena.php">
+                                <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
                             </form>
 
-                            <form action="arena.php">
-                                <button type="submit" class="btn btn-primary active">AyeBallers Leaderboard</button>
+                            <form action="../guild/arena.php">
+                                <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
                             </form>
 
                         </ol>
-
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                AyeBallers Leaderboard - Arena Brawl
+                                Overall Leaderboard - Arena Brawl
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">     
+
+                                    <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Position (Rating)</th>
@@ -73,7 +74,7 @@
 
                                             $i = 1;
 
-                                            $result = getArenaGuildLeaderboard($connection);
+                                            $result = getOverallArenaLeaderboard($connection);
 
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
@@ -151,6 +152,7 @@
 
                     </div>
                 </main>
+
                 <?php include "../../../includes/footer.php"; ?>
                 <script>
                     $(document).ready(function () {
@@ -159,6 +161,7 @@
                     $('.dataTables_length').addClass('bs-select');
                     });
                 </script>
+                
             </div>
         </div>
 

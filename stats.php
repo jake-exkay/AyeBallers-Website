@@ -444,6 +444,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		        							<?php
 		        								$kd_ab_o = 0.0;
 				                				$wl_ab_o = 0.0;
+				                				$kd_ab_1 = 0.0
 				                				$wl_ab_1 = 0.0;
 				                				$kd_ab_2 = 0.0;
 				                				$wl_ab_2 = 0.0;
