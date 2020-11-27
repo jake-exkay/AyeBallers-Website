@@ -36,30 +36,6 @@
         return $result;
     }
 
-	function getTntLeaderboard($connection) {
-        $query = "SELECT * FROM tntgames ORDER BY total_wins DESC";
-        $result = $connection->query($query);
-        return $result;
-    }
-
-    function getBedwarsLeaderboard($connection) {
-        $query = "SELECT * FROM bedwars ORDER BY wins DESC";
-        $result = $connection->query($query);
-        return $result;
-    }
-
-    function getSkywarsLeaderboard($connection) {
-        $query = "SELECT * FROM skywars ORDER BY wins DESC";
-        $result = $connection->query($query);
-        return $result;
-    }
-
-    function getArenaLeaderboard($connection) {
-        $query = "SELECT * FROM arena ORDER BY rating DESC";
-        $result = $connection->query($query);
-        return $result;
-    }
-
     function getVampirezGuildLeaderboard($connection) {
         $query = "SELECT guild_members_current.name, player.rank, player.rank_colour, player.coins_vz, player.human_wins_vz, player.human_deaths_vz, player.human_kills_vz, player.vampire_wins_vz, player.vampire_deaths_vz, player.vampire_kills_vz, player.most_vampire_kills_vz, player.zombie_kills_vz, player.gold_bought_vz FROM player INNER JOIN guild_members_current ON player.UUID = guild_members_current.UUID ORDER BY player.human_wins_vz DESC";
         $result = $connection->query($query);
@@ -92,12 +68,6 @@
 
     function getArenaGuildLeaderboard($connection) {
         $query = "SELECT guild_members_current.name, player.rank, player.rank_colour, player.coins_arena, player.coins_spent_arena, player.keys_arena, player.rating_arena, player.damage_2v2_arena, player.damage_4v4_arena, player.damage_1v1_arena, player.deaths_2v2_arena, player.deaths_4v4_arena, player.deaths_1v1_arena, player.games_2v2_arena, player.games_4v4_arena, player.games_1v1_arena, player.healed_2v2_arena, player.healed_4v4_arena, player.healed_1v1_arena, player.kills_2v2_arena, player.kills_4v4_arena, player.kills_1v1_arena, player.losses_2v2_arena, player.losses_4v4_arena, player.losses_1v1_arena, player.wins_2v2_arena, player.wins_4v4_arena, player.wins_1v1_arena FROM player INNER JOIN guild_members_current ON player.UUID = guild_members_current.UUID ORDER BY player.rating_arena DESC";
-        $result = $connection->query($query);
-        return $result;
-    }
-
-    function getWarlordsLeaderboard($connection) {
-        $query = "SELECT * FROM warlords ORDER BY wins DESC";
         $result = $connection->query($query);
         return $result;
     }
