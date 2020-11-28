@@ -113,7 +113,7 @@
                                                         echo '<td>' . number_format($coins) . '</td>';
                                                         echo '<td>' . number_format($shots_fired) . '</td>';
                                                         echo '<td>' . number_format($deaths) . '</td>';
-                                                        echo '<td>' . number_format($forcefield_time) . '</td>';
+                                                        echo '<td>' . gmdate("H:i:s", $forcefield_time)  . '</td>';
                                                         echo '<td>' . number_format($killstreaks) . '</td>';
 
                                                          if ($kd > 3) {
