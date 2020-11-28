@@ -37,7 +37,7 @@ updatePageViews($connection, 'pb3_leaderboard', $DEV_IP);
                     <br>
 
                     <b><h1 class="event_font">PAINTBALL TOURNAMENT</h1></b>
-                    <h3 class="event_font"><b>Starts:</b> 1st October 2020</h3>
+                    <h3 class="ayeballers_font"><b>Starts:</b> 1st October 2020</h3>
 
                     <hr>
                                 

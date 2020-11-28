@@ -524,11 +524,41 @@
      */
 	function getLeaderboardPosition($connection, $name, $game) 
     {
-		if ($game == "bedwars") {
-			$query = "SET @rank=0; SELECT @rank:=@rank+1 AS rank, name, COUNT(*) as countvar FROM player GROUP BY name ORDER BY wins_bw DESC; SELECT @rank;";
-			$result = $connection->query($query);
-			return $result;
-		}
+        if ($game == "Paintball") {
+    		$query = "SELECT name FROM player ORDER BY kills_paintball DESC";
+    		$result = $connection->query($query);
+        } else if ($game == "Quakecraft") {
+            $query = "SELECT name FROM player ORDER BY kills_quake DESC";
+            $result = $connection->query($query);
+        } else {
+            $result = "";
+        }
+
+        $rows = "";
+        $data = array();
+
+        if (!empty($result)) {
+            $rows = mysqli_num_rows($result);
+        } else {
+            $rows = "";
+        }
+
+        if (!empty($rows)) {
+            while ($rows = mysqli_fetch_assoc($result)) {
+                $data[] = $rows;
+            }
+        }
+
+        $rank = 1;
+
+        foreach ($data as $item) {
+            if ($item['name'] == $name) {
+                return $rank;
+            }
+            ++$rank;
+        }
+
+		return 501;
 	}
 
     /**
