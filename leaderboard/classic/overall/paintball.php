@@ -133,7 +133,7 @@
                                                             echo '<td class="table-danger">' . $sk . '</td>';
                                                         }
 
-                                                        echo '<td>' . $hat . '</td>';
+                                                        echo '<td>' . translatePaintballHat($hat) . '</td>';
                                                         
                                                     echo '</tr>'; 
                                                     $i = $i + 1;

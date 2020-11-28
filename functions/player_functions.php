@@ -530,6 +530,21 @@
         } else if ($game == "Quakecraft") {
             $query = "SELECT name FROM player ORDER BY kills_quake DESC";
             $result = $connection->query($query);
+        } else if ($game == "Arena") {
+            $query = "SELECT name FROM player ORDER BY rating_arena DESC";
+            $result = $connection->query($query);
+        } else if ($game == "TKR") {
+            $query = "SELECT name FROM player ORDER BY wins_tkr DESC";
+            $result = $connection->query($query);
+        } else if ($game == "VampireZ") {
+            $query = "SELECT name FROM player ORDER BY human_wins_vz DESC";
+            $result = $connection->query($query);
+        } else if ($game == "Walls") {
+            $query = "SELECT name FROM player ORDER BY wins_walls DESC";
+            $result = $connection->query($query);
+        } else if ($game == "TNT") {
+            $query = "SELECT name FROM player ORDER BY wins_tnt DESC";
+            $result = $connection->query($query);
         } else {
             $result = "";
         }
@@ -584,6 +599,61 @@
     function updateStatsLog($connection, $name, $ip) {
         $query = "INSERT INTO stats_log (updated_time, action, IP) VALUES (now(), '$name', '$ip')";         
         mysqli_query($connection, $query);
+    }
+
+    function translatePaintballHat($hat) {
+        $hat_paintball = "No hat selected";
+
+        switch ($hat) {
+            case "speed_hat":
+                $hat_paintball = "Speed Hat";
+                break;
+            case "tnt_hat":
+                $hat_paintball = "TNT Hat";
+                break;
+            case "vip_paintballkitty_hat":
+                $hat_paintball = "PaintballKitty Hat";
+                break;
+            case "vip_rezzus_hat":
+                $hat_paintball = "Rezzus Hat";
+                break;
+            case "vip_noxyd_hat":
+                $hat_paintball = "NoxyD Hat";
+                break;
+            case "vip_ghost_hat":
+                $hat_paintball = "Ghost Hat";
+                break;
+            case "hard_hat":
+                $hat_paintball = "Hard Hat";
+                break;
+            case "shaky_hat":
+                $hat_paintball = "Shaky Hat";
+                break;
+            case "spider_hat":
+                $hat_paintball = "Spider Hat";
+                break;
+            case "trololol_hat":
+                $hat_paintball = "Trololol Hat";
+                break;
+            case "vip_agentk_hat":
+                $hat_paintball = "AgentK Hat";
+                break;
+            case "vip_codename_b_hat":
+                $hat_paintball = "Codename_B Hat";
+                break;
+            case "vip_hypixel_hat":
+                $hat_paintball = "Hypixel Hat";
+                break;
+            case "vip_kevinkool_hat":
+                $hat_paintball = "Kevinkool Hat";
+                break;
+            case "NONE":
+                $hat_paintball = "No Hat Selected";
+                break;
+            default:
+                $hat_paintball = "No Hat Selected";
+        }
+        return $hat_paintball;
     }
 
 ?>
