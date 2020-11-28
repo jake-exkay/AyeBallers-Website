@@ -3,19 +3,19 @@
 
     <head>
 
-        <?php include "../../../includes/links.php"; ?>
+        <?php include "../../includes/links.php"; ?>
 
-        <title>Overall Leaderboard - The Walls</title>
+        <title>AyeBallers Leaderboard - The Walls</title>
 
         <?php
 
-            include "../../../includes/connect.php";
-            include "../../../functions/functions.php";
-            include "../../../functions/player_functions.php";
-            include "../../../functions/display_functions.php";
-            include "../../../functions/database/query_functions.php";
+            include "../../includes/connect.php";
+            include "../../functions/functions.php";
+            include "../../functions/player_functions.php";
+            include "../../functions/display_functions.php";
+            include "../../functions/database/query_functions.php";
 
-            updatePageViews($connection, 'walls_overall_leaderboard', $DEV_IP);
+            updatePageViews($connection, 'walls_guild_leaderboard', $DEV_IP);
 
         ?>
 
@@ -23,7 +23,7 @@
 
     <body class="sb-nav-fixed">
 
-        <?php require "../../../includes/navbar.php"; ?>
+        <?php require "../../includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
                 <main>
@@ -32,24 +32,23 @@
 
                         <ol class="breadcrumb mb-4">
 
-                        	<form style="margin-right: 10px;" action="walls.php">
-	                            <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
-	                        </form>
+                            <form style="margin-right: 10px;" action="../overall/walls.php">
+                                <button type="submit" class="btn btn-primary">Overall Leaderboard</button>
+                            </form>
 
-	                        <form action="../guild/walls.php">
-	                            <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
-	                        </form>
+                            <form action="walls.php">
+                                <button type="submit" class="btn btn-primary active">AyeBallers Leaderboard</button>
+                            </form>
 
-	                    </ol>
+                        </ol>
                         
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Overall Leaderboard - The Walls
+                                AyeBallers Leaderboard - The Walls
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-
                                     <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">     
                                         <thead class="thead-dark">
                                             <tr>
@@ -71,7 +70,7 @@
 
                                             $i = 1;
 
-                                            $result = getOverallWallsLeaderboard($connection);
+                                            $result = getWallsGuildLeaderboard($connection);
 
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
@@ -101,9 +100,9 @@
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         if (userInGuild($connection, $name)) {
-                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" src="../../../assets/img/favicon.png"/></td>';
+                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" src="../../assets/img/favicon.png"/></td>';
                                                         } else {
-                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
                                                         }
                                                         echo '<td>' . number_format($wins) . '</td>';
                                                         echo '<td>' . number_format($kills) . '</td>';
@@ -146,7 +145,7 @@
                     </div>
                 </main>
 
-                <?php include "../../../includes/footer.php"; ?>
+                <?php include "../../includes/footer.php"; ?>
                 <script>
                     $(document).ready(function () {
                     $('#leaderboard').DataTable({

@@ -838,7 +838,14 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                                Bedwars
 			                            </div>
 		        						<div class="card-body">
-				                			<p><b>Leaderboard Position:</b> <?php echo getLeaderboardPosition($connection, $name, "bedwars"); ?></p>
+				                			<?php
+				                				$pos_bw = getLeaderboardPosition($connection, $name, "Bedwars");
+				                				if ($pos_bw < 500) {
+				                					echo "<p><b>Leaderboard Position:</b> #" . $pos_bw . "</p>";
+				                				} else {
+				                					echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>";
+				                				}
+				                			?>
 				                			<p><b>Coins:</b> <?php echo number_format($coins_bw); ?></p>
 				                			<p><b>Wins:</b> <?php echo number_format($wins_bw); ?></p>
 				                			<p><b>Experience:</b> <?php echo number_format($experience_bw); ?></p>
@@ -864,9 +871,10 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 				                		</div>
 				                	</div>
+				                	<br>
 		                		</div>
 
-		                		<button data-toggle="collapse" class="btn btn-light btn-outline-info">SkyWars</button><br><br>
+		                		<!--<button data-toggle="collapse" class="btn btn-light btn-outline-info">SkyWars</button><br><br>
 	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">Warlords</button><br><br>
 	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">Murder Mystery</button><br><br>
 	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">Arcade</button><br><br>
@@ -877,7 +885,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">Duels</button><br><br>
 	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">Blitz Survival Games</button><br><br>
 	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">Smash Heroes</button><br><br>
-	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">SkyBlock</button>
+	                			<button data-toggle="collapse" class="btn btn-light btn-outline-info">SkyBlock</button>-->
 
 					        </div>
 					    </div>

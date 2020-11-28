@@ -3,17 +3,17 @@
 
     <head>
 
-        <?php include "../../../includes/links.php"; ?>
+        <?php include "../../includes/links.php"; ?>
 
         <title>Overall Leaderboard - VampireZ</title>
 
         <?php
 
-            include "../../../includes/connect.php";
-            include "../../../functions/functions.php";
-            include "../../../functions/player_functions.php";
-            include "../../../functions/display_functions.php";
-            include "../../../functions/database/query_functions.php";
+            include "../../includes/connect.php";
+            include "../../functions/functions.php";
+            include "../../functions/player_functions.php";
+            include "../../functions/display_functions.php";
+            include "../../functions/database/query_functions.php";
 
             updatePageViews($connection, 'vz_overall_leaderboard', $DEV_IP);
 
@@ -23,7 +23,7 @@
 
     <body class="sb-nav-fixed">
 
-        <?php require "../../../includes/navbar.php"; ?>
+        <?php require "../../includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
                 <main>
@@ -96,9 +96,9 @@
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         if (userInGuild($connection, $name)) {
-                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" src="../../../assets/img/favicon.png"/></td>';
+                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" src="../../assets/img/favicon.png"/></td>';
                                                         } else {
-                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
                                                         }
                                                         echo '<td>' . number_format($human_wins) . '</td>';
                                                         echo '<td>' . number_format($vampire_wins) . '</td>';
@@ -128,7 +128,7 @@
                     </div>
                 </main>
 
-                <?php include "../../../includes/footer.php"; ?>
+                <?php include "../../includes/footer.php"; ?>
                 <script>
                     $(document).ready(function () {
                     $('#leaderboard').DataTable({

@@ -36,41 +36,56 @@
                                 Player Statistics
                             </a>
                             <div class="sb-sidenav-menu-heading">Classic Leaderboards</div>
-                            <a class="nav-link" href="../../../leaderboard/classic/overall/arena.php">
+                            <a class="nav-link" href="../../../leaderboard/overall/arena.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>
                                 Arena Brawl
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/overall/paintball.php">
+                            <a class="nav-link" href="../../../leaderboard/overall/paintball.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>
                                 Paintball
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/overall/quakecraft.php">
+                            <a class="nav-link" href="../../../leaderboard/overall/quakecraft.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>
                                 Quakecraft
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/overall/tkr.php">
+                            <a class="nav-link" href="../../../leaderboard/overall/tkr.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>
                                 Turbo Kart Racers
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/overall/vampirez.php">
+                            <a class="nav-link" href="../../../leaderboard/overall/vampirez.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>
                                 VampireZ
                             </a>
-                            <a class="nav-link" href="../../../leaderboard/classic/overall/walls.php">
+                            <a class="nav-link" href="../../../leaderboard/overall/walls.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-th-list"></i>
                                 </div>
                                 The Walls
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Other Leaderboards</div>
+                            <a class="nav-link" href="../../../leaderboard/overall/tntgames.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-th-list"></i>
+                                </div>
+                                TNT Games
+                            </a>
+
+                            <a class="nav-link" href="../../../leaderboard/overall/bedwars.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-th-list"></i>
+                                </div>
+                                Bedwars
                             </a>
 
                         </div>

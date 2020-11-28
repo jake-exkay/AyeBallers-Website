@@ -6,6 +6,12 @@
         return $result;
 	}
 
+    function getOverallTntLeaderboard($connection) {
+        $query = "SELECT name, rank, rank_colour, coins_tnt, wins_tnt, wins_tntrun_tnt, winstreak_tnt, wins_bowspleef_tnt, wins_tnttag_tnt, wins_pvprun_tnt, wins_wizards_tnt FROM player ORDER BY wins_tnt DESC LIMIT 500";
+        $result = $connection->query($query);
+        return $result;
+    }
+
     function getOverallWallsLeaderboard($connection) {
         $query = "SELECT name, rank, rank_colour, coins_walls, deaths_walls, assists_walls, wins_walls, losses_walls, kills_walls FROM player ORDER BY wins_walls DESC LIMIT 500";
         $result = $connection->query($query);
@@ -32,6 +38,12 @@
 
     function getOverallArenaLeaderboard($connection) {
         $query = "SELECT name, rank, rank_colour, coins_arena, coins_spent_arena, keys_arena, rating_arena, damage_2v2_arena, damage_4v4_arena, damage_1v1_arena, deaths_2v2_arena, deaths_4v4_arena, deaths_1v1_arena, games_2v2_arena, games_4v4_arena, games_1v1_arena, healed_2v2_arena, healed_4v4_arena, healed_1v1_arena, kills_2v2_arena, kills_4v4_arena, kills_1v1_arena, losses_2v2_arena, losses_4v4_arena, losses_1v1_arena, wins_2v2_arena, wins_4v4_arena, wins_1v1_arena FROM player ORDER BY rating_arena DESC LIMIT 500";
+        $result = $connection->query($query);
+        return $result;
+    }
+
+    function getTntGuildLeaderboard($connection) {
+        $query = "SELECT guild_members_current.name, player.rank, player.rank_colour, player.coins_tnt, player.wins_tnt, player.wins_tntrun_tnt, player.winstreak_tnt, player.wins_bowspleef_tnt, player.wins_tnttag_tnt, player.wins_pvprun_tnt, player.wins_wizards_tnt FROM player INNER JOIN guild_members_current ON player.UUID = guild_members_current.UUID ORDER BY player.wins_tnt DESC";
         $result = $connection->query($query);
         return $result;
     }

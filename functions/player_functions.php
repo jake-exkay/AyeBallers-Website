@@ -545,6 +545,9 @@
         } else if ($game == "TNT") {
             $query = "SELECT name FROM player ORDER BY wins_tnt DESC";
             $result = $connection->query($query);
+        } else if ($game == "Bedwars") {
+            $query = "SELECT name FROM player ORDER BY wins_bw DESC";
+            $result = $connection->query($query);
         } else {
             $result = "";
         }
