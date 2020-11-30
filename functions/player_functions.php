@@ -604,6 +604,13 @@
         mysqli_query($connection, $query);
     }
 
+    function getGuildInformation($connection, $guild, $API_KEY) 
+    {
+        $api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&name=" . $guild);
+        $decoded_url  = json_decode($api_guild_url);
+        return $decoded_url;
+    }
+
     function translatePaintballHat($hat) {
         $hat_paintball = "No hat selected";
 

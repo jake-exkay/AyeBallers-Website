@@ -17,7 +17,7 @@
                                 </div>
                                 Home
                             </a>
-                            <a class="nav-link" href="../../../guild.php">
+                            <a class="nav-link" href="../../../ayeballers.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-users"></i>
                                 </div>
@@ -34,6 +34,12 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 Player Statistics
+                            </a>
+                            <a class="nav-link" href="../../../guildsearch.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                Guild Statistics
                             </a>
                             <div class="sb-sidenav-menu-heading">Classic Leaderboards</div>
                             <a class="nav-link" href="../../../leaderboard/overall/arena.php">

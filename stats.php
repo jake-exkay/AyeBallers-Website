@@ -37,6 +37,8 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				echo $ERR_CANT_UPDATE_PLAYER;
 			}
 		?>
+		<script data-ad-client="ca-pub-8951563099366848" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 		<title><?php echo $name; ?>'s Stats - AyeBallers</title>
     </head>
 
