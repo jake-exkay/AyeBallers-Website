@@ -23,7 +23,7 @@
             $standard_wins = $current_wins - $fo_wins;
 
             if (isPlayerInDatabase($connection, $uuid)) {
-                updatePlayer($connection, $standard_wins, $uuid, $name);
+                updateTournamentPlayer($connection, $standard_wins, $uuid, $name);
             } else {
                 insertNewPlayer($connection, $uuid, $name, $standard_wins);
             }

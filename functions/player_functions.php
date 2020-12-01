@@ -3,7 +3,7 @@
  * Player Functions - Involves getting, manipulating and displaying player statistic data.
  * PHP version 7.2.34
  *
- * @category Page
+ * @category Functions
  * @package  AyeBallers
  * @author   ExKay <exkay61@hotmail.com>
  * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
@@ -20,7 +20,7 @@
      * @return boolean - whether update was successful.
      * @author ExKay <exkay61@hotmail.com>
      */
-	function updatePlayerInDatabase($mongo_mng, $uuid, $name, $API_KEY) 
+	function updatePlayer($mongo_mng, $uuid, $name, $API_KEY) 
     {
         // Get player JSON data from the Hypixel API.
 		$player_url = file_get_contents("https://api.hypixel.net/player?key=" . $API_KEY . "&uuid=" . $uuid);
@@ -451,6 +451,59 @@
                 'mostPointsTeams' => $bb->teams_most_points,
                 'totalVotes' => $bb->total_votes,
                 'correctGuesses' => $bb->correct_guesses
+            ],
+            'skywars' => [
+                'winstreak' => $sw->win_streak,
+                'blocksBroken' => $sw->blocks_broken,
+                'blocksPlaced' => $sw->blocks_placed,
+                'soulWellUses' => $sw->soul_well,
+                'coins' => $sw->coins,
+                'games' => $sw->games,
+                'kills' => $sw->kills,
+                'losses' => $sw->losses,
+                'quits' => $sw->quits,
+                'survivedPlayers' => $sw->survived_players,
+                'deaths' => $sw->deaths,
+                'soulsGathered' => $sw->souls_gathered,
+                'arrowsHit' => $sw->arrows_hit,
+                'arrowsShot' => $sw->arrows_shot,
+                'pearlsThrown' => $sw->enderpearls_thrown,
+                'wins' => $sw->wins,
+                'itemsEnchanted' => $sw->items_enchanted,
+                'assists' => $sw->assists,
+                'eggsThrown' => $sw->egg_thrown,
+                'insane' => [
+                    'solo' => [
+                        'deaths' => $sw->deaths_solo_insane,
+                        'losses' => $sw->losses_solo_insane,
+                        'games' => $sw->games_solo_insane,
+                        'wins' => $sw->wins_solo_insane,
+                        'kills' => $sw->kills_solo_insane
+                    ],
+                    'team' => [
+                        'deaths' => $sw->deaths_team_insane,
+                        'losses' => $sw->losses_team_insane,
+                        'kills' => $sw->kills_team_insane,
+                        'wins' => $sw->wins_team_insane
+                    ]
+                ],
+                'normal' => [
+                    'solo' => [
+                        'deaths' => $sw->deaths_solo_normal,
+                        'losses' => $sw->losses_solo_normal,
+                        'games' => $sw->games_solo_normal,
+                        'wins' => $sw->wins_solo_normal,
+                        'kills' => $sw->kills_solo_normal
+
+                    ],
+                    'team' => [
+                        'survivedPlayers' => $sw->survived_players_team,
+                        'losses' => $sw->losses_team_normal,
+                        'deaths' => $sw->deaths_team_normal,
+                        'kills' => $sw->kills_team_normal,
+                        'wins' => $sw->wins_team_normal,
+                    ]
+                ]
             ]
         ];
 
@@ -482,32 +535,16 @@
 	}
 
     /**
-     * Gets player data specific to a UUID.
-     *
-     * @param $connection Connection to the database.
-     * @param $uuid       UUID of the player to check.
-     *
-     * @return result - the row of data associated with the player.
-     * @author ExKay <exkay61@hotmail.com>
-     */
-	function getPlayerInformation($connection, $uuid) 
-    {
-        $query = "SELECT * FROM player WHERE UUID = '" . $uuid . "'";
-        $result = $connection->query($query);
-        return $result;
-	}
-
-    /**
      * Gets the guild of the player using a UUID.
      *
-     * @param $connection Connection to the database.
+     * @param $mongo_mng  MongoDB driver manager.
      * @param $uuid       UUID of the player to check.
      * @param $API_KEY    API key to the Hypixel API.
      *
      * @return decoded_url URL of the JSON data with guild information.
      * @author ExKay <exkay61@hotmail.com>
      */
-	function getPlayersGuild($connection, $uuid, $API_KEY) 
+	function updateGuild($mongo_mng, $uuid, $API_KEY) 
     {
 		$api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&player=" . $uuid);
 		$decoded_url  = json_decode($api_guild_url);
@@ -586,73 +623,6 @@
 	}
 
     /**
-     * Gets the leaderboard position of a player in a specific game.
-     *
-     * @param $connection Connection to the database.
-     * @param $name       Name of the player to check.
-     * @param $game       Game to check leaderboard data.
-     *
-     * @return result The position in the leaderboard of the player.
-     * @author ExKay <exkay61@hotmail.com>
-     */
-	function getLeaderboardPosition($connection, $name, $game) 
-    {
-        if ($game == "Paintball") {
-    		$query = "SELECT name FROM player ORDER BY kills_paintball DESC";
-    		$result = $connection->query($query);
-        } else if ($game == "Quakecraft") {
-            $query = "SELECT name FROM player ORDER BY kills_quake DESC";
-            $result = $connection->query($query);
-        } else if ($game == "Arena") {
-            $query = "SELECT name FROM player ORDER BY rating_arena DESC";
-            $result = $connection->query($query);
-        } else if ($game == "TKR") {
-            $query = "SELECT name FROM player ORDER BY wins_tkr DESC";
-            $result = $connection->query($query);
-        } else if ($game == "VampireZ") {
-            $query = "SELECT name FROM player ORDER BY human_wins_vz DESC";
-            $result = $connection->query($query);
-        } else if ($game == "Walls") {
-            $query = "SELECT name FROM player ORDER BY wins_walls DESC";
-            $result = $connection->query($query);
-        } else if ($game == "TNT") {
-            $query = "SELECT name FROM player ORDER BY wins_tnt DESC";
-            $result = $connection->query($query);
-        } else if ($game == "Bedwars") {
-            $query = "SELECT name FROM player ORDER BY wins_bw DESC";
-            $result = $connection->query($query);
-        } else {
-            $result = "";
-        }
-
-        $rows = "";
-        $data = array();
-
-        if (!empty($result)) {
-            $rows = mysqli_num_rows($result);
-        } else {
-            $rows = "";
-        }
-
-        if (!empty($rows)) {
-            while ($rows = mysqli_fetch_assoc($result)) {
-                $data[] = $rows;
-            }
-        }
-
-        $rank = 1;
-
-        foreach ($data as $item) {
-            if ($item['name'] == $name) {
-                return $rank;
-            }
-            ++$rank;
-        }
-
-		return 501;
-	}
-
-    /**
      * Uses the experience value to calculate the network level.
      *
      * @param $exp The experience to convert.
@@ -672,11 +642,30 @@
         return $exp < 0 ? 1 : floor(1 + $REVERSE_PQ_PREFIX + sqrt($REVERSE_CONST + $GROWTH_DIVIDES_2 * $exp));
     }
 
-    function updateStatsLog($connection, $name, $ip) {
-        $query = "INSERT INTO stats_log (updated_time, action, IP) VALUES (now(), '$name', '$ip')";         
+    /**
+     * Updates the stats log table in the database.
+     *
+     * @param $connection Connection to the database.
+     * @param $name       Name of the player.
+     *
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function updateStatsLog($connection, $name) 
+    {
+        $query = "INSERT INTO stats_log (updated_time, action) VALUES (now(), '$name')";         
         mysqli_query($connection, $query);
     }
 
+    /**
+     * Gets guild information by a guild name
+     *
+     * @param $connection Connection to the database.
+     * @param $guild      Name of the guild.
+     * @param $API_KEY    API KEY for the Hypixel API.
+     *
+     * @return $decoded_url JSON data of guild.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getGuildInformation($connection, $guild, $API_KEY) 
     {
         $api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&name=" . $guild);
@@ -684,7 +673,16 @@
         return $decoded_url;
     }
 
-    function translatePaintballHat($hat) {
+    /**
+     * Gets a readable name for paintball hats..
+     *
+     * @param $hat Hat name to translate.
+     *
+     * @return $hat_paintball Translated hat name.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function translatePaintballHat($hat) 
+    {
         $hat_paintball = "No hat selected";
 
         switch ($hat) {

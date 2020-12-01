@@ -1,6 +1,25 @@
 <?php
+/**
+ * Contains functions for displaying information.
+ * PHP version 7.2.34
+ *
+ * @category Functions
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/
+ */
 
-    function displayStaffMember($name, $rank, $role) {
+    /**
+     * Displays a staff member with formatting, used on home page.
+     *
+     * @param $name Name of the staff member.
+     * @param $rank Rank of the staff member.
+     *
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function displayStaffMember($name, $rank) 
+    {
         echo '<div class="row">';
         echo '<div class="col-md-10" style="padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">';
         echo '<div class="card">';
@@ -14,7 +33,17 @@
         echo '</div>';
     }
 
-    function displayGuildMember($name, $uuid, $rank) {
+    /**
+     * Displays a guild member, used on the guild page.
+     *
+     * @param $name Name of the member.
+     * @param $uuid UUID of the member.
+     * @param $rank Rank of the member.
+     *
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function displayGuildMember($name, $uuid, $rank) 
+    {
         echo '<div class="col-md-2" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 20px;">';
         echo '<div class="card">';
         echo '<div class="card-body">';
@@ -26,7 +55,15 @@
         echo '</div>';
     }
 
-    function displayGuildMemberUpdateButton($API_KEY) {
+    /**
+     * Displays button for updating guild members.
+     *
+     * @param $API_KEY Key for the Hypixel API.
+     *
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function displayGuildMemberUpdateButton($API_KEY) 
+    {
         echo '<div>';
         if (apiLimitReached($API_KEY)) {
             echo '<button type="submit" title="API limit reached, please refresh the page." class="btn btn-danger">Update</button>';

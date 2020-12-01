@@ -14,7 +14,6 @@ require "includes/links.php";
 require "includes/constants.php";
 require "functions/functions.php";
 require "functions/display_functions.php";
-require "functions/text_constants.php";
 
 updatePageViews($connection, 'home_page', $DEV_IP);
 
@@ -46,7 +45,7 @@ updatePageViews($connection, 'home_page', $DEV_IP);
 		                    </center>
 
 		                    <p class="home_paragraph">
-		                        <?php echo $GUILD_INTRO; ?>
+		                        Our name might sound a little familiar to you, and with good reason. We were THE Paintball guild back in the day. Due to some unfortunate circumstances, the guild died. After many years, we have recently decided to rebuild AyeBallers and bring it back to its former glory. However, many of our OG members have diversified their gameplay or moved on from Paintball entirely, so we have made the decision to have AyeBallers continue as an all games guild with a Paintball past (though we are the #1 Paintball guild, amassing more than 100k wins). We're very excited to have this new beginning and see where the road takes us. As far as what we have to offer, it's a lot. An active and friendly community, daily questing parties, a Discord server, and guild events. We host weekly GEXP contests and other larger events as well.
 		                    </p>
 
 		                    <center>
@@ -54,7 +53,7 @@ updatePageViews($connection, 'home_page', $DEV_IP);
 		                    </center>
 
 		                    <p class="home_paragraph">
-		                        <?php echo $GUILD_RECRUIT; ?>
+		                        We have a few requirements to apply, which you can find on the official guild forum post. You should be near or above these requirements if you are applying. We reserve the right to waive these requirements for cool people, but just know that you're probably not one of those. We also reserve the right to change these requirements in the future. Requirements do not apply to current guild members. Meeting requirements does not guarantee acceptance. We also take activity and character into account.
 		                    </p>
 
 		                    <center>
@@ -62,13 +61,13 @@ updatePageViews($connection, 'home_page', $DEV_IP);
 		                    </center>
 
 		                    <p class="home_paragraph">
-		                        <?php echo $WEB_INFO; ?>
+		                        This website contains various guild tools such as member list, guild leaderboards and event information. We also provide overall leaderboards for most games on the Hypixel Network so you can see where you stand against others!
 		                    </p>
 
 		                    <center>
 		                        <p>
 		                            <a href="https://hypixel.net/threads/%E2%9C%A9-ayeballers-pb-all-games-1-paintball-applications-open-%E2%9C%A9.2801206/">
-		                                <?php echo $GUILD_THREAD; ?>
+		                                Click here to visit the guild thread!
 		                            </a>
 		                        </p>
 		                    </center>
@@ -81,14 +80,14 @@ updatePageViews($connection, 'home_page', $DEV_IP);
 
 		                    <center>
 		                        
-                                    <?php displayStaffMember("PotAccuracy", "Leader", "Founder"); ?>
-		                            <?php displayStaffMember("Emirichuwu", "Admin", "Event Management"); ?>
-		                            <?php displayStaffMember("AyeCool", "Admin", "Founder"); ?>
-		                            <?php displayStaffMember("ExKay", "Admin", "Site Management"); ?>
-		                            <?php displayStaffMember("Penderdrill", "Officer", "Officer"); ?>
-		                            <?php displayStaffMember("zweg", "Officer", "Officer"); ?>
-		                            <?php displayStaffMember("Spinominus_Rex", "Officer", "Officer"); ?>
-		                            <?php displayStaffMember("Da_Boss106", "Officer", "Officer"); ?>
+                                    <?php displayStaffMember("PotAccuracy", "Leader"); ?>
+		                            <?php displayStaffMember("Emirichuwu", "Admin"); ?>
+		                            <?php displayStaffMember("AyeCool", "Admin"); ?>
+		                            <?php displayStaffMember("ExKay", "Admin"); ?>
+		                            <?php displayStaffMember("Penderdrill", "Officer"); ?>
+		                            <?php displayStaffMember("zweg", "Officer"); ?>
+		                            <?php displayStaffMember("Spinominus_Rex", "Officer"); ?>
+		                            <?php displayStaffMember("Da_Boss106", "Officer"); ?>
 
 		                    </center>
 		                </div>

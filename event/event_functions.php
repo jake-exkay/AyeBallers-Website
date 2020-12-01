@@ -81,7 +81,7 @@
         }
     }
 
-    function updatePlayer($connection, $current_wins, $uuid, $name) {
+    function updateTournamentPlayer($connection, $current_wins, $uuid, $name) {
         $query = "UPDATE event SET current_wins = ? WHERE UUID = ?";
 
         $event_wins = calculatePoints($connection, $uuid, $current_wins);
