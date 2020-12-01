@@ -36,6 +36,18 @@
         $walls = !empty($gen->stats->Walls) ? $gen->stats->Walls : "No Stats";
         $bw = !empty($gen->stats->Bedwars) ? $gen->stats->Bedwars : "No Stats";
         $tnt = !empty($gen->stats->TNTGames) ? $gen->stats->TNTGames : "No Stats";
+        $arcade = !empty($gen->stats->Arcade) ? $gen->stats->Arcade : "No Stats";
+        $wl = !empty($gen->stats->Battleground) ? $gen->stats->Battleground : "No Stats";
+        $bsg = !empty($gen->stats->HungerGames) ? $gen->stats->HungerGames : "No Stats";
+        $cac = !empty($gen->stats->MCGO) ? $gen->stats->MCGO : "No Stats";
+        $uhc = !empty($gen->stats->UHC) ? $gen->stats->UHC : "No Stats";
+        $mw = !empty($gen->stats->Walls3) ? $gen->stats->Walls3 : "No Stats";
+        $sw = !empty($gen->stats->SkyWars) ? $gen->stats->SkyWars : "No Stats";
+        $sh = !empty($gen->stats->SuperSmash) ? $gen->stats->SuperSmash : "No Stats";
+        $mm = !empty($gen->stats->MurderMystery) ? $gen->stats->MurderMystery : "No Stats";
+        $bb = !empty($gen->stats->BuildBattle) ? $gen->stats->BuildBattle : "No Stats";
+        $duels = !empty($gen->stats->Duels) ? $gen->stats->Duels : "No Stats";
+        $pit = !empty($gen->stats->Pit) ? $gen->stats->Pit : "No Stats";
 
         // Define rank data endpoints.
         $staff_rank = !empty($gen->rank) ? $gen->rank : "NONE";
@@ -235,6 +247,210 @@
                     'kills' => $tnt->kills_tntag,
                     'wins' => $tnt->wins_tntag
                 ]
+            ],
+            'arcade' => [
+                'coins' => $arcade->coins,
+                'bountyHunters' => [
+                    'deaths' => $arcade->deaths_oneinthequiver,
+                    'kills' => $arcade->kills_oneinthequiver
+                ],
+                'throwOut' => [
+                    'deaths' => $arcade->deaths_throw_out,
+                    'kills' => $arcade->kills_throw_out
+                ],
+                'blockingDead' => [
+                    'headshots' => $arcade->headshots_dayone,
+                    'kills' => $arcade->kills_dayone,
+                    'wins' => $arcade->wins_dayone
+                ],
+                'dragonWars' => [
+                    'kills' => $arcade->kills_dragonwars2,
+                    'wins' => $arcade->wins_dragonwars2
+                ],
+                'creeperAttack' => [
+                    'maxWave' => $arcade->max_wave
+                ],
+                'farmHunt' => [
+                    'poopCollected' => $arcade->poop_collected,
+                    'wins' => $arcade->wins_farm_hunt
+                ],
+                'enderSpleef' => [
+                    'wins' => $arcade->wins_ender
+                ],
+                'partyGamesOne' => [
+                    'wins' => $arcade->wins_party
+                ],
+                'partyGamesTwo' => [
+                    'wins' => $arcade->wins_party_2
+                ],
+                'galaxyWars' => [
+                    'kills' => $arcade->sw_kills,
+                    'shotsFired' => $arcade->sw_shots_fired,
+                    'rebelKills' => $arcade->sw_rebel_kills,
+                    'empireKills' => $arcade->sw_empire_kills,
+                    'wins' => $arcade->sw_game_wins
+                ],
+                'holeInTheWall' => [
+                    'rounds' => $arcade->rounds_hole_in_the_wall
+                ],
+                'hypixelSays' => [
+                    'rounds' => $arcade->rounds_simon_says,
+                    'wins' => $arcade->wins_simon_says
+                ],
+                'miniWalls' => [
+                    'wins' => $arcade->wins_mini_walls,
+                    'deaths' => $arcade->deaths_mini_walls,
+                    'arrowsHit' => $arcade->arrows_hit_mini_walls,
+                    'kills' => $arcade->kills_mini_walls,
+                    'arrowsShot' => $arcade->arrows_shot_mini_walls,
+                    'witherDamage' => $arcade->wither_damage_mini_walls,
+                    'finalKills' => $arcade->final_kills_mini_walls,
+                    'witherKills' => $arcade->wither_kills_mini_walls
+                ],
+                'football' => [
+                    'powerKicks' => $arcade->powerkicks_soccer,
+                    'goals' => $arcade->goals_soccer,
+                    'kicks' => $arcade->kicks_soccer,
+                    'wins' => $arcade->wins_soccer
+                ],
+                'zombies' => [
+                    'bestRound' => $arcade->best_round_zombies,
+                    'killsByType' => [
+                        'total' => $arcade->zombie_kills_zombies,
+                        'basic' => $arcade->basic_zombie_kills_zombies,
+                        'blaze' => $arcade->blaze_zombie_kills_zombies,
+                        'empowered' => $arcade->empowered_zombie_kills_zombies,
+                        'fire' => $arcade->fire_zombie_kills_zombies,
+                        'wolf' => $arcade->wolf_zombie_kills_zombies,
+                        'magmaCube' => $arcade->magma_cube_zombie_kills_zombies,
+                        'blob' => $arcade->blob_zombie_kills_zombies,
+                        'pigZombie' => $arcade->pig_zombie_zombie_kills_zombies,
+                        'tntBaby' => $arcade->tnt_baby_zombie_kills_zombies,
+                        'tnt' => $arcade->tnt_zombie_kills_zombies,
+                        'chgluglu' => $arcade->chgluglu_zombie_kills_zombies,
+                        'clown' => $arcade->clown_zombie_kills_zombies,
+                        'ghast' => $arcade->ghast_zombie_kills_zombies,
+                        'giant' => $arcade->giant_zombie_kills_zombies,
+                        'rainbow' => $arcade->rainbow_zombie_kills_zombies,
+                        'sentinel' => $arcade->sentinel_zombie_kills_zombies,
+                        'skeleton' => $arcade->skeleton_zombie_kills_zombies,
+                        'spaceBlaster' => $arcade->space_blaster_zombie_kills_zombies,
+                        'spaceGrunt' => $arcade->space_grunt_zombie_kills_zombies,
+                        'wormSmall' => $arcade->worm_small_zombie_kills_zombies,
+                        'worm' => $arcade->worm_zombie_kills_zombies,
+                        'megaBlob' => $arcade->mega_blob_zombie_kills_zombies,
+                        'enderZombie' => $arcade->ender_zombie_kills_zombies,
+                        'endermite' => $arcade->endermite_zombie_kills_zombies,
+                        'guardian' => $arcade->guardian_zombie_kills_zombies,
+                        'silverfish' => $arcade->silverfish_zombie_kills_zombies,
+                        'skelefish' => $arcade->skelefish_zombie_kills_zombies,
+                        'caveSpider' => $arcade->cave_spider_zombie_kills_zombies,
+                        'werewolf' => $arcade->werewolf_zombie_kills_zombies,
+                        'witch' => $arcade->witch_zombie_kills_zombies,
+                        'ironGolem' => $arcade->iron_golem_zombie_kills_zombies,
+                        'megaMagma' => $arcade->mega_magma_zombie_kills_zombies
+                    ],
+                    'playersRevived' => $arcade->players_revived_zombies,
+                    'headshots' => $arcade->headshost_zombies,
+                    'bulletsHit' => $arcade->bullets_hit_zombies,
+                    'bulletsShot' => $arcade->bullets_shot_zombies,
+                    'deaths' => $arcade->deaths_zombies,
+                    'doorsOpened' => $arcade->doors_opened_zombies,
+                    'fastestTen' => $arcade->fastest_time_10_zombies,
+                    'fastestTwenty' => $arcade->fastest_time_20_zombies,
+                    'timesKnockedDown' => $arcade->times_knocked_down_zombies,
+                    'totalRounds' => $arcade->total_rounds_survived_zombies,
+                    'windowsRepaired' => $arcade->windows_repaired_zombies,
+                    'deadend' => [
+                        'bestRound' => $arcade->best_round_zombies_deadend,
+                        'zombieKills' => $arcade->zombie_kills_zombies_deadend,
+                        'deaths' => $arcade->deaths_zombies_deadend,
+                        'doorsOpened' => $arcade->doors_opened_zombies_deadend,
+                        'fastestTen' => $arcade->fastest_time_10_zombies_deadend_normal,
+                        'playersRevived' => $arcade->players_revived_zombies_deadend,
+                        'timesKnockedDown' => $arcade->times_knocked_down_zombies_deadend,
+                        'totalRounds' => $arcade->total_rounds_survived_zombies_deadend,
+                        'windowsRepaired' => $arcade->windows_repaired_zombies_deadend,
+                        'fastestTwenty' => $arcade->fastest_time_20_zombies_deadend_normal
+                    ],
+                    'badblood' => [
+                        'bestRound' => $arcade->best_round_zombies_badblood,
+                        'deaths' => $arcade->deaths_zombies_badblood,
+                        'doorsOpened' => $arcade->doors_opened_zombies_badblood,
+                        'playersRevived' => $arcade->players_revived_zombies_badblood,
+                        'timesKnockedDown' => $arcade->times_knocked_down_zombies_badblood,
+                        'roundsSurvived' => $arcade->total_rounds_survived_zombies_badblood,
+                        'windowsRepaired' => $arcade->windows_repaired_zombies_badblood,
+                        'zombieKills' => $arcade->zombie_kills_zombies_badblood
+                    ],
+                    'alienArcadium' => [
+                        'bestRound' => $arcade->best_round_zombies_alienarcadium,
+                        'deaths' => $arcade->deaths_zombies_alienarcadium,
+                        'fastestTen' => $arcade->fastest_time_10_zombies_alienarcadium_normal,
+                        'playersRevived' => $arcade->players_revived_zombies_alienarcadium,
+                        'timesKnockedDown' => $arcade->times_knocked_down_zombies_alienarcadium,
+                        'roundsSurvived' => $arcade->total_rounds_survived_zombies_alienarcadium,
+                        'windowsRepaired' => $arcade->windows_repaired_zombies_alienarcadium,
+                        'zombieKills' => $arcade->zombie_kills_zombies_alienarcadium,
+                        'fastestTwenty' => $arcade->fastest_time_20_zombies_alienarcadium_normal,
+                        'doorsOpened' => $arcade->doors_opened_zombies_alienarcadium
+                    ]
+                ],
+                'seasonal' => [
+                    'santaSays' => [
+                        'rounds' => $arcade->rounds_santa_says
+                    ],
+                    'santaSimulator' => [
+                        'wins' => $arcade->wins_santa_simulator,
+                        'delivered' => $arcade->delivered_santa_simulator,
+                        'spotted' => $arcade->spotted_santa_simulator
+                    ],
+                    'easterSimulator' => [
+                        'eggsFound' => $arcade->eggs_found_easter_simulator,
+                        'wins' => $arcade->wins_easter_simulator
+                    ],
+                    'scubaSimulator' => [
+                        'totalPoints' => $arcade->total_points_scuba_simulator,
+                        'itemsFound' => $arcade->items_found_scuba_simulator
+                    ]
+                ],
+                'hideAndSeek' => [
+                    'seekerWins' => $arcade->seeker_wins_hide_and_seek,
+                    'hiderWins' => $arcade->hider_wins_hide_and_seek,
+                    'partyPooper' => [
+                        'seekerWins' => $arcade->party_pooper_seeker_wins_hide_and_seek,
+                        'hiderWins' => $arcade->party_pooper_hider_wins_hide_and_seek
+                    ],
+                    'propHunt' => [
+                        'hiderWins' => $arcade->prop_hunt_hider_wins_hide_and_seek
+                    ]
+                ]
+            ],
+            'murderMystery' => [
+                'coins' => $mm->coins,
+                'coinPickups' => $mm->coins_pickedup,
+                'games' => $mm->games,
+                'wins' => $mm->wins,
+                'deaths' => $mm->deaths,
+                'kills' => $mm->kills,
+                'bowKills' => $mm->bow_kills,
+                'knifeKills' => $mm->knife_kills,
+                'asMurderer' => [
+                    'kills' => $mm->kills_as_murderer
+                ],
+                'asDetective' => [
+                    'wins' => $mm->detective_wins
+                ]
+            ],
+            'buildBattle' => [
+                'wins' => $bb->wins,
+                'coins' => $bb->coins,
+                'games' => $bb->games_played,
+                'score' => $bb->score,
+                'mostPointsSolo' => $bb->solo_most_points,
+                'mostPointsTeams' => $bb->teams_most_points,
+                'totalVotes' => $bb->total_votes,
+                'correctGuesses' => $bb->correct_guesses
             ]
         ];
 
