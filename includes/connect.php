@@ -10,4 +10,6 @@
         echo 'Error connecting to the database';
     }
 
+    $mongo_mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+
 ?>
