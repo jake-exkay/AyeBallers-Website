@@ -453,30 +453,31 @@
                 'correctGuesses' => $bb->correct_guesses
             ],
             'skywars' => [
-                'winstreak' => $sw->win_streak,
-                'blocksBroken' => $sw->blocks_broken,
-                'blocksPlaced' => $sw->blocks_placed,
-                'soulWellUses' => $sw->soul_well,
-                'coins' => $sw->coins,
-                'games' => $sw->games,
-                'kills' => $sw->kills,
-                'losses' => $sw->losses,
-                'quits' => $sw->quits,
-                'survivedPlayers' => $sw->survived_players,
-                'deaths' => $sw->deaths,
-                'soulsGathered' => $sw->souls_gathered,
-                'arrowsHit' => $sw->arrows_hit,
-                'arrowsShot' => $sw->arrows_shot,
-                'pearlsThrown' => $sw->enderpearls_thrown,
-                'wins' => $sw->wins,
-                'itemsEnchanted' => $sw->items_enchanted,
-                'assists' => $sw->assists,
-                'eggsThrown' => $sw->egg_thrown,
+                'overall' => [
+                    'winstreak' => $sw->win_streak,
+                    'blocksBroken' => $sw->blocks_broken,
+                    'blocksPlaced' => $sw->blocks_placed,
+                    'soulsGathered' => $sw->souls_gathered,
+                    'coins' => $sw->coins,
+                    'games' => $sw->games,
+                    'kills' => $sw->kills,
+                    'losses' => $sw->losses,
+                    'deaths' => $sw->deaths,
+                    'soulsGathered' => $sw->souls_gathered,
+                    'arrowsHit' => $sw->arrows_hit,
+                    'arrowsShot' => $sw->arrows_shot,
+                    'pearlsThrown' => $sw->enderpearls_thrown,
+                    'wins' => $sw->wins,
+                    'itemsEnchanted' => $sw->items_enchanted,
+                    'assists' => $sw->assists,
+                    'eggsThrown' => $sw->egg_thrown,
+                    'survivedPlayers' => $sw->survived_players,
+                    'fastestWin' => $sw->fastest_win
+                ],
                 'insane' => [
                     'solo' => [
                         'deaths' => $sw->deaths_solo_insane,
                         'losses' => $sw->losses_solo_insane,
-                        'games' => $sw->games_solo_insane,
                         'wins' => $sw->wins_solo_insane,
                         'kills' => $sw->kills_solo_insane
                     ],
@@ -491,19 +492,184 @@
                     'solo' => [
                         'deaths' => $sw->deaths_solo_normal,
                         'losses' => $sw->losses_solo_normal,
-                        'games' => $sw->games_solo_normal,
                         'wins' => $sw->wins_solo_normal,
                         'kills' => $sw->kills_solo_normal
 
                     ],
                     'team' => [
-                        'survivedPlayers' => $sw->survived_players_team,
                         'losses' => $sw->losses_team_normal,
                         'deaths' => $sw->deaths_team_normal,
                         'kills' => $sw->kills_team_normal,
-                        'wins' => $sw->wins_team_normal,
+                        'wins' => $sw->wins_team_normal
+                    ]
+                ],
+                'mega' => [
+                    'losses' => $sw->losses_mega,
+                    'survivedPlayers' => $sw->survived_players_mega,
+                    'kills' => $sw->kills_mega,
+                    'games' => $sw->games_mega,
+                    'deaths' => $sw->deaths_mega,
+                    'assists' => $sw->assists_mega,
+                    'wins' => $sw->wins_mega
+                ]
+            ],
+            'warlords' => [
+                'assists' => $wl->assists,
+                'currentClass' => $wl->chosen_class,
+                'coins' => $wl->coins,
+                'damage' => $wl->damage,
+                'damagePrevented' => $wl->damage_prevented,
+                'damageTaken' => $wl->damage_taken,
+                'deaths' => $wl->deaths,
+                'heal' => $wl->heal,
+                'kills' => $wl->kills,
+                'lifeLeeched' => $wl->life_leeched,
+                'losses' => $wl->losses,
+                'magicDust' => $wl->magic_dust,
+                'repairedWeapons' => $wl->repaired,
+                'repairedCommon' => $wl->repaired_common,
+                'repairedEpic' => $wl->repaired_epic,
+                'repairedRare' => $wl->repaired_rare,
+                'repairedLegendary' => $wl->repaired_legendary,
+                'voidShards' => $wl->void_shards,
+                'wins' => $wl->wins,
+                'winsBlue' => $wl->wins_blu,
+                'winsRed' => $wl->wins_red,
+                'powerups' => $wl->powerups_collected,
+                'damageDelayed' => $wl->damage_delayed,
+                'warrior' => [
+                    'damagePrevented' => $wl->damage_prevented_warrior,
+                    'damage' => $wl->damage_warrior,
+                    'heal' => $wl->heal_warrior,
+                    'lifeLeeched' => $wl->life_leeched_warrior,
+                    'losses' => $wl->losses_warrior,
+                    'plays' => $wl->warrior_plays,
+                    'wins' => $wl->wins_warrior,
+                    'berserker' => [
+                        'plays' => $wl->berserker_plays,
+                        'damage' => $wl->damage_berserker,
+                        'damagePrevented' => $wl->damage_prevented_berserker,
+                        'heal' => $wl->heal_berserker,
+                        'lifeLeeched' => $wl->life_leeched_berserker,
+                        'losses' => $wl->losses_berserker,
+                        'wins' => $wl->wins_berserker
+                    ],
+                    'revenant' => [
+                        'damagePrevented' => $wl->damage_prevented_revenant,
+                        'damage' => $wl->damage_revenant,
+                        'heal' => $wl->heal_revenant,
+                        'plays' => $wl->revenant_plays,
+                        'wins' => $wl->wins_revenant,
+                        'losses' => $wl->losses_revenant,
+                    ],
+                    'defender' => [
+                        'damagePrevented' => $wl->damage_prevented_defender,
+                        'damage' => $wl->damage_defender,
+                        'heal' => $wl->heal_defender,
+                        'plays' => $wl->defender_plays,
+                        'wins' => $wl->wins_defender,
+                        'losses' => $wl->losses_defender,
+                    ]
+                ],
+                'mage' => [
+                    'heal' => $wl->heal_mage,
+                    'damagePrevented' => $wl->damage_prevented_mage,
+                    'losses' => $wl->losses_mage,
+                    'damage' => $wl->damage_mage,
+                    'plays' => $wl->mage_plays,
+                    'wins' => $wl->wins_mage,
+                    'pyromancer' => [
+                        'damage' => $wl->damage_pyromancer,
+                        'heal' => $wl->heal_pyromancer,
+                        'damagePrevented' => $wl->damage_prevented_pyromancer,
+                        'plays' => $wl->pyromancer_plays,
+                        'losses' => $wl->losses_pyromancer,
+                        'wins' => $wl->wins_pyromancer
+                    ],
+                    'aquamancer' => [
+                        'damagePrevented' => $wl->damage_prevented_aquamancer,
+                        'damage' => $wl->damage_aquamancer,
+                        'heal' => $wl->heal_aquamancer,
+                        'plays' => $wl->aquamancer_plays,
+                        'wins' => $wl->wins_aquamancer,
+                        'losses' => $wl->losses_aquamancer
+                    ],
+                    'cryomancer' => [
+                        'damagePrevented' => $wl->damage_prevented_cryomancer,
+                        'damage' => $wl->damage_cryomancer,
+                        'heal' => $wl->heal_cryomancer,
+                        'plays' => $wl->cryomancer_plays,
+                        'wins' => $wl->wins_cryomancer,
+                        'losses' => $wl->losses_cryomancer
+                    ]
+                ],
+                'shaman' => [
+                    'heal' => $wl->heal_shaman,
+                    'damage' => $wl->damage_shaman,
+                    'wins' => $wl->wins_shaman,
+                    'plays' => $wl->shaman_plays,
+                    'damagePrevented' => $wl->damage_prevented_shaman,
+                    'losses' => $wl->losses_shaman,
+                    'damageDelayed' => $wl->damage_delayed_shaman,
+                    'thunderlord' => [
+                        'heal' => $wl->heal_thunderlord,
+                        'plays' => $wl->thunderlord_plays,
+                        'wins' => $wl->wins_thunderlord,
+                        'damage' => $wl->damage_thunderlord,
+                        'damagePrevented' => $wl->damage_prevented_thunderlord,
+                        'losses' => $wl->losses_thunderlord
+                    ],
+                    'earthwarden' => [
+                        'damagePrevented' => $wl->damage_prevented_earthwarden,
+                        'damage' => $wl->damage_earthwarden,
+                        'heal' => $wl->heal_earthwarden,
+                        'plays' => $wl->earthwarden_plays,
+                        'wins' => $wl->wins_earthwarden,
+                        'losses' => $wl->losses_earthwarden
+                    ],
+                    'spiritguard' => [
+                        'damagePrevented' => $wl->damage_prevented_spiritguard,
+                        'damage' => $wl->damage_spiritguard,
+                        'heal' => $wl->heal_spiritguard,
+                        'plays' => $wl->spiritguard_plays,
+                        'wins' => $wl->wins_spiritguard,
+                        'losses' => $wl->losses_spiritguard,
+                        'damageDelayed' => $wl->damage_delayed_spiritguard
+                    ]
+                ],
+                'paladin' => [
+                    'damage' => $wl->damage_paladin,
+                    'plays' => $wl->paladin_plays,
+                    'heal' => $wl->heal_paladin,
+                    'damagePrevented' => $wl->damage_prevented_paladin,
+                    'losses' => $wl->losses_paladin,
+                    'wins' => $wl->wins_paladin,
+                    'avenger' => [
+                        'damagePrevented' => $wl->damage_prevented_avenger,
+                        'damage' => $wl->damage_avenger,
+                        'heal' => $wl->heal_avenger,
+                        'plays' => $wl->avenger_plays,
+                        'wins' => $wl->wins_avenger,
+                        'losses' => $wl->losses_avenger
+                    ],
+                    'crusader' => [
+                        'damagePrevented' => $wl->damage_prevented_crusader,
+                        'damage' => $wl->damage_crusader,
+                        'heal' => $wl->heal_crusader,
+                        'plays' => $wl->crusader_plays,
+                        'wins' => $wl->wins_crusader,
+                        'losses' => $wl->losses_crusader
+                    ],
+                    'protector' => [
+                        'damagePrevented' => $wl->damage_prevented_protector,
+                        'damage' => $wl->damage_protector,
+                        'heal' => $wl->heal_protector,
+                        'plays' => $wl->protector_plays,
+                        'wins' => $wl->wins_protector,
+                        'losses' => $wl->losses_protector
                     ]
                 ]
+
             ]
         ];
 

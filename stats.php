@@ -710,6 +710,87 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                SkyWars
 				                            </div>
 			        						<div class="card-body">
+			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+
+					                			<p><b>Coins:</b> <?php echo number_format($player->skywars->overall->coins); ?></p>
+					                			<p><b>Wins:</b> <?php echo number_format($player->skywars->overall->wins); ?></p>
+					                			<p><b>Kills:</b> <?php echo number_format($player->skywars->overall->kills); ?></p>
+					                			<p><b>Deaths:</b> <?php echo number_format($player->skywars->overall->deaths); ?></p>
+					                			<p><b>Assists:</b> <?php echo number_format($player->skywars->overall->assists); ?></p>
+					                			<p><b>Losses:</b> <?php echo number_format($player->skywars->overall->losses); ?></p>
+					                			<p><b>Games Played:</b> <?php echo number_format($player->skywars->overall->games); ?></p>
+					                			<p><b>Arrows Shot:</b> <?php echo number_format($player->skywars->overall->arrowsShot); ?></p>
+					                			<p><b>Arrows Hit:</b> <?php echo number_format($player->skywars->overall->arrowsHit); ?></p>
+					                			<p><b>Souls Gathered:</b> <?php echo number_format($player->skywars->overall->soulsGathered); ?></p>
+					                			<p><b>Winstreak:</b> <?php echo number_format($player->skywars->overall->winstreak); ?></p>
+					                			<p><b>Blocks Broken:</b> <?php echo number_format($player->skywars->overall->blocksBroken); ?></p>
+					                			<p><b>Blocks Placed:</b> <?php echo number_format($player->skywars->overall->blocksPlaced); ?></p>
+					                			<p><b>Survived Players:</b> <?php echo number_format($player->skywars->overall->survivedPlayers); ?></p>
+					                			<p><b>Ender Pearls Thrown:</b> <?php echo number_format($player->skywars->overall->pearlsThrown); ?></p>
+					                			<p><b>Items Enchanted:</b> <?php echo number_format($player->skywars->overall->itemsEnchanted); ?></p>
+					                			<p><b>Eggs Thrown:</b> <?php echo number_format($player->skywars->overall->eggsThrown); ?></p>
+					                			<p><b>Fastest Win:</b> <?php echo number_format($player->skywars->overall->fastestWin); ?></p>
+
+					                			<br>
+
+												<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#normal">Normal</button><br><br>
+
+					                			<div id="normal" class="collapse">
+
+						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#solo_normal">Solo</button><br><br>
+
+						                			<div id="solo_normal" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->skywars->normal->solo->wins); ?></p>
+							                			<p><b>Kills:</b> <?php echo number_format($player->skywars->normal->solo->kills); ?></p>
+							                			<p><b>Deaths:</b> <?php echo number_format($player->skywars->normal->solo->deaths); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->skywars->normal->solo->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#team_normal">Teams</button><br><br>
+
+						                			<div id="team_normal" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->skywars->normal->team->wins); ?></p>
+							                			<p><b>Kills:</b> <?php echo number_format($player->skywars->normal->team->kills); ?></p>
+							                			<p><b>Deaths:</b> <?php echo number_format($player->skywars->normal->team->deaths); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->skywars->normal->team->losses); ?></p>
+							                		</div>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#insane">Insane</button><br><br>
+
+						                		<div id="insane" class="collapse">
+
+						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#solo_insane">Solo</button><br><br>
+
+						                			<div id="solo_insane" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->skywars->insane->solo->wins); ?></p>
+							                			<p><b>Kills:</b> <?php echo number_format($player->skywars->insane->solo->kills); ?></p>
+							                			<p><b>Deaths:</b> <?php echo number_format($player->skywars->insane->solo->deaths); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->skywars->insane->solo->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#team_insane">Teams</button><br><br>
+
+						                			<div id="team_insane" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->skywars->insane->team->wins); ?></p>
+							                			<p><b>Kills:</b> <?php echo number_format($player->skywars->insane->team->kills); ?></p>
+							                			<p><b>Deaths:</b> <?php echo number_format($player->skywars->insane->team->deaths); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->skywars->insane->team->losses); ?></p>
+							                		</div>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#mega">Mega</button><br><br>
+
+					                			<div id="mega" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->skywars->mega->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->skywars->mega->kills); ?></p>
+						                			<p><b>Assists:</b> <?php echo number_format($player->skywars->mega->assists); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->skywars->mega->deaths); ?></p>
+						                			<p><b>Losses:</b> <?php echo number_format($player->skywars->mega->losses); ?></p>
+						                			<p><b>Games Played:</b> <?php echo number_format($player->skywars->mega->games); ?></p>
+						                			<p><b>Survived Players:</b> <?php echo number_format($player->skywars->mega->survivedPlayers); ?></p>
+						                		</div>
+
 
 					                		</div>
 					                	</div>
@@ -725,6 +806,220 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Warlords
 				                            </div>
 			        						<div class="card-body">
+			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+
+					                			<p><b>Coins:</b> <?php echo number_format($player->warlords->coins); ?></p>
+					                			<p><b>Wins:</b> <?php echo number_format($player->warlords->wins); ?></p>
+					                			<p><b>Kills:</b> <?php echo number_format($player->warlords->kills); ?></p>
+					                			<p><b>Assists:</b> <?php echo number_format($player->warlords->assists); ?></p>
+					                			<p><b>Deaths:</b> <?php echo number_format($player->warlords->deaths); ?></p>
+					                			<p><b>Losses:</b> <?php echo number_format($player->warlords->losses); ?></p>
+					                			<p><b>Powerups Collected:</b> <?php echo number_format($player->warlords->powerups); ?></p>
+					                			<p><b>Blue Wins:</b> <?php echo number_format($player->warlords->winsBlue); ?></p>
+					                			<p><b>Red Wins:</b> <?php echo number_format($player->warlords->winsRed); ?></p>
+					                			<p><b>Current Class:</b> <?php echo number_format($player->warlords->currentClass); ?></p>
+
+					                			<br>
+
+												<p><b>Damage:</b> <?php echo number_format($player->warlords->damage); ?></p>
+					                			<p><b>Healing:</b> <?php echo number_format($player->warlords->heal); ?></p>
+					                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->damagePrevented); ?></p>
+					                			<p><b>Damage Delayed:</b> <?php echo number_format($player->warlords->damageDelayed); ?></p>
+					                			<p><b>Damage Taken:</b> <?php echo number_format($player->warlords->damageTaken); ?></p>
+					                			<p><b>Life Leeched:</b> <?php echo number_format($player->warlords->lifeLeeched); ?></p>
+
+					                			<br>
+
+					                			<p><b>Magic Dust:</b> <?php echo number_format($player->warlords->magicDust); ?></p>
+					                			<p><b>Void Shards:</b> <?php echo number_format($player->warlords->voidShards); ?></p>
+
+					                			<br>
+					                			
+					                			<p><b>Repaired Weapons:</b> <?php echo number_format($player->warlords->repairedWeapons); ?></p>
+					                			<p><b>Common Repairs:</b> <?php echo number_format($player->warlords->repairedCommon); ?></p>
+					                			<p><b>Rare Repairs:</b> <?php echo number_format($player->warlords->repairedRare); ?></p>
+					                			<p><b>Epic Repairs:</b> <?php echo number_format($player->warlords->repairedEpic); ?></p>
+					                			<p><b>Legendary Repairs:</b> <?php echo number_format($player->warlords->repairedLegendary); ?></p>
+
+					                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#warrior">Warrior</button><br><br>
+
+					                			<div id="warrior" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->warlords->warrior->wins); ?></p>
+						                			<p><b>Plays:</b> <?php echo number_format($player->warlords->warrior->plays); ?></p>
+						                			<p><b>Damage:</b> <?php echo number_format($player->warlords->warrior->damage); ?></p>
+						                			<p><b>Healing:</b> <?php echo number_format($player->warlords->warrior->heal); ?></p>
+						                			<p><b>Life Leeched:</b> <?php echo number_format($player->warlords->warrior->lifeLeeched); ?></p>
+						                			<p><b>Losses:</b> <?php echo number_format($player->warlords->warrior->losses); ?></p>
+						                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->warrior->damagePrevented); ?></p>
+
+						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#berserker">Berserker</button><br><br>
+
+						                			<div id="berserker" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->warrior->berserker->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->warrior->berserker->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->warrior->berserker->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->warrior->berserker->heal); ?></p>
+							                			<p><b>Life Leeched:</b> <?php echo number_format($player->warlords->warrior->berserker->lifeLeeched); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->warrior->berserker->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->warrior->berserker->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#revenant">Revenant</button><br><br>
+
+						                			<div id="revenant" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->warrior->revenant->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->warrior->revenant->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->warrior->revenant->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->warrior->revenant->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->warrior->revenant->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->warrior->revenant->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#defender">Defender</button><br><br>
+
+						                			<div id="defender" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->warrior->defender->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->warrior->defender->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->warrior->defender->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->warrior->defender->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->warrior->defender->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->warrior->defender->losses); ?></p>
+							                		</div>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#mage">Mage</button><br><br>
+
+						                		<div id="mage" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->warlords->mage->wins); ?></p>
+						                			<p><b>Plays:</b> <?php echo number_format($player->warlords->mage->plays); ?></p>
+						                			<p><b>Damage:</b> <?php echo number_format($player->warlords->mage->damage); ?></p>
+						                			<p><b>Healing:</b> <?php echo number_format($player->warlords->mage->heal); ?></p>
+						                			<p><b>Losses:</b> <?php echo number_format($player->warlords->mage->losses); ?></p>
+						                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->mage->damagePrevented); ?></p>
+
+						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#pyro">Pyromancer</button><br><br>
+
+						                			<div id="pyro" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->mage->pyromancer->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->mage->pyromancer->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->mage->pyromancer->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->mage->pyromancer->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->mage->pyromancer->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->mage->pyromancer->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#aqua">Aquamancer</button><br><br>
+
+						                			<div id="aqua" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->mage->aquamancer->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->mage->aquamancer->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->mage->aquamancer->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->mage->aquamancer->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->mage->aquamancer->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->mage->aquamancer->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#cryo">Cryomancer</button><br><br>
+
+						                			<div id="cryo" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->mage->cryomancer->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->mage->cryomancer->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->mage->cryomancer->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->mage->cryomancer->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->mage->cryomancer->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->mage->cryomancer->losses); ?></p>
+							                		</div>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#paladin">Paladin</button><br><br>
+
+						                		<div id="paladin" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->warlords->paladin->wins); ?></p>
+						                			<p><b>Plays:</b> <?php echo number_format($player->warlords->paladin->plays); ?></p>
+						                			<p><b>Damage:</b> <?php echo number_format($player->warlords->paladin->damage); ?></p>
+						                			<p><b>Healing:</b> <?php echo number_format($player->warlords->paladin->heal); ?></p>
+						                			<p><b>Losses:</b> <?php echo number_format($player->warlords->paladin->losses); ?></p>
+						                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->paladin->damagePrevented); ?></p>
+
+						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#avenger">Avenger</button><br><br>
+
+						                			<div id="avenger" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->paladin->avenger->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->paladin->avenger->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->paladin->avenger->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->paladin->avenger->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->paladin->avenger->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->paladin->avenger->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#protector">Protector</button><br><br>
+
+						                			<div id="protector" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->paladin->protector->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->paladin->protector->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->paladin->protector->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->paladin->protector->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->paladin->protector->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->paladin->protector->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#crusader">Crusader</button><br><br>
+
+						                			<div id="crusader" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->paladin->crusader->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->paladin->crusader->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->paladin->crusader->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->paladin->crusader->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->paladin->crusader->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->paladin->crusader->losses); ?></p>
+							                		</div>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#shaman">Shaman</button><br><br>
+
+						                		<div id="shaman" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->warlords->shaman->wins); ?></p>
+						                			<p><b>Plays:</b> <?php echo number_format($player->warlords->shaman->plays); ?></p>
+						                			<p><b>Damage:</b> <?php echo number_format($player->warlords->shaman->damage); ?></p>
+						                			<p><b>Healing:</b> <?php echo number_format($player->warlords->shaman->heal); ?></p>
+						                			<p><b>Losses:</b> <?php echo number_format($player->warlords->shaman->losses); ?></p>
+						                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->shaman->damagePrevented); ?></p>
+						                			<p><b>Damage Delayed:</b> <?php echo number_format($player->warlords->shaman->damageDelayed); ?></p>
+
+						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#thunderlord">Thunderlord</button><br><br>
+
+						                			<div id="thunderlord" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->shaman->thunderlord->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->shaman->thunderlord->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->shaman->thunderlord->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->shaman->thunderlord->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->shaman->thunderlord->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->shaman->thunderlord->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#earthwarden">Earthwarden</button><br><br>
+
+						                			<div id="earthwarden" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->shaman->earthwarden->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->shaman->earthwarden->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->shaman->earthwarden->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->shaman->earthwarden->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->shaman->earthwarden->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->shaman->earthwarden->losses); ?></p>
+							                		</div>
+
+							                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#spiritguard">Spiritguard</button><br><br>
+
+						                			<div id="spiritguard" class="collapse">
+							                			<p><b>Wins:</b> <?php echo number_format($player->warlords->shaman->spiritguard->wins); ?></p>
+							                			<p><b>Plays:</b> <?php echo number_format($player->warlords->shaman->spiritguard->plays); ?></p>
+							                			<p><b>Damage:</b> <?php echo number_format($player->warlords->shaman->spiritguard->damage); ?></p>
+							                			<p><b>Healing:</b> <?php echo number_format($player->warlords->shaman->spiritguard->heal); ?></p>
+							                			<p><b>Damage Prevented:</b> <?php echo number_format($player->warlords->shaman->spiritguard->damagePrevented); ?></p>
+							                			<p><b>Losses:</b> <?php echo number_format($player->warlords->shaman->spiritguard->losses); ?></p>
+							                			<p><b>Damage Delayed:</b> <?php echo number_format($player->warlords->shaman->spiritguard->damageDelayed); ?></p>
+							                		</div>
+						                		</div>
 
 					                		</div>
 					                	</div>
