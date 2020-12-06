@@ -252,11 +252,14 @@
                 'coins' => $arcade->coins,
                 'bountyHunters' => [
                     'deaths' => $arcade->deaths_oneinthequiver,
-                    'kills' => $arcade->kills_oneinthequiver
+                    'kills' => $arcade->kills_oneinthequiver,
+                    'bountyKills' => $arcade->bounty_kills_oneinthequiver,
+                    'wins' => $arcade->wins_oneinthequiver
                 ],
                 'throwOut' => [
                     'deaths' => $arcade->deaths_throw_out,
-                    'kills' => $arcade->kills_throw_out
+                    'kills' => $arcade->kills_throw_out,
+                    'wins' => $arcade->wins_throw_out
                 ],
                 'blockingDead' => [
                     'headshots' => $arcade->headshots_dayone,
@@ -283,6 +286,9 @@
                 'partyGamesTwo' => [
                     'wins' => $arcade->wins_party_2
                 ],
+                'partyGamesThree' => [
+                    'wins' => $arcade->wins_party_3
+                ],
                 'galaxyWars' => [
                     'kills' => $arcade->sw_kills,
                     'shotsFired' => $arcade->sw_shots_fired,
@@ -291,7 +297,8 @@
                     'wins' => $arcade->sw_game_wins
                 ],
                 'holeInTheWall' => [
-                    'rounds' => $arcade->rounds_hole_in_the_wall
+                    'rounds' => $arcade->rounds_hole_in_the_wall,
+                    'wins' => $arcade->wins_hole_in_the_wall
                 ],
                 'hypixelSays' => [
                     'rounds' => $arcade->rounds_simon_says,

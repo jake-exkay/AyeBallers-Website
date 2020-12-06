@@ -1051,6 +1051,108 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                            </div>
 			        						<div class="card-body">
 
+			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+
+					                			<p><b>Coins:</b> <?php echo number_format($player->arcade->coins); ?></p>
+					                			<p><b>Creeper Attack Record:</b> <?php echo number_format($player->arcade->creeperAttack->maxWave); ?></p>
+					                			<p><b>Ender Spleef Wins:</b> <?php echo number_format($player->arcade->enderSpleef->wins); ?></p>
+					                			<p><b>Party Games 1 Wins:</b> <?php echo number_format($player->arcade->partyGamesOne->wins); ?></p>
+					                			<p><b>Party Games 2 Wins:</b> <?php echo number_format($player->arcade->partyGamesTwo->wins); ?></p>
+					                			<p><b>Party Games 3 Wins:</b> <?php echo number_format($player->arcade->partyGamesThree->wins); ?></p>
+					                			<p><b>Farm Hunt Wins:</b> <?php echo number_format($player->arcade->farmHunt->wins); ?></p>
+					                			<p><b>Farm Hunt Poop Collected:</b> <?php echo number_format($player->arcade->farmHunt->poopCollected); ?></p>
+					                			<p><b>Hole In The Wall Wins:</b> <?php echo number_format($player->arcade->holeInTheWall->wins); ?></p>
+					                			<p><b>Hypixel Says Wins:</b> <?php echo number_format($player->arcade->hypixelSays->wins); ?></p>
+					                			<p><b>Hypixel Says Rounds:</b> <?php echo number_format($player->arcade->hypixelSays->rounds); ?></p>
+					                			<p><b>Dragon Wars Wins:</b> <?php echo number_format($player->arcade->dragonWars->wins); ?></p>
+					                			<p><b>Dragon Wars Kills:</b> <?php echo number_format($player->arcade->dragonWars->kills); ?></p>
+
+												<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#miniwalls">Mini Walls</button><br><br>
+
+						                		<div id="miniwalls" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->arcade->miniWalls->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->arcade->miniWalls->kills); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->arcade->miniWalls->deaths); ?></p>
+						                			<p><b>Final Kills:</b> <?php echo number_format($player->arcade->miniWalls->finalKills); ?></p>
+						                			<p><b>Wither Kills:</b> <?php echo number_format($player->arcade->miniWalls->witherKills); ?></p>
+						                			<p><b>Wither Damage:</b> <?php echo number_format($player->arcade->miniWalls->witherDamage); ?></p>
+						                			<p><b>Arrows Shot:</b> <?php echo number_format($player->arcade->miniWalls->arrowsShot); ?></p>
+						                			<p><b>Arrows Hit:</b> <?php echo number_format($player->arcade->miniWalls->arrowsHit); ?></p>
+						                		</div>
+
+												<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#bounty">Bounty Hunters</button><br><br>
+
+						                		<div id="bounty" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->arcade->bountyHunters->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->arcade->bountyHunters->kills); ?></p>
+						                			<p><b>Bounty Kills:</b> <?php echo number_format($player->arcade->bountyHunters->bountyKills); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->arcade->bountyHunters->deaths); ?></p>
+						                		</div>
+
+												<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#throwout">Throw Out</button><br><br>
+
+						                		<div id="throwout" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->arcade->throwOut->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->arcade->throwOut->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->arcade->throwOut->deaths); ?></p>
+						                		</div>
+
+												<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#blockingdead">Blocking Dead</button><br><br>
+
+						                		<div id="blockingdead" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->arcade->blockingDead->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->arcade->blockingDead->kills); ?></p>
+						                			<p><b>Headshots:</b> <?php echo number_format($player->arcade->blockingDead->headshots); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#galaxy">Galaxy Wars</button><br><br>
+
+						                		<div id="galaxy" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->arcade->galaxyWars->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->arcade->galaxyWars->kills); ?></p>
+						                			<p><b>Shots Fired:</b> <?php echo number_format($player->arcade->galaxyWars->shotsFired); ?></p>
+						                			<p><b>Rebel Kills:</b> <?php echo number_format($player->arcade->galaxyWars->rebelKills); ?></p>
+						                			<p><b>Empire Kills:</b> <?php echo number_format($player->arcade->galaxyWars->empireKills); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#football">Football</button><br><br>
+
+						                		<div id="football" class="collapse">
+						                			<p><b>Wins:</b> <?php echo number_format($player->arcade->football->wins); ?></p>
+						                			<p><b>Goals:</b> <?php echo number_format($player->arcade->football->goals); ?></p>
+						                			<p><b>Power Kicks:</b> <?php echo number_format($player->arcade->football->powerKicks); ?></p>
+						                			<p><b>Kicks:</b> <?php echo number_format($player->arcade->football->kicks); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#hideandseek">Hide And Seek</button><br><br>
+
+						                		<div id="hideandseek" class="collapse">
+						                			<p><b>Seeker Wins:</b> <?php echo number_format($player->arcade->hideAndSeek->seekerWins); ?></p>
+						                			<p><b>Hider Wins:</b> <?php echo number_format($player->arcade->hideAndSeek->hiderWins); ?></p>
+						                			<p><b>Party Pooper Seeker Wins:</b> <?php echo number_format($player->arcade->hideAndSeek->partyPooper->seekerWins); ?></p>
+						                			<p><b>Party Pooper Hider Wins:</b> <?php echo number_format($player->arcade->hideAndSeek->partyPooper->hiderWins); ?></p>
+						                			<p><b>Prop Hunt Hider Wins:</b> <?php echo number_format($player->arcade->hideAndSeek->propHunt->hiderWins); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#zombies">Zombies</button><br><br>
+
+						                		<div id="zombies" class="collapse">
+						                			<p><b>Best Round:</b> <?php echo number_format($player->arcade->zombies->bestRound); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#seasonal">Seasonal</button><br><br>
+
+						                		<div id="seasonal" class="collapse">
+						                			<p><b>Santa Says Rounds:</b> <?php echo number_format($player->arcade->seasonal->santaSays->rounds); ?></p>
+						                			<p><b>Santa Simulator Wins:</b> <?php echo number_format($player->arcade->seasonal->santaSimulator->wins); ?></p>
+						                			<p><b>Santa Simulator Delivered:</b> <?php echo number_format($player->arcade->seasonal->santaSimulator->delivered); ?></p>
+						                			<p><b>Santa Simulator Spotted:</b> <?php echo number_format($player->arcade->seasonal->santaSimulator->spotted); ?></p>
+						                			<p><b>Easter Simulator Wins:</b> <?php echo number_format($player->arcade->seasonal->easterSimulator->wins); ?></p>
+						                			<p><b>Easter Simulator Eggs Found:</b> <?php echo number_format($player->arcade->seasonal->easterSimulator->eggsFound); ?></p>
+						                			<p><b>Scuba Simulator Points:</b> <?php echo number_format($player->arcade->seasonal->scubaSimulator->totalPoints); ?></p>
+						                			<p><b>Scuba Simulator Items:</b> <?php echo number_format($player->arcade->seasonal->scubaSimulator->itemsFound); ?></p>
+						                		</div>
+
 					                		</div>
 					                	</div>
 					                	<br>
