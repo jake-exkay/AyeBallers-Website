@@ -300,66 +300,84 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                                	</div>
 
 					        						<div class="card-body">
+					        							<div class="row">
+						        							<div class="col-md-6">
 
-					        							<?php
-							                				$kd_qc = 0.0;
-							                				$sk_qc = 0.0;
+							        							<?php
+									                				$kd_qc = 0.0;
+									                				$sk_qc = 0.0;
 
-							                				if ($player->quakecraft->soloDeaths != 0 || $player->quakecraft->teamDeaths != 0) {
-							                					$kd_qc = round((($player->quakecraft->teamKills + $player->quakecraft->soloKills) / ($player->quakecraft->teamDeaths + $player->quakecraft->soloDeaths)), 2);
-							                				}
-							                				if ($player->quakecraft->soloKills != 0 || $player->quakecraft->teamKills != 0) {
-							                					$sk_qc = round((($player->quakecraft->soloShotsFired + $player->quakecraft->teamShotsFired) / ($player->quakecraft->soloKills + $player->quakecraft->teamKills)), 2);
-							                				}
-							                			?>
+									                				if ($player->quakecraft->soloDeaths != 0 || $player->quakecraft->teamDeaths != 0) {
+									                					$kd_qc = round((($player->quakecraft->teamKills + $player->quakecraft->soloKills) / ($player->quakecraft->teamDeaths + $player->quakecraft->soloDeaths)), 2);
+									                				}
+									                				if ($player->quakecraft->soloKills != 0 || $player->quakecraft->teamKills != 0) {
+									                					$sk_qc = round((($player->quakecraft->soloShotsFired + $player->quakecraft->teamShotsFired) / ($player->quakecraft->soloKills + $player->quakecraft->teamKills)), 2);
+									                				}
+									                			?>
 
-							                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+									                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
-							                			<p><b>Coins:</b> <?php echo number_format($player->quakecraft->coins); ?></p>
-							                			<p><b>Highest Killstreak:</b> <?php echo number_format($player->quakecraft->highestKillstreak); ?></p>
+									                			<p><b>Coins:</b> <?php echo number_format($player->quakecraft->coins); ?></p>
+									                			<p><b>Highest Killstreak:</b> <?php echo number_format($player->quakecraft->highestKillstreak); ?></p>
 
-							                			<br>
+									                			<br>
 
-							                			<p><b>Kills:</b> <?php echo number_format($player->quakecraft->soloKills + $player->quakecraft->teamKills); ?></p>
-							                			<p><b>Wins:</b> <?php echo number_format($player->quakecraft->soloWins + $player->quakecraft->teamWins); ?></p>
-							                			<p><b>Deaths:</b> <?php echo number_format($player->quakecraft->soloDeaths + $player->quakecraft->teamDeaths); ?></p>
-							                			<p><b>Killstreaks:</b> <?php echo number_format($player->quakecraft->soloKillstreaks + $player->quakecraft->teamKillstreaks); ?></p>
-							                			<p><b>Headshots:</b> <?php echo number_format($player->quakecraft->soloHeadshots + $player->quakecraft->teamHeadshots); ?></p>
-							                			<p><b>Distance Travelled:</b> <?php echo number_format($player->quakecraft->soloDistanceTravelled + $player->quakecraft->teamDistanceTravelled); ?> blocks</p>
-							                			<p><b>Shots Fired:</b> <?php echo number_format($player->quakecraft->soloShotsFired + $player->quakecraft->teamShotsFired); ?></p>
+									                			<p><b>Kills:</b> <?php echo number_format($player->quakecraft->soloKills + $player->quakecraft->teamKills); ?></p>
+									                			<p><b>Wins:</b> <?php echo number_format($player->quakecraft->soloWins + $player->quakecraft->teamWins); ?></p>
+									                			<p><b>Deaths:</b> <?php echo number_format($player->quakecraft->soloDeaths + $player->quakecraft->teamDeaths); ?></p>
+									                			<p><b>Killstreaks:</b> <?php echo number_format($player->quakecraft->soloKillstreaks + $player->quakecraft->teamKillstreaks); ?></p>
+									                			<p><b>Headshots:</b> <?php echo number_format($player->quakecraft->soloHeadshots + $player->quakecraft->teamHeadshots); ?></p>
+									                			<p><b>Distance Travelled:</b> <?php echo number_format($player->quakecraft->soloDistanceTravelled + $player->quakecraft->teamDistanceTravelled); ?> blocks</p>
+									                			<p><b>Shots Fired:</b> <?php echo number_format($player->quakecraft->soloShotsFired + $player->quakecraft->teamShotsFired); ?></p>
 
-							                			<br>
+									                			<br>
 
-							                			<p><b>K/D:</b> <?php echo $kd_qc; ?></p>
-							                			<p><b>S/K:</b> <?php echo $sk_qc; ?></p>
+									                			<p><b>K/D:</b> <?php echo $kd_qc; ?></p>
+									                			<p><b>S/K:</b> <?php echo $sk_qc; ?></p>
 
-							                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#quakesolo">Solo</button><br><br>
+									                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#quakesolo">Solo</button><br><br>
 
-							                			<div id="quakesolo" class="collapse">
+									                			<div id="quakesolo" class="collapse">
 
-								                			<p><b>Kills:</b> <?php echo number_format($player->quakecraft->soloKills); ?></p>
-								                			<p><b>Wins:</b> <?php echo number_format($player->quakecraft->soloWins); ?></p>
-								                			<p><b>Deaths:</b> <?php echo number_format($player->quakecraft->soloDeaths); ?></p>
-								                			<p><b>Killstreaks:</b> <?php echo number_format($player->quakecraft->soloKillstreaks); ?></p>
-								                			<p><b>Headshots:</b> <?php echo number_format($player->quakecraft->soloHeadshots); ?></p>
-								                			<p><b>Distance Travelled:</b> <?php echo number_format($player->quakecraft->soloDistanceTravelled); ?> blocks</p>
-								                			<p><b>Shots Fired:</b> <?php echo number_format($player->quakecraft->soloShotsFired); ?></p>
+										                			<p><b>Kills:</b> <?php echo number_format($player->quakecraft->soloKills); ?></p>
+										                			<p><b>Wins:</b> <?php echo number_format($player->quakecraft->soloWins); ?></p>
+										                			<p><b>Deaths:</b> <?php echo number_format($player->quakecraft->soloDeaths); ?></p>
+										                			<p><b>Killstreaks:</b> <?php echo number_format($player->quakecraft->soloKillstreaks); ?></p>
+										                			<p><b>Headshots:</b> <?php echo number_format($player->quakecraft->soloHeadshots); ?></p>
+										                			<p><b>Distance Travelled:</b> <?php echo number_format($player->quakecraft->soloDistanceTravelled); ?> blocks</p>
+										                			<p><b>Shots Fired:</b> <?php echo number_format($player->quakecraft->soloShotsFired); ?></p>
 
-								                		</div>
+										                		</div>
 
-								                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#quaketeams">Teams</button><br><br>
+										                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#quaketeams">Teams</button><br><br>
 
-							                			<div id="quaketeams" class="collapse">
+									                			<div id="quaketeams" class="collapse">
 
-								                			<p><b>Kills:</b> <?php echo number_format($player->quakecraft->teamKills); ?></p>
-								                			<p><b>Wins:</b> <?php echo number_format($player->quakecraft->teamWins); ?></p>
-								                			<p><b>Deaths:</b> <?php echo number_format($player->quakecraft->teamDeaths); ?></p>
-								                			<p><b>Killstreaks:</b> <?php echo number_format($player->quakecraft->teamKillstreaks); ?></p>
-								                			<p><b>Headshots:</b> <?php echo number_format($player->quakecraft->teamHeadshots); ?></p>
-								                			<p><b>Distance Travelled:</b> <?php echo number_format($player->quakecraft->teamDistanceTravelled); ?> blocks</p>
-								                			<p><b>Shots Fired:</b> <?php echo number_format($player->quakecraft->teamShotsFired); ?></p>
+										                			<p><b>Kills:</b> <?php echo number_format($player->quakecraft->teamKills); ?></p>
+										                			<p><b>Wins:</b> <?php echo number_format($player->quakecraft->teamWins); ?></p>
+										                			<p><b>Deaths:</b> <?php echo number_format($player->quakecraft->teamDeaths); ?></p>
+										                			<p><b>Killstreaks:</b> <?php echo number_format($player->quakecraft->teamKillstreaks); ?></p>
+										                			<p><b>Headshots:</b> <?php echo number_format($player->quakecraft->teamHeadshots); ?></p>
+										                			<p><b>Distance Travelled:</b> <?php echo number_format($player->quakecraft->teamDistanceTravelled); ?> blocks</p>
+										                			<p><b>Shots Fired:</b> <?php echo number_format($player->quakecraft->teamShotsFired); ?></p>
 
-								                		</div>
+										                		</div>
+										                	</div>
+
+									                		<div class="col-md-6">
+									                			<br><br>
+
+									                			<center><h4>Kill / Death Ratio</h4></center>
+								                				<canvas id="quakePie"></canvas>
+
+								                				<br><hr><br>
+
+									                			<center><h4>Wins: Solo vs Teams</h4></center>
+								                				<canvas id="quakeBar"></canvas>
+
+									                		</div>
+
+										                </div>
 							                		</div>
 							                	</div>
 							                	<br>
@@ -375,116 +393,133 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                                	</div>
 
 					        						<div class="card-body">
+					        							<div class="row">
+					        								<div class="col-md-6">
 
-					        							<?php
-					        								$kd_ab_o = 0.0;
-							                				$wl_ab_o = 0.0;
-							                				$kd_ab_1 = 0.0;
-							                				$wl_ab_1 = 0.0;
-							                				$kd_ab_2 = 0.0;
-							                				$wl_ab_2 = 0.0;
-							                				$kd_ab_4 = 0.0;
-							                				$wl_ab_4 = 0.0;
+							        							<?php
+							        								$kd_ab_o = 0.0;
+									                				$wl_ab_o = 0.0;
+									                				$kd_ab_1 = 0.0;
+									                				$wl_ab_1 = 0.0;
+									                				$kd_ab_2 = 0.0;
+									                				$wl_ab_2 = 0.0;
+									                				$kd_ab_4 = 0.0;
+									                				$wl_ab_4 = 0.0;
 
-							                				if ($player->arena->ones->deaths != 0 || $player->arena->twos->deaths != 0 || $player->arena->fours->deaths != 0) {
-							                					$kd_ab_o = round((($player->arena->ones->kills + $player->arena->twos->kills + $player->arena->fours->kills) / ($player->arena->ones->deaths + $player->arena->twos->deaths + $player->arena->fours->deaths)), 2);
-							                				}
+									                				if ($player->arena->ones->deaths != 0 || $player->arena->twos->deaths != 0 || $player->arena->fours->deaths != 0) {
+									                					$kd_ab_o = round((($player->arena->ones->kills + $player->arena->twos->kills + $player->arena->fours->kills) / ($player->arena->ones->deaths + $player->arena->twos->deaths + $player->arena->fours->deaths)), 2);
+									                				}
 
-							                				if ($player->arena->ones->losses != 0 || $player->arena->twos->losses != 0 || $player->arena->fours->losses != 0) {
-							                					$wl_ab_o = round((($player->arena->ones->wins + $player->arena->twos->wins + $player->arena->fours->wins) / ($player->arena->ones->losses + $player->arena->twos->losses + $player->arena->fours->losses)), 2);
-							                				}
+									                				if ($player->arena->ones->losses != 0 || $player->arena->twos->losses != 0 || $player->arena->fours->losses != 0) {
+									                					$wl_ab_o = round((($player->arena->ones->wins + $player->arena->twos->wins + $player->arena->fours->wins) / ($player->arena->ones->losses + $player->arena->twos->losses + $player->arena->fours->losses)), 2);
+									                				}
 
-							                				if ($player->arena->ones->deaths != 0) {
-							                					$kd_ab_1 = round(($player->arena->ones->kills / $player->arena->ones->deaths), 2);
-							                				}
+									                				if ($player->arena->ones->deaths != 0) {
+									                					$kd_ab_1 = round(($player->arena->ones->kills / $player->arena->ones->deaths), 2);
+									                				}
 
-							                				if ($player->arena->ones->losses != 0) {
-							                					$wl_ab_1 = round(($player->arena->ones->wins / $player->arena->ones->losses), 2);
-							                				}
+									                				if ($player->arena->ones->losses != 0) {
+									                					$wl_ab_1 = round(($player->arena->ones->wins / $player->arena->ones->losses), 2);
+									                				}
 
-							                				if ($player->arena->twos->deaths != 0) {
-							                					$kd_ab_2 = round(($player->arena->twos->kills / $player->arena->twos->deaths), 2);
-							                				}
+									                				if ($player->arena->twos->deaths != 0) {
+									                					$kd_ab_2 = round(($player->arena->twos->kills / $player->arena->twos->deaths), 2);
+									                				}
 
-							                				if ($player->arena->twos->losses != 0) {
-							                					$wl_ab_2 = round(($player->arena->twos->wins / $player->arena->twos->losses), 2);
-							                				}
+									                				if ($player->arena->twos->losses != 0) {
+									                					$wl_ab_2 = round(($player->arena->twos->wins / $player->arena->twos->losses), 2);
+									                				}
 
-							                				if ($player->arena->fours->deaths != 0) {
-							                					$kd_ab_4 = round(($player->arena->fours->kills / $player->arena->fours->deaths), 2);
-							                				}
+									                				if ($player->arena->fours->deaths != 0) {
+									                					$kd_ab_4 = round(($player->arena->fours->kills / $player->arena->fours->deaths), 2);
+									                				}
 
-							                				if ($player->arena->fours->losses != 0) {
-							                					$wl_ab_4 = round(($player->arena->fours->wins / $player->arena->fours->losses), 2);
-							                				}
-							                			?>
+									                				if ($player->arena->fours->losses != 0) {
+									                					$wl_ab_4 = round(($player->arena->fours->wins / $player->arena->fours->losses), 2);
+									                				}
+									                			?>
 
-							                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+									                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
-							                			<p><b>Rating:</b> <?php echo number_format($player->arena->rating); ?></p>
-							                			<p><b>Coins:</b> <?php echo number_format($player->arena->coins); ?></p>
-							                			<p><b>Coins Spent:</b> <?php echo number_format($player->arena->coinsSpent); ?></p>
-							                			<p><b>Keys Used:</b> <?php echo number_format($player->arena->keys); ?></p>
-														<p><b>Kills:</b> <?php echo number_format($player->arena->ones->kills + $player->arena->twos->kills + $player->arena->fours->kills); ?></p>
-							                			<p><b>Wins:</b> <?php echo number_format($player->arena->ones->wins + $player->arena->twos->wins + $player->arena->fours->wins); ?></p>
-							                			<p><b>Deaths:</b> <?php echo number_format($player->arena->ones->deaths + $player->arena->twos->deaths + $player->arena->fours->deaths); ?></p>
-							                			<p><b>Losses:</b> <?php echo number_format($player->arena->ones->losses + $player->arena->twos->losses + $player->arena->fours->losses); ?></p>
-							                			<p><b>Games Played:</b> <?php echo number_format($player->arena->ones->games + $player->arena->twos->games + $player->arena->fours->games); ?></p>
-							                			<p><b>Damage:</b> <?php echo number_format($player->arena->ones->damage + $player->arena->twos->damage + $player->arena->fours->damage); ?></p>
-							                			<p><b>Healed:</b> <?php echo number_format($player->arena->ones->healed + $player->arena->twos->healed + $player->arena->fours->healed); ?></p>
+									                			<p><b>Rating:</b> <?php echo number_format($player->arena->rating); ?></p>
+									                			<p><b>Coins:</b> <?php echo number_format($player->arena->coins); ?></p>
+									                			<p><b>Coins Spent:</b> <?php echo number_format($player->arena->coinsSpent); ?></p>
+									                			<p><b>Keys Used:</b> <?php echo number_format($player->arena->keys); ?></p>
+																<p><b>Kills:</b> <?php echo number_format($player->arena->ones->kills + $player->arena->twos->kills + $player->arena->fours->kills); ?></p>
+									                			<p><b>Wins:</b> <?php echo number_format($player->arena->ones->wins + $player->arena->twos->wins + $player->arena->fours->wins); ?></p>
+									                			<p><b>Deaths:</b> <?php echo number_format($player->arena->ones->deaths + $player->arena->twos->deaths + $player->arena->fours->deaths); ?></p>
+									                			<p><b>Losses:</b> <?php echo number_format($player->arena->ones->losses + $player->arena->twos->losses + $player->arena->fours->losses); ?></p>
+									                			<p><b>Games Played:</b> <?php echo number_format($player->arena->ones->games + $player->arena->twos->games + $player->arena->fours->games); ?></p>
+									                			<p><b>Damage:</b> <?php echo number_format($player->arena->ones->damage + $player->arena->twos->damage + $player->arena->fours->damage); ?></p>
+									                			<p><b>Healed:</b> <?php echo number_format($player->arena->ones->healed + $player->arena->twos->healed + $player->arena->fours->healed); ?></p>
 
-							                			<br>
+									                			<br>
 
-							                			<p><b>K/D:</b> <?php echo $kd_ab_o; ?></p>
-							                			<p><b>W/L:</b> <?php echo $wl_ab_o; ?></p>
+									                			<p><b>K/D:</b> <?php echo $kd_ab_o; ?></p>
+									                			<p><b>W/L:</b> <?php echo $wl_ab_o; ?></p>
 
-							                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#arena_1">1v1</button><br><br>
+									                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#arena_1">1v1</button><br><br>
 
-							                			<div id="arena_1" class="collapse">
+									                			<div id="arena_1" class="collapse">
 
-															<p><b>Kills:</b> <?php echo number_format($player->arena->ones->kills); ?></p>
-								                			<p><b>Wins:</b> <?php echo number_format($player->arena->ones->wins); ?></p>
-								                			<p><b>Deaths:</b> <?php echo number_format($player->arena->ones->deaths); ?></p>
-								                			<p><b>Losses:</b> <?php echo number_format($player->arena->ones->losses); ?></p>
-								                			<p><b>Games Played:</b> <?php echo number_format($player->arena->ones->games); ?></p>
-								                			<p><b>Damage:</b> <?php echo number_format($player->arena->ones->damage); ?></p>
-								                			<p><b>Healed:</b> <?php echo number_format($player->arena->ones->healed); ?></p>
-								                			<p><b>K/D:</b> <?php echo $kd_ab_1; ?></p>
-								                			<p><b>W/L:</b> <?php echo $wl_ab_1; ?></p>
-							                			
-							                			</div>
-							                			
-							                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#arena_2">2v2</button><br><br>
+																	<p><b>Kills:</b> <?php echo number_format($player->arena->ones->kills); ?></p>
+										                			<p><b>Wins:</b> <?php echo number_format($player->arena->ones->wins); ?></p>
+										                			<p><b>Deaths:</b> <?php echo number_format($player->arena->ones->deaths); ?></p>
+										                			<p><b>Losses:</b> <?php echo number_format($player->arena->ones->losses); ?></p>
+										                			<p><b>Games Played:</b> <?php echo number_format($player->arena->ones->games); ?></p>
+										                			<p><b>Damage:</b> <?php echo number_format($player->arena->ones->damage); ?></p>
+										                			<p><b>Healed:</b> <?php echo number_format($player->arena->ones->healed); ?></p>
+										                			<p><b>K/D:</b> <?php echo $kd_ab_1; ?></p>
+										                			<p><b>W/L:</b> <?php echo $wl_ab_1; ?></p>
+									                			
+									                			</div>
+									                			
+									                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#arena_2">2v2</button><br><br>
 
-							                			<div id="arena_2" class="collapse">
+									                			<div id="arena_2" class="collapse">
 
-															<p><b>Kills:</b> <?php echo number_format($player->arena->twos->kills); ?></p>
-								                			<p><b>Wins:</b> <?php echo number_format($player->arena->twos->wins); ?></p>
-								                			<p><b>Deaths:</b> <?php echo number_format($player->arena->twos->deaths); ?></p>
-								                			<p><b>Losses:</b> <?php echo number_format($player->arena->twos->losses); ?></p>
-								                			<p><b>Games Played:</b> <?php echo number_format($player->arena->twos->games); ?></p>
-								                			<p><b>Damage:</b> <?php echo number_format($player->arena->twos->damage); ?></p>
-								                			<p><b>Healed:</b> <?php echo number_format($player->arena->twos->healed); ?></p>
-								                			<p><b>K/D:</b> <?php echo $kd_ab_2; ?></p>
-								                			<p><b>W/L:</b> <?php echo $wl_ab_2; ?></p>
+																	<p><b>Kills:</b> <?php echo number_format($player->arena->twos->kills); ?></p>
+										                			<p><b>Wins:</b> <?php echo number_format($player->arena->twos->wins); ?></p>
+										                			<p><b>Deaths:</b> <?php echo number_format($player->arena->twos->deaths); ?></p>
+										                			<p><b>Losses:</b> <?php echo number_format($player->arena->twos->losses); ?></p>
+										                			<p><b>Games Played:</b> <?php echo number_format($player->arena->twos->games); ?></p>
+										                			<p><b>Damage:</b> <?php echo number_format($player->arena->twos->damage); ?></p>
+										                			<p><b>Healed:</b> <?php echo number_format($player->arena->twos->healed); ?></p>
+										                			<p><b>K/D:</b> <?php echo $kd_ab_2; ?></p>
+										                			<p><b>W/L:</b> <?php echo $wl_ab_2; ?></p>
 
-							                			</div>
+									                			</div>
 
-							                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#arena_4">4v4</button><br><br>
+									                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#arena_4">4v4</button><br><br>
 
-							                			<div id="arena_4" class="collapse">
+									                			<div id="arena_4" class="collapse">
 
-															<p><b>Kills:</b> <?php echo number_format($player->arena->fours->kills); ?></p>
-								                			<p><b>Wins:</b> <?php echo number_format($player->arena->fours->wins); ?></p>
-								                			<p><b>Deaths:</b> <?php echo number_format($player->arena->fours->deaths); ?></p>
-								                			<p><b>Losses:</b> <?php echo number_format($player->arena->fours->losses); ?></p>
-								                			<p><b>Games Played:</b> <?php echo number_format($player->arena->fours->games); ?></p>
-								                			<p><b>Damage:</b> <?php echo number_format($player->arena->fours->damage); ?></p>
-								                			<p><b>Healed:</b> <?php echo number_format($player->arena->fours->healed); ?></p>
-								                			<p><b>K/D:</b> <?php echo $kd_ab_4; ?></p>
-								                			<p><b>W/L:</b> <?php echo $wl_ab_4; ?></p>
+																	<p><b>Kills:</b> <?php echo number_format($player->arena->fours->kills); ?></p>
+										                			<p><b>Wins:</b> <?php echo number_format($player->arena->fours->wins); ?></p>
+										                			<p><b>Deaths:</b> <?php echo number_format($player->arena->fours->deaths); ?></p>
+										                			<p><b>Losses:</b> <?php echo number_format($player->arena->fours->losses); ?></p>
+										                			<p><b>Games Played:</b> <?php echo number_format($player->arena->fours->games); ?></p>
+										                			<p><b>Damage:</b> <?php echo number_format($player->arena->fours->damage); ?></p>
+										                			<p><b>Healed:</b> <?php echo number_format($player->arena->fours->healed); ?></p>
+										                			<p><b>K/D:</b> <?php echo $kd_ab_4; ?></p>
+										                			<p><b>W/L:</b> <?php echo $wl_ab_4; ?></p>
 
-								                		</div>
+										                		</div>
+									                		</div>
+									                		<div class="col-md-6">
+									                			<br><br>
+
+									                			<center><h4>Wins By Mode</h4></center>
+								                				<canvas id="arenaBar"></canvas>
+
+								                				<br><hr><br>
+
+								                				<center><h4>Damage vs Healing</h4></center>
+								                				<canvas id="arenaPie"></canvas>
+
+									                		</div>
+
+										                </div>
 							                		</div>
 							                	</div>
 							                	<br>
@@ -579,6 +614,10 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 							                		</div>
 							                	</div>
 					                		</div>
+
+					                		<center><h4>Coins By Game</h4></center>
+											<canvas id="classicPie"></canvas>
+
 					                		<hr>
 					                	</div>
 
@@ -1325,6 +1364,123 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 								}]
 							}
 						}
+					});
+
+					var ctxQ = document.getElementById("quakePie").getContext('2d');
+					var qcPie = new Chart(ctxQ, {
+						type: 'doughnut',
+						data: {
+							labels: ["Kills", "Deaths"],
+							datasets: [{
+							data: ["<?php echo ($player->quakecraft->soloKills + $player->quakecraft->teamKills); ?>", "<?php echo ($player->quakecraft->soloDeaths + $player->quakecraft->teamDeaths); ?>"],
+							backgroundColor: ["#46BFBD", "#F7464A"],
+							hoverBackgroundColor: ["#5AD3D1", "#FF5A5E"]
+						}]
+					},
+					options: {
+						responsive: true
+					}
+					});
+
+					var ctxClassic = document.getElementById("classicPie").getContext('2d');
+					var classicPie = new Chart(ctxClassic, {
+						type: 'doughnut',
+						data: {
+							labels: ["Paintball", "Quakecraft", "Turbo Kart Racers", "The Walls", "VampireZ", "Arena Brawl"],
+							datasets: [{
+							data: ["<?php echo $player->paintball->coins; ?>", "<?php echo $player->quakecraft->coins; ?>", "<?php echo $player->tkr->coins; ?>", "<?php echo $player->walls->coins; ?>", "<?php echo $player->vampirez->coins; ?>", "<?php echo $player->arena->coins; ?>"],
+							backgroundColor: ["#f7f736", "#c4c408", "#f9f9be", "#f2c673", "#e99f16", "#e97116"],
+							hoverBackgroundColor: ["#f7f736", "#c4c408", "#f9f9be", "#f2c673", "#e99f16", "#e97116"]
+						}]
+					},
+					options: {
+						responsive: true
+					}
+					});
+
+					var ctxBar = document.getElementById("quakeBar").getContext('2d');
+					var quakeBar = new Chart(ctxBar, {
+						type: 'bar',
+						data: {
+							labels: ["Solo", "Teams"],
+							datasets: [{
+								label: 'Wins: Solo VS Teams',
+								data: ["<?php echo $player->quakecraft->soloWins; ?>", "<?php echo $player->quakecraft->teamWins; ?>"],
+								backgroundColor: [
+									'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 162, 235, 0.2)'
+								],
+								borderColor: [
+									'rgba(255,99,132,1)',
+									'rgba(54, 162, 235, 1)'
+								],
+								borderWidth: 1
+							}]
+						},
+						options: {
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero: true
+									}
+								}]
+							}
+						}
+					});
+
+					var ctxArena = document.getElementById("arenaBar").getContext('2d');
+					var arenaBar = new Chart(ctxArena, {
+						type: 'bar',
+						data: {
+							labels: ["1v1 Wins", "2v2 Wins", "4v4 Wins"],
+							datasets: [{
+								label: 'Wins By Mode',
+								data: ["<?php echo $player->arena->ones->wins; ?>", "<?php echo $player->arena->twos->wins; ?>", "<?php echo $player->arena->fours->wins; ?>"],
+								backgroundColor: [
+									'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 162, 235, 0.2)',
+									'rgba(54, 255, 235, 0.2)'
+								],
+								borderColor: [
+									'rgba(255,99,132,1)',
+									'rgba(54, 162, 235, 1)',
+									'rgba(54, 255, 235, 1)'
+
+								],
+								borderWidth: 1
+							}]
+						},
+						options: {
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero: true
+									}
+								}]
+							}
+						}
+					});
+
+					var ctxArenaPie = document.getElementById("arenaPie").getContext('2d');
+					var arenaPie = new Chart(ctxArenaPie, {
+						type: 'doughnut',
+						data: {
+							labels: ["Damage", "Healing"],
+							datasets: [{
+							data: ["<?php echo ($player->arena->ones->damage + $player->arena->twos->damage + $player->arena->fours->damage); ?>", "<?php echo ($player->arena->ones->healed + $player->arena->twos->healed + $player->arena->fours->healed); ?>"],
+							backgroundColor: [
+									'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 255, 235, 0.2)'
+								],
+								borderColor: [
+									'rgba(255,99,132,1)',
+									'rgba(54, 255, 235, 1)'
+								]
+						}]
+					},
+					options: {
+						responsive: true
+					}
 					});
 
                 </script>
