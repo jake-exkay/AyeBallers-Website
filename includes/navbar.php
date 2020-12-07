@@ -19,12 +19,12 @@ echo '
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Home</div>
+                        <div class="sb-sidenav-menu-heading">Hypixel</div>
                         <a class="nav-link" href="../../../index.php">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-home"></i>
                             </div>
-                            Home
+                            Player Statistics
                         </a>
                         <a class="nav-link" href="../../../ayeballers.php">
                             <div class="sb-nav-link-icon">
@@ -37,12 +37,6 @@ echo '
                                 <i class="fa fa-star"></i>
                             </div>
                             Tournament
-                        </a>
-                        <a class="nav-link" href="../../../player.php">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-user"></i>
-                            </div>
-                            Player Statistics
                         </a>
                         <a class="nav-link" href="../../../guildsearch.php">
                             <div class="sb-nav-link-icon">
