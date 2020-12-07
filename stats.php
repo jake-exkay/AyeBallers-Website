@@ -30,7 +30,9 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
         <?php 
 	        $name = $_GET["player"];
 			$uuid = getUUID($connection, $name);
-			updatePlayer($mongo_mng, $uuid, $name, $API_KEY);
+			if (!updatePlayer($mongo_mng, $uuid, $name, $API_KEY)) {
+				header("Refresh:0.01; url=error/playernotfound.php");
+			} else {
 			updateStatsLog($connection, $name);
 		?>
 
@@ -1318,7 +1320,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					</div>
             	</main>
 
-                <?php require "includes/footer.php"; ?>
+                <?php require "includes/footer.php"; } ?>
 
                 <script>
                 	var ctxP = document.getElementById("paintballPie").getContext('2d');
@@ -1482,6 +1484,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						responsive: true
 					}
 					});
+
 
                 </script>
             </div>
