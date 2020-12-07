@@ -847,7 +847,7 @@
     }
 
     /**
-     * Gets a readable name for paintball hats..
+     * Gets a readable name for paintball hats.
      *
      * @param $hat Hat name to translate.
      *
@@ -908,6 +908,75 @@
                 $hat_paintball = "No Hat Selected";
         }
         return $hat_paintball;
+    }
+
+    /**
+     * Gets a readable string for recent game type.
+     *
+     * @param $game Game name to translate.
+     *
+     * @return $recent_game Translated name.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function formatRecentGame($game) 
+    {
+        $recent_game = "Unknown";
+
+        switch ($game) {
+            case "BUILD_BATTLE":
+                $recent_game = "Build Battle";
+                break;
+            case "PAINTBALL":
+                $recent_game = "Paintball";
+                break;
+            case "SKYWARS":
+                $recent_game = "SkyWars";
+                break;
+            case "LEGACY":
+                $recent_game = "Legacy Mode";
+                break;
+            case "BATTLEGROUND":
+                $recent_game = "Warlords";
+                break;
+            case "TNTGAMES":
+                $recent_game = "TNT Games";
+                break;
+            case "MURDER_MYSTERY":
+                $recent_game = "Murder Mystery";
+                break;
+            case "HOUSING":
+                $recent_game = "Housing";
+                break;
+            case "PROTOTYPE":
+                $recent_game = "SkyBlock";
+                break;
+            case "ARCADE":
+                $recent_game = "Arcade";
+                break;
+            case "DUELS":
+                $recent_game = "Duels";
+                break;
+            case "QUAKECRAFT":
+                $recent_game = "Quakecraft";
+                break;
+            case "GINGERBREAD":
+                $recent_game = "Turbo Kart Racers";
+                break;
+            case "SURVIVAL_GAMES":
+                $recent_game = "Blitz Survival Games";
+                break;
+            case "WALLS":
+                $recent_game = "The Walls";
+                break;
+            case "WALLS3":
+                $recent_game = "Mega Walls";
+                break;
+            default:
+                $recent_game = "Unknown";
+        }
+
+        return $recent_game;
+
     }
 
 ?>

@@ -44,7 +44,7 @@ updatePageViews($connection, 'player_page', $DEV_IP);
                             <br>
 
                             <center>
-                                <h3 class="ayeballers_font">Hypixel stats checker</h3>
+                                <h3 class="ayeballers_font">Hypixel Player Lookup</h3>
                 			</center>
 
                             <br>

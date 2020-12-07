@@ -83,8 +83,17 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 	            			$tag_colour = "#a7aaa1";
 	            		}
 
+	            		$first_login = $player->firstLogin;
+	            		$first_login = date("d M Y (H:i:s)", (int)substr($first_login, 0, 10));
+	            		$last_login = $player->lastLogin;
+	            		$last_login = date("d M Y (H:i:s)", (int)substr($last_login, 0, 10));
+	            		$last_vote = $player->lastVote;
+	            		$last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
+
 	            		$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 	            		$network_level = getLevel($network_exp);
+
+	            		$recent_game = formatRecentGame($player->recentGameType);
 
 	            		$previous = "javascript:history.go(-1)";
 			            if (isset($_SERVER['HTTP_REFERER'])) {
@@ -134,18 +143,18 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                			<p><b>Network Level:</b> <?php echo $network_level; ?> </p>
 						                			<p><b>Achievement Points:</b> <?php echo number_format($player->achievementPoints); ?></p>
 						                			<p><b>Karma:</b> <?php echo number_format($player->karma); ?></p>
-						                			<p><b>First Login:</b> <?php echo $player->firstLogin; ?></p>
-						                			<p><b>Last Login:</b> <?php echo $player->lastLogin; ?></p>
+						                			<p><b>First Login:</b> <?php echo $first_login; ?></p>
+						                			<p><b>Last Login:</b> <?php echo $last_login; ?></p>
 						                			<p><b>Selected Gadget:</b> <?php echo $player->selectedGadget; ?></p>
 						                			<p><b>Thanks Received:</b> <?php echo $player->thanksReceived; ?></p>
 						                			<p><b>Rewards Claimed:</b> <?php echo $player->rewardsClaimed; ?></p>
 						                			<p><b>Gifts Given:</b> <?php echo $player->giftsGiven; ?></p>
-						                			<p><b>Recent Game:</b> <?php echo $player->recentGameType; ?></p>
+						                			<p><b>Recent Game:</b> <?php echo $recent_game; ?></p>
 
 						                			<br>
 
 						                			<p><b>Total Votes:</b> <?php echo $player->totalVotes; ?></p>
-						                			<p><b>Last Vote:</b> <?php echo $player->lastVote; ?></p>
+						                			<p><b>Last Vote:</b> <?php echo $last_vote; ?></p>
 
 						                			<br>
 
