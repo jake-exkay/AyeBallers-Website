@@ -739,33 +739,33 @@
 		if ($rank_colour == "BLACK") {
 			$plus_colour = '<span style="color:#000000;">+</span>';
 		} else if ($rank_colour == "RED") {
-			$plus_colour = '<span style="color:#e72323;">+</span>';
+			$plus_colour = '<span style="color:#AA0000;">+</span>';
 		} else if ($rank_colour == "DARK_GREEN") {
-			$plus_colour = '<span style="color:#13850f;">+</span>';
+			$plus_colour = '<span style="color:#00AA00;">+</span>';
 		} else if ($rank_colour == "None") {
-			$plus_colour = '<span style="color:#ed5a64;">+</span>';
+			$plus_colour = '<span style="color:#FF5555;">+</span>';
 		} else if ($rank_colour == "WHITE") {
-			$plus_colour = '<span style="color:#ffffff;">+</span>';
+			$plus_colour = '<span style="color:#FFFFFF;">+</span>';
 		} else if ($rank_colour == "BLUE") {
-			$plus_colour = '<span style="color:#5a97ed;">+</span>';
+			$plus_colour = '<span style="color:#5555FF;">+</span>';
 		} else if ($rank_colour == "GREEN") {
-			$plus_colour = '<span style="color:#19e657;">+</span>';
+			$plus_colour = '<span style="color:#55FF55;">+</span>';
 		} else if ($rank_colour == "DARK_RED") {
-			$plus_colour = '<span style="color:#8a0f19;">+</span>';
+			$plus_colour = '<span style="color:#AA0000;">+</span>';
 		} else if ($rank_colour == "DARK_PURPLE") {
-			$plus_colour = '<span style="color:#510f8a;">+</span>';
+			$plus_colour = '<span style="color:#AA00AA;">+</span>';
         } else if ($rank_colour == "YELLOW") {
-            $plus_colour = '<span style="color:#fee125;">+</span>';
+            $plus_colour = '<span style="color:#FFFF55;">+</span>';
         } else if ($rank_colour == "GOLD") {
-            $plus_colour = '<span style="color:#d1aa0a;">+</span>';
+            $plus_colour = '<span style="color:#FFAA00;">+</span>';
         } else if ($rank_colour == "DARK_AQUA") {
-            $plus_colour = '<span style="color:#0a85d1;">+</span>';
+            $plus_colour = '<span style="color:#00AAAA;">+</span>';
         } else if ($rank_colour == "DARK_GRAY") {
-            $plus_colour = '<span style="color:#4c5052;">+</span>';
+            $plus_colour = '<span style="color:#555555;">+</span>';
         } else if ($rank_colour == "LIGHT_PURPLE") {
-            $plus_colour = '<span style="color:#a75de5;">+</span>';
+            $plus_colour = '<span style="color:#FF55FF;">+</span>';
 		} else {
-            $plus_colour = '<span style="color:#e72323;">+</span>';
+            $plus_colour = '<span style="color:#AA0000;">+</span>';
         }
 
 		if ($rank == "MVP_PLUS") {

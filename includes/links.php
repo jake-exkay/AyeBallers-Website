@@ -24,4 +24,5 @@ include "connect.php";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel='icon' href='../../../assets/img/favicon.png' type='image/x-icon'/ >
+<link rel="manifest" href="../../../manifest.json">
 
