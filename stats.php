@@ -148,7 +148,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                			<p><b>First Login:</b> <?php echo $first_login; ?></p>
 						                			<p><b>Last Login:</b> <?php echo $last_login; ?></p>
 						                			<p><b>Selected Gadget:</b> <?php echo $player->selectedGadget; ?></p>
-						                			<p><b>Thanks Received:</b> <?php echo $player->thanksReceived; ?></p>
+						                			<p><b>Thanks Received:</b> <?php echo number_format($player->thanksReceived); ?></p>
 						                			<p><b>Rewards Claimed:</b> <?php echo $player->rewardsClaimed; ?></p>
 						                			<p><b>Gifts Given:</b> <?php echo $player->giftsGiven; ?></p>
 						                			<p><b>Recent Game:</b> <?php echo $recent_game; ?></p>
@@ -867,7 +867,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                			<p><b>Powerups Collected:</b> <?php echo number_format($player->warlords->powerups); ?></p>
 					                			<p><b>Blue Wins:</b> <?php echo number_format($player->warlords->winsBlue); ?></p>
 					                			<p><b>Red Wins:</b> <?php echo number_format($player->warlords->winsRed); ?></p>
-					                			<p><b>Current Class:</b> <?php echo number_format($player->warlords->currentClass); ?></p>
+					                			<p><b>Current Class:</b> <?php echo $player->warlords->currentClass; ?></p>
 
 					                			<br>
 
@@ -1320,7 +1320,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					</div>
             	</main>
 
-                <?php require "includes/footer.php"; } ?>
+                <?php require "includes/footer.php"; ?>
 
                 <script>
                 	var ctxP = document.getElementById("paintballPie").getContext('2d');
@@ -1489,4 +1489,5 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                 </script>
             </div>
     </body>
+<?php } ?>
 </html>
