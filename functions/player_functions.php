@@ -684,6 +684,58 @@
                         ]
                     ]
 
+                ],
+                'uhc' => [
+                    'coins' => !empty($uhc->coins) ? $uhc->coins : 0,
+                    'score' => !empty($uhc->score) ? $uhc->score : 0,
+                    'solo' => [
+                        'deaths' => !empty($uhc->deaths_solo) ? $uhc->deaths_solo : 0,
+                        'kills' => !empty($uhc->kills_solo) ? $uhc->kills_solo : 0,
+                        'headsEaten' => !empty($uhc->deaths_solo) ? $uhc->deaths_solo : 0,
+                        'wins' => !empty($uhc->wins_solo) ? $uhc->wins_solo : 0
+                    ],
+                    'team' => [
+                        'deaths' => !empty($uhc->deaths) ? $uhc->deaths : 0,
+                        'kills' => !empty($uhc->kills) ? $uhc->kills : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten) ? $uhc->heads_eaten : 0,
+                        'wins' => !empty($uhc->wins) ? $uhc->wins : 0
+                    ],
+                    'redvsblue' => [
+                        'deaths' => !empty($uhc->deaths_red_vs_blue) ? $uhc->deaths_red_vs_blue : 0,
+                        'kills' => !empty($uhc->kills_red_vs_blue) ? $uhc->kills_red_vs_blue : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten_red_vs_blue) ? $uhc->heads_eaten_red_vs_blue : 0,
+                        'wins' => !empty($uhc->wins_red_vs_blue) ? $uhc->wins_red_vs_blue : 0
+                    ],
+                    'nodiamonds' => [
+                        'deaths' => !empty($uhc->deaths_no_diamonds) ? $uhc->deaths_no_diamonds : 0,
+                        'kills' => !empty($uhc->kills_no_diamonds) ? $uhc->kills_no_diamonds : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten_no_diamonds) ? $uhc->heads_eaten_no_diamonds : 0,
+                        'wins' => !empty($uhc->wins_no_diamonds) ? $uhc->wins_no_diamonds : 0
+                    ],
+                    'vanilladoubles' => [
+                        'deaths' => !empty($uhc->deaths_vanilla_doubles) ? $uhc->deaths_vanilla_doubles : 0,
+                        'kills' => !empty($uhc->kills_vanilla_doubles) ? $uhc->kills_vanilla_doubles : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten_vanilla_doubles) ? $uhc->heads_eaten_vanilla_doubles : 0,
+                        'wins' => !empty($uhc->wins_vanilla_doubles) ? $uhc->wins_vanilla_doubles : 0
+                    ],
+                    'brawl' => [
+                        'deaths' => !empty($uhc->deaths_brawl) ? $uhc->deaths_brawl : 0,
+                        'kills' => !empty($uhc->kills_brawl) ? $uhc->kills_brawl : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten_brawl) ? $uhc->heads_eaten_brawl : 0,
+                        'wins' => !empty($uhc->wins_brawl) ? $uhc->wins_brawl : 0
+                    ],
+                    'solobrawl' => [
+                        'deaths' => !empty($uhc->deaths_solo_brawl) ? $uhc->deaths_solo_brawl : 0,
+                        'kills' => !empty($uhc->kills_solo_brawl) ? $uhc->kills_solo_brawl : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten_solo_brawl) ? $uhc->heads_eaten_solo_brawl : 0,
+                        'wins' => !empty($uhc->wins_solo_brawl) ? $uhc->wins_solo_brawl : 0
+                    ],
+                    'duobrawl' => [
+                        'deaths' => !empty($uhc->deaths_duo_brawl) ? $uhc->deaths_duo_brawl : 0,
+                        'kills' => !empty($uhc->kills_duo_brawl) ? $uhc->kills_duo_brawl : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten_duo_brawl) ? $uhc->heads_eaten_duo_brawl : 0,
+                        'wins' => !empty($uhc->wins_duo_brawl) ? $uhc->wins_duo_brawl : 0
+                    ]
                 ]
             ];
 

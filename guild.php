@@ -15,7 +15,6 @@ require "includes/connect.php";
 require "includes/constants.php";
 require "functions/functions.php";
 require "functions/display_functions.php";
-require "functions/text_constants.php";
 require "functions/player_functions.php";
 require "error/error_messages.php";
    

@@ -1218,6 +1218,83 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                            </div>
 			        						<div class="card-body">
 
+			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+
+					                			<p><b>Coins:</b> <?php echo number_format($player->uhc->coins); ?></p>
+					                			<p><b>Score:</b> <?php echo number_format($player->uhc->score); ?></p>
+
+			        							<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#teamsuhc">Teams</button><br><br>
+
+						                		<div id="teamsuhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->team->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->team->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->team->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->team->headsEaten); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#solouhc">Solo</button><br><br>
+
+						                		<div id="solouhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->solo->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->solo->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->solo->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->solo->headsEaten); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#redvsblueuhc">Red vs Blue</button><br><br>
+
+						                		<div id="redvsblueuhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->redvsblue->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->redvsblue->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->redvsblue->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->redvsblue->headsEaten); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#nodiamondsuhc">No Diamonds</button><br><br>
+
+						                		<div id="nodiamondsuhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->nodiamonds->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->nodiamonds->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->nodiamonds->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->nodiamonds->headsEaten); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#vanilladoublesuhc">Vanilla Doubles</button><br><br>
+
+						                		<div id="vanilladoublesuhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->vanilladoubles->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->vanilladoubles->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->vanilladoubles->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->vanilladoubles->headsEaten); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#brawluhc">Brawl</button><br><br>
+
+						                		<div id="brawluhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->brawl->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->brawl->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->brawl->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->brawl->headsEaten); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#solobrawluhc">Solo Brawl</button><br><br>
+
+						                		<div id="solobrawluhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->solobrawl->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->solobrawl->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->solobrawl->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->solobrawl->headsEaten); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#duobrawluhc">Duo Brawl</button><br><br>
+
+						                		<div id="duobrawluhc" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->duobrawl->wins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->duobrawl->deaths); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->duobrawl->wins); ?></p>
+						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->duobrawl->headsEaten); ?></p>
+						                		</div>
+
 					                		</div>
 					                	</div>
 					                	<br>
