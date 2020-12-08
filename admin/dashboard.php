@@ -14,10 +14,10 @@ require "../includes/links.php";
 require "../includes/constants.php";
 require "../functions/functions.php";
 require "../functions/display_functions.php";
-require "../functions/text_constants.php";
 require "functions/database_functions.php";
+require "functions/login_functions.php";
 
-if (getUserIP() == $DEV_IP) {
+if (isLoggedIn($connection)) {
 
 updatePageViews($connection, 'admin_dashboard', $DEV_IP);
 
@@ -120,4 +120,6 @@ updatePageViews($connection, 'admin_dashboard', $DEV_IP);
 
 </html>
 
-<?php } ?>
+<?php } else {
+    header("Refresh:0.05; url=../../error/403.php");
+} ?>

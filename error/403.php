@@ -12,15 +12,6 @@
 
         <title>403: Permission Error - AyeBallers</title>
 
-        <?php
-
-            $previous = "javascript:history.go(-1)";
-            if (isset($_SERVER['HTTP_REFERER'])) {
-                $previous = $_SERVER['HTTP_REFERER'];
-            }
-
-        ?>
-
     </head>
 
     <body>
@@ -30,7 +21,7 @@
             </b>
             <h3 style="font-family: BKANT, sans-serif">Unfortunately you do not have permission to view this page!</h2>
             <h3>
-                <a href="<?= $previous ?>">< Go Back</a>
+                <a href="../index.php">< Go Home</a>
             </h3>
         </center>
     </body>

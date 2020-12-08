@@ -43,10 +43,6 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                         <h1 class="ayeballers_font">Guild Members</h1>
                     </center>   
 
-                    <br>
-                    <center><?php displayGuildMemberUpdateButton($API_KEY); ?></center>
-                    <br>
-
                     <div class="row">
                     <?php
 

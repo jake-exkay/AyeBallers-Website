@@ -9,14 +9,24 @@
  * @link     http://ayeballers.xyz/
  */
 
-mysqli_close($connection);
-
 ?>
 
 <footer class="py-4 bg-dark mt-auto">
     <div class="container-fluid">
         <div class="d-flex align-items-center justify-content-between small">
             <div class="text-muted">Copyright &copy; AyeBallers / ExKay 2020</div>
+            <?php if (getUsername($connection) == "None") { ?>
+                <form action="../../../login.php">
+                    <button data-toggle="collapse" class="btn btn-light btn-outline-success">Login</button>
+                </form>
+            <?php } else { ?>
+                <form action="../../../logout.php">
+                    <div class="row">
+                        <h3 style="color: '#cccbc7'; padding-left: 20px;"><?php echo getUsername($connection); ?></h3>
+                        <button data-toggle="collapse" class="btn btn-light btn-outline-success">Logout</button>
+                    </div>
+                </form>
+            <?php } ?>
         </div>
     </div>
 </footer>
@@ -28,6 +38,8 @@ mysqli_close($connection);
      });
  }
 </script>
+
+<?php mysqli_close($connection); ?>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

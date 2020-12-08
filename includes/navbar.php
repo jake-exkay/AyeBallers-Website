@@ -96,7 +96,20 @@ echo '
                             </div>
                             Bedwars
                         </a>
+';
 
+if (getUsername($connection) != "None") {
+
+                echo '<div class="sb-sidenav-menu-heading">Admin</div>
+                        <a class="nav-link" href="../../../admin/dashboard.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-star"></i>
+                            </div>
+                            Dashboard
+                        </a>
+                        ';
+}
+echo '
                     </div>
                 </div>
             </nav>
