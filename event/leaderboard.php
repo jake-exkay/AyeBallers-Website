@@ -99,11 +99,11 @@ updatePageViews($connection, 'pb3_leaderboard', $DEV_IP);
                                                         echo '<tr>';
                                                             echo '<td>' . $i . '</td>';
                                                             if ($name == 'recordheat' || $name == 'Pablojor') {
-                                                                echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img title="Previous Tournament Winner" height="25" width="auto" src="../assets/img/gold.png"/></td>';
+                                                                echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img alt="Tournament Winner Logo" title="Previous Tournament Winner" height="25" width="auto" src="../assets/img/gold.png"/></td>';
                                                             } else if ($name == 'ExKay' || $name == 'Emirichuwu' || $name == 'PotAccuracy') {
-                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
+                                                            echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img title="AyeBallers Member" height="15" width="auto" alt="AyeBallers Logo" src="../assets/img/favicon.png"/><img alt="Event Staff Logo" title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
                                                             } else if (userInGuild($connection, $name)) {
-                                                                echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/></td>';
+                                                                echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img alt="AyeBallers Logo" title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/></td>';
                                                             } else {
                                                                 echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a></td>';
                                                             }
@@ -144,7 +144,7 @@ updatePageViews($connection, 'pb3_leaderboard', $DEV_IP);
                                                 $rank_colour = $row["rank_colour"];
                                                 $name = $row["name"];
                                                 $rank_format = getRankFormatting($name, $rank, $rank_colour);
-                                                echo '<img style="height: 25px; width: 25px;" src="https://crafatar.com/avatars/' . $row["UUID"] . '"/> ';
+                                                echo '<img alt="Player Avatar" style="height: 25px; width: 25px;" src="https://crafatar.com/avatars/' . $row["UUID"] . '"/> ';
                                                 echo '<a href="../../../stats.php?player=' . $name . '">' . $rank_format . "</a><br>";
                                             }
                                         }

@@ -24,7 +24,7 @@
         echo '<div class="col-md-10" style="padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">';
         echo '<div class="card">';
         echo '<div class="card-body">';
-        echo '<img style="height: 50px; width: 50px;" src="assets/img/' . $name . '.png"/>';
+        echo '<img alt="Player Icon" style="height: 50px; width: 50px;" src="assets/img/' . $name . '.png"/>';
         echo '<h5>' . $name . '</h5>';
         echo '<h6>' . $rank . '</h6>';
         echo '</div>';
@@ -47,7 +47,7 @@
         echo '<div class="col-md-2" style="padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 20px;">';
         echo '<div class="card">';
         echo '<div class="card-body">';
-        echo '<center><img style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/' . $uuid . '"/>';
+        echo '<center><img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/' . $uuid . '"/>';
         echo '<h5>' . $name . '</h5>';
         echo '<h6>' . $rank . '</h6></center>';
         echo '</div>';

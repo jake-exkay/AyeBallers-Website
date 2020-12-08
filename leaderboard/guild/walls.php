@@ -100,7 +100,7 @@
                                                     echo '<tr>';
                                                         echo '<td>' . $i . '</td>';
                                                         if (userInGuild($connection, $name)) {
-                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" src="../../assets/img/favicon.png"/></td>';
+                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../assets/img/favicon.png"/></td>';
                                                         } else {
                                                             echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
                                                         }

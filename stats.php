@@ -166,7 +166,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                			</div>
 						                		</div>
 						                		<div class="col-md-4">
-						                			<?php echo '<img style="height: 200px; width: auto;" src="https://crafatar.com/renders/body/' . $uuid . '"/>'; ?>
+						                			<?php echo '<img alt="Player Avatar" style="height: 200px; width: auto;" src="https://crafatar.com/renders/body/' . $uuid . '"/>'; ?>
 						                		</div>
 					                		</div>
 				                		</div>
@@ -184,7 +184,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 	        										<?php
 	        											if ($guild_name == "AyeBallers") {
 	        										?>
-						                				<p><b>Guild:</b> <?php echo $guild_name; ?> <img title="AyeBallers" height="15" width="auto" src="assets/img/star.png"/></p>
+						                				<p><b>Guild:</b> <?php echo $guild_name; ?> <img alt="AyeBallers Logo" title="AyeBallers" height="15" width="auto" src="assets/img/star.png"/></p>
 						                			<?php } else { ?>
 						                				<p><b>Guild:</b> <?php echo $guild_name; ?></p>
 						                			<?php } ?>
@@ -197,7 +197,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<div class="col-md-4">
 						                			<?php 
 							                			if ($guild_name == "AyeBallers") {
-							                				echo '<img style="height: 100px; width: auto;" src="assets/img/favicon.png"/>'; 
+							                				echo '<img alt="AyeBallers Logo" style="height: 100px; width: auto;" src="assets/img/favicon.png"/>'; 
 							                			}
 						                			?>
 						                		</div>
