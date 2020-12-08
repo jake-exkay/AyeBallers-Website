@@ -1272,7 +1272,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#brawluhc">Brawl</button><br><br>
 
 						                		<div id="brawluhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->brawl->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->brawl->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->brawl->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->brawl->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->brawl->headsEaten); ?></p>
@@ -1281,7 +1281,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#solobrawluhc">Solo Brawl</button><br><br>
 
 						                		<div id="solobrawluhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->solobrawl->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->solobrawl->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->solobrawl->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->solobrawl->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->solobrawl->headsEaten); ?></p>
@@ -1290,7 +1290,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#duobrawluhc">Duo Brawl</button><br><br>
 
 						                		<div id="duobrawluhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->duobrawl->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->duobrawl->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->duobrawl->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->duobrawl->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->duobrawl->headsEaten); ?></p>
