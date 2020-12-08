@@ -736,6 +736,29 @@
                         'headsEaten' => !empty($uhc->heads_eaten_duo_brawl) ? $uhc->heads_eaten_duo_brawl : 0,
                         'wins' => !empty($uhc->wins_duo_brawl) ? $uhc->wins_duo_brawl : 0
                     ]
+                ],
+                'copsandcrims' => [
+                    'coins' => !empty($cac->coins) ? $cac->coins : 0,
+                    'defusal' => [
+                        'kills' => !empty($cac->kills) ? $cac->kills : 0,
+                        'gameWins' => !empty($cac->game_wins) ? $cac->game_wins : 0,
+                        'headshots' => !empty($cac->headshot_kills) ? $cac->headshot_kills : 0,
+                        'copKills' => !empty($cac->cop_kills) ? $cac->cop_kills : 0,
+                        'shotsFired' => !empty($cac->shots_fired) ? $cac->shots_fired : 0,
+                        'roundWins' => !empty($cac->round_wins) ? $cac->round_wins : 0,
+                        'deaths' => !empty($cac->deaths) ? $cac->deaths : 0,
+                        'crimKills' => !empty($cac->criminal_kills) ? $cac->criminal_kills : 0,
+                        'bombsPlanted' => !empty($cac->bombs_planted) ? $cac->bombs_planted : 0,
+                        'bombsDefused' => !empty($cac->bombs_defused) ? $cac->bombs_defused : 0,
+                    ],
+                    'deathmatch' => [
+                        'deaths' => !empty($cac->deaths_deathmatch) ? $cac->deaths_deathmatch : 0,
+                        'gameWins' => !empty($cac->game_wins_deathmatch) ? $cac->game_wins_deathmatch : 0,
+                        'crimKills' => !empty($cac->criminal_kills_deathmatch) ? $cac->criminal_kills_deathmatch : 0,
+                        'copKills' => !empty($cac->cop_kills_deathmatch) ? $cac->cop_kills_deathmatch : 0,
+                        'kills' => !empty($cac->kills_deathmatch) ? $cac->kills_deathmatch : 0,
+                        'assists' => !empty($cac->assists_deathmatch) ? $cac->assists_deathmatch : 0
+                    ]
                 ]
             ];
 

@@ -1310,6 +1310,35 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                            </div>
 			        						<div class="card-body">
 
+												<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+			        							<p><b>Coins:</b> <?php echo number_format($player->copsandcrims->coins); ?></p>
+
+			        							<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#defusalcac">Defusal</button><br><br>
+
+						                		<div id="defusalcac" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->copsandcrims->defusal->kills); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->copsandcrims->defusal->gameWins); ?></p>
+						                			<p><b>Headshots:</b> <?php echo number_format($player->copsandcrims->defusal->headshots); ?></p>
+						                			<p><b>Cop Kills:</b> <?php echo number_format($player->copsandcrims->defusal->copKills); ?></p>
+						                			<p><b>Criminal Kills:</b> <?php echo number_format($player->copsandcrims->defusal->crimKills); ?></p>
+						                			<p><b>Shots Fired:</b> <?php echo number_format($player->copsandcrims->defusal->shotsFired); ?></p>
+						                			<p><b>Round Wins:</b> <?php echo number_format($player->copsandcrims->defusal->roundWins); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->copsandcrims->defusal->deaths); ?></p>
+						                			<p><b>Bombs Planted:</b> <?php echo number_format($player->copsandcrims->defusal->bombsPlanted); ?></p>
+						                			<p><b>Bombs Defused:</b> <?php echo number_format($player->copsandcrims->defusal->bombsDefused); ?></p>
+						                		</div>
+
+						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#deathmatchcac">Team Deathmatch</button><br><br>
+
+						                		<div id="deathmatchcac" class="collapse">
+						                			<p><b>Kills:</b> <?php echo number_format($player->copsandcrims->deathmatch->kills); ?></p>
+						                			<p><b>Wins:</b> <?php echo number_format($player->copsandcrims->deathmatch->gameWins); ?></p>
+						                			<p><b>Cop Kills:</b> <?php echo number_format($player->copsandcrims->deathmatch->copKills); ?></p>
+						                			<p><b>Criminal Kills:</b> <?php echo number_format($player->copsandcrims->deathmatch->crimKills); ?></p>
+						                			<p><b>Deaths:</b> <?php echo number_format($player->copsandcrims->deathmatch->deaths); ?></p>
+						                			<p><b>Assists:</b> <?php echo number_format($player->copsandcrims->deathmatch->assists); ?></p>
+						                		</div>
+
 					                		</div>
 					                	</div>
 					                	<br>
