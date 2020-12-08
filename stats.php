@@ -17,6 +17,7 @@ require "functions/functions.php";
 require "functions/display_functions.php";
 require "functions/player_functions.php";
 require "error/error_messages.php";
+include "admin/functions/login_functions.php";
 
 updatePageViews($connection, 'stats_page', $DEV_IP);
    

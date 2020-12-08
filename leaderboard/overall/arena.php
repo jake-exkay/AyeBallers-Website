@@ -14,6 +14,7 @@
             include "../../functions/player_functions.php";
             include "../../functions/display_functions.php";
             include "../../functions/database/query_functions.php";
+            include "../../admin/functions/login_functions.php";
 
             updatePageViews($connection, 'arena_overall_leaderboard', $DEV_IP);
 

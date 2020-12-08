@@ -15,6 +15,7 @@ require "../functions/functions.php";
 require "../functions/player_functions.php";
 require "event_functions.php";
 require "../includes/connect.php";
+include "../admin/functions/login_functions.php";
 
 updatePageViews($connection, 'pb3_leaderboard', $DEV_IP);
 

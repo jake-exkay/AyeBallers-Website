@@ -15,6 +15,7 @@ require "includes/connect.php";
 require "includes/constants.php";
 require "functions/functions.php";
 require "functions/display_functions.php";
+include "admin/functions/login_functions.php";
 
 updatePageViews($connection, 'guild_page', $DEV_IP);
 
