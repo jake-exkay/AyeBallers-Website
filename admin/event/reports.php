@@ -19,10 +19,12 @@ require "../functions/login_functions.php";
 
 if (isLoggedIn($connection)) {
 
-updatePageViews($connection, 'admin_dashboard', $DEV_IP);
+$images = glob("reports/*.png");
 
-$directory = "../reports";
-$images = glob($directory . "/*.png");
+$previous = "javascript:history.go(-1)";
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $previous = $_SERVER['HTTP_REFERER'];
+}
 
 ?>
 
@@ -41,17 +43,22 @@ $images = glob($directory . "/*.png");
 
                 <main>
 
-            		<center>
-            			<h2>AyeBallers Tournament Report Viewer</h2>
-            		</center>
+            		<div class="card">
+                        <div class="card-body">
+                            <form style="margin-right: 10px;" action="<?= $previous ?>">
+                                <button type="submit" class="btn btn-danger">< Back</button>
+                            </form>
+                            <center><h2>Report Viewer</h2></center>
 
-            		<br>
+                            <hr><br>
 
-            		<?php 				
-            			foreach ($images as $image) {
-            				echo '<img width="800" height="auto" src="reports/' . $image . '"/>';
-            			} 
-            		?>
+                            <?php               
+                                foreach ($images as $image) {
+                                    echo '<img width="800" height="auto" src="reports/' . $image . '"/>';
+                                } 
+                            ?>
+                        </div>
+                    </div>
 
                 </main>
 

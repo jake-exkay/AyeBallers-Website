@@ -5,7 +5,7 @@
     $FILE_TOO_LARGE = "Error: File too large. Redirecting.";
     $SUCCESS = "Your report has been submitted, someone will review it soon. Redirecting.";
 
-    $target_dir = "reports/";
+    $target_dir = "../admin/event/reports/";
     $target_file = $target_dir . basename($_FILES["uploadedFile"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

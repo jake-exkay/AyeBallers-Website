@@ -1227,7 +1227,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 			        							<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#teamsuhc">Teams</button><br><br>
 
 						                		<div id="teamsuhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->team->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->team->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->team->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->team->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->team->headsEaten); ?></p>
@@ -1236,7 +1236,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#solouhc">Solo</button><br><br>
 
 						                		<div id="solouhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->solo->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->solo->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->solo->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->solo->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->solo->headsEaten); ?></p>
@@ -1245,7 +1245,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#redvsblueuhc">Red vs Blue</button><br><br>
 
 						                		<div id="redvsblueuhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->redvsblue->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->redvsblue->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->redvsblue->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->redvsblue->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->redvsblue->headsEaten); ?></p>
@@ -1254,7 +1254,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#nodiamondsuhc">No Diamonds</button><br><br>
 
 						                		<div id="nodiamondsuhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->nodiamonds->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->nodiamonds->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->nodiamonds->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->nodiamonds->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->nodiamonds->headsEaten); ?></p>
@@ -1263,7 +1263,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#vanilladoublesuhc">Vanilla Doubles</button><br><br>
 
 						                		<div id="vanilladoublesuhc" class="collapse">
-						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->vanilladoubles->wins); ?></p>
+						                			<p><b>Kills:</b> <?php echo number_format($player->uhc->vanilladoubles->kills); ?></p>
 						                			<p><b>Deaths:</b> <?php echo number_format($player->uhc->vanilladoubles->deaths); ?></p>
 						                			<p><b>Wins:</b> <?php echo number_format($player->uhc->vanilladoubles->wins); ?></p>
 						                			<p><b>Heads Eaten:</b> <?php echo number_format($player->uhc->vanilladoubles->headsEaten); ?></p>
