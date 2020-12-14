@@ -61,7 +61,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				   		$rank_colour = $player->rankColour;
 				   		$network_exp = $player->networkExp;
 
-	            		$guild_json = updateGuild($mongo_mng, $uuid, $API_KEY);
+	            		//$guild_json = updateGuild($mongo_mng, $uuid, $API_KEY);
 	            		$guild_members = sizeof($guild_json->guild->members);
 	            		$guild_name = $guild_json->guild->name;
 	            		$guild_created = $guild_json->guild->created;

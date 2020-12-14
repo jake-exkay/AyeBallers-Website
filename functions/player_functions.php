@@ -794,21 +794,105 @@
 	}
 
     /**
-     * Gets the guild of the player using a UUID.
+     * Gets the guild of the player using a guild name.
      *
      * @param $mongo_mng  MongoDB driver manager.
-     * @param $uuid       UUID of the player to check.
+     * @param $guild      Name of the guild to check.
      * @param $API_KEY    API key to the Hypixel API.
      *
      * @return decoded_url URL of the JSON data with guild information.
      * @author ExKay <exkay61@hotmail.com>
      */
-	function updateGuild($mongo_mng, $uuid, $API_KEY) 
-    {
-		$api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&player=" . $uuid);
-		$decoded_url  = json_decode($api_guild_url);
-		return $decoded_url;
-	}
+    function updateGuild($mongo_mng, $guild, $API_KEY) {
+        if (!$guild) {
+            return false;
+        } else {
+            // Get guild JSON data from the Hypixel API.
+            $guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&name=" . $guild);
+            $guild_decoded_url = json_decode($guild_url);
+
+            if ($guild_decoded_url->guild == null) {
+                return false;
+            } else {
+                $stats = !empty($guild_decoded_url->guild) ? $guild_decoded_url->guild : "No Stats";
+
+                $members = $stats->members;
+
+                $doc = [
+                    'name' => $guild,
+                    'created' => !empty($stats->created) ? $stats->created : 0,
+                    'members' => $members,
+                    'description' => !empty($stats->description) ? $stats->description : 0,
+                    'publiclyListed' => !empty($stats->publiclyListed) ? $stats->publiclyListed : 0,
+                    'exp' => !empty($stats->exp) ? $stats->exp : 0,
+                    'tag' => !empty($stats->tag) ? $stats->tag : 0,
+                    'tagColour' => !empty($stats->tagColor) ? $stats->tagColor : 0,
+                    'expByGame' => [
+                        'uhc' => !empty($stats->guildExpByGameType->UHC) ? $stats->guildExpByGameType->UHC : 0,
+                        'megawalls' => !empty($stats->guildExpByGameType->WALLS3) ? $stats->guildExpByGameType->WALLS3 : 0,
+                        'paintball' => !empty($stats->guildExpByGameType->PAINTBALL) ? $stats->guildExpByGameType->PAINTBALL : 0,
+                        'skywars' => !empty($stats->guildExpByGameType->SKYWARS) ? $stats->guildExpByGameType->SKYWARS : 0,
+                        'bedwars' => !empty($stats->guildExpByGameType->BEDWARS) ? $stats->guildExpByGameType->BEDWARS : 0,
+                        'warlords' => !empty($stats->guildExpByGameType->BATTLEGROUND) ? $stats->guildExpByGameType->BATTLEGROUND : 0,
+                        'vampirez' => !empty($stats->guildExpByGameType->VAMPIREZ) ? $stats->guildExpByGameType->VAMPIREZ : 0,
+                        'buildbattle' => !empty($stats->guildExpByGameType->BUILD_BATTLE) ? $stats->guildExpByGameType->BUILD_BATTLE : 0,
+                        'housing' => !empty($stats->guildExpByGameType->HOUSING) ? $stats->guildExpByGameType->HOUSING : 0,
+                        'copsandcrims' => !empty($stats->guildExpByGameType->MCGO) ? $stats->guildExpByGameType->MCGO : 0,
+                        'tnt' => !empty($stats->guildExpByGameType->TNTGAMES) ? $stats->guildExpByGameType->TNTGAMES : 0,
+                        'quakecraft' => !empty($stats->guildExpByGameType->QUAKECRAFT) ? $stats->guildExpByGameType->QUAKECRAFT : 0,
+                        'tkr' => !empty($stats->guildExpByGameType->GINGERBREAD) ? $stats->guildExpByGameType->GINGERBREAD : 0,
+                        'pit' => !empty($stats->guildExpByGameType->PIT) ? $stats->guildExpByGameType->PIT : 0,
+                        'prototype' => !empty($stats->guildExpByGameType->PROTOTYPE) ? $stats->guildExpByGameType->PROTOTYPE : 0,
+                        'duels' => !empty($stats->guildExpByGameType->DUELS) ? $stats->guildExpByGameType->DUELS : 0,
+                        'arcade' => !empty($stats->guildExpByGameType->ARCADE) ? $stats->guildExpByGameType->ARCADE : 0,
+                        'bsg' => !empty($stats->guildExpByGameType->SURVIVAL_GAMES) ? $stats->guildExpByGameType->SURVIVAL_GAMES : 0,
+                        'murdermystery' => !empty($stats->guildExpByGameType->MURDER_MYSTERY) ? $stats->guildExpByGameType->MURDER_MYSTERY : 0,
+                        'walls' => !empty($stats->guildExpByGameType->WALLS) ? $stats->guildExpByGameType->WALLS : 0,
+                        'arena' => !empty($stats->guildExpByGameType->ARENA) ? $stats->guildExpByGameType->ARENA : 0,
+                        'smash' => !empty($stats->guildExpByGameType->SUPER_SMASH) ? $stats->guildExpByGameType->SUPER_SMASH : 0
+                    ]
+
+
+                ];
+
+                $filter = ['name' => $guild]; 
+                $query = new MongoDB\Driver\Query($filter);     
+                
+                $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
+                
+                $player = current($res->toArray());
+                
+                if (!empty($player)) {
+                    try {
+                        $bulk = new MongoDB\Driver\BulkWrite();
+                        $bulk->update(['name' => $guild], ['$set' => $doc]);
+                        $result = $mongo_mng->executeBulkWrite('ayeballers.guild', $bulk); 
+                    } catch (MongoDB\Driver\Exception\Exception $e) {
+                        error_log($e->getMessage());
+                    }
+                } else {
+                    try {
+                        $bulk = new MongoDB\Driver\BulkWrite();
+                        $bulk->insert($doc);
+                        $result = $mongo_mng->executeBulkWrite('ayeballers.guild', $bulk); 
+                    } catch (MongoDB\Driver\Exception\Exception $e) {
+                        error_log($e->getMessage());
+                    }
+                }
+
+                return true;
+            }
+        }
+    }
+
+    function getLocalName($mongo_mng, $uuid) {
+        $filter = ['uuid' => $uuid]; 
+        $query = new MongoDB\Driver\Query($filter);     
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        $player = current($res->toArray());
+        $name = $player->name;
+        return $name;
+    }
 
     /**
      * Gets correct formatting of a players rank with their name.

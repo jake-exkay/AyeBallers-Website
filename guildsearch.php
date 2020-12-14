@@ -25,15 +25,15 @@ updatePageViews($connection, 'guild_search_page', $DEV_IP);
         <title>Guild Search - AyeBallers</title>
     </head>
 
-    <body class="sb-nav-fixed">
+    <body style="background-image: url('assets/img/background-2.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;" class="sb-nav-fixed">
 
         <?php require "includes/navbar.php"; ?>
 
         <div id="layoutSidenav_content">
 
-            <main style="padding-right: 475px; padding-left: 475px; padding-top: 150px">
+            <main style="padding-right: 25%; padding-left: 25%; padding-top: 100px">
 
-                <div class="card">
+                <div style="background-color:#FFF;; opacity: 0.8; filter:(opacity=50);" class="card">
                     <div class="card-body">
 
                         <form class="form-signin" name="guildForm" action="guild.php" method="GET" enctype="multipart/form-data">

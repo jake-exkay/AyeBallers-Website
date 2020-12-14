@@ -18,8 +18,6 @@ require "functions/display_functions.php";
 require "functions/player_functions.php";
 require "error/error_messages.php";
 include "admin/functions/login_functions.php";
-
-updatePageViews($connection, 'guild_stats_page', $DEV_IP);
    
 ?>
 
@@ -27,42 +25,16 @@ updatePageViews($connection, 'guild_stats_page', $DEV_IP);
 <html lang="en">
 
     <head>
+
         <?php 
             $guild_name = $_GET["guild"];
-
-            $decoded_url = getGuildInformation($connection, $guild_name, $API_KEY);
-            $date_created = $decoded_url->guild->created;
-            $members = $decoded_url->guild->members;
-            $description = $decoded_url->guild->description;
-            $tag = $decoded_url->guild->tag;
-            $exp = $decoded_url->guild->exp;
-            $member_size = sizeof($members);
-
-            $battleground_exp = $decoded_url->guild->guildExpByGameType->BATTLEGROUND;
-            $uhc_exp = $decoded_url->guild->guildExpByGameType->UHC;
-            $bsg_exp = $decoded_url->guild->guildExpByGameType->SURVIVAL_GAMES;
-            $skywars_exp = $decoded_url->guild->guildExpByGameType->SKYWARS;
-            $duels_exp = $decoded_url->guild->guildExpByGameType->DUELS;
-            $paintball_exp = $decoded_url->guild->guildExpByGameType->PAINTBALL;
-            $arena_exp = $decoded_url->guild->guildExpByGameType->ARENA;
-            $tntgames_exp = $decoded_url->guild->guildExpByGameType->TNTGAMES;
-            $mcgo_exp = $decoded_url->guild->guildExpByGameType->MCGO;
-            $walls_exp = $decoded_url->guild->guildExpByGameType->WALLS;
-            $vz_exp = $decoded_url->guild->guildExpByGameType->VAMPIREZ;
-            $gingerbread_exp = $decoded_url->guild->guildExpByGameType->GINGERBREAD;
-            $super_smash_exp = $decoded_url->guild->guildExpByGameType->SUPER_SMASH;
-            $qc_exp = $decoded_url->guild->guildExpByGameType->QUAKECRAFT;
-            $bb_exp = $decoded_url->guild->guildExpByGameType->BUILD_BATTLE;
-            $arcade_exp = $decoded_url->guild->guildExpByGameType->ARCADE;
-            $prototype_exp = $decoded_url->guild->guildExpByGameType->PROTOTYPE;
-            $walls3_exp = $decoded_url->guild->guildExpByGameType->WALLS3;
-            $housing_exp = $decoded_url->guild->guildExpByGameType->HOUSING;
-            $mm_exp = $decoded_url->guild->guildExpByGameType->MURDER_MYSTERY;
-            $bedwars_exp = $decoded_url->guild->guildExpByGameType->BEDWARS;
-
+            if (!updateGuild($mongo_mng, $guild_name, $API_KEY)) {
+                header("Refresh:0.01; url=error/guildnotfound.php");
+            } else {
         ?>
 
-        <title><?php echo $guild_name; ?> - AyeBallers</title>
+        <title><?php echo $guild_name; ?> Guild - AyeBallers</title>
+
     </head>
 
     <body class="sb-nav-fixed">
@@ -71,13 +43,51 @@ updatePageViews($connection, 'guild_stats_page', $DEV_IP);
 
             <div id="layoutSidenav_content">
 
-                <main>
-                    <?php 
-                        if (true) {
-                            echo "<center><h1 style='padding-top:200px'>Guild statistics are currently disabled</h1></center>";
-                        } else {
-                    ?>
+                <?php 
 
+                    $filter = ['name' => $guild_name]; 
+                    $query = new MongoDB\Driver\Query($filter);     
+                    
+                    $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
+                    
+                    $guild = current($res->toArray());
+                    
+                    if (!empty($guild_name)) {
+                        $date_created = $guild->created;
+                        $members = $guild->members;
+                        $description = $guild->description;
+                        $tag = $guild->tag;
+                        $exp = $guild->exp;
+                        $member_size = sizeof($members);
+                        $date_created = date("d M Y (H:i:s)", (int)substr($date_created, 0, 10));
+
+                        $battleground_exp = $guild->expByGame->warlords;
+                        $uhc_exp = $guild->expByGame->uhc;
+                        $bsg_exp = $guild->expByGame->bsg;
+                        $skywars_exp = $guild->expByGame->skywars;
+                        $duels_exp = $guild->expByGame->duels;
+                        $paintball_exp = $guild->expByGame->paintball;
+                        $arena_exp = $guild->expByGame->arena;
+                        $tntgames_exp = $guild->expByGame->tnt;
+                        $mcgo_exp = $guild->expByGame->copsandcrims;
+                        $walls_exp = $guild->expByGame->walls;
+                        $vz_exp = $guild->expByGame->vampirez;
+                        $gingerbread_exp = $guild->expByGame->tkr;
+                        $super_smash_exp = $guild->expByGame->smash;
+                        $qc_exp = $guild->expByGame->quakecraft;
+                        $bb_exp = $guild->expByGame->buildbattle;
+                        $arcade_exp = $guild->expByGame->arcade;
+                        $prototype_exp = $guild->expByGame->prototype;
+                        $walls3_exp = $guild->expByGame->megawalls;
+                        $housing_exp = $guild->expByGame->housing;
+                        $mm_exp = $guild->expByGame->murdermystery;
+                        $bedwars_exp = $guild->expByGame->bedwars;
+                    }
+
+                ?>
+
+                <main>
+            
                     <div class="card">
 
                         <div class="card-body">
@@ -129,15 +139,20 @@ updatePageViews($connection, 'guild_stats_page', $DEV_IP);
                                         <div class="card-body">
                                             <?php
 
+                                                usort($members, function($a, $b) {
+                                                    return $a->joined > $b->joined ? 1 : -1;
+                                                });
+
                                                 foreach ($members as $member) {
                                                     $uuid = $member->uuid;
                                                     $rank = $member->rank;
                                                     $joined = $member->joined;
                                                     $quests = $member->questParticipation;
-                                                    $name = getRealName($connection, $uuid);
+                                                    $name = getLocalName($mongo_mng, $uuid);
 
                                                     echo '<div class="card"><div class="card-body">';
-                                                    echo "[" . $rank . "] " . $name . " - " . $quests . " quests participated in.<br>";
+                                                    echo '<img alt="Player Avatar" style="height: 25px; width: 25px;" src="https://crafatar.com/avatars/' . $uuid . '"/> ';
+                                                    echo "[" . $rank . "] " . $name . "<br>";
                                                     echo '</div></div>';
                                                 }
 
@@ -151,7 +166,7 @@ updatePageViews($connection, 'guild_stats_page', $DEV_IP);
                     </div>
                 </main>
 
-                <?php } require "includes/footer.php"; ?>
+                <?php require "includes/footer.php"; ?>
 
                 <script>
                     var ctxP = document.getElementById("expPie").getContext('2d');
@@ -176,4 +191,5 @@ updatePageViews($connection, 'guild_stats_page', $DEV_IP);
             </div>
 
     </body>
+<?php } ?>
 </html>
