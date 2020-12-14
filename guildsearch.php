@@ -14,6 +14,8 @@ require "includes/links.php";
 require "functions/functions.php";
 include "admin/functions/login_functions.php";
 
+updatePageViews($connection, 'guild_search_page', $DEV_IP);
+
 ?>
 
 <!DOCTYPE html>

@@ -62,7 +62,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 
                 </main>
 
-            <?php require "../includes/footer.php"; ?>
+            <?php require "../../includes/footer.php"; ?>
 
         </div>
 

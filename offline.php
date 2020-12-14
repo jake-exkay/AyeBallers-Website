@@ -14,8 +14,6 @@ require "includes/links.php";
 require "functions/functions.php";
 include "admin/functions/login_functions.php";
 
-updatePageViews($connection, 'player_page', $DEV_IP);
-
 ?>
 
 <!DOCTYPE html>

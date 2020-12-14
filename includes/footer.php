@@ -21,9 +21,24 @@
                 </form>
             <?php } else { ?>
                 <form action="../../../logout.php">
-                    <div class="row">
-                        <h3 style="color: '#cccbc7'; padding-left: 20px;"><?php echo getUsername($connection); ?></h3>
-                        <button data-toggle="collapse" class="btn btn-light btn-outline-success">Logout</button>
+                    <div class="card" style="background-color: #b7b5b4">
+                        <div class="card-body" style="background-color: #706e6b">
+                            <div class="row">
+                                <?php if (getUsername($connection) == "ExKay") { ?>
+                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/82df5a8f-a793-4e60-87d1-86d8741a1d23"/>
+                                <?php } else if (getUsername($connection) == "Emilyie") { ?>
+                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/38839c0e-43ac-4b1a-a0e6-c189ca15412f"/>
+                                <?php } else if (getUsername($connection) == "PotAccuracy") { ?>
+                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/fe101e8a-30d1-4137-b110-1bd22031bf35"/>
+                                <?php } else if (getUsername($connection) == "Penderdrill") { ?>
+                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/bb0b8eee-dc58-4ee9-bbf7-c590d5aa2319"/>
+                                <?php } else { ?>
+                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/82df5a8f-a793-4e60-87d1-86d8741a1d23"/>
+                                <?php } ?>
+                                <h2 style="color: #FFFFFF; padding-left: 20px; padding-right: 20px;"><?php echo getUsername($connection); ?></h2>
+                                <button data-toggle="collapse" class="btn btn-light btn-outline-success">Logout</button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             <?php } ?>

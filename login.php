@@ -14,6 +14,8 @@ require "includes/links.php";
 require "functions/functions.php";
 include "admin/functions/login_functions.php";
 
+updatePageViews($connection, 'login_page', $DEV_IP);
+
 if (isLoggedIn($connection)) {
     header("Refresh:0.05; url=index.php");
 }

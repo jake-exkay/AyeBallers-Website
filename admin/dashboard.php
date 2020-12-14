@@ -63,8 +63,8 @@ updatePageViews($connection, 'admin_dashboard', $DEV_IP);
                         $tkr_g = getPageViews($connection, "tkr_guild_leaderboard");
                         $walls_o = getPageViews($connection, "walls_overall_leaderboard");
                         $walls_g = getPageViews($connection, "walls_guild_leaderboard");
-                        $walls_g = getPageViews($connection, "arena_overall_leaderboard");
-                        $walls_g = getPageViews($connection, "arena_guild_leaderboard");
+                        $arena_o = getPageViews($connection, "arena_overall_leaderboard");
+                        $arena_g = getPageViews($connection, "arena_guild_leaderboard");
 
                         $leaderboard_views = $pb_g + $pb_o + $vz_g + $vz_o + $qc_g + $qc_o + $tkr_g + $tkr_o + $walls_g + $walls_o + $arena_o + $arena_g;
 

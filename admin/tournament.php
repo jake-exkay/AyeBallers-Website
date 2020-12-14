@@ -19,7 +19,7 @@ require "functions/login_functions.php";
 
 if (isLoggedIn($connection)) {
 
-updatePageViews($connection, 'admin_dashboard', $DEV_IP);
+updatePageViews($connection, 'admin_tournament', $DEV_IP);
 
 $filter = ['tournamentID' => 'pb3']; 
 $query = new MongoDB\Driver\Query($filter);     
@@ -27,6 +27,11 @@ $query = new MongoDB\Driver\Query($filter);
 $res = $mongo_mng->executeQuery("ayeballers.tournament", $query);
 
 $tournament = current($res->toArray());
+
+$start_time = $tournament->startTime;
+$start_time = date("d M Y (H:i:s)", (int)substr($start_time, 0, 10));
+$end_time = $tournament->endTime;
+$end_time = date("d M Y (H:i:s)", (int)substr($end_time, 0, 10));
 
 ?>
 
@@ -59,8 +64,8 @@ $tournament = current($res->toArray());
                                         <div class="card-body">
                                             <p><b>Next Tournament: </b><?php echo $tournament->title; ?></p>
                                             <p><b>Status: </b><?php echo $tournament->status; ?></p>
-                                            <p><b>Start Date: </b><?php echo $tournament->startTime; ?></p>
-                                            <p><b>End Date: </b><?php echo $tournament->endTime; ?></p>
+                                            <p><b>Start Date: </b><?php echo $start_time; ?></p>
+                                            <p><b>End Date: </b><?php echo $end_time; ?></p>
                                             <p><b>Host: </b><?php echo $tournament->host; ?></p>
                                             <form action="">
                                                 <button class="btn btn-success">Start Tournament</button><br>

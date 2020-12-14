@@ -15,7 +15,7 @@ require "includes/connect.php";
 require "functions/functions.php";
 include "admin/functions/login_functions.php";
 
-updatePageViews($connection, 'player_page', $DEV_IP);
+updatePageViews($connection, 'home_page', $DEV_IP);
 
 ?>
 
