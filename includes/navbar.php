@@ -26,11 +26,11 @@ echo '
                             </div>
                             Player Statistics
                         </a>
-                        <a class="nav-link" href="../../../ayeballers.php">
+                        <a class="nav-link" href="../../../guild.php?guild=AyeBallers">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-users"></i>
                             </div>
-                            Guild
+                            AyeBallers
                         </a>
                         <a class="nav-link" href="../../../event/leaderboard.php">
                             <div class="sb-nav-link-icon">

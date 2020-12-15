@@ -537,24 +537,42 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                                	</div>
 
 					        						<div class="card-body">
-														<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+        														<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
-							                			<p><b>Wins:</b> <?php echo number_format($player->tkr->wins); ?></p>
-							                			<p><b>Coins:</b> <?php echo number_format($player->tkr->coins); ?></p>
-							                			<p><b>Gold Trophies:</b> <?php echo number_format($player->tkr->goldTrophy); ?></p>
-							                			<p><b>Silver Trophies:</b> <?php echo number_format($player->tkr->silverTrophy); ?></p>
-							                			<p><b>Bronze Trophies:</b> <?php echo number_format($player->tkr->bronzeTrophy); ?></p>
-							                			<p><b>Box Pickups:</b> <?php echo number_format($player->tkr->boxPickups); ?></p>
-							                			<p><b>Laps Completed:</b> <?php echo number_format($player->tkr->lapsCompleted); ?></p>
-							                			<p><b>Coin Pickups:</b> <?php echo number_format($player->tkr->coinPickups); ?></p>
+        							                			<p><b>Wins:</b> <?php echo number_format($player->tkr->wins); ?></p>
+        							                			<p><b>Coins:</b> <?php echo number_format($player->tkr->coins); ?></p>
+        							                			<p><b>Gold Trophies:</b> <?php echo number_format($player->tkr->goldTrophy); ?></p>
+        							                			<p><b>Silver Trophies:</b> <?php echo number_format($player->tkr->silverTrophy); ?></p>
+        							                			<p><b>Bronze Trophies:</b> <?php echo number_format($player->tkr->bronzeTrophy); ?></p>
+        							                			<p><b>Box Pickups:</b> <?php echo number_format($player->tkr->boxPickups); ?></p>
+        							                			<p><b>Laps Completed:</b> <?php echo number_format($player->tkr->lapsCompleted); ?></p>
+        							                			<p><b>Coin Pickups:</b> <?php echo number_format($player->tkr->coinPickups); ?></p>
 
-							                			<br>
+        							                			<br>
 
-							                			<p><b>Olympus Plays:</b> <?php echo $player->tkr->mapPlays->olympus; ?></p>
-							                			<p><b>Jungle Rush Plays:</b> <?php echo $player->tkr->mapPlays->junglerush; ?></p>
-							                			<p><b>Hypixel GP Plays:</b> <?php echo $player->tkr->mapPlays->hypixelgp; ?></p>
-							                			<p><b>Retro Plays:</b> <?php echo $player->tkr->mapPlays->retro; ?></p>
-							                			<p><b>Canyon Plays:</b> <?php echo $player->tkr->mapPlays->canyon; ?></p>
+        							                			<p><b>Olympus Plays:</b> <?php echo $player->tkr->mapPlays->olympus; ?></p>
+        							                			<p><b>Jungle Rush Plays:</b> <?php echo $player->tkr->mapPlays->junglerush; ?></p>
+        							                			<p><b>Hypixel GP Plays:</b> <?php echo $player->tkr->mapPlays->hypixelgp; ?></p>
+        							                			<p><b>Retro Plays:</b> <?php echo $player->tkr->mapPlays->retro; ?></p>
+        							                			<p><b>Canyon Plays:</b> <?php echo $player->tkr->mapPlays->canyon; ?></p>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <br><br>
+
+                                                                <center><h4>Trophy Wins</h4></center>
+                                                                <canvas id="tkrPie"></canvas>
+
+                                                                <br><hr><br>
+
+                                                                <center><h4>Map Plays</h4></center>
+                                                                <canvas id="tkrPie2"></canvas>
+
+                                                            </div>
+
+                                                        </div>
 							                		</div>
 							                	</div>
 							                	<br>
@@ -1489,6 +1507,38 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						responsive: true
 					}
 					});
+
+                    var ctxTkr = document.getElementById("tkrPie").getContext('2d');
+                    var tkrPie = new Chart(ctxTkr, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["Gold", "Silver", "Bronze"],
+                            datasets: [{
+                            data: ["<?php echo ($player->tkr->goldTrophy); ?>", "<?php echo ($player->tkr->silverTrophy); ?>", "<?php echo ($player->tkr->bronzeTrophy); ?>"],
+                            backgroundColor: ["#ffd700", "#c0c0c0", "#954535"],
+                            hoverBackgroundColor: ["#ffd700", "#c0c0c0", "#954535"]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                    });
+
+                    var ctxTkr2 = document.getElementById("tkrPie2").getContext('2d');
+                    var tkrPie2 = new Chart(ctxTkr2, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["Jungle Rush", "Hypixel GP", "Canyon", "Retro", "Olympus"],
+                            datasets: [{
+                            data: ["<?php echo ($player->tkr->mapPlays->junglerush); ?>", "<?php echo ($player->tkr->mapPlays->hypixelgp); ?>", "<?php echo ($player->tkr->mapPlays->canyon); ?>", "<?php echo ($player->tkr->mapPlays->retro); ?>", "<?php echo ($player->tkr->mapPlays->olympus); ?>"],
+                            backgroundColor: ["#f7f736", "#c4c408", "#f9f9be", "#f2c673", "#e99f16"],
+                            hoverBackgroundColor: ["#f7f736", "#c4c408", "#f9f9be", "#f2c673", "#e99f16"]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                    });
 
 					var ctxClassic = document.getElementById("classicPie").getContext('2d');
 					var classicPie = new Chart(ctxClassic, {
