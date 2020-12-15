@@ -14,7 +14,7 @@
             changeEventStatus($connection, 2);
             updateLog($connection, 'E_END');
 
-            header("Refresh:2; url=megawalls.php");
+            header("Refresh:2; url=leaderboard.php");
         }
     } else {
         header("Refresh:0.01; url=../error/403.php");

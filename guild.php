@@ -84,6 +84,11 @@ include "admin/functions/login_functions.php";
                         $bedwars_exp = $guild->expByGame->bedwars;
                     }
 
+                    $previous = "javascript:history.go(-1)";
+                    if (isset($_SERVER['HTTP_REFERER'])) {
+                        $previous = $_SERVER['HTTP_REFERER'];
+                    }
+
                 ?>
 
                 <main>
@@ -139,15 +144,16 @@ include "admin/functions/login_functions.php";
                                         <div class="card-body">
                                             <?php
 
-                                                usort($members, function($a, $b) {
-                                                    return $a->joined > $b->joined ? 1 : -1;
-                                                });
-
                                                 foreach ($members as $member) {
                                                     $uuid = $member->uuid;
                                                     $rank = $member->rank;
                                                     $joined = $member->joined;
                                                     $quests = $member->questParticipation;
+                                                    
+                                                    if (!isPlayerStored($mongo_mng, $uuid)) {
+                                                        updatePlayer($mongo_mng, $uuid, $API_KEY);
+                                                    }
+
                                                     $name = getLocalName($mongo_mng, $uuid);
 
                                                     echo '<div class="card"><div class="card-body">';

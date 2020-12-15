@@ -20,7 +20,7 @@
      * @return boolean - whether update was successful.
      * @author ExKay <exkay61@hotmail.com>
      */
-	function updatePlayer($mongo_mng, $uuid, $name, $API_KEY) 
+	function updatePlayer($mongo_mng, $uuid, $API_KEY) 
     {
         if (!$uuid) {
             return false;
@@ -32,6 +32,8 @@
         if ($player_decoded_url->success == false) {
             return false;
         } else {
+
+            $name = !empty($player_decoded_url->player->displayname) ? $player_decoded_url->player->displayname : "Unknown";
 
             // JSON paths for specific stats endpoints.
             $gen = !empty($player_decoded_url->player) ? $player_decoded_url->player : "No Stats";
@@ -892,6 +894,18 @@
         $player = current($res->toArray());
         $name = $player->name;
         return $name;
+    }
+
+    function isPlayerStored($mongo_mng, $uuid) {
+        $filter = ['uuid' => $uuid]; 
+        $query = new MongoDB\Driver\Query($filter);     
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        $player = current($res->toArray());
+        if ($player) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -29,9 +29,69 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
     <head>
 
         <?php 
-	        $name = $_GET["player"];
-			$uuid = getUUID($connection, $name);
-			if (!updatePlayer($mongo_mng, $uuid, $name, $API_KEY)) {
+
+        	$get_name = $_GET["player"];
+        	$uuid = getUUID($connection, $get_name);
+
+            $filter = ['uuid' => $uuid]; 
+		    $query = new MongoDB\Driver\Query($filter);     
+		    
+		    $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+		    
+		    $player = current($res->toArray());
+		    
+		    if (!empty($player)) {
+		   		$rank = $player->rank;
+		   		$rank_colour = $player->rankColour;
+		   		$network_exp = $player->networkExp;
+		   		$name = $player->name;
+
+        		//$guild_json = updateGuild($mongo_mng, $uuid, $API_KEY);
+        		$guild_members = sizeof($guild_json->guild->members);
+        		$guild_name = $guild_json->guild->name;
+        		$guild_created = $guild_json->guild->created;
+        		$guild_created = date("m/d/Y H:i:s", (int)substr($guild_created, 0, 10));
+        		$guild_desc = $guild_json->guild->description;
+        		$guild_tag = $guild_json->guild->tag;
+        		$guild_exp = $guild_json->guild->exp;
+        		$guild_level = getGuildLevel($guild_exp);
+        		$guild_tag_colour = $guild_json->guild->tagColor;
+
+        		if ($guild_tag_colour == "DARK_GREEN") {
+        			$tag_colour = "#297e25";
+        		} else if ($guild_tag_colour == "YELLOW") {
+        			$tag_colour = "#faf36b";
+        		} else if ($guild_tag_colour == "DARK_AQUA") {
+        			$tag_colour = "#1684c0";
+        		} else if ($guild_tag_colour == "GOLD") {
+        			$tag_colour = "#ebc61e";
+        		} else if ($guild_tag_colour == "GRAY") {
+        			$tag_colour = "#a7aaa1";
+        		} else {
+        			$tag_colour = "#a7aaa1";
+        		}
+
+        		$first_login = $player->firstLogin;
+        		$first_login = date("d M Y (H:i:s)", (int)substr($first_login, 0, 10));
+        		$last_login = $player->lastLogin;
+        		$last_login = date("d M Y (H:i:s)", (int)substr($last_login, 0, 10));
+        		$last_vote = $player->lastVote;
+        		$last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
+
+        		$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+        		$network_level = getLevel($network_exp);
+
+        		$recent_game = formatRecentGame($player->recentGameType);
+
+        		$previous = "javascript:history.go(-1)";
+	            if (isset($_SERVER['HTTP_REFERER'])) {
+	                $previous = $_SERVER['HTTP_REFERER'];
+	            }
+	        } else {
+		        echo "No match found\n";
+		    }
+
+			if (!updatePlayer($mongo_mng, $uuid, $API_KEY)) {
 				header("Refresh:0.01; url=error/playernotfound.php");
 			} else {
 			updateStatsLog($connection, $name);
@@ -46,67 +106,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
         <?php require "includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
-
-                <?php 
-
-	                $filter = ['uuid' => $uuid]; 
-				    $query = new MongoDB\Driver\Query($filter);     
-				    
-				    $res = $mongo_mng->executeQuery("ayeballers.player", $query);
-				    
-				    $player = current($res->toArray());
-				    
-				    if (!empty($player)) {
-				   		$rank = $player->rank;
-				   		$rank_colour = $player->rankColour;
-				   		$network_exp = $player->networkExp;
-
-	            		//$guild_json = updateGuild($mongo_mng, $uuid, $API_KEY);
-	            		$guild_members = sizeof($guild_json->guild->members);
-	            		$guild_name = $guild_json->guild->name;
-	            		$guild_created = $guild_json->guild->created;
-	            		$guild_created = date("m/d/Y H:i:s", (int)substr($guild_created, 0, 10));
-	            		$guild_desc = $guild_json->guild->description;
-	            		$guild_tag = $guild_json->guild->tag;
-	            		$guild_exp = $guild_json->guild->exp;
-	            		$guild_level = getGuildLevel($guild_exp);
-	            		$guild_tag_colour = $guild_json->guild->tagColor;
-
-	            		if ($guild_tag_colour == "DARK_GREEN") {
-	            			$tag_colour = "#297e25";
-	            		} else if ($guild_tag_colour == "YELLOW") {
-	            			$tag_colour = "#faf36b";
-	            		} else if ($guild_tag_colour == "DARK_AQUA") {
-	            			$tag_colour = "#1684c0";
-	            		} else if ($guild_tag_colour == "GOLD") {
-	            			$tag_colour = "#ebc61e";
-	            		} else if ($guild_tag_colour == "GRAY") {
-	            			$tag_colour = "#a7aaa1";
-	            		} else {
-	            			$tag_colour = "#a7aaa1";
-	            		}
-
-	            		$first_login = $player->firstLogin;
-	            		$first_login = date("d M Y (H:i:s)", (int)substr($first_login, 0, 10));
-	            		$last_login = $player->lastLogin;
-	            		$last_login = date("d M Y (H:i:s)", (int)substr($last_login, 0, 10));
-	            		$last_vote = $player->lastVote;
-	            		$last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
-
-	            		$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
-	            		$network_level = getLevel($network_exp);
-
-	            		$recent_game = formatRecentGame($player->recentGameType);
-
-	            		$previous = "javascript:history.go(-1)";
-			            if (isset($_SERVER['HTTP_REFERER'])) {
-			                $previous = $_SERVER['HTTP_REFERER'];
-			            }
-			        } else {
-				        echo "No match found\n";
-				    }
-
-	            ?>
 
                 <main>
 

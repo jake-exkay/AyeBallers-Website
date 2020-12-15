@@ -1,6 +1,6 @@
 <?php
 
-    $participants = array('a76b01c8a4c04f6ab1ab898f97469224','11b8466e2c724fe994a00cada8112674');
+    $participants = array('82df5a8fa7934e6087d186d8741a1d23','38839c0e43ac4b1aa0e6c189ca15412f', 'fe101e8a30d14137b1101bd22031bf35', '4e8f4a8960e3458f86f8cc59ea06d1eb', '31ff34353b4c451aa0a14d1185e17f68', '4533c7cd718d4fd1b46b1376e5849ac4');
 
     function eventStatus($connection) {
         $query = "SELECT * FROM event_management";
@@ -55,19 +55,29 @@
         }
     }
 
-    function calculatePoints($connection, $uuid, $wins) {
+    function calculatePoints($connection, $uuid) {
         $query = "SELECT * FROM event WHERE UUID = '$uuid'";
         $result = $connection->query($query);
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $starting_wins = $row['starting_wins'];
+                $current_wins = $row['current_wins'];
+                $starting_kills = $row['starting_kills'];
+                $current_kills = $row['current_kills'];
+                $starting_deaths = $row['starting_deaths'];
+                $current_deaths = $row['current_deaths'];
+                $starting_ff = $row['starting_ff'];
+                $current_ff = $row['current_ff'];
             }
         }
 
-        $wins_points = $wins - $starting_wins;
+        $wins_points = ($current_wins - $starting_wins) * 5;
+        $kills_points = $current_kills - $starting_kills;
+        $deaths_points = $current_deaths - $starting_deaths;
+        $ff_points = ($current_ff - $starting_ff) * 3;
 
-        return $wins_points;
+        return ($wins_points + $kills_points + $ff_points - $deaths_points);
        
     }
 
@@ -81,40 +91,44 @@
         }
     }
 
-    function updateTournamentPlayer($connection, $current_wins, $uuid, $name) {
-        $query = "UPDATE event SET current_wins = ? WHERE UUID = ?";
+    function updateTournamentPlayer($connection, $uuid, $name, $wins, $deaths, $forcefield_time, $kills, $rank, $rank_colour) {
+        $query = "UPDATE event SET rank = ?, rank_colour = ?, current_wins = ?, current_kills = ?, current_ff = ?, current_deaths = ?, total_points = ? WHERE UUID = ?";
 
-        $event_wins = calculatePoints($connection, $uuid, $current_wins);
+        $points = calculatePoints($connection, $uuid);
 
         if($statement = mysqli_prepare($connection, $query)) {
-            mysqli_stmt_bind_param($statement, "is", $current_wins, $uuid);
+            mysqli_stmt_bind_param($statement, "ssiiiiis", $rank, $rank_colour, $wins, $kills, $forcefield_time, $deaths, $points, $uuid);
             mysqli_stmt_execute($statement);
         } else {
             echo '<b>[ERROR] ' . $name . ' </b>An Error Occured!<br>'; 
         }
     }
 
-    function insertNewPlayer($connection, $uuid, $name, $wins) {
-        $query = "INSERT INTO event (UUID, name, starting_wins, current_wins)
-                  VALUES (?, ?, ?, ?)";
+    function insertNewPlayer($connection, $uuid, $name, $wins, $deaths, $forcefield_time, $kills, $rank, $rank_colour) {
+        $query = "INSERT INTO event (UUID, name, starting_wins, current_wins, starting_kills, current_kills, starting_ff, current_ff, starting_deaths, current_deaths, rank, rank_colour, total_points)
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $zero = 0;
 
         if($statement = mysqli_prepare($connection, $query)) {
-            mysqli_stmt_bind_param($statement, "ssii", $uuid, $name, $wins, $wins);
+            mysqli_stmt_bind_param($statement, "ssiiiiiiiissi", $uuid, $name, $wins, $wins, $kills, $kills, $forcefield_time, $forcefield_time, $deaths, $deaths, $rank, $rank_colour, $zero);
             mysqli_stmt_execute($statement);
         } else {
-            echo '<b>[MW] ' . $name . ' </b>An Error Occured!<br> ' . $query . ' ' . mysqli_error($connection); 
+            echo '<b>[PB] ' . $name . ' </b>An Error Occured!<br> ' . $query . ' ' . mysqli_error($connection); 
         }
     }
 
-    function insertBackupPlayer($connection, $uuid, $name, $wins) {
-        $query = "INSERT INTO event_backup (UUID, name, starting_wins, current_wins)
-                  VALUES (?, ?, ?, ?)";
+    function insertBackupPlayer($connection, $uuid, $name, $wins, $deaths, $forcefield_time, $kills, $rank, $rank_colour) {
+        $query = "INSERT INTO event_backup (UUID, name, starting_wins, current_wins, starting_kills, current_kills, starting_ff, current_ff, starting_deaths, current_deaths, rank, rank_colour, total_points)
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $zero = 0;
 
         if($statement = mysqli_prepare($connection, $query)) {
-            mysqli_stmt_bind_param($statement, "ssii", $uuid, $name, $wins, $wins);
+            mysqli_stmt_bind_param($statement, "ssiiiiiiiissi", $uuid, $name, $wins, $wins, $kills, $kills, $forcefield_time, $forcefield_time, $deaths, $deaths, $rank, $rank_colour, $zero);
             mysqli_stmt_execute($statement);
         } else {
-            echo '<b>[MW] ' . $name . ' </b>An Error Occured!<br> ' . $query . ' ' . mysqli_error($connection); 
+            echo '<b>[PB] ' . $name . ' </b>An Error Occured!<br> ' . $query . ' ' . mysqli_error($connection); 
         }
     }
 
@@ -155,14 +169,14 @@
 
     function getParticipantsData($connection) 
     {
-        $query = "SELECT player.name, player.UUID, player.rank, player.rank_colour FROM pb3 INNER JOIN player ON player.UUID = pb3.UUID ORDER BY player.name";
+        $query = "SELECT name, UUID, rank, rank_colour FROM event ORDER BY name";
         $result = $connection->query($query);
         return $result;
     }
 
     function getEventLeaderboard($connection) 
     {
-        $query = "SELECT * FROM pb3 INNER JOIN player ON pb3.UUID = player.UUID ORDER BY pb3.total_points DESC";
+        $query = "SELECT * FROM event ORDER BY total_points DESC";
         $result = $connection->query($query);
         return $result;
     }
