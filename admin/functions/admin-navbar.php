@@ -17,26 +17,13 @@
                                 </div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="../../../admin/guild.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                                Guild Statistics
-                            </a>
                             <a class="nav-link" href="../../../admin/tournament.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-star"></i>
                                 </div>
-                                Tournament Manager
-                            </a>
-                            <a class="nav-link" href="../../../admin/website.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-list"></i>
-                                </div>
-                                Website Statistics
+                                Tournament Manager (Not In Use)
                             </a>
                             
-
                         </div>
                     </div>
                 </nav>

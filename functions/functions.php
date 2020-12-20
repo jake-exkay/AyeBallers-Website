@@ -75,13 +75,12 @@
     /**
      * Gets a players real name using the UUID
      *
-     * @param $connection Connection to the database.
      * @param $uuid       UUID to translate to name.
      *
      * @return $name - Name of the player
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getRealName($connection, $uuid) {
+    function getRealName($uuid) {
         $mojang_url = file_get_contents("https://api.mojang.com/user/profiles/" . $uuid . "/names");
         $mojang_decoded_url = json_decode($mojang_url, true);
         $real_name = array_pop($mojang_decoded_url);

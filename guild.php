@@ -148,7 +148,6 @@ include "admin/functions/login_functions.php";
                                                     $uuid = $member->uuid;
                                                     $rank = $member->rank;
                                                     $joined = $member->joined;
-                                                    $quests = $member->questParticipation;
                                                     
                                                     if (!isPlayerStored($mongo_mng, $uuid)) {
                                                         updatePlayer($mongo_mng, $uuid, $API_KEY);

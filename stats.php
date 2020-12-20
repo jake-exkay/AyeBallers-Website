@@ -32,6 +32,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
         	$get_name = $_GET["player"];
         	$uuid = getUUID($connection, $get_name);
+            $formatted_name = getRealName($uuid);
 
             $filter = ['uuid' => $uuid]; 
 		    $query = new MongoDB\Driver\Query($filter);     
@@ -39,62 +40,37 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 		    $res = $mongo_mng->executeQuery("ayeballers.player", $query);
 		    
 		    $player = current($res->toArray());
-		    
-		    if (!empty($player)) {
-		   		$rank = $player->rank;
-		   		$rank_colour = $player->rankColour;
-		   		$network_exp = $player->networkExp;
-		   		$name = $player->name;
-
-        		//$guild_json = updateGuild($mongo_mng, $uuid, $API_KEY);
-        		$guild_members = sizeof($guild_json->guild->members);
-        		$guild_name = $guild_json->guild->name;
-        		$guild_created = $guild_json->guild->created;
-        		$guild_created = date("m/d/Y H:i:s", (int)substr($guild_created, 0, 10));
-        		$guild_desc = $guild_json->guild->description;
-        		$guild_tag = $guild_json->guild->tag;
-        		$guild_exp = $guild_json->guild->exp;
-        		$guild_level = getGuildLevel($guild_exp);
-        		$guild_tag_colour = $guild_json->guild->tagColor;
-
-        		if ($guild_tag_colour == "DARK_GREEN") {
-        			$tag_colour = "#297e25";
-        		} else if ($guild_tag_colour == "YELLOW") {
-        			$tag_colour = "#faf36b";
-        		} else if ($guild_tag_colour == "DARK_AQUA") {
-        			$tag_colour = "#1684c0";
-        		} else if ($guild_tag_colour == "GOLD") {
-        			$tag_colour = "#ebc61e";
-        		} else if ($guild_tag_colour == "GRAY") {
-        			$tag_colour = "#a7aaa1";
-        		} else {
-        			$tag_colour = "#a7aaa1";
-        		}
-
-        		$first_login = $player->firstLogin;
-        		$first_login = date("d M Y (H:i:s)", (int)substr($first_login, 0, 10));
-        		$last_login = $player->lastLogin;
-        		$last_login = date("d M Y (H:i:s)", (int)substr($last_login, 0, 10));
-        		$last_vote = $player->lastVote;
-        		$last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
-
-        		$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
-        		$network_level = getLevel($network_exp);
-
-        		$recent_game = formatRecentGame($player->recentGameType);
-
-        		$previous = "javascript:history.go(-1)";
-	            if (isset($_SERVER['HTTP_REFERER'])) {
-	                $previous = $_SERVER['HTTP_REFERER'];
-	            }
-	        } else {
-		        echo "No match found\n";
-		    }
 
 			if (!updatePlayer($mongo_mng, $uuid, $API_KEY)) {
 				header("Refresh:0.01; url=error/playernotfound.php");
 			} else {
-			updateStatsLog($connection, $name);
+			    updateStatsLog($connection, $formatted_name);
+
+                if (!empty($player)) {
+                    $rank = $player->rank;
+                    $rank_colour = $player->rankColour;
+                    $network_exp = $player->networkExp;
+                    $name = $player->name;
+
+                    $first_login = $player->firstLogin;
+                    $first_login = date("d M Y (H:i:s)", (int)substr($first_login, 0, 10));
+                    $last_login = $player->lastLogin;
+                    $last_login = date("d M Y (H:i:s)", (int)substr($last_login, 0, 10));
+                    $last_vote = $player->lastVote;
+                    $last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
+
+                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                    $network_level = getLevel($network_exp);
+
+                    $recent_game = formatRecentGame($player->recentGameType);
+
+                    $previous = "javascript:history.go(-1)";
+                    if (isset($_SERVER['HTTP_REFERER'])) {
+                        $previous = $_SERVER['HTTP_REFERER'];
+                    }
+                } else {
+                    header("Refresh:0.01; url=error/playernotfound.php");
+                }
 		?>
 
 		<title><?php echo $name; ?>'s Stats - AyeBallers</title>
@@ -118,13 +94,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
                 			<h1>
                 				<?php 
-
-                					if ($guild_tag) {
-                						echo $rank_with_name . '<span style="color:' . $tag_colour . ';">' . ' [' . $guild_tag . ']' . '</span>'; 
-                					} else {
-                						echo $rank_with_name;
-                					}
-
+                                    echo $rank_with_name;
                 				?>
                 			</h1>
 
@@ -161,9 +131,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                			<br>
 
 						                			<p><b>UUID:</b> <?php echo $uuid; ?></p>
-						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#previousnames">Previous Names</button>
-						                			<div id="previousnames" class="collapse">
-						                			</div>
 						                		</div>
 						                		<div class="col-md-4">
 						                			<?php echo '<img alt="Player Avatar" style="height: 200px; width: auto;" src="https://crafatar.com/renders/body/' . $uuid . '"/>'; ?>
@@ -171,41 +138,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                		</div>
 				                		</div>
 				                	</div>
-
-		                			<div class="card mb-4">
-		                                <div class="card-header">
-		                                    <i class="fas fa-users mr-1"></i>
-		                                    <?php echo $name; ?>'s Guild
-		                                </div>
-
-	        							<div class="card-body">
-	        								<div class="row">
-	        									<div class="col-md-8">
-	        										<?php
-	        											if ($guild_name == "AyeBallers") {
-	        										?>
-						                				<p><b>Guild:</b> <?php echo $guild_name; ?> <img alt="AyeBallers Logo" title="AyeBallers" height="15" width="auto" src="assets/img/star.png"/></p>
-						                			<?php } else { ?>
-						                				<p><b>Guild:</b> <?php echo $guild_name; ?></p>
-						                			<?php } ?>
-						                			<p><b>Members:</b> <?php echo $guild_members; ?>/125</p>
-						                			<p><b>Guild Level:</b> <?php echo $guild_level; ?></p>
-						                			<p><b>Created:</b> <?php echo $guild_created; ?></p>
-						                			<p><b>Description:</b> <?php echo $guild_desc; ?></p>
-						                			<p><b>Tag:</b> <?php echo '<span style="color:' . $tag_colour . ';">' . '[' . $guild_tag . ']' . '</span>'; ?></p>
-						                		</div>
-						                		<div class="col-md-4">
-						                			<?php 
-							                			if ($guild_name == "AyeBallers") {
-							                				echo '<img alt="AyeBallers Logo" style="height: 100px; width: auto;" src="assets/img/favicon.png"/>'; 
-							                			}
-						                			?>
-						                		</div>
-					                		</div>
-				                		</div>
-				                	</div>
-				                	
-				            	</div>
+                                </div>
 
                 				<br>
 
@@ -247,8 +180,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 										                					$sk_pb = round(($player->paintball->shotsFired / $player->paintball->kills), 2);
 										                				}
 										                			?>
-
-										                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 										                			<p><b>Kills:</b> <?php echo number_format($player->paintball->kills); ?></p>
 										                			<p><b>Wins:</b> <?php echo number_format($player->paintball->wins); ?></p>
@@ -316,8 +247,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 									                					$sk_qc = round((($player->quakecraft->soloShotsFired + $player->quakecraft->teamShotsFired) / ($player->quakecraft->soloKills + $player->quakecraft->teamKills)), 2);
 									                				}
 									                			?>
-
-									                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 									                			<p><b>Coins:</b> <?php echo number_format($player->quakecraft->coins); ?></p>
 									                			<p><b>Highest Killstreak:</b> <?php echo number_format($player->quakecraft->highestKillstreak); ?></p>
@@ -441,8 +370,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 									                				}
 									                			?>
 
-									                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
-
 									                			<p><b>Rating:</b> <?php echo number_format($player->arena->rating); ?></p>
 									                			<p><b>Coins:</b> <?php echo number_format($player->arena->coins); ?></p>
 									                			<p><b>Coins Spent:</b> <?php echo number_format($player->arena->coinsSpent); ?></p>
@@ -539,7 +466,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					        						<div class="card-body">
                                                         <div class="row">
                                                             <div class="col-md-6">
-        														<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
         							                			<p><b>Wins:</b> <?php echo number_format($player->tkr->wins); ?></p>
         							                			<p><b>Coins:</b> <?php echo number_format($player->tkr->coins); ?></p>
@@ -587,7 +513,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                    	VampireZ
 				                                	</div>
 					        						<div class="card-body">
-							                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 							                			<p><b>Coins:</b> <?php echo number_format($player->vampirez->coins); ?></p>
 
@@ -623,8 +548,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                    	The Walls
 				                                	</div>
 					        						<div class="card-body">
-							                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
-
 							                			<p><b>Coins:</b> <?php echo number_format($player->walls->coins); ?></p>
 							                			<p><b>Wins:</b> <?php echo number_format($player->walls->wins); ?></p>
 							                			<p><b>Kills:</b> <?php echo number_format($player->walls->kills); ?></p>
@@ -673,8 +596,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                				}
 
 						                			?>
-
-						                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 						                			<p><b>Coins:</b> <?php echo number_format($player->tntgames->coins); ?></p>
 						                			<p><b>Total Wins:</b> <?php echo number_format($player->tntgames->wins); ?></p>
@@ -740,7 +661,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Bedwars
 				                            </div>
 			        						<div class="card-body">
-					                			<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 					                			<p><b>Coins:</b> <?php echo number_format($player->bedwars->coins); ?></p>
 					                			<p><b>Wins:</b> <?php echo number_format($player->bedwars->wins); ?></p>
@@ -778,7 +698,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                SkyWars
 				                            </div>
 			        						<div class="card-body">
-			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 					                			<p><b>Coins:</b> <?php echo number_format($player->skywars->overall->coins); ?></p>
 					                			<p><b>Wins:</b> <?php echo number_format($player->skywars->overall->wins); ?></p>
@@ -874,7 +793,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Warlords
 				                            </div>
 			        						<div class="card-body">
-			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 					                			<p><b>Coins:</b> <?php echo number_format($player->warlords->coins); ?></p>
 					                			<p><b>Wins:</b> <?php echo number_format($player->warlords->wins); ?></p>
@@ -1103,7 +1021,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Murder Mystery
 				                            </div>
 			        						<div class="card-body">
-
+                                                <h3>Coming Soon!</h3>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1118,8 +1036,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Arcade
 				                            </div>
 			        						<div class="card-body">
-
-			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 
 					                			<p><b>Coins:</b> <?php echo number_format($player->arcade->coins); ?></p>
 					                			<p><b>Creeper Attack Record:</b> <?php echo number_format($player->arcade->creeperAttack->maxWave); ?></p>
@@ -1236,8 +1152,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                            </div>
 			        						<div class="card-body">
 
-			        							<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
-
 					                			<p><b>Coins:</b> <?php echo number_format($player->uhc->coins); ?></p>
 					                			<p><b>Score:</b> <?php echo number_format($player->uhc->score); ?></p>
 
@@ -1328,7 +1242,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                            </div>
 			        						<div class="card-body">
 
-												<?php echo "<p><b>Leaderboard Position:</b> Not in Top #500</p>"; ?> 
 			        							<p><b>Coins:</b> <?php echo number_format($player->copsandcrims->coins); ?></p>
 
 			        							<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#defusalcac">Defusal</button><br><br>
@@ -1371,7 +1284,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Build Battle
 				                            </div>
 			        						<div class="card-body">
-
+                                                <h3>Coming Soon!</h3>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1386,7 +1299,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Mega Walls
 				                            </div>
 			        						<div class="card-body">
-
+                                                <h3>Coming Soon!</h3>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1401,7 +1314,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Duels
 				                            </div>
 			        						<div class="card-body">
-
+                                                <h3>Coming Soon!</h3>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1416,7 +1329,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Blitz Survival Games
 				                            </div>
 			        						<div class="card-body">
-
+                                                <h3>Coming Soon!</h3>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1431,7 +1344,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Smash Heroes
 				                            </div>
 			        						<div class="card-body">
-
+                                                <h3>Coming Soon!</h3>
 					                		</div>
 					                	</div>
 					                	<br>
