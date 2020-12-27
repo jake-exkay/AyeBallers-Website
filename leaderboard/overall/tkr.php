@@ -1,25 +1,31 @@
+<?php
+/**
+ * Turbo Kart Racers Leaderboard - Overall
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/leaderboard/overall/tkr.php
+ */
+
+require "../../includes/links.php";
+include "../../includes/connect.php";
+include "../../functions/functions.php";
+include "../../functions/player_functions.php";
+include "../../functions/display_functions.php";
+include "../../functions/database/query_functions.php";
+include "../../admin/functions/login_functions.php";
+
+updatePageViews($connection, 'tkr_overall_leaderboard', $DEV_IP);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
-        <?php include "../../includes/links.php"; ?>
-
         <title>Overall Leaderboard - Turbo Kart Racers</title>
-
-        <?php
-
-            include "../../includes/connect.php";
-            include "../../functions/functions.php";
-            include "../../functions/player_functions.php";
-            include "../../functions/display_functions.php";
-            include "../../functions/database/query_functions.php";
-            include "../../admin/functions/login_functions.php";
-
-            updatePageViews($connection, 'tkr_overall_leaderboard', $DEV_IP);
-
-        ?>
-
     </head>
 
     <body class="sb-nav-fixed">
@@ -29,19 +35,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Turbo Kart Racers Leaderboard</h1>
-
-                        <ol class="breadcrumb mb-4">
-
-                            <form style="margin-right: 10px;" action="tkr.php">
-                                <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
-                            </form>
-
-                            <form action="../guild/tkr.php">
-                                <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
-                            </form>
-
-                        </ol>
+                        <br>
+                        <h1 class="event_font">Turbo Kart Racers Leaderboard</h1>
+                        <hr>
                         
                         <div class="card mb-4">
                             <div class="card-header">
@@ -51,7 +47,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
 
-                                    <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">     
+                                    <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Position (Trophies)</th>
@@ -70,46 +66,43 @@
 
                                         <?php
 
+                                            $result = getOverallTkrLeaderboard($mongo_mng);
                                             $i = 1;
 
-                                            $result = getOverallTkrLeaderboard($connection);
+                                            foreach ($result as $player) {
+                                                $name = $player->name;
+                                                $rank = $player->rank;
+                                                $rank_colour = $player->rankColour;
+                                                $coins = $player->tkr->coins;
+                                                $wins = $player->tkr->wins;
+                                                $gold_trophy = $player->tkr->goldTrophy;
+                                                $silver_trophy = $player->tkr->silverTrophy;
+                                                $bronze_trophy = $player->tkr->bronzeTrophy;
+                                                $laps_completed = $player->tkr->lapsCompleted;
+                                                $box_pickups = $player->tkr->boxPickups;
+                                                $coin_pickups = $player->tkr->coinPickups;
 
-                                            if ($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) {
-                                                    $name = $row['name'];
-                                                    $rank = $row['rank'];
-                                                    $rank_colour = $row['rank_colour'];
-                                                    $coins = $row['coins_tkr'];
-                                                    $wins = $row['wins_tkr'];
-                                                    $gold_trophy = $row['gold_trophy_tkr'];
-                                                    $silver_trophy = $row['silver_trophy_tkr'];
-                                                    $bronze_trophy = $row['bronze_trophy_tkr'];
-                                                    $laps_completed = $row['laps_completed_tkr'];
-                                                    $box_pickups = $row['box_pickups_tkr'];
-                                                    $coin_pickups = $row['coins_picked_up_tkr'];
+                                                $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
-                                                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                                                echo '<tr>';
+                                                    echo '<td>' . $i . '</td>';
+                                                    if (userInGuild($connection, $name)) {
+                                                        echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../assets/img/favicon.png"/></td>';
+                                                    } else {
+                                                        echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+                                                    }
+                                                    echo '<td>' . number_format($wins) . '</td>';
+                                                    echo '<td>' . number_format($gold_trophy) . '</td>';
+                                                    echo '<td>' . number_format($silver_trophy) . '</td>';
+                                                    echo '<td>' . number_format($bronze_trophy) . '</td>';
+                                                    echo '<td>' . number_format($coins) . '</td>';
+                                                    echo '<td>' . number_format($laps_completed) . '</td>';
+                                                    echo '<td>' . number_format($coin_pickups) . '</td>';
+                                                    echo '<td>' . number_format($box_pickups) . '</td>';
 
-                                                    echo '<tr>';
-                                                        echo '<td>' . $i . '</td>';
-                                                        if (userInGuild($connection, $name)) {
-                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../assets/img/favicon.png"/></td>';
-                                                        } else {
-                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
-                                                        }
-                                                        echo '<td>' . number_format($wins) . '</td>';
-                                                        echo '<td>' . number_format($gold_trophy) . '</td>';
-                                                        echo '<td>' . number_format($silver_trophy) . '</td>';
-                                                        echo '<td>' . number_format($bronze_trophy) . '</td>';
-                                                        echo '<td>' . number_format($coins) . '</td>';
-                                                        echo '<td>' . number_format($laps_completed) . '</td>';
-                                                        echo '<td>' . number_format($coin_pickups) . '</td>';
-                                                        echo '<td>' . number_format($box_pickups) . '</td>';
+                                                echo '</tr>'; 
+                                                $i = $i + 1;
 
-                                                    echo '</tr>'; 
-                                                    $i = $i + 1;
-
-                                                }
                                             }
 
                                         ?>

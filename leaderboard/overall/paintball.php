@@ -35,19 +35,9 @@ updatePageViews($connection, 'paintball_overall_leaderboard', $DEV_IP);
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Paintball Leaderboard</h1>
-
-                        <ol class="breadcrumb mb-4">
-
-                            <form style="margin-right: 10px;" action="paintball.php">
-                                <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
-                            </form>
-
-                            <form action="../guild/paintball.php">
-                                <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
-                            </form>
-
-                        </ol>
+                        <br>
+                        <h1 class="event_font">Paintball Leaderboard</h1>
+                        <hr>
                         
                         <div class="card mb-4">
                             <div class="card-header">

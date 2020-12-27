@@ -1,25 +1,31 @@
+<?php
+/**
+ * Arena Brawl Leaderboard - Overall
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/leaderboard/overall/arena.php
+ */
+
+require "../../includes/links.php";
+include "../../includes/connect.php";
+include "../../functions/functions.php";
+include "../../functions/player_functions.php";
+include "../../functions/display_functions.php";
+include "../../functions/database/query_functions.php";
+include "../../admin/functions/login_functions.php";
+
+updatePageViews($connection, 'arena_overall_leaderboard', $DEV_IP);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
-        <?php include "../../includes/links.php"; ?>
-
         <title>Overall Leaderboard - Arena Brawl</title>
-
-        <?php
-
-            include "../../includes/connect.php";
-            include "../../functions/functions.php";
-            include "../../functions/player_functions.php";
-            include "../../functions/display_functions.php";
-            include "../../functions/database/query_functions.php";
-            include "../../admin/functions/login_functions.php";
-
-            updatePageViews($connection, 'arena_overall_leaderboard', $DEV_IP);
-
-        ?>
-
     </head>
 
     <body class="sb-nav-fixed">
@@ -29,19 +35,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Arena Brawl Leaderboard</h1>
-
-                        <ol class="breadcrumb mb-4">
-
-                            <form style="margin-right: 10px;" action="arena.php">
-                                <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
-                            </form>
-
-                            <form action="../guild/arena.php">
-                                <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
-                            </form>
-
-                        </ol>
+                        <br>
+                        <h1 class="event_font">Arena Brawl Leaderboard</h1>
+                        <hr>
                         
                         <div class="card mb-4">
                             <div class="card-header">
@@ -73,75 +69,71 @@
 
                                         <?php
 
+                                            $result = getOverallArenaLeaderboard($mongo_mng);
                                             $i = 1;
 
-                                            $result = getOverallArenaLeaderboard($connection);
+                                            foreach ($result as $player) {
+                                                $name = $player->name;
+                                                $rank = $player->rank;
+                                                $rank_colour = $player->rankColour;
+                                                $rating = $player->arena->rating;
+                                                $coins = $player->arena->coins;
+                                                $coins_spent = $player->arena->coinsSpent;
+                                                $keys = $player->arena->keys;
+                                                $damage_1 = $player->arena->ones->damage;
+                                                $damage_2 = $player->arena->twos->damage;
+                                                $damage_4 = $player->arena->fours->damage;
+                                                $healing_1 = $player->arena->ones->healed;
+                                                $healing_2 = $player->arena->twos->healed;
+                                                $healing_4 = $player->arena->fours->healed;
+                                                $wins_1 = $player->arena->ones->wins;
+                                                $wins_2 = $player->arena->twos->wins;
+                                                $wins_4 = $player->arena->fours->wins;
+                                                $kills_1 = $player->arena->ones->damage;
+                                                $kills_2 = $player->arena->twos->kills;
+                                                $kills_4 = $player->arena->fours->kills;
+                                                $losses_1 = $player->arena->ones->losses;
+                                                $losses_2 = $player->arena->twos->losses;
+                                                $losses_4 = $player->arena->fours->losses;
+                                                $games_1 = $player->arena->ones->games;
+                                                $games_2 = $player->arena->twos->games;
+                                                $games_4 = $player->arena->fours->games;
+                                                $deaths_1 = $player->arena->ones->deaths;
+                                                $deaths_2 = $player->arena->twos->deaths;
+                                                $deaths_4 = $player->arena->fours->deaths;
+                                                $damage = $damage_1 + $damage_2 + $damage_4;
+                                                $healing = $healing_1 + $healing_2 + $healing_4;
+                                                $wins = $wins_1 + $wins_2 + $wins_4;
+                                                $kills = $kills_1 + $kills_2 + $kills_4;
+                                                $losses = $losses_1 + $losses_2 + $losses_4;
+                                                $games = $games_1 + $games_2 + $games_4;
+                                                $deaths = $deaths_1 + $deaths_2 + $deaths_4;
 
-                                            if ($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) {
-                                                    $name = $row['name'];
-                                                    $rank = $row['rank'];
-                                                    $rank_colour = $row['rank_colour'];
-                                                    $rating = $row['rating_arena'];
-                                                    $coins = $row['coins_arena'];
-                                                    $coins_spent = $row['coins_spent_arena'];
-                                                    $keys = $row['keys_arena'];
-                                                    $damage_1 = $row['damage_1v1_arena'];
-                                                    $damage_2 = $row['damage_2v2_arena'];
-                                                    $damage_4 = $row['damage_4v4_arena'];
-                                                    $healing_1 = $row['healed_1v1_arena'];
-                                                    $healing_2 = $row['healed_2v2_arena'];
-                                                    $healing_4 = $row['healed_4v4_arena'];
-                                                    $wins_1 = $row['wins_1v1_arena'];
-                                                    $wins_2 = $row['wins_2v2_arena'];
-                                                    $wins_4 = $row['wins_4v4_arena'];
-                                                    $kills_1 = $row['kills_1v1_arena'];
-                                                    $kills_2 = $row['kills_2v2_arena'];
-                                                    $kills_4 = $row['kills_4v4_arena'];
-                                                    $losses_1 = $row['losses_1v1_arena'];
-                                                    $losses_2 = $row['losses_2v2_arena'];
-                                                    $losses_4 = $row['losses_4v4_arena'];
-                                                    $games_1 = $row['games_1v1_arena'];
-                                                    $games_2 = $row['games_2v2_arena'];
-                                                    $games_4 = $row['games_4v4_arena'];
-                                                    $deaths_1 = $row['deaths_1v1_arena'];
-                                                    $deaths_2 = $row['deaths_2v2_arena'];
-                                                    $deaths_4 = $row['deaths_4v4_arena'];
-                                                    $damage = $damage_1 + $damage_2 + $damage_4;
-                                                    $healing = $healing_1 + $healing_2 + $healing_4;
-                                                    $wins = $wins_1 + $wins_2 + $wins_4;
-                                                    $kills = $kills_1 + $kills_2 + $kills_4;
-                                                    $losses = $losses_1 + $losses_2 + $losses_4;
-                                                    $games = $games_1 + $games_2 + $games_4;
-                                                    $deaths = $deaths_1 + $deaths_2 + $deaths_4;
+                                                $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
-                                                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                                                echo '<tr>';
+                                                    echo '<td>' . $i . '</td>';
+                                                    if (userInGuild($connection, $name)) {
+                                                        echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../assets/img/favicon.png"/></td>';
+                                                    } else {
+                                                        echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+                                                    }
+                                                    echo '<td>' . number_format($rating) . '</td>';
+                                                    echo '<td>' . number_format($coins) . '</td>';
+                                                    echo '<td>' . number_format($coins_spent) . '</td>';
+                                                    echo '<td>' . number_format($keys) . '</td>';
+                                                    echo '<td>' . number_format($damage) . '</td>';
+                                                    echo '<td>' . number_format($kills) . '</td>';
+                                                    echo '<td>' . number_format($wins) . '</td>';
+                                                    echo '<td>' . number_format($losses) . '</td>';
+                                                    echo '<td>' . number_format($healing) . '</td>';
+                                                    echo '<td>' . number_format($games) . '</td>';
+                                                    echo '<td>' . number_format($deaths) . '</td>';
+                                                    
+                                                echo '</tr>'; 
+                                                $i = $i + 1;
 
-                                                    echo '<tr>';
-                                                        echo '<td>' . $i . '</td>';
-                                                        if (userInGuild($connection, $name)) {
-                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../assets/img/favicon.png"/></td>';
-                                                        } else {
-                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
-                                                        }
-                                                        echo '<td>' . number_format($rating) . '</td>';
-                                                        echo '<td>' . number_format($coins) . '</td>';
-                                                        echo '<td>' . number_format($coins_spent) . '</td>';
-                                                        echo '<td>' . number_format($keys) . '</td>';
-                                                        echo '<td>' . number_format($damage) . '</td>';
-                                                        echo '<td>' . number_format($kills) . '</td>';
-                                                        echo '<td>' . number_format($wins) . '</td>';
-                                                        echo '<td>' . number_format($losses) . '</td>';
-                                                        echo '<td>' . number_format($healing) . '</td>';
-                                                        echo '<td>' . number_format($games) . '</td>';
-                                                        echo '<td>' . number_format($deaths) . '</td>';
-                                                        
-                                                    echo '</tr>'; 
-                                                    $i = $i + 1;
-
-                                                }
                                             }
-
 
                                         ?>
                                         </tbody>

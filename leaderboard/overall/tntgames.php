@@ -1,25 +1,31 @@
+<?php
+/**
+ * TNT Games Leaderboard - Overall
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/leaderboard/overall/tntgames.php
+ */
+
+require "../../includes/links.php";
+include "../../includes/connect.php";
+include "../../functions/functions.php";
+include "../../functions/player_functions.php";
+include "../../functions/display_functions.php";
+include "../../functions/database/query_functions.php";
+include "../../admin/functions/login_functions.php";
+
+updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
-        <?php include "../../includes/links.php"; ?>
-
         <title>Overall Leaderboard - TNT Games</title>
-
-        <?php
-
-            include "../../includes/connect.php";
-            include "../../functions/functions.php";
-            include "../../functions/player_functions.php";
-            include "../../functions/display_functions.php";
-            include "../../functions/database/query_functions.php";
-            include "../../admin/functions/login_functions.php";
-
-            updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
-
-        ?>
-
     </head>
 
     <body class="sb-nav-fixed">
@@ -29,19 +35,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">TNT Games Leaderboard</h1>
-
-                        <ol class="breadcrumb mb-4">
-
-                            <form style="margin-right: 10px;" action="tntgames.php">
-                                <button type="submit" class="btn btn-primary active">Overall Leaderboard</button>
-                            </form>
-
-                            <form action="../guild/tntgames.php">
-                                <button type="submit" class="btn btn-primary">AyeBallers Leaderboard</button>
-                            </form>
-
-                        </ol>
+                        <br>
+                        <h1 class="event_font">TNT Games Leaderboard</h1>
+                        <hr>
                         
                         <div class="card mb-4">
                             <div class="card-header">
@@ -70,49 +66,45 @@
 
                                         <?php
 
+                                            $result = getOverallTntLeaderboard($mongo_mng);
                                             $i = 1;
 
-                                            $result = getOverallTntLeaderboard($connection);
+                                            foreach ($result as $player) {
+                                                $name = $player->name;
+                                                $rank = $player->rank;
+                                                $rank_colour = $player->rankColour;
+                                                $wins = $player->tntgames->wins;
+                                                $coins = $player->tntgames->coins;
+                                                $tntrun_wins = $player->tntgames->tntrun->wins;
+                                                $bowspleef_wins = $player->tntgames->bowspleef->wins;
+                                                $tntag_wins = $player->tntgames->tntag->wins;
+                                                $pvprun_wins = $player->tntgames->pvprun->wins;
+                                                $wizards_wins = $player->tntgames->wizards->wins;
+                                                $winstreak = $player->tntgames->winstreak;
 
-                                            if ($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) {
-                                                    $name = $row['name'];
-                                                    $rank = $row['rank'];
-                                                    $rank_colour = $row['rank_colour'];
-                                                    $wins = $row['wins_tnt'];
-                                                    $coins = $row['coins_tnt'];
-                                                    $tntrun_wins = $row['wins_tntrun_tnt'];
-                                                    $bowspleef_wins = $row['wins_bowspleef_tnt'];
-                                                    $tntag_wins = $row['wins_tnttag_tnt'];
-                                                    $pvprun_wins = $row['wins_pvprun_tnt'];
-                                                    $wizards_wins = $row['wins_wizards_tnt'];
-                                                    $winstreak = $row['winstreak_tnt'];
+                                                $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
-                                                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                                                echo '<tr>';
+                                                    echo '<td>' . $i . '</td>';
+                                                    if (userInGuild($connection, $name)) {
+                                                        echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../assets/img/favicon.png"/></td>';
+                                                    } else {
+                                                        echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+                                                    }
+                                                    
+                                                    echo '<td>' . number_format($wins) . '</td>';
+                                                    echo '<td>' . number_format($coins) . '</td>';
+                                                    echo '<td>' . number_format($tntrun_wins) . '</td>';
+                                                    echo '<td>' . number_format($bowspleef_wins) . '</td>';
+                                                    echo '<td>' . number_format($tntag_wins) . '</td>';
+                                                    echo '<td>' . number_format($pvprun_wins) . '</td>';
+                                                    echo '<td>' . number_format($wizards_wins) . '</td>';
+                                                    echo '<td>' . number_format($winstreak) . '</td>';
 
-                                                    echo '<tr>';
-                                                        echo '<td>' . $i . '</td>';
-                                                        if (userInGuild($connection, $name)) {
-                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../assets/img/favicon.png"/></td>';
-                                                        } else {
-                                                            echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
-                                                        }
-                                                        
-                                                        echo '<td>' . number_format($wins) . '</td>';
-                                                        echo '<td>' . number_format($coins) . '</td>';
-                                                        echo '<td>' . number_format($tntrun_wins) . '</td>';
-                                                        echo '<td>' . number_format($bowspleef_wins) . '</td>';
-                                                        echo '<td>' . number_format($tntag_wins) . '</td>';
-                                                        echo '<td>' . number_format($pvprun_wins) . '</td>';
-                                                        echo '<td>' . number_format($wizards_wins) . '</td>';
-                                                        echo '<td>' . number_format($winstreak) . '</td>';
+                                                echo '</tr>'; 
+                                                $i = $i + 1;
 
-                                                    echo '</tr>'; 
-                                                    $i = $i + 1;
-
-                                                }
                                             }
-
 
                                         ?>
                                         </tbody>
