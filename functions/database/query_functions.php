@@ -1,9 +1,9 @@
 <?php
 
-	function getOverallPaintballLeaderboard($connection) {
-        $query = "SELECT name, rank, rank_colour, coins_paintball, deaths_paintball, forcefield_time_paintball, wins_paintball, kills_paintball, killstreaks_paintball, shots_fired_paintball, hat_paintball FROM player ORDER BY kills_paintball DESC LIMIT 500";
-        $result = $connection->query($query);
-        return $result;
+	function getOverallPaintballLeaderboard($mongo_mng) {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['paintball.kills' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
 	}
 
     function getOverallTntLeaderboard($connection) {
