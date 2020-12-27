@@ -48,4 +48,10 @@
         return $res;
     }
 
+    function getOverallSkywarsLeaderboard($mongo_mng) {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['skywars.overall.wins' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
 ?>

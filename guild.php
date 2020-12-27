@@ -150,7 +150,12 @@ include "admin/functions/login_functions.php";
                                                     $joined = $member->joined;
                                                     
                                                     if (!isPlayerStored($mongo_mng, $uuid)) {
-                                                        updatePlayer($mongo_mng, $uuid, $API_KEY);
+                                                        if (apiLimitReached($API_KEY)) {
+                                                            header("Refresh:0.01; url=error/api_request.php");
+                                                            break;
+                                                        } else {
+                                                            updatePlayer($mongo_mng, $uuid, $API_KEY);
+                                                        }
                                                     }
 
                                                     $name = getLocalName($mongo_mng, $uuid);

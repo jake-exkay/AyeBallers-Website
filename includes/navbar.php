@@ -96,6 +96,13 @@ echo '
                             </div>
                             Bedwars
                         </a>
+
+                        <a class="nav-link" href="../../../leaderboard/overall/skywars.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-th-list"></i>
+                            </div>
+                            Skywars
+                        </a>
 ';
 
 if (getUsername($connection) != "None") {
