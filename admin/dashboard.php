@@ -57,7 +57,8 @@ updatePageViews($connection, 'admin_dashboard', $DEV_IP);
                                             <b>Total Stored Guilds: </b><?php echo getTotalCachedGuilds($mongo_mng); ?><br>
                                             <b>Total Admins: </b><?php echo getTotalAdmins($connection); ?><br>
                                             <b>Total Tracked Pages: </b><?php echo getTotalTrackedPages($connection); ?><br>
-                                            <b>Total Page Views: </b><?php echo getTotalPageViews($connection); ?>
+                                            <b>Total Page Views: </b><?php echo getTotalPageViews($connection); ?><br>
+                                            <b>Total Player Lookups: </b><?php echo getTotalPlayerLookups($connection); ?>
                                         </div>
                                     </div>
 

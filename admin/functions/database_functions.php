@@ -12,6 +12,23 @@
         }
     }
 
+    function getRecentLookups($connection) {
+        $query = "SELECT * FROM stats_log ORDER BY updated_time DESC LIMIT 20";
+        $result = $connection->query($query);
+        return $result;
+    }
+
+    function getMostRecentLookup($connection) {
+        $query = "SELECT * FROM stats_log ORDER BY updated_time DESC LIMIT 1";
+        $result = $connection->query($query);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row['action'];
+            }
+        }
+    }
+
     function getAdmins($connection) {
         $query = "SELECT * FROM user";
         $result = $connection->query($query);
@@ -25,7 +42,7 @@
         foreach ($res as $i) {
             $count = $count + $i;
         }
-        return $count;
+        return number_format($count);
     }
 
     function getTotalCachedGuilds($mongo_mng) {
@@ -35,7 +52,7 @@
         foreach ($res as $i) {
             $count = $count + $i;
         }
-        return $count;
+        return number_format($count);
     }
 
     function getTotalAdmins($connection) {
@@ -49,7 +66,14 @@
         $query = "SELECT COUNT(*) AS 'views' FROM page_views";
         $result = $connection->query($query);
         $row = $result->fetch_assoc();
-        return $row['views'];
+        return number_format($row['views']);
+    }
+
+    function getTotalPlayerLookups($connection) {
+        $query = "SELECT COUNT(*) AS 'views' FROM stats_log";
+        $result = $connection->query($query);
+        $row = $result->fetch_assoc();
+        return number_format($row['views']);
     }
 
     function getTotalPageViews($connection) {

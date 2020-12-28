@@ -23,6 +23,13 @@
                                 </div>
                                 Tournament Manager (Not In Use)
                             </a>
+
+                            <a class="nav-link" href="../../../admin/playerstats.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                Player Statistics
+                            </a>
                             
                         </div>
                     </div>
