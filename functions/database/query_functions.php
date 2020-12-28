@@ -54,4 +54,22 @@
         return $res;
     }
 
+    function getOverallWarlordsLeaderboard($mongo_mng) {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['warlords.wins' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
+    function getOverallUHCLeaderboard($mongo_mng) {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.score' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
+    function getOverallCvcLeaderboard($mongo_mng) {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['copsandcrims.defusal.gameWins' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
 ?>

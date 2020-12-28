@@ -693,7 +693,7 @@
                     'solo' => [
                         'deaths' => !empty($uhc->deaths_solo) ? $uhc->deaths_solo : 0,
                         'kills' => !empty($uhc->kills_solo) ? $uhc->kills_solo : 0,
-                        'headsEaten' => !empty($uhc->deaths_solo) ? $uhc->deaths_solo : 0,
+                        'headsEaten' => !empty($uhc->heads_eaten_solo) ? $uhc->heads_eaten_solo : 0,
                         'wins' => !empty($uhc->wins_solo) ? $uhc->wins_solo : 0
                     ],
                     'team' => [

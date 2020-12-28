@@ -122,8 +122,11 @@ updatePageViews($connection, 'admin_dashboard', $DEV_IP);
                         $tnt_o = getPageViews($connection, "tnt_overall_leaderboard");
                         $skywars_o = getPageViews($connection, "skywars_overall_leaderboard");
                         $bedwars_o = getPageViews($connection, "bedwars_overall_leaderboard");
+                        $warlords_o = getPageViews($connection, "warlords_overall_leaderboard");
+                        $cvc_o = getPageViews($connection, "copsandcrims_overall_leaderboard");
+                        $uhc_o = getPageViews($connection, "uhc_overall_leaderboard");
 
-                        $leaderboard_views = $pb_o + $vz_o + $qc_o + $tkr_o + $walls_o + $arena_o + $tnt_o + $skywars_o + $bedwars_o;
+                        $leaderboard_views = $pb_o + $vz_o + $qc_o + $tkr_o + $walls_o + $arena_o + $tnt_o + $skywars_o + $bedwars_o + $warlords_o + $uhc_o + $cvc_o;
 
                         $pb2 = getPageViews($connection, "pb2_leaderboard");
                         $pb3 = getPageViews($connection, "pb3_leaderboard");

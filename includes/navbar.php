@@ -103,6 +103,27 @@ echo '
                             </div>
                             Skywars
                         </a>
+
+                        <a class="nav-link" href="../../../leaderboard/overall/warlords.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-th-list"></i>
+                            </div>
+                            Warlords
+                        </a>
+
+                        <a class="nav-link" href="../../../leaderboard/overall/uhc.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-th-list"></i>
+                            </div>
+                            UHC
+                        </a>
+
+                        <a class="nav-link" href="../../../leaderboard/overall/copsandcrims.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-th-list"></i>
+                            </div>
+                            Cops and Crims
+                        </a>
 ';
 
 if (getUsername($connection) != "None") {
