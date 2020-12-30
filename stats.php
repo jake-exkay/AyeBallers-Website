@@ -34,17 +34,17 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
         	$uuid = getUUID($connection, $get_name);
             $formatted_name = getRealName($uuid);
 
-            $filter = ['uuid' => $uuid]; 
-		    $query = new MongoDB\Driver\Query($filter);     
-		    
-		    $res = $mongo_mng->executeQuery("ayeballers.player", $query);
-		    
-		    $player = current($res->toArray());
-
 			if (!updatePlayer($mongo_mng, $uuid, $API_KEY)) {
 				header("Refresh:0.01; url=error/playernotfound.php");
 			} else {
 			    updateStatsLog($connection, $formatted_name);
+
+			    $filter = ['uuid' => $uuid]; 
+			    $query = new MongoDB\Driver\Query($filter);     
+			    
+			    $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+			    
+			    $player = current($res->toArray());
 
                 if (!empty($player)) {
                     $rank = $player->rank;
@@ -68,6 +68,14 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                     if (isset($_SERVER['HTTP_REFERER'])) {
                         $previous = $_SERVER['HTTP_REFERER'];
                     }
+
+                    $guildName = "";
+                    $guildTag = "";
+                    $guildMembers = 0;
+                    $guildRole = "";
+
+                    $guild_name = getUsersGuild($mongo_mng, $uuid);
+
                 } else {
                     header("Refresh:0.01; url=error/playernotfound.php");
                 }
@@ -134,6 +142,21 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						                		</div>
 						                		<div class="col-md-4">
 						                			<?php echo '<img alt="Player Avatar" style="height: 200px; width: auto;" src="https://crafatar.com/renders/body/' . $uuid . '"/>'; ?>
+						                		</div>
+					                		</div>
+				                		</div>
+				                	</div>
+
+				                	<div class="card mb-4">
+		                                <div class="card-header">
+		                                    <i class="fas fa-table mr-1"></i>
+		                                    <?php echo $name; ?>'s guild
+		                                </div>
+
+	        							<div class="card-body">
+	        								<div class="row">
+	        									<div class="col-md-8">
+						                			<p><b>Guild Name:</b> <?php echo $guild_name; ?> </p>
 						                		</div>
 					                		</div>
 				                		</div>

@@ -101,7 +101,7 @@ updatePageViews($connection, 'pb3_leaderboard', $DEV_IP);
                                                             echo '<td>' . $i . '</td>';
                                                             if ($name == 'recordheat' || $name == 'Pablojor') {
                                                                 echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img alt="Tournament Winner Logo" title="Previous Tournament Winner" height="25" width="auto" src="../assets/img/gold.png"/></td>';
-                                                            } else if ($name == 'ExKay' || $name == 'Emirichuwu' || $name == 'PotAccuracy') {
+                                                            } else if ($name == 'ExKay' || $name == 'Emilyie' || $name == 'PotAccuracy') {
                                                             echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img title="AyeBallers Member" height="15" width="auto" alt="AyeBallers Logo" src="../assets/img/favicon.png"/><img alt="Event Staff Logo" title="Event Staff" height="15" width="auto" src="../assets/img/star.png"/></td>';
                                                             } else if (userInGuild($connection, $name)) {
                                                                 echo '<td><a href="../../../stats.php?player=' . $name . '">' . $formatted_name . '</a> <img alt="AyeBallers Logo" title="AyeBallers Member" height="15" width="auto" src="../assets/img/favicon.png"/></td>';

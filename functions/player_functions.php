@@ -1163,4 +1163,13 @@
 
     }
 
+    function getUsersGuild($mongo_mng, $uuid) {
+        $filter = ['members.uuid' => $uuid]; 
+        $query = new MongoDB\Driver\Query($filter);     
+        $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
+        $player = current($res->toArray());
+        $name = $player->name;
+        return $name;
+    }
+
 ?>
