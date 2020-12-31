@@ -49,9 +49,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
 
                     $filter = ['name' => $guild_name]; 
                     $query = new MongoDB\Driver\Query($filter);     
-                    
                     $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
-                    
                     $guild = current($res->toArray());
                     
                     if (!empty($guild_name)) {
@@ -60,6 +58,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                         $description = $guild->description;
                         $tag = $guild->tag;
                         $exp = $guild->exp;
+                        $ranks = $guild->ranks;
                         $member_size = sizeof($members);
                         $date_created = date("d M Y (H:i:s)", (int)substr($date_created, 0, 10));
 
@@ -148,7 +147,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
 
                                                 foreach ($members as $member) {
                                                     $uuid = $member->uuid;
-                                                    $rank = $member->rank;
+                                                    $guild_rank = $member->rank;
                                                     $joined = $member->joined;
                                                     
                                                     if (!isPlayerStored($mongo_mng, $uuid)) {
@@ -160,12 +159,16 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                                                         }
                                                     }
 
-                                                    $name = getLocalName($mongo_mng, $uuid);
+                                                    $player = getLocalPlayer($mongo_mng, $uuid);
+                                                    $name = $player->name;
+                                                    $rank = $player->rank;
+                                                    $rank_colour = $player->rankColour;
 
-                                                    echo '<div class="card"><div class="card-body">';
+                                                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
                                                     echo '<img alt="Player Avatar" style="height: 25px; width: 25px;" src="https://crafatar.com/avatars/' . $uuid . '"/> ';
-                                                    echo "[" . $rank . "] " . $name . "<br>";
-                                                    echo '</div></div>';
+                                                    echo '<a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a> (' . $guild_rank . ')<br>';
+                                                
                                                 }
 
                                             ?>

@@ -819,11 +819,13 @@
                 $stats = !empty($guild_decoded_url->guild) ? $guild_decoded_url->guild : "No Stats";
 
                 $members = $stats->members;
+                $ranks = $stats->ranks;
 
                 $doc = [
                     'name' => $guild,
                     'created' => !empty($stats->created) ? $stats->created : 0,
                     'members' => $members,
+                    'ranks' => $ranks,
                     'description' => !empty($stats->description) ? $stats->description : 0,
                     'publiclyListed' => !empty($stats->publiclyListed) ? $stats->publiclyListed : 0,
                     'exp' => !empty($stats->exp) ? $stats->exp : 0,
@@ -887,13 +889,12 @@
         }
     }
 
-    function getLocalName($mongo_mng, $uuid) {
+    function getLocalPlayer($mongo_mng, $uuid) {
         $filter = ['uuid' => $uuid]; 
         $query = new MongoDB\Driver\Query($filter);     
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         $player = current($res->toArray());
-        $name = $player->name;
-        return $name;
+        return $player;
     }
 
     function isPlayerStored($mongo_mng, $uuid) {
@@ -1168,8 +1169,8 @@
         $query = new MongoDB\Driver\Query($filter);     
         $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
         $player = current($res->toArray());
-        $name = $player->name;
-        return $name;
+        return $player;
     }
+
 
 ?>

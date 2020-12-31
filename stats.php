@@ -69,12 +69,19 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                         $previous = $_SERVER['HTTP_REFERER'];
                     }
 
-                    $guildName = "";
-                    $guildTag = "";
-                    $guildMembers = 0;
+                    $guild_name = "";
+                    $guild_tag = "";
+                    $guild_members = 0;
                     $guildRole = "";
 
-                    $guild_name = getUsersGuild($mongo_mng, $uuid);
+                    if ($guild = getUsersGuild($mongo_mng, $uuid)) {
+                    	$user_in_guild = true;
+	                    $guild_name = $guild->name;
+	                    $guild_tag = $guild->tag;
+	                    $guild_members = sizeof($guild->members);
+                    } else {
+                    	$user_in_guild = false;
+                    }
 
                 } else {
                     header("Refresh:0.01; url=error/playernotfound.php");
@@ -102,7 +109,11 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
                 			<h1>
                 				<?php 
-                                    echo $rank_with_name;
+                				if ($user_in_guild) {
+                                    echo $rank_with_name . " [" . $guild_tag . "]";
+                				} else {
+                					echo $rank_with_name;
+                				}
                 				?>
                 			</h1>
 
@@ -147,6 +158,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 				                		</div>
 				                	</div>
 
+				                	<?php if ($user_in_guild) { ?>
 				                	<div class="card mb-4">
 		                                <div class="card-header">
 		                                    <i class="fas fa-table mr-1"></i>
@@ -156,11 +168,15 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 	        							<div class="card-body">
 	        								<div class="row">
 	        									<div class="col-md-8">
-						                			<p><b>Guild Name:</b> <?php echo $guild_name; ?> </p>
+						                			<p><b>Guild Name:</b> <a href="guild.php?guild=<?php echo $guild_name; ?>"><?php echo $guild_name; ?></a></p>
+						                			<p><b>Guild Tag:</b> <?php echo $guild_tag; ?> </p>
+						                			<p><b>Guild Members:</b> <?php echo $guild_members; ?> </p>
 						                		</div>
 					                		</div>
 				                		</div>
 				                	</div>
+				                	<?php } ?>
+
                                 </div>
 
                 				<br>
