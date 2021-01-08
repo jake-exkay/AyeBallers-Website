@@ -126,8 +126,9 @@ updatePageViews($connection, 'admin_dashboard', $DEV_IP);
                         $warlords_o = getPageViews($connection, "warlords_overall_leaderboard");
                         $cvc_o = getPageViews($connection, "copsandcrims_overall_leaderboard");
                         $uhc_o = getPageViews($connection, "uhc_overall_leaderboard");
+                        $arc_o = getPageViews($connection, "arcade_overall_leaderboard");
 
-                        $leaderboard_views = $pb_o + $vz_o + $qc_o + $tkr_o + $walls_o + $arena_o + $tnt_o + $skywars_o + $bedwars_o + $warlords_o + $uhc_o + $cvc_o;
+                        $leaderboard_views = $pb_o + $vz_o + $qc_o + $tkr_o + $walls_o + $arena_o + $tnt_o + $skywars_o + $bedwars_o + $warlords_o + $uhc_o + $cvc_o + $arc_o;
 
                         $pb2 = getPageViews($connection, "pb2_leaderboard");
                         $pb3 = getPageViews($connection, "pb3_leaderboard");

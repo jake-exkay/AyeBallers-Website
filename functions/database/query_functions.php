@@ -72,4 +72,10 @@
         return $res;
     }
 
+    function getOverallArcadeLeaderboard($mongo_mng) {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.coins' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
 ?>

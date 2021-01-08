@@ -90,6 +90,13 @@ echo '
                             TNT Games
                         </a>
 
+                        <a class="nav-link" href="../../../leaderboard/overall/arcade.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-th-list"></i>
+                            </div>
+                            Arcade
+                        </a>
+
                         <a class="nav-link" href="../../../leaderboard/overall/bedwars.php">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-th-list"></i>
