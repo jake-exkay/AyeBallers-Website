@@ -23,47 +23,98 @@ updatePageViews($connection, 'home_page', $DEV_IP);
 <html lang="en">
 
     <head>
-        <title>Player Search - AyeBallers</title>
+        <title>Home - AyeBallers</title>
     </head>
 
-    <body style="background-image: url('assets/img/background.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;" class="sb-nav-fixed">
+    <body>
 
-        <?php require "includes/navbar.php"; ?>
+        <img alt="Website Header" src="assets/img/web-header.png" height=auto width=100% />
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0B2027;">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-inner" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.php" style="color:white;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="player.php" style="color:white;">Player Statistics</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="guildsearch.php" style="color:white;">Guild Statistics</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" style="color:white;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Leaderboards
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="leaderboard/overall/paintball.php">Paintball</a>
+                  <a class="dropdown-item" href="leaderboard/overall/quakecraft.php">Quakecraft</a>
+                  <a class="dropdown-item" href="leaderboard/overall/tkr.php">Turbo Kart Racers</a>
+                  <a class="dropdown-item" href="leaderboard/overall/vampirez.php">VampireZ</a>
+                  <a class="dropdown-item" href="leaderboard/overall/arena.php">Arena Brawl</a>
+                  <a class="dropdown-item" href="leaderboard/overall/walls.php">The Walls</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="leaderboard/overall/arcade.php">Arcade</a>
+                  <a class="dropdown-item" href="leaderboard/overall/copsandcrims.php">Cops and Crims</a>
+                  <a class="dropdown-item" href="leaderboard/overall/tntgames.php">TNT Games</a>
+                  <a class="dropdown-item" href="leaderboard/overall/uhc.php">UHC</a>
+                  <a class="dropdown-item" href="leaderboard/overall/warlords.php">Warlords</a>
+                  <a class="dropdown-item" href="leaderboard/overall/skywars.php">Skywars</a>
+                  <a class="dropdown-item" href="leaderboard/overall/bedwars.php">Bedwars</a>
+                </div>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" style="color:white;" href="event/leaderboard.php">Event</a>
+              </li>
+            </ul>
+            
+          </div>
+        </nav>
 
         <div id="layoutSidenav_content">
 
-            <main style="padding-right: 25%; padding-left: 25%; padding-top: 100px">
+            <main style="padding-right: 5%; padding-left: 5%; padding-top: 50px">
 
-            	<div style="background-color:#FFF;; opacity: 0.8; filter:(opacity=50);" class="card">
-        			<div class="card-body">
+                <div class="row">
+                    <div class="col-md-9">
+                    	<div style="background-color:#FFF;; opacity: 0.8; filter:(opacity=50);" class="card">
+                			<div class="card-body">
 
-            			<form class="form-signin" name="playerForm" action="stats.php" method="GET" enctype="multipart/form-data">
+                                    <center>
+                                        <h3 class="ayeballers_font">New home design WIP, please use the navigation bar to access the main site.</h3>
+                        			</center>
 
-                			<center>
-                                <img alt="AyeBallers Logo" src="assets/img/ayeballers.png" height=auto width=100% />
-                            </center>
+                                    <br>
+        		            </div>
+        		        </div>
+                    </div>
 
-                            <br>
+                    <div class="col-md-3">
 
-                            <center>
-                                <h3 class="ayeballers_font">Hypixel Player Lookup</h3>
-                			</center>
+                        <div style="background-color:#FFF;; opacity: 0.8; filter:(opacity=50);" class="card">
+                            <div class="card-body">
 
-                            <br>
+                                    <center>
+                                        <h3 class="ayeballers_font">New home design WIP, please use the navigation bar to access the main site.</h3>
+                                    </center>
 
-                			<input type="text" class="form-control" name="player" placeholder="Player Name" required>
-
-                			<br>
-
-		                    <center>
-		                        <button type="submit" class="btn btn-lg btn-primary">Search</button>
-		                    </center>
-
-            			</form>
-		            </div>
-		        </div>
+                                    <br>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
 
         	</main>
+
+            <br>
             
             <?php require "includes/footer.php"; ?>
 

@@ -11,39 +11,48 @@
 
 ?>
 
-<footer class="py-4 bg-dark mt-auto">
-    <div class="container-fluid">
-        <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; AyeBallers / ExKay 2020</div>
-            <?php if (getUsername($connection) == "None") { ?>
-                <form action="../../../login.php">
-                    <button data-toggle="collapse" class="btn btn-light btn-outline-success">Login</button>
-                </form>
-            <?php } else { ?>
-                <form action="../../../logout.php">
-                    <div class="card" style="background-color: #b7b5b4">
-                        <div class="card-body" style="background-color: #706e6b">
-                            <div class="row">
-                                <?php if (getUsername($connection) == "ExKay") { ?>
-                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/82df5a8f-a793-4e60-87d1-86d8741a1d23"/>
-                                <?php } else if (getUsername($connection) == "Emilyie") { ?>
-                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/38839c0e-43ac-4b1a-a0e6-c189ca15412f"/>
-                                <?php } else if (getUsername($connection) == "PotAccuracy") { ?>
-                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/fe101e8a-30d1-4137-b110-1bd22031bf35"/>
-                                <?php } else if (getUsername($connection) == "Penderdrill") { ?>
-                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/bb0b8eee-dc58-4ee9-bbf7-c590d5aa2319"/>
-                                <?php } else { ?>
-                                    <img alt="Player Avatar" style="height: 50px; width: 50px;" src="https://crafatar.com/avatars/82df5a8f-a793-4e60-87d1-86d8741a1d23"/>
-                                <?php } ?>
-                                <h2 style="color: #FFFFFF; padding-left: 20px; padding-right: 20px;"><?php echo getUsername($connection); ?></h2>
-                                <button data-toggle="collapse" class="btn btn-light btn-outline-success">Logout</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            <?php } ?>
-        </div>
+<footer class="bg-dark text-center text-lg-start">
+  <div class="container p-4">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <h5 class="text-uppercase" style="color:white;">AyeBallers</h5>
+
+        <p style="color:white;">
+          Created using the Hypixel API, Mojang API and Crafatar API.
+        </p>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase" style="color:white;">Links</h5>
+
+        <ul class="list-unstyled mb-0">
+          <li>
+            <a href="#!" class="text-light">About</a>
+          </li>
+          <li>
+            <a href="#!" class="text-light">Admin</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase mb-0" style="color:white;">Social</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!" class="text-light">Discord</a>
+          </li>
+          <li>
+            <a href="#!" class="text-light">Hypixel Forums</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); color:white;">
+    © 2021 Copyright: AyeBallers / ExKay
+  </div>
 </footer>
 
 <script>
