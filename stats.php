@@ -558,21 +558,46 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 							                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#human">As Human</button><br><br>
 
 							                			<div id="human" class="collapse">
-								                			<p><b>Human Wins:</b> <?php echo number_format($player->vampirez->asHuman->humanWins); ?></p>
-								                			<p><b>Vampire Kills:</b> <?php echo number_format($player->vampirez->asHuman->vampireKills); ?></p>
-								                			<p><b>Human Deaths:</b> <?php echo number_format($player->vampirez->asHuman->humanDeaths); ?></p>
-								                			<p><b>Zombie Kills:</b> <?php echo number_format($player->vampirez->asHuman->zombieKills); ?></p>
-								                			<p><b>Most Vampire Kills:</b> <?php echo number_format($player->vampirez->asHuman->mostVampireKills); ?></p>
-								                			<p><b>Gold Bought:</b> <?php echo number_format($player->vampirez->asHuman->goldBought); ?></p>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+        								                			<p><b>Human Wins:</b> <?php echo number_format($player->vampirez->asHuman->humanWins); ?></p>
+        								                			<p><b>Vampire Kills:</b> <?php echo number_format($player->vampirez->asHuman->vampireKills); ?></p>
+        								                			<p><b>Human Deaths:</b> <?php echo number_format($player->vampirez->asHuman->humanDeaths); ?></p>
+        								                			<p><b>Zombie Kills:</b> <?php echo number_format($player->vampirez->asHuman->zombieKills); ?></p>
+        								                			<p><b>Most Vampire Kills:</b> <?php echo number_format($player->vampirez->asHuman->mostVampireKills); ?></p>
+        								                			<p><b>Gold Bought:</b> <?php echo number_format($player->vampirez->asHuman->goldBought); ?></p>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <br><br>
+
+                                                                    <center><h4>Human Kills / Deaths</h4></center>
+                                                                    <canvas id="humanPie"></canvas>
+
+                                                                </div>
+                                                            </div>
 								                		</div>
 
 							                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#vampire">As Vampire</button><br><br>
 
 							                			<div id="vampire" class="collapse">
-								                			<p><b>Vampire Wins:</b> <?php echo number_format($player->vampirez->asVampire->vampireWins); ?></p>
-								                			<p><b>Vampire Deaths:</b> <?php echo number_format($player->vampirez->asVampire->vampireDeaths); ?></p>
-								                			<p><b>Human Kills:</b> <?php echo number_format($player->vampirez->asVampire->humanKills); ?></p>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+        								                			<p><b>Vampire Wins:</b> <?php echo number_format($player->vampirez->asVampire->vampireWins); ?></p>
+        								                			<p><b>Vampire Deaths:</b> <?php echo number_format($player->vampirez->asVampire->vampireDeaths); ?></p>
+        								                			<p><b>Human Kills:</b> <?php echo number_format($player->vampirez->asVampire->humanKills); ?></p>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <br><br>
+
+                                                                    <center><h4>Vampire Kills / Deaths</h4></center>
+                                                                    <canvas id="vampPie"></canvas>
+
+                                                                </div>
+                                                            </div>
 								                		</div>
+
 							                		</div>
 							                	</div>
 							                	<br>
@@ -587,15 +612,29 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                    	The Walls
 				                                	</div>
 					        						<div class="card-body">
-							                			<p><b>Coins:</b> <?php echo number_format($player->walls->coins); ?></p>
-							                			<p><b>Wins:</b> <?php echo number_format($player->walls->wins); ?></p>
-							                			<p><b>Kills:</b> <?php echo number_format($player->walls->kills); ?></p>
-							                			<p><b>Deaths:</b> <?php echo number_format($player->walls->deaths); ?></p>
-							                			<p><b>Losses:</b> <?php echo number_format($player->walls->losses); ?></p>
-							                			<p><b>Assists:</b> <?php echo number_format($player->walls->assists); ?></p>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+        							                			<p><b>Coins:</b> <?php echo number_format($player->walls->coins); ?></p>
+        							                			<p><b>Wins:</b> <?php echo number_format($player->walls->wins); ?></p>
+        							                			<p><b>Kills:</b> <?php echo number_format($player->walls->kills); ?></p>
+        							                			<p><b>Deaths:</b> <?php echo number_format($player->walls->deaths); ?></p>
+        							                			<p><b>Losses:</b> <?php echo number_format($player->walls->losses); ?></p>
+        							                			<p><b>Assists:</b> <?php echo number_format($player->walls->assists); ?></p>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <br><br>
+
+                                                                <center><h4>Kills / Deaths / Assists</h4></center>
+                                                                <canvas id="wallsPie"></canvas>
+
+                                                            </div>
+                                                        </div>
 							                		</div>
 							                	</div>
 					                		</div>
+
+                                            <br><hr><br>
 
 					                		<center><h4>Coins By Game</h4></center>
 											<canvas id="classicPie"></canvas>
@@ -1507,6 +1546,55 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 						responsive: true
 					}
 					});
+
+                    var ctxVamp = document.getElementById("vampPie").getContext('2d');
+                    var vampPie = new Chart(ctxVamp, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["Human Kills", "Vampire Deaths"],
+                            datasets: [{
+                            data: ["<?php echo $player->vampirez->asVampire->humanKills; ?>", "<?php echo $player->vampirez->asVampire->vampireDeaths; ?>"],
+                            backgroundColor: ["#46BFBD", "#F7464A"],
+                            hoverBackgroundColor: ["#5AD3D1", "#FF5A5E"]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                    });
+
+                    var ctxHuman = document.getElementById("humanPie").getContext('2d');
+                    var humanPie = new Chart(ctxHuman, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["Vampire Kills", "Human Deaths"],
+                            datasets: [{
+                            data: ["<?php echo $player->vampirez->asHuman->vampireKills; ?>", "<?php echo $player->vampirez->asHuman->humanDeaths; ?>"],
+                            backgroundColor: ["#46BFBD", "#F7464A"],
+                            hoverBackgroundColor: ["#5AD3D1", "#FF5A5E"]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                    });
+
+                    var ctxWalls = document.getElementById("wallsPie").getContext('2d');
+                    var wallsPie = new Chart(ctxWalls, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["Kills", "Deaths", "Assists"],
+                            datasets: [{
+                            data: ["<?php echo ($player->walls->kills); ?>", "<?php echo ($player->walls->deaths); ?>", "<?php echo ($player->walls->assists); ?>"],
+                            backgroundColor: ["#46BFBD", "#F7464A", "#f7f736"],
+                            hoverBackgroundColor: ["#5AD3D1", "#FF5A5E", "#f7f736"]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                    });
+
 
 					var ctxBar = document.getElementById("quakeBar").getContext('2d');
 					var quakeBar = new Chart(ctxBar, {
