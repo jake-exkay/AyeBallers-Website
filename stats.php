@@ -1099,7 +1099,71 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Murder Mystery
 				                            </div>
 			        						<div class="card-body">
-                                                <h3>Coming Soon!</h3>
+                                                <p><b>Coins:</b> <?php echo number_format($player->murdermystery->coins); ?></p>
+                                                <p><b>Wins:</b> <?php echo number_format($player->murdermystery->wins); ?></p>
+                                                <p><b>Games:</b> <?php echo number_format($player->murdermystery->games); ?></p>
+                                                <p><b>Deaths:</b> <?php echo number_format($player->murdermystery->deaths); ?></p>
+                                                <p><b>Coins Picked Up:</b> <?php echo number_format($player->murdermystery->coinsPickedUp); ?></p>
+                                                <p><b>Detective Wins:</b> <?php echo number_format($player->murdermystery->detectiveWins); ?></p>
+                                                <p><b>Was Hero:</b> <?php echo number_format($player->murdermystery->wasHero); ?></p>
+
+                                                <br>
+
+                                                <p><b>Kills:</b> <?php echo number_format($player->murdermystery->kills); ?></p>
+                                                <p><b>Kills As Murderer:</b> <?php echo number_format($player->murdermystery->killsAsMurderer); ?></p>
+                                                <p><b>Kills As Survivor:</b> <?php echo number_format($player->murdermystery->killsAsSurvivor); ?></p>
+                                                <p><b>Knife Kills:</b> <?php echo number_format($player->murdermystery->knifeKills); ?></p>
+                                                <p><b>Bow Kills:</b> <?php echo number_format($player->murdermystery->bowKills); ?></p>                                
+                                                <p><b>Thrown Knife Kills:</b> <?php echo number_format($player->murdermystery->thrownKnifeKills); ?></p>
+
+                                                <button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#classicmm">Classic</button><br><br>
+
+                                                <div id="classicmm" class="collapse">
+                                                    <p><b>Wins:</b> <?php echo number_format($player->murdermystery->classic->wins); ?></p>
+                                                    <p><b>Kills:</b> <?php echo number_format($player->murdermystery->classic->kills); ?></p>
+                                                    <p><b>Deaths:</b> <?php echo number_format($player->murdermystery->classic->deaths); ?></p>
+                                                    <p><b>Games:</b> <?php echo number_format($player->murdermystery->classic->games); ?></p>
+                                                    <p><b>Knife Kills:</b> <?php echo number_format($player->murdermystery->classic->knifeKills); ?></p>
+                                                    <p><b>Thrown Knife Kills:</b> <?php echo number_format($player->murdermystery->classic->thrownKnifeKills); ?></p>
+                                                    <p><b>Bow Kills:</b> <?php echo number_format($player->murdermystery->classic->bowKills); ?></p>
+                                                </div>
+
+                                                <button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#assassins">Assassins</button><br><br>
+
+                                                <div id="assassins" class="collapse">
+                                                    <p><b>Wins:</b> <?php echo number_format($player->murdermystery->assassins->wins); ?></p>
+                                                    <p><b>Kills:</b> <?php echo number_format($player->murdermystery->assassins->kills); ?></p>
+                                                    <p><b>Deaths:</b> <?php echo number_format($player->murdermystery->assassins->deaths); ?></p>
+                                                    <p><b>Games:</b> <?php echo number_format($player->murdermystery->assassins->games); ?></p>
+                                                    <p><b>Knife Kills:</b> <?php echo number_format($player->murdermystery->assassins->knifeKills); ?></p>
+                                                    <p><b>Thrown Knife Kills:</b> <?php echo number_format($player->murdermystery->assassins->thrownKnifeKills); ?></p>
+                                                    <p><b>Bow Kills:</b> <?php echo number_format($player->murdermystery->assassins->bowKills); ?></p>
+                                                </div>
+
+                                                <button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#doubleup">Double Up</button><br><br>
+
+                                                <div id="doubleup" class="collapse">
+                                                    <p><b>Wins:</b> <?php echo number_format($player->murdermystery->doubleup->wins); ?></p>
+                                                    <p><b>Kills:</b> <?php echo number_format($player->murdermystery->doubleup->kills); ?></p>
+                                                    <p><b>Deaths:</b> <?php echo number_format($player->murdermystery->doubleup->deaths); ?></p>
+                                                    <p><b>Games:</b> <?php echo number_format($player->murdermystery->doubleup->games); ?></p>
+                                                    <p><b>Knife Kills:</b> <?php echo number_format($player->murdermystery->doubleup->knifeKills); ?></p>
+                                                    <p><b>Thrown Knife Kills:</b> <?php echo number_format($player->murdermystery->doubleup->thrownKnifeKills); ?></p>
+                                                    <p><b>Bow Kills:</b> <?php echo number_format($player->murdermystery->doubleup->bowKills); ?></p>
+                                                </div>
+
+                                                <button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#infection">Infection</button><br><br>
+
+                                                <div id="infection" class="collapse">
+                                                    <p><b>Wins:</b> <?php echo number_format($player->murdermystery->infection->wins); ?></p>
+                                                    <p><b>Games:</b> <?php echo number_format($player->murdermystery->infection->games); ?></p>
+                                                    <p><b>Deaths:</b> <?php echo number_format($player->murdermystery->infection->deaths); ?></p>
+
+                                                    <br>
+                                                    
+                                                    <p><b>Kills As Infected:</b> <?php echo number_format($player->murdermystery->infection->killsAsInfected); ?></p>
+                                                    <p><b>Kills As Survivor:</b> <?php echo number_format($player->murdermystery->infection->killsAsSurvivor); ?></p>
+                                                </div>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1362,7 +1426,21 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Build Battle
 				                            </div>
 			        						<div class="card-body">
-                                                <h3>Coming Soon!</h3>
+                                                <p><b>Score:</b> <?php echo number_format($player->buildbattle->score); ?></p>
+
+                                                <br>
+
+                                                <p><b>Solo Wins:</b> <?php echo number_format($player->buildbattle->soloWins); ?></p>
+                                                <p><b>Team Wins:</b> <?php echo number_format($player->buildbattle->teamsWins); ?></p>
+                                                <p><b>Pro Wins:</b> <?php echo number_format($player->buildbattle->proWins); ?></p>
+                                                <p><b>Guess The Build Wins:</b> <?php echo number_format($player->buildbattle->guessTheBuildWins); ?></p>
+
+                                                <br>
+
+                                                <p><b>Games Played:</b> <?php echo number_format($player->buildbattle->gamesPlayed); ?></p>
+                                                <p><b>Coins:</b> <?php echo number_format($player->buildbattle->coins); ?></p>
+                                                <p><b>Total Votes:</b> <?php echo number_format($player->buildbattle->totalVotes); ?></p>
+                                                <p><b>Correct Guess The Build Guesses:</b> <?php echo number_format($player->buildbattle->correctGuesses); ?></p>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1377,8 +1455,23 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Mega Walls
 				                            </div>
 			        						<div class="card-body">
-                                                <h3>Coming Soon!</h3>
-					                		</div>
+                                                <p><b>Wins:</b> <?php echo number_format($player->megawalls->wins); ?></p>
+
+                                                <br>
+
+                                                <p><b>Kills:</b> <?php echo number_format($player->megawalls->kills); ?></p>
+                                                <p><b>Final Kills:</b> <?php echo number_format($player->megawalls->finalKills); ?></p>
+                                                <p><b>Deaths:</b> <?php echo number_format($player->megawalls->deaths); ?></p>
+                                                <p><b>Final Deaths:</b> <?php echo number_format($player->megawalls->finalDeaths); ?></p>
+
+                                                <br>
+
+                                                <p><b>Coins:</b> <?php echo number_format($player->megawalls->coins); ?></p>
+                                                <p><b>Chosen Class:</b> <?php echo $player->megawalls->chosenClass; ?></p>
+                                                <p><b>Losses:</b> <?php echo number_format($player->megawalls->losses); ?></p>
+                                                <p><b>Assists:</b> <?php echo number_format($player->megawalls->assists); ?></p>
+                                                <p><b>Final Assists:</b> <?php echo number_format($player->megawalls->finalAssists); ?></p>
+                                            </div>
 					                	</div>
 					                	<br>
 			                		</div>

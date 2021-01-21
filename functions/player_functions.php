@@ -761,6 +761,78 @@
                         'kills' => !empty($cac->kills_deathmatch) ? $cac->kills_deathmatch : 0,
                         'assists' => !empty($cac->assists_deathmatch) ? $cac->assists_deathmatch : 0
                     ]
+                ],
+                'murdermystery' => [
+                    'coins' => !empty($mm->coins) ? $mm->coins : 0,
+                    'wins' => !empty($mm->wins) ? $mm->wins : 0,
+                    'games' => !empty($mm->games) ? $mm->games : 0,
+                    'deaths' => !empty($mm->deaths) ? $mm->deaths : 0,
+                    'coinsPickedUp' => !empty($mm->coins) ? $mm->coins_pickedup : 0,
+                    'killsAsMurderer' => !empty($mm->kills_as_murderer) ? $mm->kills_as_murderer : 0,
+                    'knifeKills' => !empty($mm->knife_kills) ? $mm->knife_kills : 0,
+                    'kills' => !empty($mm->kills) ? $mm->kills : 0,
+                    'bowKills' => !empty($mm->bow_kills) ? $mm->bow_kills : 0,
+                    'killsAsSurvivor' => !empty($mm->kills_as_survivor) ? $mm->kills_as_survivor : 0,
+                    'thrownKnifeKills' => !empty($mm->thrown_knife_kills) ? $mm->thrown_knife_kills : 0,
+                    'detectiveWins' => !empty($mm->detective_wins) ? $mm->detective_wins : 0,
+                    'wasHero' => !empty($mm->was_hero) ? $mm->was_hero : 0,
+                    'classic' => [
+                        'games' => !empty($mm->games_MURDER_CLASSIC) ? $mm->games_MURDER_CLASSIC : 0,
+                        'wins' => !empty($mm->wins_MURDER_CLASSIC) ? $mm->wins_MURDER_CLASSIC : 0,
+                        'deaths' => !empty($mm->deaths_MURDER_CLASSIC) ? $mm->deaths_MURDER_CLASSIC : 0,
+                        'knifeKills' => !empty($mm->knife_kills_MURDER_CLASSIC) ? $mm->knife_kills_MURDER_CLASSIC : 0,
+                        'kills' => !empty($mm->kills_MURDER_CLASSIC) ? $mm->kills_MURDER_CLASSIC : 0,
+                        'bowKills' => !empty($mm->bow_kills_MURDER_CLASSIC) ? $mm->bow_kills_MURDER_CLASSIC : 0,
+                        'thrownKnifeKills' => !empty($mm->thrown_knife_kills_MURDER_CLASSIC) ? $mm->thrown_knife_kills_MURDER_CLASSIC : 0
+                    ],
+                    'assassins' => [
+                        'games' => !empty($mm->games_MURDER_ASSASSINS) ? $mm->games_MURDER_ASSASSINS : 0,
+                        'wins' => !empty($mm->wins_MURDER_ASSASSINS) ? $mm->wins_MURDER_ASSASSINS : 0,
+                        'deaths' => !empty($mm->deaths_MURDER_ASSASSINS) ? $mm->deaths_MURDER_ASSASSINS : 0,
+                        'knifeKills' => !empty($mm->knife_kills_MURDER_ASSASSINS) ? $mm->knife_kills_MURDER_ASSASSINS : 0,
+                        'kills' => !empty($mm->kills_MURDER_ASSASSINS) ? $mm->kills_MURDER_ASSASSINS : 0,
+                        'bowKills' => !empty($mm->bow_kills_MURDER_ASSASSINS) ? $mm->bow_kills_MURDER_ASSASSINS : 0,
+                        'thrownKnifeKills' => !empty($mm->thrown_knife_kills_MURDER_ASSASSINS) ? $mm->thrown_knife_kills_MURDER_ASSASSINS : 0
+                    ],
+                    'doubleup' => [
+                        'games' => !empty($mm->games_MURDER_DOUBLE_UP) ? $mm->games_MURDER_DOUBLE_UP : 0,
+                        'wins' => !empty($mm->wins_MURDER_DOUBLE_UP) ? $mm->wins_MURDER_DOUBLE_UP : 0,
+                        'deaths' => !empty($mm->deaths_MURDER_DOUBLE_UP) ? $mm->deaths_MURDER_DOUBLE_UP : 0,
+                        'knifeKills' => !empty($mm->knife_kills_MURDER_DOUBLE_UP) ? $mm->knife_kills_MURDER_DOUBLE_UP : 0,
+                        'kills' => !empty($mm->kills_MURDER_DOUBLE_UP) ? $mm->kills_MURDER_DOUBLE_UP : 0,
+                        'bowKills' => !empty($mm->bow_kills_MURDER_DOUBLE_UP) ? $mm->bow_kills_MURDER_DOUBLE_UP : 0,
+                        'thrownKnifeKills' => !empty($mm->thrown_knife_kills_MURDER_DOUBLE_UP) ? $mm->thrown_knife_kills_MURDER_DOUBLE_UP : 0
+                    ],
+                    'infection' => [
+                        'deaths' => !empty($mm->deaths_MURDER_INFECTION) ? $mm->deaths_MURDER_INFECTION : 0,
+                        'games' => !empty($mm->games_MURDER_INFECTION) ? $mm->games_MURDER_INFECTION : 0,
+                        'wins' => !empty($mm->wins_MURDER_INFECTION) ? $mm->wins_MURDER_INFECTION : 0,
+                        'killsAsSurvivor' => !empty($mm->kills_as_survivor_MURDER_INFECTION) ? $mm->kills_as_survivor_MURDER_INFECTION : 0,
+                        'killsAsInfected' => !empty($mm->kills_as_infected_MURDER_INFECTION) ? $mm->kills_as_infected_MURDER_INFECTION : 0
+                    ]
+                ],
+                'buildbattle' => [
+                    'teamsWins' => !empty($bb->wins_teams_normal) ? $bb->wins_teams_normal : 0,
+                    'soloWins' => !empty($bb->wins_solo_normal) ? $bb->wins_solo_normal : 0,
+                    'gamesPlayed' => !empty($bb->games_played) ? $bb->games_played : 0,
+                    'score' => !empty($bb->score) ? $bb->score : 0,
+                    'coins' => !empty($bb->coins) ? $bb->coins : 0,
+                    'totalVotes' => !empty($bb->total_votes) ? $bb->total_votes : 0,
+                    'guessTheBuildWins' => !empty($bb->wins_guess_the_build) ? $bb->wins_guess_the_build : 0,
+                    'correctGuesses' => !empty($bb->correct_guesses) ? $bb->correct_guesses : 0,
+                    'proWins' => !empty($bb->wins_solo_pro) ? $bb->wins_solo_pro : 0
+                ],
+                'megawalls' => [
+                    'chosenClass' => !empty($mw->chosen_class) ? $mw->chosen_class : 0,
+                    'coins' => !empty($mw->coins) ? $mw->coins : 0,
+                    'deaths' => !empty($mw->deaths) ? $mw->deaths : 0,
+                    'finalKills' => !empty($mw->finalKills) ? $mw->finalKills : 0,
+                    'finalDeaths' => !empty($mw->finalDeaths) ? $mw->finalDeaths : 0,
+                    'kills' => !empty($mw->kills) ? $mw->kills : 0,
+                    'losses' => !empty($mw->losses) ? $mw->losses : 0,
+                    'assists' => !empty($mw->assists) ? $mw->assists : 0,
+                    'finalAssists' => !empty($mw->finalAssists) ? $mw->finalAssists : 0,
+                    'wins' => !empty($mw->wins) ? $mw->wins : 0
                 ]
             ];
 
