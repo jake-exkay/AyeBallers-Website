@@ -52,7 +52,7 @@
             $uhc = !empty($gen->stats->UHC) ? $gen->stats->UHC : "No Stats";
             $mw = !empty($gen->stats->Walls3) ? $gen->stats->Walls3 : "No Stats";
             $sw = !empty($gen->stats->SkyWars) ? $gen->stats->SkyWars : "No Stats";
-            $sh = !empty($gen->stats->SuperSmash) ? $gen->stats->SuperSmash : "No Stats";
+            $smash = !empty($gen->stats->SuperSmash) ? $gen->stats->SuperSmash : "No Stats";
             $mm = !empty($gen->stats->MurderMystery) ? $gen->stats->MurderMystery : "No Stats";
             $bb = !empty($gen->stats->BuildBattle) ? $gen->stats->BuildBattle : "No Stats";
             $duels = !empty($gen->stats->Duels) ? $gen->stats->Duels : "No Stats";
@@ -833,6 +833,33 @@
                     'assists' => !empty($mw->assists) ? $mw->assists : 0,
                     'finalAssists' => !empty($mw->finalAssists) ? $mw->finalAssists : 0,
                     'wins' => !empty($mw->wins) ? $mw->wins : 0
+                ],
+                'bsg' => [
+                    'coins' => !empty($bsg->coins) ? $bsg->coins : 0,
+                    'deaths' => !empty($bsg->deaths) ? $bsg->deaths : 0,
+                    'kills' => !empty($bsg->kills) ? $bsg->kills : 0,
+                    'wins' => !empty($bsg->wins) ? $bsg->wins : 0
+                ],
+                'duels' => [
+                    'games' => !empty($duels->games_played_duels) ? $duels->games_played_duels : 0,
+                    'swings' => !empty($duels->melee_swings) ? $duels->melee_swings : 0,
+                    'wins' => !empty($duels->wins) ? $duels->wins : 0,
+                    'roundsPlayed' => !empty($duels->rounds_played) ? $duels->rounds_played : 0,
+                    'kills' => !empty($duels->kills) ? $duels->kills : 0,
+                    'bowShots' => !empty($duels->bow_shots) ? $duels->bow_shots : 0,
+                    'losses' => !empty($duels->losses) ? $duels->losses : 0,
+                    'deaths' => !empty($duels->deaths) ? $duels->deaths : 0
+                ],
+                'smash' => [
+                    'coins' => !empty($smash->coins) ? $smash->coins : 0,
+                    'winstreak' => !empty($smash->win_streak) ? $smash->win_streak : 0,
+                    'smashLevel' => !empty($smash->smashLevel) ? $smash->smashLevel : 0,
+                    'losses' => !empty($smash->losses) ? $smash->losses : 0,
+                    'quits' => !empty($smash->quits) ? $smash->quits : 0,
+                    'deaths' => !empty($smash->deaths) ? $smash->deaths : 0,
+                    'games' => !empty($smash->games) ? $smash->games : 0,
+                    'kills' => !empty($smash->kills) ? $smash->kills : 0,
+                    'wins' => !empty($smash->wins) ? $smash->wins : 0
                 ]
             ];
 

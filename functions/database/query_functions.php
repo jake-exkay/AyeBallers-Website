@@ -78,4 +78,10 @@
         return $res;
     }
 
+    function getOverallFirstLoginLeaderboard($mongo_mng) {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['firstLogin' => 1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
 ?>

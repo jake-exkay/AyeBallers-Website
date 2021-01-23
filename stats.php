@@ -1471,6 +1471,10 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                                                 <p><b>Losses:</b> <?php echo number_format($player->megawalls->losses); ?></p>
                                                 <p><b>Assists:</b> <?php echo number_format($player->megawalls->assists); ?></p>
                                                 <p><b>Final Assists:</b> <?php echo number_format($player->megawalls->finalAssists); ?></p>
+
+                                                <br>
+
+                                                <p>Class statistics coming soon!</p>
                                             </div>
 					                	</div>
 					                	<br>
@@ -1485,7 +1489,18 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Duels
 				                            </div>
 			        						<div class="card-body">
-                                                <h3>Coming Soon!</h3>
+                                                <p><b>Wins:</b> <?php echo number_format($player->duels->wins); ?></p>
+                                                <p><b>Kills:</b> <?php echo number_format($player->duels->kills); ?></p>
+                                                <p><b>Deaths:</b> <?php echo number_format($player->duels->deaths); ?></p>
+                                                <p><b>Losses:</b> <?php echo number_format($player->duels->losses); ?></p>
+                                                <p><b>Rounds Played:</b> <?php echo number_format($player->duels->roundsPlayed); ?></p>
+                                                <p><b>Melee Swings</b> <?php echo number_format($player->duels->swings); ?></p>
+                                                <p><b>Bow Shots:</b> <?php echo number_format($player->duels->bowShots); ?></p>
+                                                <p><b>Games Played:</b> <?php echo number_format($player->duels->games); ?></p>
+
+                                                <br>
+
+                                                <p>Class statistics and more coming soon!</p>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1500,7 +1515,14 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Blitz Survival Games
 				                            </div>
 			        						<div class="card-body">
-                                                <h3>Coming Soon!</h3>
+                                                <p><b>Wins:</b> <?php echo number_format($player->bsg->wins); ?></p>
+                                                <p><b>Kills:</b> <?php echo number_format($player->bsg->kills); ?></p>
+                                                <p><b>Deaths:</b> <?php echo number_format($player->bsg->deaths); ?></p>
+                                                <p><b>Coins:</b> <?php echo number_format($player->bsg->coins); ?></p>
+
+                                                <br>
+
+                                                <p>Class statistics and more coming soon!</p>
 					                		</div>
 					                	</div>
 					                	<br>
@@ -1515,7 +1537,19 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					                                Smash Heroes
 				                            </div>
 			        						<div class="card-body">
-                                                <h3>Coming Soon!</h3>
+                                                <p><b>Wins:</b> <?php echo number_format($player->smash->wins); ?></p>
+                                                <p><b>Kills:</b> <?php echo number_format($player->smash->kills); ?></p>
+                                                <p><b>Deaths:</b> <?php echo number_format($player->smash->deaths); ?></p>
+                                                <p><b>Coins:</b> <?php echo number_format($player->smash->coins); ?></p>
+                                                <p><b>Games:</b> <?php echo number_format($player->smash->games); ?></p>
+                                                <p><b>Quits:</b> <?php echo number_format($player->smash->quits); ?></p>
+                                                <p><b>Losses:</b> <?php echo number_format($player->smash->losses); ?></p>
+                                                <p><b>Winstreak:</b> <?php echo number_format($player->smash->winstreak); ?></p>
+                                                <p><b>Smash Level:</b> <?php echo number_format($player->smash->smashLevel); ?></p>
+
+                                                <br>
+
+                                                <p>Class statistics and more coming soon!</p>
 					                		</div>
 					                	</div>
 					                	<br>

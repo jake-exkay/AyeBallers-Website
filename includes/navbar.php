@@ -44,6 +44,13 @@ echo '
                             </div>
                             Guild Statistics
                         </a>
+                        <div class="sb-sidenav-menu-heading">General Leaderboards</div>
+                        <a class="nav-link" href="../../../leaderboard/firstlogin.php">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-th-list"></i>
+                            </div>
+                            First Login
+                        </a>
                         <div class="sb-sidenav-menu-heading">Classic Leaderboards</div>
                         <a class="nav-link" href="../../../leaderboard/overall/arena.php">
                             <div class="sb-nav-link-icon">
@@ -82,7 +89,7 @@ echo '
                             The Walls
                         </a>
 
-                        <div class="sb-sidenav-menu-heading">Other Leaderboards</div>
+                        <div class="sb-sidenav-menu-heading">Game Leaderboards</div>
                         <a class="nav-link" href="../../../leaderboard/overall/tntgames.php">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-th-list"></i>
