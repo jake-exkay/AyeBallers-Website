@@ -1,0 +1,173 @@
+<?php
+/**
+ * Admin guild management page - Graphs for guild management.
+ * PHP version 7.2.34
+ *
+ * @category Page
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/admin/dashboard
+ */
+
+require "../includes/links.php";
+require "../includes/constants.php";
+require "../functions/functions.php";
+require "../includes/connect.php";
+require "../functions/display_functions.php";
+require "functions/database_functions.php";
+require "functions/login_functions.php";
+
+if (isLoggedIn($connection)) {
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Guild Manager - AyeBallers</title>
+    </head>
+
+    <body class="sb-nav-fixed">
+
+        <?php require "functions/admin-navbar.php"; ?>
+
+            <div id="layoutSidenav_content">
+
+                <main>
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-table mr-1"></i>
+                                            New Members (Last 7 Days)
+                                        </div>
+                                        <div class="card-body">
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-table mr-1"></i>
+                                            Members Left (Last 7 Days)
+                                        </div>
+                                        <div class="card-body">
+                                            <?php
+                                                $result = getAdmins($connection);
+
+                                                if ($result->num_rows > 0) {
+                                                    while($row = $result->fetch_assoc()) {
+                                                        $name = $row["username"];
+                                                        $last_online = $row["last_login"];
+                                                        if ($name == "ExKay") {
+                                                            echo "<p><span style='color:#ce1c1c;'>[DEVELOPER] " . $name . "</span>: Last Login: " . $last_online . "</p>";
+                                                        } else if ($name == "Emilyie" || $name == "PotAccuracy" || $name == "Penderdrill") {
+                                                            echo "<p><span style='color:#ce1c1c;'>[ADMIN] " . $name . "</span>: Last Login: " . $last_online . "</p>";
+                                                        } else {
+                                                            echo "<p><span style='color:#ce1c1c;'>[RESERVE] " . $name . "</span>: Last Login: " . $last_online . "</p>";
+                                                        }
+                                                    }
+                                                }
+
+                                            ?>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-8">
+
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-table mr-1"></i>
+                                            Guild Experience (Last 7 Days)
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="viewChart" style="max-width: 1000px; margin: auto; width: 50%; padding: 10px;"></canvas>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php
+                        $week = getLastWeekExperience($connection);
+
+                        $i = 1;
+
+                        foreach ($week as $day) {
+                            ${"day$i"} = $day;
+                            $i+=1;
+                        }
+
+                    ?>
+
+                </main>
+
+                <?php require "../includes/footer.php"; ?>
+
+            </div>
+
+    </body>
+
+    <script src="js/mdb.js"></script>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById("viewChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["1", "2", "3", "4", "5", "6", "7"],
+                datasets: [{
+                    label: 'Guild Experience',
+                    data: ["<?php echo $day1; ?>", "<?php echo $day2; ?>", "<?php echo $day3; ?>", "<?php echo $day4; ?>", "<?php echo $day5; ?>", "<?php echo $day6; ?>", "<?php echo $day7; ?>"],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+</html>
+
+<?php } else {
+    header("Refresh:0.05; url=../../error/403.php");
+} ?>

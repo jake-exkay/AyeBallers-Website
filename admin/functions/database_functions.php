@@ -29,6 +29,21 @@
         }
     }
 
+    function getLastWeekExperience($connection) {
+        $week = array();
+
+        $query = "SELECT * FROM exp_history ORDER BY day DESC LIMIT 7";
+        $result = $connection->query($query);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $exp = $row['exp'];
+                array_push($week, $exp);
+                return $week;
+            }
+        }
+    }
+
     function getAdmins($connection) {
         $query = "SELECT * FROM user";
         $result = $connection->query($query);

@@ -30,6 +30,13 @@
                                 </div>
                                 Player Statistics
                             </a>
+
+                            <a class="nav-link" href="../../../admin/guild.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                Guild Manager
+                            </a>
                             
                         </div>
                     </div>
