@@ -19,7 +19,7 @@ require "functions/database_functions.php";
 require "functions/login_functions.php";
 
 if (isLoggedIn($connection)) {
-
+    $week = array_reverse(getLastWeekExperience($connection));
 ?>
 
 <!DOCTYPE html>
@@ -61,25 +61,6 @@ if (isLoggedIn($connection)) {
                                             Members Left (Last 7 Days)
                                         </div>
                                         <div class="card-body">
-                                            <?php
-                                                $result = getAdmins($connection);
-
-                                                if ($result->num_rows > 0) {
-                                                    while($row = $result->fetch_assoc()) {
-                                                        $name = $row["username"];
-                                                        $last_online = $row["last_login"];
-                                                        if ($name == "ExKay") {
-                                                            echo "<p><span style='color:#ce1c1c;'>[DEVELOPER] " . $name . "</span>: Last Login: " . $last_online . "</p>";
-                                                        } else if ($name == "Emilyie" || $name == "PotAccuracy" || $name == "Penderdrill") {
-                                                            echo "<p><span style='color:#ce1c1c;'>[ADMIN] " . $name . "</span>: Last Login: " . $last_online . "</p>";
-                                                        } else {
-                                                            echo "<p><span style='color:#ce1c1c;'>[RESERVE] " . $name . "</span>: Last Login: " . $last_online . "</p>";
-                                                        }
-                                                    }
-                                                }
-
-                                            ?>
-                                            
                                         </div>
                                     </div>
 
@@ -102,18 +83,6 @@ if (isLoggedIn($connection)) {
                         </div>
                     </div>
 
-                    <?php
-                        $week = getLastWeekExperience($connection);
-
-                        $i = 1;
-
-                        foreach ($week as $day) {
-                            ${"day$i"} = $day;
-                            $i+=1;
-                        }
-
-                    ?>
-
                 </main>
 
                 <?php require "../includes/footer.php"; ?>
@@ -127,41 +96,20 @@ if (isLoggedIn($connection)) {
     <script type="text/javascript">
         var ctx = document.getElementById("viewChart").getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: ["1", "2", "3", "4", "5", "6", "7"],
+                labels: ["Today - 6", "Today - 5", "Today - 4", "Today - 3", "Today - 2", "Today - 1", "Today"],
                 datasets: [{
                     label: 'Guild Experience',
-                    data: ["<?php echo $day1; ?>", "<?php echo $day2; ?>", "<?php echo $day3; ?>", "<?php echo $day4; ?>", "<?php echo $day5; ?>", "<?php echo $day6; ?>", "<?php echo $day7; ?>"],
+                    data: ["<?php echo $week[0]; ?>", "<?php echo $week[1]; ?>", "<?php echo $week[2]; ?>", "<?php echo $week[3]; ?>", "<?php echo $week[4]; ?>", "<?php echo $week[5]; ?>", "<?php echo $week[6]; ?>"],
                     backgroundColor: [
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
                         'rgba(54, 162, 235, 0.2)'
                     ],
                     borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(54, 162, 235, 1)',
                         'rgba(54, 162, 235, 1)'
                     ],
                     borderWidth: 1
                 }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
             }
         });
     </script>

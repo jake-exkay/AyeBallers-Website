@@ -39,9 +39,9 @@
             while($row = $result->fetch_assoc()) {
                 $exp = $row['exp'];
                 array_push($week, $exp);
-                return $week;
             }
         }
+        return $week;
     }
 
     function getAdmins($connection) {
