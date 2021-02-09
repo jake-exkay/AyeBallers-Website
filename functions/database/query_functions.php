@@ -6,12 +6,38 @@
         return $res;
 	}
 
-    function getOverallTntLeaderboard($mongo_mng) {
-        $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.wins' => -1], 'limit' => 1000]);
-        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
-        return $res;
+    function getOverallTntLeaderboard($mongo_mng, $mode) {
+        if ($mode == "Overall") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "TNTRun") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.tntrun.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "TNTTag") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.tntag.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "Wizards") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.wizards.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "BowSpleef") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.bowspleef.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "PVPRun") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.pvprun.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        }
     }
-
+    
     function getOverallWallsLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['walls.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);

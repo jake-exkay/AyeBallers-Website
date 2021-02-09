@@ -1,6 +1,6 @@
 <?php
 /**
- * TNT Games Leaderboard - Overall
+ * PVP Run Leaderboard - Overall
  * PHP version 7.2.34
  *
  * @category Page
@@ -10,13 +10,13 @@
  * @link     http://ayeballers.xyz/leaderboard/overall/tntgames.php
  */
 
-require "../../includes/links.php";
-include "../../includes/connect.php";
-include "../../functions/functions.php";
-include "../../functions/player_functions.php";
-include "../../functions/display_functions.php";
-include "../../functions/database/query_functions.php";
-include "../../admin/functions/login_functions.php";
+require "../../../includes/links.php";
+include "../../../includes/connect.php";
+include "../../../functions/functions.php";
+include "../../../functions/player_functions.php";
+include "../../../functions/display_functions.php";
+include "../../../functions/database/query_functions.php";
+include "../../../admin/functions/login_functions.php";
 
 updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
 
@@ -25,35 +25,35 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
 <html lang="en">
 
     <head>
-        <title>Overall Leaderboard - TNT Games</title>
+        <title>TNT Games Leaderboard - PVP Run</title>
     </head>
 
     <body class="sb-nav-fixed">
 
-        <?php require "../../includes/navbar.php"; ?>
+        <?php require "../../../includes/navbar.php"; ?>
 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
                         <br>
-                        <h1 class="event_font">TNT Games Leaderboard</h1>
+                        <h1 class="event_font">PVP Run Leaderboard</h1>
                         <div class="row">
-                            <form style="padding-left: 10px">
-                                <button class="btn btn-secondary" disabled>Overall</button><br>
+                            <form style="padding-left: 10px" action="../tntgames.php">
+                                <button class="btn btn-primary">Overall</button><br>
                             </form>
-                            <form style="padding-left: 10px" action="tnt/tntrun.php">
+                            <form style="padding-left: 10px" action="tntrun.php">
                                 <button class="btn btn-primary">TNT Run</button><br>
                             </form>
-                            <form style="padding-left: 10px" action="tnt/pvprun.php">
-                                <button class="btn btn-primary">PVP Run</button><br>
+                            <form style="padding-left: 10px">
+                                <button class="btn btn-secondary" disabled>PVP Run</button><br>
                             </form>
-                            <form style="padding-left: 10px" action="tnt/tntag.php">
+                            <form style="padding-left: 10px" action="tntag.php">
                                 <button class="btn btn-primary">TNT Tag</button><br>
                             </form>
-                            <form style="padding-left: 10px" action="tnt/wizards.php">
+                            <form style="padding-left: 10px" action="wizards.php">
                                 <button class="btn btn-primary">TNT Wizards</button><br>
                             </form>
-                            <form style="padding-left: 10px" action="tnt/bowspleef.php">
+                            <form style="padding-left: 10px" action="bowspleef.php">
                                 <button class="btn btn-primary">Bow Spleef</button><br>
                             </form>
                         </div>
@@ -62,7 +62,7 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Overall Leaderboard - TNT Games
+                                TNT Games Leaderboard - PVP Run
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -73,35 +73,27 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                                                 <th>Position (Wins)</th>
                                                 <th>Name</th>
                                                 <th>Wins</th>
-                                                <th>Coins</th>
-                                                <th>TNT Run Wins</th>
-                                                <th>Bow Spleef Wins</th>
-                                                <th>TNT Tag Wins</th>
-                                                <th>PVP Run Wins</th>
-                                                <th>TNT Wizards Wins</th>
-                                                <th>Winstreak</th>
+                                                <th>Kills</th>
+                                                <th>Record</th>
+                                                <th>Deaths</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                         <?php
 
-                                            $result = getOverallTntLeaderboard($mongo_mng, "Overall");
+                                            $result = getOverallTntLeaderboard($mongo_mng, "PVPRun");
                                             $i = 1;
 
                                             foreach ($result as $player) {
                                                 $name = $player->name;
                                                 $rank = $player->rank;
                                                 $rank_colour = $player->rankColour;
-                                                $wins = $player->tntgames->wins;
-                                                $coins = $player->tntgames->coins;
-                                                $tntrun_wins = $player->tntgames->tntrun->wins;
-                                                $bowspleef_wins = $player->tntgames->bowspleef->wins;
-                                                $tntag_wins = $player->tntgames->tntag->wins;
-                                                $pvprun_wins = $player->tntgames->pvprun->wins;
-                                                $wizards_wins = $player->tntgames->wizards->wins;
-                                                $winstreak = $player->tntgames->winstreak;
-
+                                                $wins = $player->tntgames->pvprun->wins;
+                                                $record = $player->tntgames->pvprun->record;
+                                                $deaths = $player->tntgames->pvprun->deaths;
+                                                $kills = $player->tntgames->pvprun->kills;
+                            
                                                 $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
                                                 echo '<tr>';
@@ -113,13 +105,9 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                                                     }
                                                     
                                                     echo '<td>' . number_format($wins) . '</td>';
-                                                    echo '<td>' . number_format($coins) . '</td>';
-                                                    echo '<td>' . number_format($tntrun_wins) . '</td>';
-                                                    echo '<td>' . number_format($bowspleef_wins) . '</td>';
-                                                    echo '<td>' . number_format($tntag_wins) . '</td>';
-                                                    echo '<td>' . number_format($pvprun_wins) . '</td>';
-                                                    echo '<td>' . number_format($wizards_wins) . '</td>';
-                                                    echo '<td>' . number_format($winstreak) . '</td>';
+                                                    echo '<td>' . number_format($kills) . '</td>';
+                                                    echo '<td>' . number_format($record) . '</td>';
+                                                    echo '<td>' . number_format($deaths) . '</td>';
 
                                                 echo '</tr>'; 
                                                 $i = $i + 1;
@@ -137,7 +125,7 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                     </div>
                 </main>
 
-                <?php include "../../includes/footer.php"; ?>
+                <?php include "../../../includes/footer.php"; ?>
                 <script>
                     $(document).ready(function () {
                     $('#leaderboard').DataTable({
