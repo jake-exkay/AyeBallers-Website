@@ -98,10 +98,72 @@
         return $res;
     }
 
-    function getOverallArcadeLeaderboard($mongo_mng) {
-        $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.coins' => -1], 'limit' => 1000]);
-        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
-        return $res;
+    function getOverallArcadeLeaderboard($mongo_mng, $mode) {
+        if ($mode == "Overall") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.coins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "BountyHunters") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.bountyHunters.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "ThrowOut") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.throwOut.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "BlockingDead") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.blockingDead.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "DragonWars") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.dragonWars.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "FarmHunt") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.farmHunt.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "EnderSpleef") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.enderSpleef.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "PartyGames") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.partyGamesOne' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "GalaxyWars") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.galaxyWars.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "HoleInTheWall") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.holeInTheWall.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "HypixelSays") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.hypixelSays.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "MiniWalls") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.miniWalls.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "Football") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.football.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "Zombies") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.zombies.bestRound' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "HideAndSeek") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.hideAndSeek.hiderWins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.coins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        }
     }
 
     function getOverallFirstLoginLeaderboard($mongo_mng) {
