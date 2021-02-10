@@ -86,10 +86,44 @@
         return $res;
     }
 
-    function getOverallUHCLeaderboard($mongo_mng) {
-        $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.score' => -1], 'limit' => 1000]);
-        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
-        return $res;
+    function getOverallUHCLeaderboard($mongo_mng, $mode) {
+        if ($mode == "Solo") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.score' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "Teams") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.team.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "NoDiamonds") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.nodiamonds.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "RedVsBlue") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.redvsblue.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "Brawl") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.brawl.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "SoloBrawl") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.solobrawl.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "DuoBrawl") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.duobrawl.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else if ($mode == "VanillaDoubles") {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.vanilladoubles.wins' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        } else {
+            $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.score' => -1], 'limit' => 1000]);
+            $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+            return $res;
+        }
     }
 
     function getOverallCvcLeaderboard($mongo_mng) {
