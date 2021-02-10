@@ -73,8 +73,8 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                                                 <th>Position (Wins)</th>
                                                 <th>Name</th>
                                                 <th>Wins</th>
-                                                <th>Record</th>
-                                                <th>Deaths</th>
+                                                <th>Losses</th>
+                                                <th>W/L</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -89,10 +89,16 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                                                 $rank = $player->rank;
                                                 $rank_colour = $player->rankColour;
                                                 $wins = $player->tntgames->tntrun->wins;
-                                                $record = $player->tntgames->tntrun->record;
                                                 $deaths = $player->tntgames->tntrun->deaths;
                             
                                                 $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+                                                if ($deaths == 0 || $wins == 0) {
+                                                    $wl = 0;
+                                                } else {
+                                                    $wl = $wins / $deaths;
+                                                    $wl = round($wl, 2);
+                                                }
 
                                                 echo '<tr>';
                                                     echo '<td>' . $i . '</td>';
@@ -103,8 +109,15 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                                                     }
                                                     
                                                     echo '<td>' . number_format($wins) . '</td>';
-                                                    echo '<td>' . number_format($record) . '</td>';
                                                     echo '<td>' . number_format($deaths) . '</td>';
+
+                                                    if ($wl > 3) {
+                                                        echo '<td class="table-success">' . $wl . '</td>';
+                                                    } else if ($wl > 1 && $wl < 3) {
+                                                        echo '<td class="table-warning">' . $wl . '</td>';
+                                                    } else {
+                                                        echo '<td class="table-danger">' . $wl . '</td>';
+                                                    }
 
                                                 echo '</tr>'; 
                                                 $i = $i + 1;

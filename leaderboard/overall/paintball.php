@@ -85,7 +85,7 @@ updatePageViews($connection, 'paintball_overall_leaderboard', $DEV_IP);
                                                 $killstreaks = $player->paintball->killstreaks;
                                                 $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
 
-                                                 if ($kills == 0) {
+                                                if ($kills == 0) {
                                                     $kd = 0;
                                                     $sk = 0;
                                                 } else {
