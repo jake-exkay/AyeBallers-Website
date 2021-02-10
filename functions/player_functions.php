@@ -904,7 +904,8 @@
      * @return decoded_url URL of the JSON data with guild information.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function updateGuild($mongo_mng, $guild, $API_KEY) {
+    function updateGuild($mongo_mng, $guild, $API_KEY) 
+    {
         if (!$guild) {
             return false;
         } else {
@@ -988,7 +989,17 @@
         }
     }
 
-    function getLocalPlayer($mongo_mng, $uuid) {
+    /**
+     * Gets the local player object from a UUID from a MongoDB document.
+     *
+     * @param $mongo_mng  MongoDB driver manager.
+     * @param $uuid       UUID of the player.
+     *
+     * @return player Mongo player object of the user.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getLocalPlayer($mongo_mng, $uuid) 
+    {
         $filter = ['uuid' => $uuid]; 
         $query = new MongoDB\Driver\Query($filter);     
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
@@ -996,7 +1007,17 @@
         return $player;
     }
 
-    function getLocalPlayerByName($mongo_mng, $name) {
+    /**
+     * Gets the local player object from a username from a MongoDB document.
+     *
+     * @param $mongo_mng  MongoDB driver manager.
+     * @param $name       Name of the player.
+     *
+     * @return player Mongo player object of the user.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getLocalPlayerByName($mongo_mng, $name) 
+    {
         $filter = ['name' => $name]; 
         $query = new MongoDB\Driver\Query($filter);     
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
@@ -1004,7 +1025,17 @@
         return $player;
     }
 
-    function isPlayerStored($mongo_mng, $uuid) {
+    /**
+     * Checks if the player specified is stored in the database.
+     *
+     * @param $mongo_mng  MongoDB driver manager.
+     * @param $uuid       UUID of the player.
+     *
+     * @return Boolean If the user is contained in the database.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function isPlayerStored($mongo_mng, $uuid) 
+    {
         $filter = ['uuid' => $uuid]; 
         $query = new MongoDB\Driver\Query($filter);     
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
@@ -1268,16 +1299,24 @@
         }
 
         return $recent_game;
-
     }
 
-    function getUsersGuild($mongo_mng, $uuid) {
+    /**
+     * Gets the guild of a player if they are in one.
+     *
+     * @param $mongo_mng  MongoDB driver manager.
+     * @param $uuid       UUID of the player.
+     *
+     * @return guild Mongo guild object of the user.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getUsersGuild($mongo_mng, $uuid) 
+    {
         $filter = ['members.uuid' => $uuid]; 
         $query = new MongoDB\Driver\Query($filter);     
         $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
-        $player = current($res->toArray());
-        return $player;
+        $guild = current($res->toArray());
+        return $guild;
     }
-
 
 ?>

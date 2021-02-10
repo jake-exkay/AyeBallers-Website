@@ -27,10 +27,10 @@
 
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="#!" class="text-light">About</a>
+            <a href="../../../about.php" class="text-light">About</a>
           </li>
           <li>
-            <a href="#!" class="text-light">Admin</a>
+            <a href="../../../login.php" class="text-light">Login</a>
           </li>
         </ul>
       </div>
@@ -40,10 +40,10 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!" class="text-light">Discord</a>
+            <a href="https://discord.gg/ETz36PmR9k" class="text-light">Discord</a>
           </li>
           <li>
-            <a href="#!" class="text-light">Hypixel Forums</a>
+            <a href="https://hypixel.net/threads/%E2%9C%A9-ayeballers-pb-all-games-1-paintball-applications-open-%E2%9C%A9.2801206/" class="text-light">Hypixel Forums</a>
           </li>
         </ul>
       </div>

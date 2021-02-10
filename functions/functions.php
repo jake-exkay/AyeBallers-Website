@@ -80,7 +80,8 @@
      * @return $name - Name of the player
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getRealName($uuid) {
+    function getRealName($uuid) 
+    {
         $mojang_url = file_get_contents("https://api.mojang.com/user/profiles/" . $uuid . "/names");
         $mojang_decoded_url = json_decode($mojang_url, true);
         $real_name = array_pop($mojang_decoded_url);
@@ -97,7 +98,8 @@
      * @return $uuid - UUID of the user.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getUUID($connection, $name) {
+    function getUUID($connection, $name) 
+    {
         $mojang_url = file_get_contents("https://api.mojang.com/users/profiles/minecraft/" . $name);
         $mojang_decoded_url = json_decode($mojang_url, true);
         $uuid = $mojang_decoded_url['id'];
@@ -112,7 +114,8 @@
      * @return Boolean - whether the limit has been reached.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function apiLimitReached($key) {
+    function apiLimitReached($key) 
+    {
         $url = file_get_contents("https://api.hypixel.net/key?key=" . $key);
         $decoded_url = json_decode($url);
         $queries = $decoded_url->record->queriesInPastMin;
@@ -131,7 +134,8 @@
      * @return Guild level translated from experience.
      * @author Picsou993
      */
-    function getGuildLevel($exp) {
+    function getGuildLevel($exp) 
+    {
         switch ($exp):
             case $exp<100000:
                 return 0;

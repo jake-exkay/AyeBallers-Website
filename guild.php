@@ -29,7 +29,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
     <head>
 
         <?php 
-            $guild_name = $_GET["guild"];
+            $guild_name = htmlspecialchars($_GET["guild"]);
             if (!updateGuild($mongo_mng, $guild_name, $API_KEY)) {
                 header("Refresh:0.01; url=error/guildnotfound.php");
             } else {

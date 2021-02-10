@@ -30,7 +30,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
         <?php 
 
-        	$get_name = $_GET["player"];
+        	$get_name = htmlspecialchars($_GET["player"]);
         	$uuid = getUUID($connection, $get_name);
             $formatted_name = getRealName($uuid);
 
