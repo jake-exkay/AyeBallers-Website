@@ -37,6 +37,13 @@
                                 </div>
                                 Guild Manager
                             </a>
+
+                            <a class="nav-link" href="../../../admin/stafflist.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                Staff List
+                            </a>
                             
                         </div>
                     </div>

@@ -996,6 +996,14 @@
         return $player;
     }
 
+    function getLocalPlayerByName($mongo_mng, $name) {
+        $filter = ['name' => $name]; 
+        $query = new MongoDB\Driver\Query($filter);     
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        $player = current($res->toArray());
+        return $player;
+    }
+
     function isPlayerStored($mongo_mng, $uuid) {
         $filter = ['uuid' => $uuid]; 
         $query = new MongoDB\Driver\Query($filter);     

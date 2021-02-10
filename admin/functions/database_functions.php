@@ -18,6 +18,12 @@
         return $result;
     }
 
+    function getPopularLookups($connection) {
+        $query = "SELECT action, COUNT(action) as lookups FROM stats_log GROUP BY action ORDER BY lookups DESC LIMIT 15";
+        $result = $connection->query($query);
+        return $result;
+    }
+
     function getMostRecentLookup($connection) {
         $query = "SELECT * FROM stats_log ORDER BY updated_time DESC LIMIT 1";
         $result = $connection->query($query);
@@ -97,6 +103,39 @@
         $row = $result->fetch_assoc();
         $views = number_format($row['views']);
         return $views;
+    }
+
+    function getListOfHelpers($mongo_mng) {
+        $filter = ['rank' => "HELPER"]; 
+        $query = new MongoDB\Driver\Query($filter);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        $helpers = array();
+        foreach ($res as $i) {
+            array_push($helpers, $i->name);
+        }
+        return $helpers;
+    }
+
+    function getListOfMods($mongo_mng) {
+        $filter = ['rank' => "MODERATOR"]; 
+        $query = new MongoDB\Driver\Query($filter);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        $mods = array();
+        foreach ($res as $i) {
+            array_push($mods, $i->name);
+        }
+        return $mods;
+    }
+
+    function getListOfAdmins($mongo_mng) {
+        $filter = ['rank' => "ADMIN"]; 
+        $query = new MongoDB\Driver\Query($filter);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        $admins = array();
+        foreach ($res as $i) {
+            array_push($admins, $i->name);
+        }
+        return $admins;
     }
 
 ?>

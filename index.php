@@ -34,6 +34,11 @@ updatePageViews($connection, 'home_page', $DEV_IP);
 
             <main style="padding-right: 25%; padding-left: 25%; padding-top: 100px">
 
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Update!</strong> Added new leaderboards for all Arcade, UHC and TNT Games modes.
+                </div>
+
             	<div style="background-color:#FFF;; opacity: 0.8; filter:(opacity=50);" class="card">
         			<div class="card-body">
 
