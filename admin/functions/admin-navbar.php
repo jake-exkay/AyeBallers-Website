@@ -1,4 +1,4 @@
-<?php
+ <?php
 
     echo '
     	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -43,6 +43,13 @@
                                     <i class="fa fa-users"></i>
                                 </div>
                                 Staff List
+                            </a>
+
+                            <a class="nav-link" href="../../../admin/manualimport.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                Manual Import
                             </a>
                             
                         </div>
