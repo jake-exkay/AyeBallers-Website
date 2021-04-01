@@ -50,6 +50,18 @@
         return $week;
     }
 
+    function getGuildMembersExperience($connection) {
+        $query = "SELECT * FROM player_exp ORDER BY exp DESC";
+        $result = $connection->query($query);
+        return $result;
+    }
+
+    function getGuildStaffExperience($connection) {
+        $query = "SELECT * FROM player_exp WHERE rank='Officer' OR rank='Co-Master' OR rank='Guild Master' ORDER BY exp DESC";
+        $result = $connection->query($query);
+        return $result;
+    }
+
     function getAdmins($connection) {
         $query = "SELECT * FROM user";
         $result = $connection->query($query);

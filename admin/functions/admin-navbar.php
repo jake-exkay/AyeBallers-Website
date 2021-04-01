@@ -17,6 +17,12 @@
                                 </div>
                                 Dashboard
                             </a>
+                            <a class="nav-link" href="../../../admin/exptracker.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                GEXP Tracker
+                            </a>
                             <a class="nav-link" href="../../../admin/tournament.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-star"></i>
