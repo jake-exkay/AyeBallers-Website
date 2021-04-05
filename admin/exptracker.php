@@ -47,7 +47,7 @@ require "functions/login_functions.php";
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-table mr-1"></i>
-                                            Player Statistics
+                                            Guild Experience Statistics
                                         </div>
                                         <div class="card-body">
                                             <b>Total GEXP Today: </b><?php echo getDailyGuildExperience($connection); ?><br>
