@@ -50,16 +50,15 @@ require "functions/login_functions.php";
                                             Player Statistics
                                         </div>
                                         <div class="card-body">
-                                            <i>Tracked Week:</i><br>
-                                            <b>Total GEXP Today: </b><br>
-                                            <b>Total GEXP This Week:</b><br>
+                                            <b>Total GEXP Today: </b><?php echo getDailyGuildExperience($connection); ?><br>
+                                            <b>Total GEXP This Week: </b><?php echo getWeeklyGuildExperience($connection); ?><br>
                                         </div>
                                     </div>
 
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-table mr-1"></i>
-                                            Guild Staff
+                                            GEXP Leaderboard (DAILY)
                                         </div>
                                         <div class="card-body">
                                             <table id="admin" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
@@ -68,13 +67,13 @@ require "functions/login_functions.php";
                                                         <th>Position</th>
                                                         <th>Name</th>
                                                         <th>Guild Rank</th>
-                                                        <th>GEXP (This Week)</th>
+                                                        <th>GEXP (Today)</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
 
-                                                        $result = getGuildStaffExperience($connection);
+                                                        $result = getGuildDailyExperience($connection);
                                                         $position = 1;
 
                                                         if ($result->num_rows > 0) {
@@ -112,7 +111,7 @@ require "functions/login_functions.php";
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-table mr-1"></i>
-                                            GEXP Leaderboard
+                                            GEXP Leaderboard (WEEKLY)
                                         </div>
                                         <div class="card-body">
                                             <table id="admin" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">

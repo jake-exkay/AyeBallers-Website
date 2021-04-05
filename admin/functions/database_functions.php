@@ -56,10 +56,27 @@
         return $result;
     }
 
-    function getGuildStaffExperience($connection) {
-        $query = "SELECT * FROM player_exp WHERE rank='Officer' OR rank='Co-Master' OR rank='Guild Master' ORDER BY exp DESC";
+    function getGuildDailyExperience($connection) {
+        $query = "SELECT * FROM exp_daily ORDER BY exp DESC";
         $result = $connection->query($query);
         return $result;
+    }
+
+    
+    function getDailyGuildExperience($connection) {
+        $query = "SELECT SUM(exp) AS 'exp' FROM exp_daily";
+        $result = $connection->query($query);
+        $row = $result->fetch_assoc();
+        $exp = number_format($row['exp']);
+        return $exp;
+    }
+
+    function getWeeklyGuildExperience($connection) {
+        $query = "SELECT SUM(exp) AS 'exp' FROM player_exp";
+        $result = $connection->query($query);
+        $row = $result->fetch_assoc();
+        $exp = number_format($row['exp']);
+        return $exp;
     }
 
     function getAdmins($connection) {
