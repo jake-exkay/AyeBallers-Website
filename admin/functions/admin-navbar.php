@@ -17,31 +17,17 @@
                                 </div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="../../../admin/exptracker.php">
+                            <a class="nav-link" href="../../../../enderpearl/dashboard.php">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-circle"></i>
                                 </div>
-                                GEXP Tracker
+                                Enderpearl (Coming Soon)
                             </a>
-                            <a class="nav-link" href="../../../admin/tournament.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                Tournament Manager (Not In Use)
-                            </a>
-
                             <a class="nav-link" href="../../../admin/playerstats.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fa fa-user"></i>
                                 </div>
                                 Player Statistics
-                            </a>
-
-                            <a class="nav-link" href="../../../admin/guild.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                Guild Manager
                             </a>
 
                             <a class="nav-link" href="../../../admin/stafflist.php">
