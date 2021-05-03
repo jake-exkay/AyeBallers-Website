@@ -16,6 +16,7 @@ require "includes/constants.php";
 require "functions/functions.php";
 require "functions/display_functions.php";
 require "functions/player_functions.php";
+require "functions/database/guild_member_functions.php";
 require "error/error_messages.php";
 include "admin/functions/login_functions.php";
 
@@ -33,6 +34,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
             if (!updateGuild($mongo_mng, $guild_name, $API_KEY)) {
                 header("Refresh:0.01; url=error/guildnotfound.php");
             } else {
+                $guild_ranks = getGuildRanksInOrder($mongo_mng, $guild_name);
         ?>
 
         <title><?php echo $guild_name; ?> Guild - AyeBallers</title>
@@ -94,25 +96,25 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
 
                 <main>
             
-                    <div class="card">
+                    <div class="card" style="background-image: url('assets/img/background-2.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
 
                         <div class="card-body">
                             <form style="margin-right: 10px;" action="<?= $previous ?>">
                                 <button type="submit" class="btn btn-danger">< Back</button>
                             </form>
 
-                            <h1><?php echo $guild_name; ?></h1>
+                            <center><h1><?php echo $guild_name; ?> (Guild)</h1></center>
 
                             <br>
 
                             <div class="row">
 
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-table mr-1"></i>
-                                            Guild Statistics
+                                            General Statistics
                                         </div>
                                         <div class="card-body">
                                             <p><b>Guild Level:</b> <?php echo getGuildLevel($exp); ?> </p>
@@ -133,10 +135,21 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                                         </div>
                                     </div>
 
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-table mr-1"></i>
+                                            Guild Statistics
+                                        </div>
+                                        <div class="card-body">
+                                            <p><b>Total Paintball Kills:</b> <?php echo number_format(getGuildPaintballKills($mongo_mng, $guild_name)); ?> </p>
+                                            <p><b>Total Paintball Wins:</b> <?php echo number_format(getGuildPaintballWins($mongo_mng, $guild_name)); ?> </p>
+                                        </div>
+                                    </div>
+
                                 </div>
                     
 
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-list mr-1"></i>
@@ -145,30 +158,35 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                                         <div class="card-body">
                                             <?php
 
-                                                foreach ($members as $member) {
-                                                    $uuid = $member->uuid;
-                                                    $guild_rank = $member->rank;
-                                                    $joined = $member->joined;
-                                                    
-                                                    if (!isPlayerStored($mongo_mng, $uuid)) {
-                                                        if (apiLimitReached($API_KEY)) {
-                                                            header("Refresh:0.01; url=error/api_request.php");
-                                                            break;
-                                                        } else {
-                                                            updatePlayer($mongo_mng, $uuid, $API_KEY);
+                                                foreach ($guild_ranks as $grank) {
+                                                    echo "<br><h3>" . $grank . "</h3>";
+
+                                                    foreach ($members as $member) {
+                                                        $uuid = $member->uuid;
+                                                        $guild_rank = $member->rank;
+                                                        $joined = $member->joined;
+
+                                                        if ($grank == $guild_rank) {
+                                                            if (!isPlayerStored($mongo_mng, $uuid)) {
+                                                                if (apiLimitReached($API_KEY)) {
+                                                                    header("Refresh:0.01; url=error/api_request.php");
+                                                                    break;
+                                                                } else {
+                                                                    updatePlayer($mongo_mng, $uuid, $API_KEY);
+                                                                }
+                                                            }
+
+                                                            $player = getLocalPlayer($mongo_mng, $uuid);
+                                                            $name = $player->name;
+                                                            $rank = $player->rank;
+                                                            $rank_colour = $player->rankColour;
+
+                                                            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+                                                            echo '<img alt="Player Avatar" style="height: 25px; width: 25px;" src="https://crafatar.com/avatars/' . $uuid . '"/> ';
+                                                            echo '<a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a><br>';
                                                         }
                                                     }
-
-                                                    $player = getLocalPlayer($mongo_mng, $uuid);
-                                                    $name = $player->name;
-                                                    $rank = $player->rank;
-                                                    $rank_colour = $player->rankColour;
-
-                                                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
-
-                                                    echo '<img alt="Player Avatar" style="height: 25px; width: 25px;" src="https://crafatar.com/avatars/' . $uuid . '"/> ';
-                                                    echo '<a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a> (' . $guild_rank . ')<br>';
-                                                
                                                 }
 
                                             ?>
