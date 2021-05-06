@@ -60,7 +60,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                     $last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
 
                     $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
-                    $network_level = getLevel($network_exp);
+                    $network_level = getNetworkLevel($network_exp);
 
                     $recent_game = formatRecentGame($player->recentGameType);
 
@@ -74,7 +74,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                     $guild_members = 0;
                     $guildRole = "";
 
-                    if ($guild = getUsersGuild($mongo_mng, $uuid)) {
+                    if ($guild = getPlayersGuild($mongo_mng, $uuid)) {
                     	$user_in_guild = true;
 	                    $guild_name = $guild->name;
 	                    $guild_tag = $guild->tag;
@@ -227,7 +227,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 										                			<p><b>Forcefield Time:</b> <?php echo gmdate("H:i:s", $player->paintball->forcefieldTime); ?></p>
 										                			<p><b>Killstreaks:</b> <?php echo number_format($player->paintball->killstreaks); ?></p>
 										                			<p><b>Shots Fired:</b> <?php echo number_format($player->paintball->shotsFired); ?></p>
-										                			<p><b>Equipped Hat:</b> <?php echo translatePaintballHat($player->paintball->hat); ?></p>
+										                			<p><b>Equipped Hat:</b> <?php echo formatPaintballHat($player->paintball->hat); ?></p>
 
 										                			<br>
 

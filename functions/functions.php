@@ -30,6 +30,20 @@
     }
 
     /**
+     * Updates the stats log table in the database.
+     *
+     * @param $connection Connection to the database.
+     * @param $name       Name of the player.
+     *
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function updateStatsLog($connection, $name) 
+    {
+        $query = "INSERT INTO stats_log (updated_time, action) VALUES (now(), '$name')";         
+        mysqli_query($connection, $query);
+    }
+
+    /**
      * Checks if a player is in a specific guild.
      *
      * @param $connection Connection to the database.

@@ -998,7 +998,7 @@
      * @return player Mongo player object of the user.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getLocalPlayer($mongo_mng, $uuid) 
+    function getPlayerByUUID($mongo_mng, $uuid) 
     {
         $filter = ['uuid' => $uuid]; 
         $query = new MongoDB\Driver\Query($filter);     
@@ -1016,7 +1016,7 @@
      * @return player Mongo player object of the user.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getLocalPlayerByName($mongo_mng, $name) 
+    function getPlayerByName($mongo_mng, $name) 
     {
         $filter = ['name' => $name]; 
         $query = new MongoDB\Driver\Query($filter);     
@@ -1048,7 +1048,46 @@
     }
 
     /**
+     * Gets the guild of a player if they are in one.
+     *
+     * @param $mongo_mng  MongoDB driver manager.
+     * @param $uuid       UUID of the player.
+     *
+     * @return guild Mongo guild object of the user.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getPlayersGuild($mongo_mng, $uuid) 
+    {
+        $filter = ['members.uuid' => $uuid]; 
+        $query = new MongoDB\Driver\Query($filter);     
+        $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
+        $guild = current($res->toArray());
+        return $guild;
+    }
+
+    /**
+     * Uses the experience value to calculate the network level.
+     *
+     * @param $exp The experience to convert.
+     *
+     * @return Network level value.
+     * @author Plancke hypixel-php <https://github.com/Plancke/hypixel-php>
+     */
+    function getNetworkLevel(float $exp) 
+    {
+        $BASE = 10000;
+        $GROWTH = 2500;
+        $HALF_GROWTH = 0.5 * $GROWTH;
+        $REVERSE_PQ_PREFIX = -($BASE - 0.5 * $GROWTH) / $GROWTH;
+        $REVERSE_CONST = $REVERSE_PQ_PREFIX * $REVERSE_PQ_PREFIX;
+        $GROWTH_DIVIDES_2 = 2 / $GROWTH;
+
+        return $exp < 0 ? 1 : floor(1 + $REVERSE_PQ_PREFIX + sqrt($REVERSE_CONST + $GROWTH_DIVIDES_2 * $exp));
+    }
+
+    /**
      * Gets correct formatting of a players rank with their name.
+     * Styling used with correct Hypixel Network colours.
      *
      * @param $name        Name of the player.
      * @param $rank        Rank of the player.
@@ -1059,7 +1098,7 @@
      */
 	function getRankFormatting($name, $rank, $rank_colour) 
     {
-		if ($rank_colour == "BLACK") {
+        if ($rank_colour == "BLACK") {
 			$plus_colour = '<span style="color:#000000;">+</span>';
 		} else if ($rank_colour == "RED") {
 			$plus_colour = '<span style="color:#AA0000;">+</span>';
@@ -1119,57 +1158,6 @@
 	}
 
     /**
-     * Uses the experience value to calculate the network level.
-     *
-     * @param $exp The experience to convert.
-     *
-     * @return Network level value.
-     * @author Plancke hypixel-php <https://github.com/Plancke/hypixel-php>
-     */
-    function getLevel(float $exp) 
-    {
-        $BASE = 10000;
-        $GROWTH = 2500;
-        $HALF_GROWTH = 0.5 * $GROWTH;
-        $REVERSE_PQ_PREFIX = -($BASE - 0.5 * $GROWTH) / $GROWTH;
-        $REVERSE_CONST = $REVERSE_PQ_PREFIX * $REVERSE_PQ_PREFIX;
-        $GROWTH_DIVIDES_2 = 2 / $GROWTH;
-
-        return $exp < 0 ? 1 : floor(1 + $REVERSE_PQ_PREFIX + sqrt($REVERSE_CONST + $GROWTH_DIVIDES_2 * $exp));
-    }
-
-    /**
-     * Updates the stats log table in the database.
-     *
-     * @param $connection Connection to the database.
-     * @param $name       Name of the player.
-     *
-     * @author ExKay <exkay61@hotmail.com>
-     */
-    function updateStatsLog($connection, $name) 
-    {
-        $query = "INSERT INTO stats_log (updated_time, action) VALUES (now(), '$name')";         
-        mysqli_query($connection, $query);
-    }
-
-    /**
-     * Gets guild information by a guild name
-     *
-     * @param $connection Connection to the database.
-     * @param $guild      Name of the guild.
-     * @param $API_KEY    API KEY for the Hypixel API.
-     *
-     * @return $decoded_url JSON data of guild.
-     * @author ExKay <exkay61@hotmail.com>
-     */
-    function getGuildInformation($connection, $guild, $API_KEY) 
-    {
-        $api_guild_url = file_get_contents("https://api.hypixel.net/guild?key=" . $API_KEY . "&name=" . $guild);
-        $decoded_url  = json_decode($api_guild_url);
-        return $decoded_url;
-    }
-
-    /**
      * Gets a readable name for paintball hats.
      *
      * @param $hat Hat name to translate.
@@ -1177,7 +1165,7 @@
      * @return $hat_paintball Translated hat name.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function translatePaintballHat($hat) 
+    function formatPaintballHat($hat) 
     {
         $hat_paintball = "No hat selected";
 
@@ -1299,24 +1287,6 @@
         }
 
         return $recent_game;
-    }
-
-    /**
-     * Gets the guild of a player if they are in one.
-     *
-     * @param $mongo_mng  MongoDB driver manager.
-     * @param $uuid       UUID of the player.
-     *
-     * @return guild Mongo guild object of the user.
-     * @author ExKay <exkay61@hotmail.com>
-     */
-    function getUsersGuild($mongo_mng, $uuid) 
-    {
-        $filter = ['members.uuid' => $uuid]; 
-        $query = new MongoDB\Driver\Query($filter);     
-        $res = $mongo_mng->executeQuery("ayeballers.guild", $query);
-        $guild = current($res->toArray());
-        return $guild;
     }
 
 ?>

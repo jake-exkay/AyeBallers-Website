@@ -127,7 +127,7 @@ updatePageViews($connection, 'paintball_overall_leaderboard', $DEV_IP);
                                                         echo '<td class="table-danger">' . $sk . '</td>';
                                                     }
 
-                                                    echo '<td>' . translatePaintballHat($hat) . '</td>';
+                                                    echo '<td>' . formatPaintballHat($hat) . '</td>';
                                                     
                                                 echo '</tr>'; 
                                                 $i = $i + 1;

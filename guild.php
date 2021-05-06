@@ -16,7 +16,7 @@ require "includes/constants.php";
 require "functions/functions.php";
 require "functions/display_functions.php";
 require "functions/player_functions.php";
-require "functions/database/guild_member_functions.php";
+require "functions/guild_functions.php";
 require "error/error_messages.php";
 include "admin/functions/login_functions.php";
 
@@ -176,7 +176,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                                                                 }
                                                             }
 
-                                                            $player = getLocalPlayer($mongo_mng, $uuid);
+                                                            $player = getPlayerByUUID($mongo_mng, $uuid);
                                                             $name = $player->name;
                                                             $rank = $player->rank;
                                                             $rank_colour = $player->rankColour;
