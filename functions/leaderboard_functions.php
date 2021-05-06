@@ -9,6 +9,9 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
  * @link     http://ayeballers.xyz/
  */
+
+include "guild_functions.php";
+
     /**
      * Gets overall paintball leaderboard.
      *
@@ -16,7 +19,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-	function getOverallPaintballLeaderboard($mongo_mng) {
+	function getOverallPaintballLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['paintball.kills' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -30,7 +34,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallTntLeaderboard($mongo_mng, $mode) {
+    function getOverallTntLeaderboard($mongo_mng, $mode) 
+    {
         if ($mode == "Overall") {
             $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.wins' => -1], 'limit' => 1000]);
             $res = $mongo_mng->executeQuery("ayeballers.player", $query);
@@ -69,7 +74,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallWallsLeaderboard($mongo_mng) {
+    function getOverallWallsLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['walls.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -82,7 +88,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallQuakeLeaderboard($mongo_mng) {
+    function getOverallQuakeLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['quakecraft.soloKills' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -95,7 +102,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallVampirezLeaderboard($mongo_mng) {
+    function getOverallVampirezLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['vampirez.asHuman.humanWins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -108,7 +116,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallTkrLeaderboard($mongo_mng) {
+    function getOverallTkrLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['tkr.goldTrophy' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -121,7 +130,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallArenaLeaderboard($mongo_mng) {
+    function getOverallArenaLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['arena.rating' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -134,7 +144,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallBedwarsLeaderboard($mongo_mng) {
+    function getOverallBedwarsLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['bedwars.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -147,7 +158,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallSkywarsLeaderboard($mongo_mng) {
+    function getOverallSkywarsLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['skywars.overall.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -160,7 +172,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallWarlordsLeaderboard($mongo_mng) {
+    function getOverallWarlordsLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['warlords.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -174,7 +187,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallUHCLeaderboard($mongo_mng, $mode) {
+    function getOverallUHCLeaderboard($mongo_mng, $mode) 
+    {
         if ($mode == "Solo") {
             $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.score' => -1], 'limit' => 1000]);
             $res = $mongo_mng->executeQuery("ayeballers.player", $query);
@@ -221,7 +235,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallCvcLeaderboard($mongo_mng) {
+    function getOverallCvcLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['copsandcrims.defusal.gameWins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
@@ -235,7 +250,8 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallArcadeLeaderboard($mongo_mng, $mode) {
+    function getOverallArcadeLeaderboard($mongo_mng, $mode) 
+    {
         if ($mode == "Overall") {
             $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.coins' => -1], 'limit' => 1000]);
             $res = $mongo_mng->executeQuery("ayeballers.player", $query);
@@ -310,10 +326,29 @@
      * @return res - Leaderboard result.
      * @author ExKay <exkay61@hotmail.com>
      */
-    function getOverallFirstLoginLeaderboard($mongo_mng) {
+    function getOverallFirstLoginLeaderboard($mongo_mng) 
+    {
         $query = new MongoDB\Driver\Query([], ['sort' => ['firstLogin' => 1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
+    }
+
+    function getGuildPaintballLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['limit' => 50]);
+        $guilds = $mongo_mng->executeQuery("ayeballers.guild", $query);
+
+        $guild_lb = array();
+
+        foreach ($guilds as $guild) {
+            $name = $guild->name;
+            $kills = getGuildPaintballKills($mongo_mng, $name);
+            $guild_lb[$name] = $kills;
+        }
+
+        arsort($guild_lb);
+
+        return $guild_lb;
     }
 
 ?>
