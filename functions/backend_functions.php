@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains general functions.
+ * Contains general functions which deal with backend issues.
  * PHP version 7.2.34
  *
  * @category Functions
@@ -41,28 +41,6 @@
     {
         $query = "INSERT INTO stats_log (updated_time, action) VALUES (now(), '$name')";         
         mysqli_query($connection, $query);
-    }
-
-    /**
-     * Checks if a player is in a specific guild.
-     *
-     * @param $connection Connection to the database.
-     * @param $name       Name of the user to check.
-     *
-     * @return Boolean - whether the user is in the guild or not.
-     * @author ExKay <exkay61@hotmail.com>
-     */
-    function userInGuild($connection, $name) 
-    {
-        $query = "SELECT * FROM guild_members_current WHERE name = '$name'";
-        $result = $connection->query($query);
-
-        if ($result->num_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
     /**
@@ -138,46 +116,6 @@
         } else {
             return false;
         }
-    }
-
-    /**
-     * Converts guild experience to a guile level.
-     *
-     * @param $exp Guild experience to convert.
-     *
-     * @return Guild level translated from experience.
-     * @author Picsou993
-     */
-    function getGuildLevel($exp) 
-    {
-        switch ($exp):
-            case $exp<100000:
-                return 0;
-            case $exp<250000:
-                return 1;
-            case $exp<500000:
-                return 2;
-            case $exp<1000000:
-                return 3;
-            case $exp<1750000:
-                return 4;
-            case $exp<2750000:
-                return 5;
-            case $exp<4000000:
-                return 6;
-            case $exp<5500000:
-                return 7;
-            case $exp<7500000:
-                return 8;
-            case $exp>=7500000:
-                if ($exp<15000000) {
-                    return floor(($exp - 7500000) / 2500000) + 9;
-                } else {
-                    return floor(($exp - 15000000) / 3000000) + 12;
-                }
-            default:
-                return 0;
-        endswitch;
     }
     
 ?>

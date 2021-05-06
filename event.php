@@ -13,8 +13,7 @@
 require "includes/links.php";
 require "includes/connect.php";
 require "includes/constants.php";
-require "functions/functions.php";
-require "functions/display_functions.php";
+require "functions/backend_functions.php";
 include "admin/functions/login_functions.php";
 
 updatePageViews($connection, 'event_page', $DEV_IP);

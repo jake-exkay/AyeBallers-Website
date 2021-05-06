@@ -12,10 +12,9 @@
 
 require "../../../includes/links.php";
 include "../../../includes/connect.php";
-include "../../../functions/functions.php";
+include "../../../functions/backend_functions.php";
 include "../../../functions/player_functions.php";
-include "../../../functions/display_functions.php";
-include "../../../functions/database/query_functions.php";
+include "../../../functions/leaderboard_functions.php";
 include "../../../admin/functions/login_functions.php";
 
 updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
@@ -100,7 +99,7 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
 
                                                 echo '<tr>';
                                                     echo '<td>' . $i . '</td>';
-                                                    if (userInGuild($connection, $name)) {
+                                                    if (false) {
                                                         echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a>  <img title="AyeBallers Member" height="25" width="auto" alt="AyeBallers Logo" src="../../../assets/img/favicon.png"/></td>';
                                                     } else {
                                                         echo '<td><a href="../../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';

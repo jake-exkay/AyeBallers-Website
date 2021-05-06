@@ -11,7 +11,7 @@
  */
 
 require "../includes/links.php";
-require "../functions/functions.php";
+require "../functions/backend_functions.php";
 require "../functions/player_functions.php";
 require "event_functions.php";
 require "../includes/connect.php";

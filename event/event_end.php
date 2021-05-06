@@ -3,7 +3,7 @@
 	include "../includes/connect.php";
     include "../includes/constants.php";
     include "event_functions.php";
-    include "../functions/functions.php";
+    include "../functions/backend_functions.php";
 
     if (devViewing($connection, $DEV_IP)) {
         if (eventStatus($connection) == 0) {

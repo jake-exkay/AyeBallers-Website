@@ -1,11 +1,35 @@
 <?php
-
+/**
+ * Contains functions used to get leaderboards from mongo.
+ * PHP version 7.2.34
+ *
+ * @category Functions
+ * @package  AyeBallers
+ * @author   ExKay <exkay61@hotmail.com>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.html GNU GPL
+ * @link     http://ayeballers.xyz/
+ */
+    /**
+     * Gets overall paintball leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
 	function getOverallPaintballLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['paintball.kills' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
 	}
 
+    /**
+     * Gets TNT Games leaderboard using a specific TNT gamemode.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @param mode - TNT games mode.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallTntLeaderboard($mongo_mng, $mode) {
         if ($mode == "Overall") {
             $query = new MongoDB\Driver\Query([], ['sort' => ['tntgames.wins' => -1], 'limit' => 1000]);
@@ -38,54 +62,118 @@
         }
     }
     
+    /**
+     * Gets overall walls leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallWallsLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['walls.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall quake leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallQuakeLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['quakecraft.soloKills' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall VampireZ leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallVampirezLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['vampirez.asHuman.humanWins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall Turbo Kart Racers leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallTkrLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['tkr.goldTrophy' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall arena brawl leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallArenaLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['arena.rating' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall BedWars leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallBedwarsLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['bedwars.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall Skywars leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallSkywarsLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['skywars.overall.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall Warlords leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallWarlordsLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['warlords.wins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall UHC leaderboard using a specific gamemode.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @param mode - UHC game mode.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallUHCLeaderboard($mongo_mng, $mode) {
         if ($mode == "Solo") {
             $query = new MongoDB\Driver\Query([], ['sort' => ['uhc.score' => -1], 'limit' => 1000]);
@@ -126,12 +214,27 @@
         }
     }
 
+    /**
+     * Gets overall Cops vs Crims leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallCvcLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['copsandcrims.defusal.gameWins' => -1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
     }
 
+    /**
+     * Gets overall arcade leaderboard using a specific gamemode.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @param mode - Arcade game mode.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallArcadeLeaderboard($mongo_mng, $mode) {
         if ($mode == "Overall") {
             $query = new MongoDB\Driver\Query([], ['sort' => ['arcade.coins' => -1], 'limit' => 1000]);
@@ -200,6 +303,13 @@
         }
     }
 
+    /**
+     * Gets overall first login leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
     function getOverallFirstLoginLeaderboard($mongo_mng) {
         $query = new MongoDB\Driver\Query([], ['sort' => ['firstLogin' => 1], 'limit' => 1000]);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);

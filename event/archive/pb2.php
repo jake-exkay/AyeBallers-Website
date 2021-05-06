@@ -16,7 +16,7 @@
         <?php
 
             include "../../includes/connect.php";
-            include "../../functions/functions.php";
+            include "../../functions/backend_functions.php";
             include "event_functions.php";
 
             updatePageViews($connection, 'pb2_leaderboard', $DEV_IP);
@@ -121,7 +121,7 @@
                                                         echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../../assets/img/star.png"/></td>';
                                                         } else if ($name == 'PotAccuracy') {
                                                         echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../../assets/img/favicon.png"/><img title="Event Staff" height="15" width="auto" src="../../assets/img/star.png"/></td>';
-                                                        } else if (userInGuild($connection, $name)) {
+                                                        } else if (false) {
                                                             echo '<td>' . $name . ' <img title="AyeBallers Member" height="15" width="auto" src="../../assets/img/favicon.png"/></td>';
                                                         } else {
                                                             echo '<td>' . $name . '</td>';

@@ -11,7 +11,7 @@
  */
 
 require "includes/links.php";
-require "functions/functions.php";
+require "functions/backend_functions.php";
 include "admin/functions/login_functions.php";
 
 ?>
