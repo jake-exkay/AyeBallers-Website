@@ -77,8 +77,8 @@ updatePageViews($connection, 'tnt_overall_leaderboard', $DEV_IP);
                                                 <th>Bow Spleef Wins</th>
                                                 <th>TNT Tag Wins</th>
                                                 <th>PVP Run Wins</th>
-                                                <th>TNT Wizards Wins</th>
-                                                <th>Winstreak</th>
+                                                <th>Wizards Wins</th>
+                                                <th>Current Winstreak</th>
                                             </tr>
                                         </thead>
                                         <tbody>

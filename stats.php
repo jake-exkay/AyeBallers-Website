@@ -99,22 +99,24 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
                 <main>
 
-                	<div class="card">
+					<div class="card" style="background-image: url('assets/img/background-2.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
 
             			<div class="card-body">
             				<form style="margin-right: 10px;" action="<?= $previous ?>">
 	                            <button type="submit" class="btn btn-danger">< Back</button>
 	                        </form>
 
-                			<h1>
-                				<?php 
-                				if ($user_in_guild) {
-                                    echo $rank_with_name . " [" . $guild_tag . "]";
-                				} else {
-                					echo $rank_with_name;
-                				}
-                				?>
-                			</h1>
+                			<center>
+								<h1>
+									<?php 
+									if ($user_in_guild) {
+										echo $rank_with_name . " [" . $guild_tag . "]";
+									} else {
+										echo $rank_with_name;
+									}
+									?>
+								</h1>
+							</center>
 
                 			<br>
 
@@ -230,16 +232,16 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 										                			<br>
 
-										                			<p><b>K/D:</b> <?php echo $kd_pb; ?></p>
-										                			<p><b>S/K:</b> <?php echo $sk_pb; ?></p>
+										                			<p><b>Kill-Death Ratio:</b> <?php echo $kd_pb; ?></p>
+										                			<p><b>Shot-Kill Ratio:</b> <?php echo $sk_pb; ?></p>
 
 										                			<br>
 
 										                			<p><b>Endurance:</b> <?php echo $player->paintball->endurance + 1; ?>/50</p>
 										                			<p><b>Godfather:</b> <?php echo $player->paintball->godfather + 1; ?>/50</p>
 										                			<p><b>Fortune:</b> <?php echo $player->paintball->fortune + 1; ?>/20</p>
+																	<p><b>Superluck:</b> <?php echo $player->paintball->superluck + 1; ?>/20</p>
 										                			<p><b>Adrenaline:</b> <?php echo $player->paintball->adrenaline + 1; ?>/10</p>
-										                			<p><b>Superluck:</b> <?php echo $player->paintball->superluck + 1; ?>/20</p>
 										                			<p><b>Transfusion:</b> <?php echo $player->paintball->transfusion + 1; ?>/10</p>
 										                		</div>
 									                		
@@ -291,18 +293,18 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 									                			<br>
 
-									                			<p><b>Kills:</b> <?php echo number_format($player->quakecraft->soloKills + $player->quakecraft->teamKills); ?></p>
-									                			<p><b>Wins:</b> <?php echo number_format($player->quakecraft->soloWins + $player->quakecraft->teamWins); ?></p>
-									                			<p><b>Deaths:</b> <?php echo number_format($player->quakecraft->soloDeaths + $player->quakecraft->teamDeaths); ?></p>
-									                			<p><b>Killstreaks:</b> <?php echo number_format($player->quakecraft->soloKillstreaks + $player->quakecraft->teamKillstreaks); ?></p>
-									                			<p><b>Headshots:</b> <?php echo number_format($player->quakecraft->soloHeadshots + $player->quakecraft->teamHeadshots); ?></p>
-									                			<p><b>Distance Travelled:</b> <?php echo number_format($player->quakecraft->soloDistanceTravelled + $player->quakecraft->teamDistanceTravelled); ?> blocks</p>
-									                			<p><b>Shots Fired:</b> <?php echo number_format($player->quakecraft->soloShotsFired + $player->quakecraft->teamShotsFired); ?></p>
+									                			<p><b>Total Kills:</b> <?php echo number_format($player->quakecraft->soloKills + $player->quakecraft->teamKills); ?></p>
+									                			<p><b>Total Wins:</b> <?php echo number_format($player->quakecraft->soloWins + $player->quakecraft->teamWins); ?></p>
+									                			<p><b>Total Deaths:</b> <?php echo number_format($player->quakecraft->soloDeaths + $player->quakecraft->teamDeaths); ?></p>
+									                			<p><b>Total Killstreaks:</b> <?php echo number_format($player->quakecraft->soloKillstreaks + $player->quakecraft->teamKillstreaks); ?></p>
+									                			<p><b>Total Headshots:</b> <?php echo number_format($player->quakecraft->soloHeadshots + $player->quakecraft->teamHeadshots); ?></p>
+									                			<p><b>Total Distance Travelled:</b> <?php echo number_format($player->quakecraft->soloDistanceTravelled + $player->quakecraft->teamDistanceTravelled); ?> blocks</p>
+									                			<p><b>Total Shots Fired:</b> <?php echo number_format($player->quakecraft->soloShotsFired + $player->quakecraft->teamShotsFired); ?></p>
 
 									                			<br>
 
-									                			<p><b>K/D:</b> <?php echo $kd_qc; ?></p>
-									                			<p><b>S/K:</b> <?php echo $sk_qc; ?></p>
+									                			<p><b>Kill-Death Ratio:</b> <?php echo $kd_qc; ?></p>
+									                			<p><b>Shot-Kill Ratio:</b> <?php echo $sk_qc; ?></p>
 
 									                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#quakesolo">Solo</button><br><br>
 
@@ -676,16 +678,28 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 						                			<p><b>Coins:</b> <?php echo number_format($player->tntgames->coins); ?></p>
 						                			<p><b>Total Wins:</b> <?php echo number_format($player->tntgames->wins); ?></p>
-						                			<p><b>Selected Hat:</b> <?php echo $player->tntgames->hat; ?></p>
+						                			<p><b>Selected Hat:</b> <?php echo formatTntHat($player->tntgames->hat); ?></p>
 						                			<p><b>Current Winstreak:</b> <?php echo number_format($player->tntgames->winstreak); ?></p>
 
 						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#tntrun">TNT Run</button><br><br>
 
 						                			<div id="tntrun" class="collapse">
-							                			<p><b>Wins:</b> <?php echo number_format($player->tntgames->tntrun->wins); ?></p>
-							                			<p><b>Losses:</b> <?php echo number_format($player->tntgames->tntrun->deaths); ?></p>
-							                			<p><b>Record:</b> <?php echo number_format($player->tntgames->tntrun->record); ?></p>
-							                			<p><b>W/L:</b> <?php echo $tntrun_wl; ?></p>
+														<div class="row">
+                                                            <div class="col-md-6">
+																<p><b>Wins:</b> <?php echo number_format($player->tntgames->tntrun->wins); ?></p>
+																<p><b>Losses:</b> <?php echo number_format($player->tntgames->tntrun->deaths); ?></p>
+																<p><b>Record:</b> <?php echo number_format($player->tntgames->tntrun->record); ?></p>
+																<p><b>W/L:</b> <?php echo $tntrun_wl; ?></p>
+															</div>
+
+															<div class="col-md-6">
+																<br><br>
+
+																<center><h4>Win / Loss Ratio</h4></center>
+																<canvas id="tntrunpie"></canvas>
+
+															</div>
+                                                        </div>
 							                		</div>
 
 						                			<button data-toggle="collapse" class="btn btn-light btn-outline-success" data-target="#bowspleef">Bow Spleef</button><br><br>
@@ -1584,10 +1598,10 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					var pbBar = new Chart(ctxR, {
 						type: 'horizontalBar',
 						data: {
-							labels: ["Endurance", "Godfather", "Fortune", "Adrenaline", "Superluck", "Transfusion"],
+							labels: ["Endurance", "Godfather", "Fortune", "Superluck", "Adrenaline", "Transfusion"],
 							datasets: [{
 								label: "Perk Level",
-								data: ["<?php echo $player->paintball->endurance; ?>", "<?php echo $player->paintball->godfather; ?>", "<?php echo $player->paintball->fortune; ?>", "<?php echo $player->paintball->adrenaline; ?>", "<?php echo $player->paintball->superluck; ?>", "<?php echo $player->paintball->transfusion; ?>"],
+								data: ["<?php echo $player->paintball->endurance + 1; ?>", "<?php echo $player->paintball->godfather + 1; ?>", "<?php echo $player->paintball->fortune + 1; ?>", "<?php echo $player->paintball->superluck + 1; ?>", "<?php echo $player->paintball->adrenaline + 1; ?>", "<?php echo $player->paintball->transfusion + 1; ?>"],
 								backgroundColor: [
 									'rgba(105, 0, 132, .2)', 'rgba(105, 0, 132, .2)', 'rgba(105, 0, 132, .2)', 'rgba(105, 0, 132, .2)', 'rgba(105, 0, 132, .2)', 'rgba(105, 0, 132, .2)',
 								],
@@ -1623,6 +1637,36 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 					options: {
 						responsive: true
 					}
+					});
+
+					var ctxBar = document.getElementById("quakeBar").getContext('2d');
+					var quakeBar = new Chart(ctxBar, {
+						type: 'bar',
+						data: {
+							labels: ["Solo", "Teams"],
+							datasets: [{
+								label: 'Wins',
+								data: ["<?php echo $player->quakecraft->soloWins; ?>", "<?php echo $player->quakecraft->teamWins; ?>"],
+								backgroundColor: [
+									'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 162, 235, 0.2)'
+								],
+								borderColor: [
+									'rgba(255,99,132,1)',
+									'rgba(54, 162, 235, 1)'
+								],
+								borderWidth: 1
+							}]
+						},
+						options: {
+							scales: {
+								yAxes: [{
+									ticks: {
+										beginAtZero: true
+									}
+								}]
+							}
+						}
 					});
 
                     var ctxTkr = document.getElementById("tkrPie").getContext('2d');
@@ -1721,37 +1765,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                     }
                     });
 
-
-					var ctxBar = document.getElementById("quakeBar").getContext('2d');
-					var quakeBar = new Chart(ctxBar, {
-						type: 'bar',
-						data: {
-							labels: ["Solo", "Teams"],
-							datasets: [{
-								label: 'Wins: Solo VS Teams',
-								data: ["<?php echo $player->quakecraft->soloWins; ?>", "<?php echo $player->quakecraft->teamWins; ?>"],
-								backgroundColor: [
-									'rgba(255, 99, 132, 0.2)',
-									'rgba(54, 162, 235, 0.2)'
-								],
-								borderColor: [
-									'rgba(255,99,132,1)',
-									'rgba(54, 162, 235, 1)'
-								],
-								borderWidth: 1
-							}]
-						},
-						options: {
-							scales: {
-								yAxes: [{
-									ticks: {
-										beginAtZero: true
-									}
-								}]
-							}
-						}
-					});
-
 					var ctxArena = document.getElementById("arenaBar").getContext('2d');
 					var arenaBar = new Chart(ctxArena, {
 						type: 'bar',
@@ -1800,6 +1813,22 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 									'rgba(255,99,132,1)',
 									'rgba(54, 255, 235, 1)'
 								]
+						}]
+					},
+					options: {
+						responsive: true
+					}
+					});
+
+					var ctxTntRun = document.getElementById("tntrunpie").getContext('2d');
+					var tntRunPie = new Chart(ctxTntRun, {
+						type: 'doughnut',
+						data: {
+							labels: ["Wins", "Losses"],
+							datasets: [{
+							data: ["<?php echo $player->tntgames->tntrun->wins; ?>", "<?php echo $player->tntgames->tntrun->deaths; ?>"],
+							backgroundColor: ["#46BFBD", "#F7464A"],
+							hoverBackgroundColor: ["#5AD3D1", "#FF5A5E"]
 						}]
 					},
 					options: {

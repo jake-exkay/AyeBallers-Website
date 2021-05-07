@@ -54,7 +54,7 @@ updatePageViews($connection, 'bedwars_overall_leaderboard', $DEV_IP);
                                                 <th>Wins</th>
                                                 <th>Final Kills</th>
                                                 <th>Coins</th>
-                                                <th>Winstreak</th>
+                                                <th>Current Winstreak</th>
                                                 <th>Beds Broken</th>
                                                 <th>Games Played</th>
                                                 <th>Resources Collected</th>

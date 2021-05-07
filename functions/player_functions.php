@@ -1222,6 +1222,28 @@
     }
 
     /**
+     * Gets a readable name for TNT Games hats.
+     *
+     * @param $hat Hat name to translate.
+     *
+     * @return $hat_tnt Translated hat name.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function formatTntHat($hat) 
+    {
+        $hat_tnt = "No Hat Selected";
+
+        switch ($hat) {
+            case "final":
+                $hat_tnt = "Final Hat";
+                break;
+            default:
+                $hat_tnt = "No Hat Selected";
+        }
+        return $hat_tnt;
+    }
+
+    /**
      * Gets a readable string for recent game type.
      *
      * @param $game Game name to translate.

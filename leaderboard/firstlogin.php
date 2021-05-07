@@ -83,7 +83,7 @@ include "../admin/functions/login_functions.php";
                                                         echo '<td><a href="../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
                                                     }
                                                     echo '<td>' . $login_date . '</td>';
-                                                    echo '<td>' . $recent_game . '</td>';
+                                                    echo '<td>' . formatRecentGame($recent_game) . '</td>';
                                                     
                                                 echo '</tr>'; 
                                                 $i = $i + 1;

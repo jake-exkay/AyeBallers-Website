@@ -14,7 +14,6 @@ require "../includes/links.php";
 require "../includes/constants.php";
 require "../functions/backend_functions.php";
 require "../includes/connect.php";
-require "../functions/display_functions.php";
 require "functions/database_functions.php";
 require "functions/login_functions.php";
 
