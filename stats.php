@@ -91,11 +91,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
     </head>
 
-    <body class="sb-nav-fixed">
-
-        <?php require "includes/navbar.php"; ?>
-
-            <div id="layoutSidenav_content">
+    <body>
 
                 <main>
 
@@ -1571,7 +1567,6 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
 
 						        </div>
 						    </div>
-						</div>
 					</div>
             	</main>
 

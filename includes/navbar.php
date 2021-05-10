@@ -24,25 +24,13 @@ echo '
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-home"></i>
                             </div>
-                            Player Statistics
+                            Home
                         </a>
                         <a class="nav-link" href="../../../guild.php?guild=AyeBallers">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-users"></i>
                             </div>
                             AyeBallers
-                        </a>
-                        <a class="nav-link" href="../../../event/leaderboard.php">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-star"></i>
-                            </div>
-                            Tournament
-                        </a>
-                        <a class="nav-link" href="../../../guildsearch.php">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-users"></i>
-                            </div>
-                            Guild Statistics
                         </a>
                         <div class="sb-sidenav-menu-heading">General Leaderboards</div>
                         <a class="nav-link" href="../../../leaderboard/firstlogin.php">

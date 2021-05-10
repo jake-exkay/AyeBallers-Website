@@ -11,49 +11,46 @@
 
 ?>
 
-<footer class="bg-dark text-center text-lg-start">
-  <div class="container p-4">
-    <div class="row">
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-        <h5 class="text-uppercase" style="color:white;">AyeBallers</h5>
-
-        <p style="color:white;">
-          Created using the Hypixel API, Mojang API and Crafatar API.
-        </p>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase" style="color:white;">Links</h5>
-
-        <ul class="list-unstyled mb-0">
-          <li>
-            <a href="../../../about.php" class="text-light">About</a>
-          </li>
-          <li>
-            <a href="../../../login.php" class="text-light">Login</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase mb-0" style="color:white;">Social</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="https://discord.gg/ETz36PmR9k" class="text-light">Discord</a>
-          </li>
-          <li>
-            <a href="https://hypixel.net/threads/%E2%9C%A9-ayeballers-pb-all-games-1-paintball-applications-open-%E2%9C%A9.2801206/" class="text-light">Hypixel Forums</a>
-          </li>
-        </ul>
-      </div>
+<!-- Footer-->
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">AyeBallers</h4>
+                <p class="lead mb-0">
+                    AyeBallers is a guild on the Hypixel Network based around the Paintball minigame. This website allows player to view game leaderboards and look up statistics.
+                </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Join Us</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://discord.gg/ETz36PmR9k"><i class="fab fa-fw fa-discord"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://hypixel.net/threads/%E2%9C%A9-ayeballers-pb-all-games-1-paintball-applications-open-%E2%9C%A9.2801206/"><i class="fa fa-users"></i></a>
+            </div>
+            <!-- Footer About Text-->
+            <div class="col-lg-4">
+                <h4 class="text-uppercase mb-4">Website Info</h4>
+                <p class="lead mb-0">
+                    Website developed by ExKay using Hypixel and Mojang API's. Free to use theme by <a href="http://startbootstrap.com">Start Bootstrap</a>.
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); color:white;">
-    © 2021 Copyright: AyeBallers / ExKay
-  </div>
 </footer>
+<!-- Copyright Section-->
+<div class="copyright py-4 text-center text-white">
+    <div class="container">
+        <small>
+            Copyright &copy; AyeBallers / ExKay
+            <!-- This script automatically adds the current year to your website footer-->
+            <!-- (credit: https://updateyourfooter.com/)-->
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+        </small>
+    </div>
+</div>
 
 <script>
  if (!navigator.serviceWorker.controller) {
@@ -65,9 +62,11 @@
 
 <?php mysqli_close($connection); ?>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../../js/scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="../../../js/new-scripts.js"></script>

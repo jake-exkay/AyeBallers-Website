@@ -40,11 +40,7 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
 
     </head>
 
-    <body class="sb-nav-fixed">
-
-        <?php require "includes/navbar.php"; ?>
-
-            <div id="layoutSidenav_content">
+    <body>
 
                 <?php 
 
@@ -192,8 +188,6 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
                         </div>
                     </div>
                 </main>
