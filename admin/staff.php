@@ -132,21 +132,21 @@ if (isLoggedIn($connection)) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Hypixel Staff</h1>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Stored Players Card -->
+                        <!-- Admin Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Stored Players</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getTotalCachedPlayers($mongo_mng); ?></div>
+                                                Admins</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfAdmins($mongo_mng)); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -156,15 +156,15 @@ if (isLoggedIn($connection)) {
                             </div>
                         </div>
 
-                        <!-- Stored Guilds Card -->
+                        <!-- Mod Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Stored Guilds</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getTotalCachedGuilds($mongo_mng); ?></div>
+                                                Moderators</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfMods($mongo_mng)); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -174,15 +174,15 @@ if (isLoggedIn($connection)) {
                             </div>
                         </div>
 
-                        <!-- Total Lookups Card -->
+                        <!-- Helper Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Lookups</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getTotalPlayerLookups($connection); ?></div>
+                                                Helpers</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfHelpers($mongo_mng)); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -192,15 +192,15 @@ if (isLoggedIn($connection)) {
                             </div>
                         </div>
 
-                        <!-- Total Page Views Card -->
+                        <!-- YouTuber Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Page Views</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getTotalPageViews($connection); ?></div>
+                                                YouTubers</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -214,61 +214,115 @@ if (isLoggedIn($connection)) {
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Page Views Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-3 col-lg-7">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Page Views</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Admin List</h6>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="viewChart" style="max-width: 1000px; margin: auto; width: 50%; padding: 10px;"></canvas>
+                                    <table id="admin" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+
+                                                $admins = getListOfAdmins($mongo_mng);
+
+                                                foreach ($admins as $admin) {
+                                                    echo '<tr>';
+                                                        echo '<td><a href="../stats.php?player=' . $admin . '">' . getRankFormatting($admin, "ADMIN", "None") . '</a></td>';
+                                                    echo '</tr>'; 
+                                                }
+
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Top Player Searches List -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-3 col-lg-7">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Top Searches</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Moderator List</h6>
                                 </div>
                                 <div class="card-body">
-                                <table id="popularplayers" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>Position</th>
-                                            <th>Player</th>
-                                            <th>Times Looked Up</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                                    <table id="mod" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
 
-                                            $result = getPopularLookups($connection);
+                                                $mods = getListOfMods($mongo_mng);
 
-                                            $i = 1;
-                                            if ($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) {
-                                                    $name = $row["action"];
-                                                    $lookups = $row["lookups"];
-                                                    $player = getPlayerByName($mongo_mng, $name);
-                                                    $rank = $player->rank;
-                                                    $rank_colour = $player->rankColour;
-                                                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
-
+                                                foreach ($mods as $mod) {
                                                     echo '<tr>';
-                                                        echo '<td>' . $i . '</td>';
-                                                        echo '<td><a href="../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
-                                                        echo '<td>' . $lookups . '</td>';
+                                                        echo '<td><a href="../stats.php?player=' . $mod . '">' . getRankFormatting($mod, "MODERATOR", "None") . '</a></td>';
                                                     echo '</tr>'; 
-
-                                                    $i++;
                                                 }
-                                            }
 
-                                        ?>
-                                    </tbody>
-                                </table>
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Helper List</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table id="helpers" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+
+                                                $helpers = getListOfHelpers($mongo_mng);
+                                                foreach ($helpers as $helper) {
+                                                    echo '<tr>';
+                                                        echo '<td><a href="../stats.php?player=' . $helper . '">' . getRankFormatting($helper, "HELPER", "None") . '</a></td>';
+                                                    echo '</tr>'; 
+                                                }
+                                                echo '<tr>Helper rank is discontinued.</tr>';
+
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">YouTuber List</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table id="yt" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+
+                                                echo '<tr>Coming Soon.</tr>';
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -356,44 +410,6 @@ if (isLoggedIn($connection)) {
         $event_views = $pb2 + $pb3;
 
     ?>
-
-    <script type="text/javascript">
-        var ctx = document.getElementById("viewChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Home", "Player Stats", "Guild Stats", "Leaderboards (Total)", "Event Leaderboard (Total)"],
-                datasets: [{
-                    label: 'Public Views',
-                    data: ["<?php echo $home_views; ?>", "<?php echo $player_views; ?>", "<?php echo $guild_views; ?>", "<?php echo $leaderboard_views; ?>", "<?php echo $event_views; ?>"],
-                    backgroundColor: [
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(54, 162, 235, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
 
 </body>
 

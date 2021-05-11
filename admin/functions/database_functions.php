@@ -19,7 +19,7 @@
     }
 
     function getPopularLookups($connection) {
-        $query = "SELECT action, COUNT(action) as lookups FROM stats_log GROUP BY action ORDER BY lookups DESC LIMIT 15";
+        $query = "SELECT action, COUNT(action) as lookups FROM stats_log GROUP BY action ORDER BY lookups DESC LIMIT 10";
         $result = $connection->query($query);
         return $result;
     }
