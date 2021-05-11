@@ -243,6 +243,48 @@ include "guild_functions.php";
     }
 
     /**
+     * Gets overall Smash Heroes leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getOverallSmashLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['smash.wins' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
+    /**
+     * Gets overall Mega Walls leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getOverallMegaWallsLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['megawalls.wins' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
+    /**
+     * Gets overall Blitz Survival Games leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getOverallBSGLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['bsg.wins' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
+    /**
      * Gets overall arcade leaderboard using a specific gamemode.
      *
      * @param mongo_mng - MongoDB driver manager.
@@ -349,6 +391,48 @@ include "guild_functions.php";
         arsort($guild_lb);
 
         return $guild_lb;
+    }
+
+    /**
+     * Gets overall achievement points leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getOverallAchievementLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['achievementPoints' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
+    /**
+     * Gets overall karma leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getOverallKarmaLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['karma' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+    }
+
+    /**
+     * Gets overall network level leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+    function getOverallNetworkLevelLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['networkExp' => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
     }
 
 ?>

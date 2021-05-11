@@ -5,7 +5,17 @@
 
     $gameType = $_GET['q'];
 
-    echo '<table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%"><thead class="thead-dark">';
+    echo '<div class="row>
+          <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-table mr-1"></i>
+                Leaderboard
+            </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="leaderboard" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
+                <thead class="thead-dark">';
 
     if ($gameType == "Paintball") {
         $result = getOverallPaintballLeaderboard($mongo_mng);
@@ -81,7 +91,6 @@
                 }
 
                 echo '<td>' . formatPaintballHat($hat) . '</td>';
-                
             echo '</tr>'; 
             $i = $i + 1;
         }
@@ -169,7 +178,6 @@
               } else {
                   echo '<td class="table-danger">' . $sk . '</td>';
               }
-                
             echo '</tr>'; 
             $i = $i + 1;
         }
@@ -241,7 +249,6 @@
               } else {
                   echo '<td class="table-danger">' . $wl . '</td>';
               }
-              
           echo '</tr>'; 
           $i = $i + 1;
         }
@@ -291,7 +298,6 @@
               echo '<td>' . number_format($laps_completed) . '</td>';
               echo '<td>' . number_format($coin_pickups) . '</td>';
               echo '<td>' . number_format($box_pickups) . '</td>';
-
           echo '</tr>'; 
           $i = $i + 1;
         }
@@ -347,7 +353,6 @@
               echo '<td>' . number_format($most_vampire_kills) . '</td>';
               echo '<td>' . number_format($human_deaths) . '</td>';
               echo '<td>' . number_format($vampire_deaths) . '</td>';
-
           echo '</tr>'; 
           $i = $i + 1;
         }
@@ -427,17 +432,326 @@
               echo '<td>' . number_format($healing) . '</td>';
               echo '<td>' . number_format($games) . '</td>';
               echo '<td>' . number_format($deaths) . '</td>';
-              
           echo '</tr>'; 
           $i = $i + 1;
         }
       } else if ($gameType == "Bedwars") {
-        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
+        $result = getOverallBedwarsLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">BedWars Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (Wins)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Wins</th>';
+        echo '<th>Final Kills</th>';
+        echo '<th>Coins</th>';
+        echo '<th>Current Winstreak</th>';
+        echo '<th>Beds Broken</th>';
+        echo '<th>Games Played</th>';
+        echo '<th>Resources Collected</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $kills = $player->bedwars->finalKills;
+          $wins = $player->bedwars->wins;
+          $coins = $player->bedwars->coins;
+          $deaths = $player->bedwars->deaths;
+          $winstreak = $player->bedwars->winstreak;
+          $games = $player->bedwars->gamesPlayed;
+          $beds = $player->bedwars->bedsBroken;
+          $resources = $player->bedwars->resourcesCollected->total;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($wins) . '</td>';
+              echo '<td>' . number_format($kills) . '</td>';
+              echo '<td>' . number_format($coins) . '</td>';
+              echo '<td>' . number_format($winstreak) . '</td>';
+              echo '<td>' . number_format($beds) . '</td>';
+              echo '<td>' . number_format($games) . '</td>';
+              echo '<td>' . number_format($resources) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }
       } else if ($gameType == "Skywars") {
+        $result = getOverallSkywarsLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">SkyWars Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (Wins)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Wins</th>';
+        echo '<th>Kills</th>';
+        echo '<th>Coins</th>';
+        echo '<th>Deaths</th>';
+        echo '<th>Fastest Win</th>';
+        echo '<th>Survived Players</th>';
+        echo '<th>Eggs Thrown</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $kills = $player->skywars->overall->kills;
+          $wins = $player->skywars->overall->wins;
+          $coins = $player->skywars->overall->coins;
+          $deaths = $player->skywars->overall->deaths;
+          $fastest_win = $player->skywars->overall->fastestWin;
+          $survived_players = $player->skywars->overall->survivedPlayers;
+          $eggs_thrown = $player->skywars->overall->eggsThrown;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($wins) . '</td>';
+              echo '<td>' . number_format($kills) . '</td>';
+              echo '<td>' . number_format($coins) . '</td>';
+              echo '<td>' . number_format($deaths) . '</td>';
+              echo '<td>' . number_format($fastest_win) . ' seconds</td>';
+              echo '<td>' . number_format($survived_players) . '</td>';
+              echo '<td>' . number_format($eggs_thrown) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }
+      } else if ($gameType == "Warlords") {
+        $result = getOverallWarlordsLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Warlords Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (Wins)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Wins</th>';
+        echo '<th>Kills</th>';
+        echo '<th>Coins</th>';
+        echo '<th>Assists</th>';
+        echo '<th>Deaths</th>';
+        echo '<th>Losses</th>';
+        echo '<th>Current Class</th>';
+        echo '<th>Damage</th>';
+        echo '<th>Healing</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $kills = $player->warlords->kills;
+          $wins = $player->warlords->wins;
+          $coins = $player->warlords->coins;
+          $deaths = $player->warlords->deaths;
+          $assists = $player->warlords->assists;
+          $losses = $player->warlords->losses;
+          $current_class = $player->warlords->currentClass;
+          $damage = $player->warlords->damage;
+          $healing = $player->warlords->heal;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($wins) . '</td>';
+              echo '<td>' . number_format($kills) . '</td>';
+              echo '<td>' . number_format($coins) . '</td>';
+              echo '<td>' . number_format($assists) . '</td>';
+              echo '<td>' . number_format($deaths) . '</td>';
+              echo '<td>' . number_format($losses) . '</td>';
+              echo '<td>' . ucfirst($current_class) . '</td>';
+              echo '<td>' . number_format($damage) . '</td>';
+              echo '<td>' . number_format($healing) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }      
+      } else if ($gameType == "CopsAndCrims") {
+        $result = getOverallCvcLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Cops and Crims Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (Wins)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Wins</th>';
+        echo '<th>Kills</th>';
+        echo '<th>Headshots</th>';
+        echo '<th>Shots Fired</th>';
+        echo '<th>Deaths</th>';
+        echo '<th>Bombs Planted</th>';
+        echo '<th>Bombs Defused</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $kills = $player->copsandcrims->defusal->kills;
+          $wins = $player->copsandcrims->defusal->gameWins;
+          $shots_fired = $player->copsandcrims->defusal->shotsFired;
+          $headshots = $player->copsandcrims->defusal->headshots;
+          $deaths = $player->copsandcrims->defusal->deaths;
+          $bombs_defused = $player->copsandcrims->defusal->bombsDefused;
+          $bombs_planted = $player->copsandcrims->defusal->bombsPlanted;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($wins) . '</td>';
+              echo '<td>' . number_format($kills) . '</td>';
+              echo '<td>' . number_format($headshots) . '</td>';
+              echo '<td>' . number_format($shots_fired) . '</td>';
+              echo '<td>' . number_format($deaths) . '</td>';
+              echo '<td>' . number_format($bombs_planted) . '</td>';
+              echo '<td>' . number_format($bombs_defused) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }       
+      } else if ($gameType == "Smash") {
+        $result = getOverallSmashLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Smash Heroes Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (Wins)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Wins</th>';
+        echo '<th>Kills</th>';
+        echo '<th>Deaths</th>';
+        echo '<th>Smash Level</th>';
+        echo '<th>Coins</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $kills = $player->smash->kills;
+          $wins = $player->smash->wins;
+          $deaths = $player->smash->deaths;
+          $smash_level = $player->smash->smashLevel;
+          $coins = $player->smash->coins;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($wins) . '</td>';
+              echo '<td>' . number_format($kills) . '</td>';
+              echo '<td>' . number_format($deaths) . '</td>';
+              echo '<td>' . number_format($smash_level) . '</td>';
+              echo '<td>' . number_format($coins) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        } 
+      } else if ($gameType == "BSG") {
+        $result = getOverallBSGLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Blitz Survival Games Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (Wins)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Wins</th>';
+        echo '<th>Kills</th>';
+        echo '<th>Deaths</th>';
+        echo '<th>Coins</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $kills = $player->bsg->kills;
+          $wins = $player->bsg->wins;
+          $deaths = $player->bsg->deaths;
+          $coins = $player->bsg->coins;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($wins) . '</td>';
+              echo '<td>' . number_format($kills) . '</td>';
+              echo '<td>' . number_format($deaths) . '</td>';
+              echo '<td>' . number_format($coins) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }       
+      } else if ($gameType == "MegaWalls") {
+        $result = getOverallMegaWallsLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Mega Walls Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (Wins)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Wins</th>';
+        echo '<th>Final Kills</th>';
+        echo '<th>Kills</th>';
+        echo '<th>Coins</th>';
+        echo '<th>Assists</th>';
+        echo '<th>Deaths</th>';
+        echo '<th>Chosen Class</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $kills = $player->megawalls->kills;
+          $wins = $player->megawalls->wins;
+          $deaths = $player->megawalls->deaths;
+          $coins = $player->megawalls->coins;
+          $final_kills = $player->megawalls->finalKills;
+          $assists = $player->megawalls->assists;
+          $class = $player->megawalls->chosenClass;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($wins) . '</td>';
+              echo '<td>' . number_format($final_kills) . '</td>';
+              echo '<td>' . number_format($kills) . '</td>';
+              echo '<td>' . number_format($coins) . '</td>';
+              echo '<td>' . number_format($assists) . '</td>';
+              echo '<td>' . number_format($deaths) . '</td>';
+              echo '<td>' . number_format($class) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }       
+      } else if ($gameType == "BuildBattle") {
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
       } else if ($gameType == "TNT") {
-        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
-      } else if ($gameType == "Warlords") {
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
       } else if ($gameType == "Duels") {
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
@@ -447,21 +761,143 @@
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
       } else if ($gameType == "MurderMystery") {
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
-      } else if ($gameType == "CopsAndCrims") {
-        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
-      } else if ($gameType == "Smash") {
-        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
-      } else if ($gameType == "BSG") {
-        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
-      } else if ($gameType == "MegaWalls") {
-        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
-      } else if ($gameType == "BuildBattle") {
-        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
+      } else if ($gameType == "FirstLogin") {
+        $result = getOverallFirstLoginLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">First Login Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position (First Login)</th>';
+        echo '<th>Name</th>';
+        echo '<th>Login Date (Server Time)</th>';
+        echo '<th>Recent Game</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $first_login = $player->firstLogin;
+          $recent_game = $player->recentGameType;
+
+          $login_date = date("d M Y (H:i:s)", (int)substr($first_login, 0, 10));
+
+          if ($login_date == "01 Jan 1970 (00:00:00)") {
+              continue;
+          }
+
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . $login_date . '</td>';
+              echo '<td>' . formatRecentGame($recent_game) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        } 
+      } else if ($gameType == "AchievementPoints") {
+        $result = getOverallAchievementLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Achievement Points Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position</th>';
+        echo '<th>Name</th>';
+        echo '<th>Achievement Points</th>';
+        echo '<th>Recent Game</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $ach = $player->achievementPoints;
+          $recent_game = $player->recentGameType;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($ach) . '</td>';
+              echo '<td>' . formatRecentGame($recent_game) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }      
+      } else if ($gameType == "Karma") {
+        $result = getOverallKarmaLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Karma Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position</th>';
+        echo '<th>Name</th>';
+        echo '<th>Karma</th>';
+        echo '<th>Recent Game</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $karma = $player->karma;
+          $recent_game = $player->recentGameType;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . number_format($karma) . '</td>';
+              echo '<td>' . formatRecentGame($recent_game) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }
+      } else if ($gameType == "NetworkLevel") {
+        $result = getOverallNetworkLevelLeaderboard($mongo_mng);
+
+        echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Network Level Leaderboard</h2></center><br>';
+        echo '<tr>';
+        echo '<th>Position</th>';
+        echo '<th>Name</th>';
+        echo '<th>Network Level</th>';
+        echo '<th>Recent Game</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        $i = 1;
+
+        foreach ($result as $player) {
+          $name = $player->name;
+          $rank = $player->rank;
+          $rank_colour = $player->rankColour;
+          $exp = $player->networkExp;
+          $level = getNetworkLevel($exp);
+          $recent_game = $player->recentGameType;
+          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+
+          echo '<tr>';
+              echo '<td>' . $i . '</td>';
+              echo '<td><a href="../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';
+              echo '<td>' . $level . '</td>';
+              echo '<td>' . formatRecentGame($recent_game) . '</td>';
+          echo '</tr>'; 
+          $i = $i + 1;
+        }
       } else {
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Error</h2></center><br>';
       }
     
-    echo '</tbody></table>';
+    echo '</tbody></table></div></div></div></div></div>';
 
 ?>
 </body>

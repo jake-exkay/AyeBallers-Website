@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?php require "includes/links.php"; ?>
+        <?php 
+            require "includes/links.php"; 
+            require "includes/connect.php";
+            require "includes/constants.php";
+            require "functions/backend_functions.php";
+            require "functions/player_functions.php";
+            require "error/error_messages.php";
+            include "admin/functions/login_functions.php";
+        ?>
         <title>AyeBallers Hypixel Statistics</title>
 
         <script>
@@ -122,6 +130,14 @@
                 <!-- Contact Section Form-->
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
+                        <center>
+                            <a href="#leaderboards" title="First Login" onclick="loadLeaderboard('FirstLogin')"><button class="btn btn-primary btn-xl">First Login</button></a>
+                            <a href="#leaderboards" title="Achievement Points" onclick="loadLeaderboard('AchievementPoints')"><button class="btn btn-primary btn-xl">Achievements</button></a>
+                            <a href="#leaderboards" title="Network Level" onclick="loadLeaderboard('NetworkLevel')"><button class="btn btn-primary btn-xl">Network Level</button></a>
+                            <a href="#leaderboards" title="Karma" onclick="loadLeaderboard('Karma')"><button class="btn btn-primary btn-xl">Karma</button></a>
+                        </center>
+
+                        <br />
 
                         <center>
                             <a href="#leaderboards" title="Paintball" onclick="loadLeaderboard('Paintball')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/paintball-img.png"/></a>
@@ -162,4 +178,11 @@
         </div>
 
     </body>
+
+    <script>
+        $(document).ready(function () {
+            $('#leaderboard').DataTable({});
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
 </html>
