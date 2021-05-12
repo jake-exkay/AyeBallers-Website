@@ -3,8 +3,6 @@
     <head>
         <?php 
             require "includes/links.php"; 
-            require "includes/connect.php";
-            require "includes/constants.php";
             require "functions/backend_functions.php";
             require "functions/player_functions.php";
             require "error/error_messages.php";

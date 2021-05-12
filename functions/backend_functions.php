@@ -117,5 +117,20 @@
             return false;
         }
     }
+
+    /**
+     * Gets a formatted leaderboard using a parameter to get the statistic required.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @param leaderboard - Path to statistic to sort by.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+	function getLeaderboard($mongo_mng, $leaderboard) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => [$leaderboard => -1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+	}
     
 ?>

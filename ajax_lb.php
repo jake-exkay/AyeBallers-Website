@@ -1,6 +1,7 @@
 <?php
-	  include 'functions/leaderboard_functions.php';
+	  include 'functions/backend_functions.php';
     include 'includes/connect.php';
+    include 'includes/constants.php';
     include "functions/player_functions.php";
 
     $gameType = $_GET['q'];
@@ -18,7 +19,7 @@
                 <thead class="thead-dark">';
 
     if ($gameType == "Paintball") {
-        $result = getOverallPaintballLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "paintball.kills");
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Paintball Leaderboard</h2></center><br>';
         echo '<tr>';
         echo '<th>Position (Kills)</th>';
@@ -95,7 +96,7 @@
             $i = $i + 1;
         }
     } else if ($gameType == "Quakecraft") {
-        $result = getOverallQuakeLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, 'quakecraft.soloKills');
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Quakecraft Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -182,7 +183,7 @@
             $i = $i + 1;
         }
       } else if ($gameType == "Walls") {
-        $result = getOverallWallsLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "walls.wins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">The Walls Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -253,7 +254,7 @@
           $i = $i + 1;
         }
       } else if ($gameType == "Tkr") {
-        $result = getOverallTkrLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "tkr.goldTrophy");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Turbo Kart Racers Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -302,7 +303,7 @@
           $i = $i + 1;
         }
       } else if ($gameType == "VampireZ") {
-        $result = getOverallVampirezLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "vampirez.asHuman.humanWins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">VampireZ Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -357,7 +358,7 @@
           $i = $i + 1;
         }
       } else if ($gameType == "Arena") {
-        $result = getOverallArenaLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "arena.rating");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Arena Brawl Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -436,7 +437,7 @@
           $i = $i + 1;
         }
       } else if ($gameType == "Bedwars") {
-        $result = getOverallBedwarsLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "bedwars.wins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">BedWars Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -483,7 +484,7 @@
           $i = $i + 1;
         }
       } else if ($gameType == "Skywars") {
-        $result = getOverallSkywarsLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "skywars.overall.wins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">SkyWars Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -529,7 +530,7 @@
           $i = $i + 1;
         }
       } else if ($gameType == "Warlords") {
-        $result = getOverallWarlordsLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "warlords.wins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Warlords Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -581,7 +582,7 @@
           $i = $i + 1;
         }      
       } else if ($gameType == "CopsAndCrims") {
-        $result = getOverallCvcLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "copsandcrims.defusal.gameWins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Cops and Crims Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -627,7 +628,7 @@
           $i = $i + 1;
         }       
       } else if ($gameType == "Smash") {
-        $result = getOverallSmashLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "smash.wins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Smash Heroes Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -667,7 +668,7 @@
           $i = $i + 1;
         } 
       } else if ($gameType == "BSG") {
-        $result = getOverallBSGLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "bsg.wins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Blitz Survival Games Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -704,7 +705,7 @@
           $i = $i + 1;
         }       
       } else if ($gameType == "MegaWalls") {
-        $result = getOverallMegaWallsLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "megawalls.wins");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Mega Walls Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -762,7 +763,7 @@
       } else if ($gameType == "MurderMystery") {
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
       } else if ($gameType == "FirstLogin") {
-        $result = getOverallFirstLoginLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "firstLogin");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">First Login Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -800,7 +801,7 @@
           $i = $i + 1;
         } 
       } else if ($gameType == "AchievementPoints") {
-        $result = getOverallAchievementLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "achievementPoints");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Achievement Points Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -831,7 +832,7 @@
           $i = $i + 1;
         }      
       } else if ($gameType == "Karma") {
-        $result = getOverallKarmaLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "karma");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Karma Leaderboard</h2></center><br>';
         echo '<tr>';
@@ -862,7 +863,7 @@
           $i = $i + 1;
         }
       } else if ($gameType == "NetworkLevel") {
-        $result = getOverallNetworkLevelLeaderboard($mongo_mng);
+        $result = getLeaderboard($mongo_mng, "networkExp");
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Network Level Leaderboard</h2></center><br>';
         echo '<tr>';
