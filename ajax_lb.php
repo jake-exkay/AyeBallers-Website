@@ -763,7 +763,7 @@
       } else if ($gameType == "MurderMystery") {
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">Coming Soon</h2></center><br>';
       } else if ($gameType == "FirstLogin") {
-        $result = getLeaderboard($mongo_mng, "firstLogin");
+        $result = getFirstLoginLeaderboard($mongo_mng);
 
         echo '<br><center><h2 class="masthead-heading text-uppercase mb-0">First Login Leaderboard</h2></center><br>';
         echo '<tr>';

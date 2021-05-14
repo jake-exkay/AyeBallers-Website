@@ -132,5 +132,19 @@
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
         return $res;
 	}
+
+    /**
+     * Gets a formatted first login leaderboard.
+     *
+     * @param mongo_mng - MongoDB driver manager.
+     * @return res - Leaderboard result.
+     * @author ExKay <exkay61@hotmail.com>
+     */
+	function getFirstLoginLeaderboard($mongo_mng) 
+    {
+        $query = new MongoDB\Driver\Query([], ['sort' => ['firstLogin' => 1], 'limit' => 1000]);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        return $res;
+	}
     
 ?>
