@@ -26,6 +26,55 @@
                     xmlhttp.send();
                 }
             }
+
+            function loadButtons(str) {
+                if (str == "") {
+                    document.getElementById("leaderboard-result").innerHTML = "";
+                    return;
+                }
+                if (str == "TNT") {
+                    document.getElementById("leaderboard-result").innerHTML = '<center><br><h2>Select Game Mode</h2>' + 
+                    '<a href="#leaderboards" title="TNT Run" style="padding-left:5px" onclick="loadLeaderboard(\'TNTRun\')"><button class="btn btn-primary btn-xl">TNT Run</button></a>' +
+                    '<a href="#leaderboards" title="TNT Tag" style="padding-left:5px" onclick="loadLeaderboard(\'TNTTag\')"><button class="btn btn-primary btn-xl">TNT Tag</button></a>' +
+                    '<a href="#leaderboards" title="Bow Spleef" style="padding-left:5px" onclick="loadLeaderboard(\'BowSpleef\')"><button class="btn btn-primary btn-xl">Bow Spleef</button></a>' +
+                    '<a href="#leaderboards" title="PVP Run" style="padding-left:5px" onclick="loadLeaderboard(\'PVPRun\')"><button class="btn btn-primary btn-xl">PVP Run</button></a>' +
+                    '<a href="#leaderboards" title="Wizards" style="padding-left:5px" onclick="loadLeaderboard(\'Wizards\')"><button class="btn btn-primary btn-xl">Wizards</button></a></center>';
+                }
+                if (str == "Arcade") {
+                    document.getElementById("leaderboard-result").innerHTML = '<center><br><h2>Select Game Mode</h2>' + 
+                    '<a href="#leaderboards" title="Bounty Hunters" style="padding-left:5px" onclick="loadLeaderboard(\'BountyHunters\')"><button class="btn btn-primary btn-xl">Bounty Hunters</button></a>' +
+                    '<a href="#leaderboards" title="Throw Out" style="padding-left:5px" onclick="loadLeaderboard(\'ThrowOut\')"><button class="btn btn-primary btn-xl">Throw Out</button></a>' +
+                    '<a href="#leaderboards" title="Blocking Dead" style="padding-left:5px" onclick="loadLeaderboard(\'BlockingDead\')"><button class="btn btn-primary btn-xl">Blocking Dead</button></a>' +
+                    '<a href="#leaderboards" title="Dragon Wars" style="padding-left:5px" onclick="loadLeaderboard(\'DragonWars\')"><button class="btn btn-primary btn-xl">Dragon Wars</button></a>' +
+                    '<a href="#leaderboards" title="Creeper Attack" style="padding-left:5px" onclick="loadLeaderboard(\'CreeperAttack\')"><button class="btn btn-primary btn-xl">Creeper Attack</button></a>' +
+                    '<a href="#leaderboards" title="Farm Hunt" style="padding-left:5px" onclick="loadLeaderboard(\'FarmHunt\')"><button class="btn btn-primary btn-xl">Farm Hunt</button></a>' +
+                    '<a href="#leaderboards" title="Ender Spleef" style="padding-left:5px" onclick="loadLeaderboard(\'EnderSpleef\')"><button class="btn btn-primary btn-xl">Ender Spleef</button></a>' +
+                    '<a href="#leaderboards" title="Party Games" style="padding-left:5px" onclick="loadLeaderboard(\'PartyGames\')"><button class="btn btn-primary btn-xl">Party Games</button></a>' +
+                    '<a href="#leaderboards" title="Galaxy Wars" style="padding-left:5px" onclick="loadLeaderboard(\'GalaxyWars\')"><button class="btn btn-primary btn-xl">Galaxy Wars</button></a>' +
+                    '<a href="#leaderboards" title="Hole In The Wall" style="padding-left:5px" onclick="loadLeaderboard(\'HoleInTheWall\')"><button class="btn btn-primary btn-xl">Hole In The Wall</button></a>' +
+                    '<a href="#leaderboards" title="Hypixel Says" style="padding-left:5px" onclick="loadLeaderboard(\'HypixelSays\')"><button class="btn btn-primary btn-xl">Hypixel Says</button></a>' +
+                    '<a href="#leaderboards" title="MiniWalls" style="padding-left:5px" onclick="loadLeaderboard(\'MiniWalls\')"><button class="btn btn-primary btn-xl">Mini Walls</button></a>' +
+                    '<a href="#leaderboards" title="Football" style="padding-left:5px" onclick="loadLeaderboard(\'Football\')"><button class="btn btn-primary btn-xl">Football</button></a>' +
+                    '<a href="#leaderboards" title="Zombies" style="padding-left:5px" onclick="loadLeaderboard(\'Zombies\')"><button class="btn btn-primary btn-xl">Zombies</button></a>' +
+                    '<a href="#leaderboards" title="Hide And Seek" style="padding-left:5px" onclick="loadLeaderboard(\'HideAndSeek\')"><button class="btn btn-primary btn-xl">Hide And Seek</button></a></center>';
+                }
+                if (str == "UHC") {
+                    document.getElementById("leaderboard-result").innerHTML = '<center><br><h2>Select Game Mode</h2>' + 
+                    '<a href="#leaderboards" title="Solo" style="padding-left:5px" onclick="loadLeaderboard(\'UHCSolo\')"><button class="btn btn-primary btn-xl">Solo</button></a>' +
+                    '<a href="#leaderboards" title="Teams" style="padding-left:5px" onclick="loadLeaderboard(\'UHCTeams\')"><button class="btn btn-primary btn-xl">Teams</button></a>' +
+                    '<a href="#leaderboards" title="Brawl" style="padding-left:5px" onclick="loadLeaderboard(\'UHCBrawl\')"><button class="btn btn-primary btn-xl">Brawl</button></a>' +
+                    '<a href="#leaderboards" title="Solo Brawl" style="padding-left:5px" onclick="loadLeaderboard(\'UHCSoloBrawl\')"><button class="btn btn-primary btn-xl">Solo Brawl</button></a>' +
+                    '<a href="#leaderboards" title="Duo Brawl" style="padding-left:5px" onclick="loadLeaderboard(\'UHCDuoBrawl\')"><button class="btn btn-primary btn-xl">Duo Brawl</button></a></center>';
+                }
+                if (str == "MurderMystery") {
+                    document.getElementById("leaderboard-result").innerHTML = '<center><br><h2>Select Game Mode</h2>' + 
+                    '<a href="#leaderboards" title="Overall" style="padding-left:5px" onclick="loadLeaderboard(\'MMOverall\')"><button class="btn btn-primary btn-xl">Overall</button></a>' +
+                    '<a href="#leaderboards" title="Classic" style="padding-left:5px" onclick="loadLeaderboard(\'MMClassic\')"><button class="btn btn-primary btn-xl">Classic</button></a>' +
+                    '<a href="#leaderboards" title="Assassins" style="padding-left:5px" onclick="loadLeaderboard(\'MMAssassins\')"><button class="btn btn-primary btn-xl">Assassins</button></a>' +
+                    '<a href="#leaderboards" title="Double Up" style="padding-left:5px" onclick="loadLeaderboard(\'MMDoubleUp\')"><button class="btn btn-primary btn-xl">Double Up</button></a>' +
+                    '<a href="#leaderboards" title="Infection" style="padding-left:5px" onclick="loadLeaderboard(\'MMInfection\')"><button class="btn btn-primary btn-xl">Infection</button></a></center>';
+                }
+            }
         </script>
     </head>
     <body id="page-top">
@@ -145,12 +194,12 @@
                             <a href="#leaderboards" title="Turbo Kart Racers" onclick="loadLeaderboard('Tkr')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/tkr-img.png"/></a>
                             <a href="#leaderboards" title="Arena Brawl" onclick="loadLeaderboard('Arena')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/arena-img.png"/></a>
                             <a href="#leaderboards" title="Warlords" onclick="loadLeaderboard('Warlords')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/warlords-img.png"/></a>
-                            <a href="#leaderboards" title="TNT Games" onclick="loadLeaderboard('TNT')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/tnt-img.png"/></a>
+                            <a href="#leaderboards" title="TNT Games" onclick="loadButtons('TNT')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/tnt-img.png"/></a>
                             <a href="#leaderboards" title="Bedwars" onclick="loadLeaderboard('Bedwars')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/bedwars-img.png"/></a>
                             <a href="#leaderboards" title="Skywars" onclick="loadLeaderboard('Skywars')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/skywars-img.png"/></a>
-                            <a href="#leaderboards" title="Murder Mystery" onclick="loadLeaderboard('MurderMystery')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/murdermystery-img.png"/></a>
-                            <a href="#leaderboards" title="Arcade Games" onclick="loadLeaderboard('Arcade')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/arcade-img.png"/></a>
-                            <a href="#leaderboards" title="UHC Champions" onclick="loadLeaderboard('UHC')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/uhc-img.png"/></a>
+                            <a href="#leaderboards" title="Murder Mystery" onclick="loadButtons('MurderMystery')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/murdermystery-img.png"/></a>
+                            <a href="#leaderboards" title="Arcade Games" onclick="loadButtons('Arcade')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/arcade-img.png"/></a>
+                            <a href="#leaderboards" title="UHC Champions" onclick="loadButtons('UHC')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/uhc-img.png"/></a>
                             <a href="#leaderboards" title="Build Battle" onclick="loadLeaderboard('BuildBattle')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/buildbattle-img.png"/></a>
                             <a href="#leaderboards" title="Cops and Crims" onclick="loadLeaderboard('CopsAndCrims')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/cac-img.png"/></a>
                             <a href="#leaderboards" title="Duels" onclick="loadLeaderboard('Duels')"><img style="box-shadow: 3px 3px 5px grey; padding-top: 2px" src="assets/img/duels-img.png"/></a>
@@ -163,7 +212,7 @@
 
                     </div>
                     
-                    <div id="leaderboard-result"></div>
+                    <div id="leaderboard-result" style="width: 100%; margin: 0 auto;"></div>
                 </div>
             </div>
         </section>
@@ -177,10 +226,4 @@
 
     </body>
 
-    <script>
-        $(document).ready(function () {
-            $('#leaderboard').DataTable({});
-            $('.dataTables_length').addClass('bs-select');
-        });
-    </script>
 </html>
