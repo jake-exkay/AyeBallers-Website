@@ -27,6 +27,19 @@
                 }
             }
 
+            function loadStats() {
+                var player = document.getElementById("player-search").value;
+
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("stats-result").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "ajax_stats.php?q=" + player, true);
+                xmlhttp.send();
+            }
+
             function loadButtons(str) {
                 if (str == "") {
                     document.getElementById("leaderboard-result").innerHTML = "";
@@ -157,10 +170,14 @@
                                 <div id="success"></div>
                                 <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Search Guild</button></div>
                             </form>
+
+                            
                         </center>
                     </div>
                 </div>
+                
             </div>
+            <div id="stats-result" style="padding-left: 150px; padding-right: 150px; width: 100%; margin: 0 auto;"></div>
         </section>
 
         <!-- Leaderboard Section-->
@@ -217,6 +234,9 @@
             </div>
         </section>
 
+        <!--<input class="form-control" id="player-search" name="player-search" type="text" placeholder="Player Name" required="required" data-validation-required-message="Please enter a player name." />
+        <a title="Player Search" onclick="loadStats()"><button data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-xl">Search</button></a>-->
+
         <?php require "includes/footer.php"; ?>
 
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
@@ -225,5 +245,6 @@
         </div>
 
     </body>
+    
 
 </html>
