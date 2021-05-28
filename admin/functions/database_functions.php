@@ -134,15 +134,26 @@
         return $views;
     }
 
-    function getListOfHelpers($mongo_mng) {
-        $filter = ['rank' => "HELPER"]; 
+    function getListOfGameMasters($mongo_mng) {
+        $filter = ['rank' => "GAME_MASTER"]; 
         $query = new MongoDB\Driver\Query($filter);
         $res = $mongo_mng->executeQuery("ayeballers.player", $query);
-        $helpers = array();
+        $gms = array();
         foreach ($res as $i) {
-            array_push($helpers, $i->name);
+            array_push($gms, $i->name);
         }
-        return $helpers;
+        return $gms;
+    }
+
+    function getListOfYouTubers($mongo_mng) {
+        $filter = ['rank' => "YOUTUBER"]; 
+        $query = new MongoDB\Driver\Query($filter);
+        $res = $mongo_mng->executeQuery("ayeballers.player", $query);
+        $youtubers = array();
+        foreach ($res as $i) {
+            array_push($youtubers, $i->name);
+        }
+        return $youtubers;
     }
 
     function getListOfMods($mongo_mng) {

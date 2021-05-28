@@ -156,6 +156,24 @@ if (isLoggedIn($connection)) {
                             </div>
                         </div>
 
+                        <!-- GM Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Game Masters</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfGameMasters($mongo_mng)); ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-users fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Mod Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
@@ -174,24 +192,6 @@ if (isLoggedIn($connection)) {
                             </div>
                         </div>
 
-                        <!-- Helper Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Helpers</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfHelpers($mongo_mng)); ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- YouTuber Card -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-danger shadow h-100 py-2">
@@ -200,7 +200,7 @@ if (isLoggedIn($connection)) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 YouTubers</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfYoutubers($mongo_mng)); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -247,10 +247,40 @@ if (isLoggedIn($connection)) {
                         <div class="col-xl-3 col-lg-7">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Moderator List</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Game Master List</h6>
                                 </div>
                                 <div class="card-body">
                                     <table id="mod" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+
+                                                $gms = getListOfGameMasters($mongo_mng);
+
+                                                foreach ($gms as $gm) {
+                                                    echo '<tr>';
+                                                        echo '<td><a href="../stats.php?player=' . $gm . '">' . getRankFormatting($gm, "GAME_MASTER", "None") . '</a></td>';
+                                                    echo '</tr>'; 
+                                                }
+
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Moderator List</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table id="helpers" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Name</th>
@@ -277,36 +307,6 @@ if (isLoggedIn($connection)) {
                         <div class="col-xl-3 col-lg-7">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Helper List</h6>
-                                </div>
-                                <div class="card-body">
-                                    <table id="helpers" class="table table-striped table-bordered table-lg" cellspacing="0" width="100%">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-
-                                                $helpers = getListOfHelpers($mongo_mng);
-                                                foreach ($helpers as $helper) {
-                                                    echo '<tr>';
-                                                        echo '<td><a href="../stats.php?player=' . $helper . '">' . getRankFormatting($helper, "HELPER", "None") . '</a></td>';
-                                                    echo '</tr>'; 
-                                                }
-                                                echo '<tr>Helper rank is discontinued.</tr>';
-
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">YouTuber List</h6>
                                 </div>
                                 <div class="card-body">
@@ -319,7 +319,14 @@ if (isLoggedIn($connection)) {
                                         <tbody>
                                             <?php
 
-                                                echo '<tr>Coming Soon.</tr>';
+                                                $yts = getListOfYoutubers($mongo_mng);
+
+                                                foreach ($yts as $yt) {
+                                                    echo '<tr>';
+                                                        echo '<td><a href="../stats.php?player=' . $yt . '">' . getRankFormatting($yt, "YOUTUBER", "None") . '</a></td>';
+                                                    echo '</tr>'; 
+                                                }
+
                                             ?>
                                         </tbody>
                                     </table>

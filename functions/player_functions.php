@@ -1145,9 +1145,11 @@
 		} else if ($rank == "ADMIN") {
 			$rank_with_name = '<span style="color:#ce1c1c;">' . '[ADMIN] ' . $name . '</span>';
 		} else if ($rank == "YOUTUBER") {
-			$rank_with_name = '<span style="color:#ce1c1c;">' . '[<span style="color:#ffffff;">YOUTUBE<span style="color:#ce1c1c;">] ' . $name . '</span>';
+			$rank_with_name = '<span style="color:#ce1c1c;">' . '[YOUTUBE] ' . $name . '</span>';
 		} else if ($rank == "MODERATOR") {
 			$rank_with_name = '<span style="color:#238212;">' . '[MOD] ' . $name . '</span>';
+        } else if ($rank == "GAME_MASTER") {
+			$rank_with_name = '<span style="color:#238212;">' . '[GM] ' . $name . '</span>';
 		} else if ($rank == "HELPER") {
 			$rank_with_name = '<span style="color:#146594;">' . '[HELPER] ' . $name . '</span>';
 		} else {
