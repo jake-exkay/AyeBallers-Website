@@ -1129,6 +1129,8 @@
             $plus_colour = '<span style="color:#555555;">+</span>';
         } else if ($rank_colour == "LIGHT_PURPLE") {
             $plus_colour = '<span style="color:#FF55FF;">+</span>';
+        } else if ($rank_colour == "DARK_BLUE") {
+            $plus_colour = '<span style="color:#5555FF;">+</span>';
 		} else {
             $plus_colour = '<span style="color:#AA0000;">+</span>';
         }
