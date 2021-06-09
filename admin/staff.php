@@ -4,7 +4,7 @@ require "../includes/constants.php";
 require "../functions/backend_functions.php";
 require "../functions/player_functions.php";
 require "../includes/connect.php";
-require "functions/database_functions.php";
+require "functions/backend_functions.php";
 require "functions/login_functions.php";
 
 if (isLoggedIn($connection)) {
@@ -146,7 +146,7 @@ if (isLoggedIn($connection)) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Admins</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfAdmins($mongo_mng)); ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getPlayersByRank($mongo_mng, "ADMIN")); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -164,7 +164,7 @@ if (isLoggedIn($connection)) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Game Masters</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfGameMasters($mongo_mng)); ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getPlayersByRank($mongo_mng, "GAME_MASTER")); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -182,7 +182,7 @@ if (isLoggedIn($connection)) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Moderators</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfMods($mongo_mng)); ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getPlayersByRank($mongo_mng, "MODERATOR")); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -200,7 +200,7 @@ if (isLoggedIn($connection)) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 YouTubers</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getListOfYoutubers($mongo_mng)); ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo count(getPlayersByRank($mongo_mng, "YOUTUBER")); ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-users fa-2x text-gray-300"></i>
@@ -229,7 +229,7 @@ if (isLoggedIn($connection)) {
                                         <tbody>
                                             <?php
 
-                                                $admins = getListOfAdmins($mongo_mng);
+                                                $admins = getPlayersByRank($mongo_mng, "ADMIN");
 
                                                 foreach ($admins as $admin) {
                                                     echo '<tr>';
@@ -259,7 +259,7 @@ if (isLoggedIn($connection)) {
                                         <tbody>
                                             <?php
 
-                                                $gms = getListOfGameMasters($mongo_mng);
+                                                $gms = getPlayersByRank($mongo_mng, "GAME_MASTER");
 
                                                 foreach ($gms as $gm) {
                                                     echo '<tr>';
@@ -289,7 +289,7 @@ if (isLoggedIn($connection)) {
                                         <tbody>
                                             <?php
 
-                                                $mods = getListOfMods($mongo_mng);
+                                                $mods = getPlayersByRank($mongo_mng, "MODERATOR");
 
                                                 foreach ($mods as $mod) {
                                                     echo '<tr>';
@@ -319,7 +319,7 @@ if (isLoggedIn($connection)) {
                                         <tbody>
                                             <?php
 
-                                                $yts = getListOfYoutubers($mongo_mng);
+                                                $yts = getPlayersByRank($mongo_mng, "YOUTUBER");
 
                                                 foreach ($yts as $yt) {
                                                     echo '<tr>';

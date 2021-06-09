@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains general functions which deal with backend issues.
+ * Contains general functions which interact with the database and backend systems.
  * PHP version 7.2.34
  *
  * @category Functions
