@@ -244,7 +244,13 @@ if (isLoggedIn($connection)) {
                                                         $player = getPlayerByName($mongo_mng, $name);
                                                         $rank = $player->rank;
                                                         $rank_colour = $player->rankColour;
-                                                        $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                                                        
+                                                        $prefix = $player->prefix;
+                                                        if ($prefix == "NONE" || $prefix == NULL) {
+                                                              $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                                                        } else {
+                                                              $rank_with_name = parseMinecraftColors($prefix, $name);
+                                                        }
 
                                                         echo '<tr>';
                                                             echo '<td><a href="../stats.php?player=' . $name . '">' . $rank_with_name . '</a></td>';

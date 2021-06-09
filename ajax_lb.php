@@ -51,7 +51,17 @@
             $hat = $player->paintball->hat;
             $ff_time = $player->paintball->forcefieldTime;
             $killstreaks = $player->paintball->killstreaks;
-            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+            $prefix = $player->prefix;
+            if ($prefix == "NONE" || $prefix == NULL) {
+              $prefix = $player->prefix;
+            if ($prefix == "NONE" || $prefix == NULL) {
+              $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+            } else {
+              $rank_with_name = parseMinecraftColors($prefix, $name);
+            }
+            } else {
+              $rank_with_name = parseMinecraftColors($prefix, $name);
+            }
 
             if ($kills == 0) {
                 $kd = 0;
@@ -139,7 +149,13 @@
           $shots_fired_quake = $player->quakecraft->soloShotsFired;
           $distance_travelled_quake = $player->quakecraft->soloDistanceTravelled;
           $distance_travelled_teams_quake = $player->quakecraft->teamDistanceTravelled;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           if ($kills == 0 && $kills_teams_quake == 0) {
               $kd = 0;
@@ -214,7 +230,13 @@
           $deaths = $player->walls->deaths;
           $assists = $player->walls->assists;
           $losses = $player->walls->losses;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           if ($deaths == 0 || $losses == 0) {
             $kd = 0;
@@ -288,7 +310,13 @@
           $laps_completed = $player->tkr->lapsCompleted;
           $box_pickups = $player->tkr->boxPickups;
           $coin_pickups = $player->tkr->coinPickups;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -342,7 +370,13 @@
           $most_vampire_kills = $player->vampirez->asHuman->mostVampireKills;
           $human_deaths = $player->vampirez->asHuman->humanDeaths;
           $vampire_deaths = $player->vampirez->asVampire->vampireDeaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -421,7 +455,13 @@
           $losses = $losses_1 + $losses_2 + $losses_4;
           $games = $games_1 + $games_2 + $games_4;
           $deaths = $deaths_1 + $deaths_2 + $deaths_4;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -473,7 +513,13 @@
           $games = $player->bedwars->gamesPlayed;
           $beds = $player->bedwars->bedsBroken;
           $resources = $player->bedwars->resourcesCollected->total;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -520,7 +566,13 @@
           $fastest_win = $player->skywars->overall->fastestWin;
           $survived_players = $player->skywars->overall->survivedPlayers;
           $eggs_thrown = $player->skywars->overall->eggsThrown;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -571,7 +623,13 @@
           $current_class = $player->warlords->currentClass;
           $damage = $player->warlords->damage;
           $healing = $player->warlords->heal;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -620,7 +678,13 @@
           $deaths = $player->copsandcrims->defusal->deaths;
           $bombs_defused = $player->copsandcrims->defusal->bombsDefused;
           $bombs_planted = $player->copsandcrims->defusal->bombsPlanted;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -663,7 +727,13 @@
           $deaths = $player->smash->deaths;
           $smash_level = $player->smash->smashLevel;
           $coins = $player->smash->coins;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -702,7 +772,13 @@
           $wins = $player->bsg->wins;
           $deaths = $player->bsg->deaths;
           $coins = $player->bsg->coins;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -746,7 +822,13 @@
           $final_kills = $player->megawalls->finalKills;
           $assists = $player->megawalls->assists;
           $class = $player->megawalls->chosenClass;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -789,7 +871,13 @@
           $coins = $player->buildBattle->coins;
           $games = $player->buildBattle->games;
           $correct_guesses = $player->buildBattle->correctGuesses;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -827,7 +915,13 @@
           $record = $player->tntgames->tntrun->record;
           $wins = $player->tntgames->tntrun->wins;
           $deaths = $player->tntgames->tntrun->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           if ($deaths == 0) {
             $wl = 0;
@@ -868,7 +962,13 @@
           $rank_colour = $player->rankColour;
           $wins = $player->tntgames->tntag->wins;
           $kills = $player->tntgames->tntag->kills;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -900,7 +1000,13 @@
           $rank_colour = $player->rankColour;
           $wins = $player->tntgames->bowspleef->wins;
           $deaths = $player->tntgames->bowspleef->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -938,7 +1044,13 @@
           $deaths = $player->tntgames->wizards->deaths;
           $assists = $player->tntgames->wizards->assists;
           $points = $player->tntgames->wizards->points;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -977,7 +1089,13 @@
           $kills = $player->tntgames->pvprun->kills;
           $deaths = $player->tntgames->pvprun->deaths;
           $record = $player->tntgames->pvprun->record;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1019,7 +1137,13 @@
           $games = $player->duels->games;
           $shots = $player->duels->bowShots;
           $swings = $player->duels->swings;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1057,7 +1181,13 @@
           $wins = $player->arcade->bountyHunters->wins;
           $kills = $player->arcade->bountyHunters->kills;
           $bounty_kills = $player->arcade->bountyHunters->bountyKills;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1092,7 +1222,13 @@
           $wins = $player->arcade->throwOut->wins;
           $kills = $player->arcade->throwOut->kills;
           $deaths = $player->arcade->throwOut->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1127,7 +1263,13 @@
           $wins = $player->arcade->blockingDead->wins;
           $kills = $player->arcade->blockingDead->kills;
           $headshots = $player->arcade->blockingDead->headshots;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1160,7 +1302,13 @@
           $rank_colour = $player->rankColour;
           $wins = $player->arcade->dragonWars->wins;
           $kills = $player->arcade->dragonWars->kills;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1190,7 +1338,13 @@
           $rank = $player->rank;
           $rank_colour = $player->rankColour;
           $wave = $player->arcade->creeperAttack->maxWave;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1221,7 +1375,13 @@
           $rank_colour = $player->rankColour;
           $wins = $player->arcade->farmHunt->wins;
           $poop = $player->arcade->farmHunt->poopCollected;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1251,7 +1411,13 @@
           $rank = $player->rank;
           $rank_colour = $player->rankColour;
           $wins = $player->arcade->enderSpleef->wins;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1284,7 +1450,13 @@
           $wins1 = $player->arcade->partyGamesOne->wins;
           $wins2 = $player->arcade->partyGamesTwo->wins;
           $wins3 = $player->arcade->partyGamesThree->wins;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1319,7 +1491,13 @@
           $wins = $player->arcade->galaxyWars->wins;
           $kills = $player->arcade->galaxyWars->kills;
           $shots_fired = $player->arcade->galaxyWars->shotsFired;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1352,7 +1530,13 @@
           $rank_colour = $player->rankColour;
           $wins = $player->arcade->holeInTheWall->wins;
           $rounds = $player->arcade->holeInTheWall->rounds;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1384,7 +1568,13 @@
           $rank_colour = $player->rankColour;
           $wins = $player->arcade->hypixelSays->wins;
           $rounds = $player->arcade->hypixelSays->rounds;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1422,7 +1612,13 @@
           $deaths = $player->arcade->miniWalls->deaths;
           $final_kills = $player->arcade->miniWalls->finalKills;
           $wither_kills = $player->arcade->miniWalls->witherKills;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1461,7 +1657,13 @@
           $goals = $player->arcade->football->goals;
           $kicks = $player->arcade->football->kicks;
           $power_kicks = $player->arcade->football->powerKicks;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1501,7 +1703,13 @@
           $players_revived = $player->arcade->zombies->playersRevived;
           $doors_opened = $player->arcade->zombies->doorsOpened;
           $deaths = $player->arcade->zombies->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1536,7 +1744,13 @@
           $rank_colour = $player->rankColour;
           $hider_wins = $player->arcade->hideAndSeek->hiderWins;
           $seeker_wins = $player->arcade->hideAndSeek->seekerWins;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1572,7 +1786,13 @@
           $kills = $player->uhc->solo->kills;
           $heads_eaten = $player->uhc->solo->headsEaten;
           $deaths = $player->uhc->solo->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1610,7 +1830,13 @@
           $kills = $player->uhc->team->kills;
           $heads_eaten = $player->uhc->team->headsEaten;
           $deaths = $player->uhc->team->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1648,7 +1874,13 @@
           $kills = $player->uhc->brawl->kills;
           $heads_eaten = $player->uhc->brawl->headsEaten;
           $deaths = $player->uhc->brawl->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1686,7 +1918,13 @@
           $kills = $player->uhc->solobrawl->kills;
           $heads_eaten = $player->uhc->solobrawl->headsEaten;
           $deaths = $player->uhc->solobrawl->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1724,7 +1962,13 @@
           $kills = $player->uhc->duobrawl->kills;
           $heads_eaten = $player->uhc->duobrawl->headsEaten;
           $deaths = $player->uhc->duobrawl->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1762,7 +2006,13 @@
           $kills = $player->murdermystery->kills;
           $coins = $player->murdermystery->coinsPickedUp;
           $hero = $player->murdermystery->wasHero;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1800,7 +2050,13 @@
           $kills = $player->murdermystery->classic->kills;
           $games = $player->murdermystery->classic->games;
           $deaths = $player->murdermystery->classic->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1838,7 +2094,13 @@
           $kills = $player->murdermystery->assassins->kills;
           $games = $player->murdermystery->assassins->games;
           $deaths = $player->murdermystery->assassins->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1876,7 +2138,13 @@
           $kills = $player->murdermystery->doubleup->kills;
           $games = $player->murdermystery->doubleup->games;
           $deaths = $player->murdermystery->doubleup->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1914,7 +2182,13 @@
           $kills = $player->murdermystery->infection->killsAsSurvivor;
           $games = $player->murdermystery->infection->games;
           $deaths = $player->murdermystery->infection->deaths;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1955,7 +2229,13 @@
               continue;
           }
 
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -1987,7 +2267,13 @@
           $rank_colour = $player->rankColour;
           $ach = $player->achievementPoints;
           $recent_game = $player->recentGameType;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -2019,7 +2305,13 @@
           $rank_colour = $player->rankColour;
           $karma = $player->karma;
           $recent_game = $player->recentGameType;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';
@@ -2052,7 +2344,13 @@
           $exp = $player->networkExp;
           $level = getNetworkLevel($exp);
           $recent_game = $player->recentGameType;
-          $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          $prefix = $player->prefix;
+          
+          if ($prefix == "NONE" || $prefix == NULL) {
+            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+          } else {
+            $rank_with_name = parseMinecraftColors($prefix, $name);
+          }
 
           echo '<tr>';
               echo '<td>' . $i . '</td>';

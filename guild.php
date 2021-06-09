@@ -176,7 +176,13 @@ updatePageViews($connection, 'guild_page', $DEV_IP);
                                                             $rank = $player->rank;
                                                             $rank_colour = $player->rankColour;
 
-                                                            $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                                                            $prefix = $player->prefix;
+                                                            
+                                                            if ($prefix == "NONE" || $prefix == NULL) {
+                                                                  $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                                                            } else {
+                                                                  $rank_with_name = parseMinecraftColors($prefix, $name);
+                                                            }
 
                                                             echo '<img alt="Player Avatar" style="height: 25px; width: 25px;" src="https://crafatar.com/avatars/' . $uuid . '"/> ';
                                                             echo '<a href="../../stats.php?player=' . $name . '">' . $rank_with_name . '</a><br>';

@@ -50,6 +50,7 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                     $rank_colour = $player->rankColour;
                     $network_exp = $player->networkExp;
                     $name = $player->name;
+					$prefix = $player->prefix;
 
                     $first_login = $player->firstLogin;
                     $first_login = date("d M Y (H:i:s)", (int)substr($first_login, 0, 10));
@@ -58,7 +59,12 @@ updatePageViews($connection, 'stats_page', $DEV_IP);
                     $last_vote = $player->lastVote;
                     $last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
 
-                    $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+					if ($prefix == "NONE") {
+                    	$rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+					} else {
+						$rank_with_name = parseMinecraftColors($prefix, $name);
+					}
+
                     $network_level = getNetworkLevel($network_exp);
 
                     $recent_game = formatRecentGame($player->recentGameType);

@@ -39,7 +39,13 @@
                   $last_vote = $player->lastVote;
                   $last_vote = date("d M Y (H:i:s)", (int)substr($last_vote, 0, 10));
 
-                  $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                  $prefix = $player->prefix;
+                  if ($prefix == "NONE" || $prefix == NULL) {
+                        $rank_with_name = getRankFormatting($name, $rank, $rank_colour);
+                  } else {
+                        $rank_with_name = parseMinecraftColors($prefix, $name);
+                  }
+                  
                   $network_level = getNetworkLevel($network_exp);
 
                   $recent_game = formatRecentGame($player->recentGameType);

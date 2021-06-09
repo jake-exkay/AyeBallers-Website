@@ -63,6 +63,7 @@
             $monthly_package_rank = !empty($gen->monthlyPackageRank) ? $gen->monthlyPackageRank : "NONE";
             $package_rank = !empty($gen->packageRank) ? $gen->packageRank : "NONE";
             $new_package_rank = !empty($gen->newPackageRank) ? $gen->newPackageRank : "NONE";
+            $prefix = !empty($gen->prefix) ? $gen->prefix : "NONE";
 
             if ($staff_rank == "NORMAL" || $staff_rank == "NONE") {
                 if ($monthly_package_rank == "NONE") {
@@ -78,10 +79,12 @@
                 $rank = $staff_rank;
             }
 
+
             $doc = [
                 'uuid' => $uuid, 
                 'name' => $name, 
                 'rank' => $rank,
+                'prefix' => $prefix,
                 'rankColour' => !empty($gen->rankPlusColor) ? $gen->rankPlusColor : "None",
                 'karma' => !empty($gen->karma) ? $gen->karma : 0,
                 'firstLogin' => !empty($gen->firstLogin) ? $gen->firstLogin : 0,
@@ -1089,11 +1092,11 @@
      * Gets correct formatting of a players rank with their name.
      * Styling used with correct Hypixel Network colours.
      *
-     * @param $name        Name of the player.
-     * @param $rank        Rank of the player.
-     * @param $rank_colour Colour of the rank (if MVP+ colour used).
+     * @param $name            Name of the player.
+     * @param $rank            Rank of the player.
+     * @param $rank_colour     Colour of the rank (if MVP+ colour used).
      *
-     * @return rank_with_name Formatting of the rank with the players name included.
+     * @return $rank_with_name Formatting of the rank with the players name included.
      * @author ExKay <exkay61@hotmail.com>
      */
 	function getRankFormatting($name, $rank, $rank_colour) 
@@ -1158,6 +1161,20 @@
 
 		return $rank_with_name;
 	}
+
+    /**
+     * Formats Minecraft colour codes.
+     *
+     * @param $string  String to format.
+     *
+     * @return $string Formatted string.
+     * @author Minecrell <https://gist.github.com/Minecrell/755e53aced83ab48513f#file-minecraftcolors-css-L20>
+     */
+    function parseMinecraftColors($string, $name) {
+        $string = utf8_decode(htmlspecialchars($string, ENT_QUOTES, "UTF-8"));
+        $string = preg_replace('/\xA7([0-9a-f])/i', '<span class="mc-color mc-$1">', $string, -1, $count) . " " . $name . str_repeat("</span>", $count);
+        return utf8_encode(preg_replace('/\xA7([k-or])/i', '<span class="mc-$1">', $string, -1, $count) . str_repeat("</span>", $count));
+    }
 
     /**
      * Gets a readable name for paintball hats.
