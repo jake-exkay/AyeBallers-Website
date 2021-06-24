@@ -115,12 +115,7 @@
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="assets/img/hypixel-logo.png" alt="Hypixel Logo" />
                 <!-- Masthead Heading-->
-                <div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading">Hypixel Network Issues</h4>
-                    <p>Due to the ongoing network issues with the Hypixel Network, their API has been suspended. This means most of the functionality of the website is broken.</p>
-                    <hr>
-                    <p class="mb-0">Player data is stored in a local database however, so historical leaderboards, up to the point of the network crash, can still be viewed.</p>
-                </div>
+                
                 <h1 class="masthead-heading text-uppercase mb-0">Hypixel Statistics</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
